@@ -14,6 +14,8 @@ in
 {
   packages = [
     pkgs.cocoapods
+    pkgs.elixir_1_18
+    pkgs.erlang_28
     pkgs.git
     pkgs.jdk
     pkgs.xcodes
