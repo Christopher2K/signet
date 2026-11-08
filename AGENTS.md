@@ -8,6 +8,7 @@ This is a multi repo for the Signet application ecosystem.
 
 - `apps` contains all clients.
   - The mobile app is built with React Native and Expo.
+  - The web app is built with TanStack Start, React, and Vite.
 - `libs` contains all shared libraries that clients can reuse.
 
 ## Specifications
