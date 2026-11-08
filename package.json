@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "format": "biome check --write --unsafe"
   },
   "keywords": [],
   "author": "",
@@ -17,5 +17,8 @@
     }
   },
   "packageManager": "pnpm@12.18.0",
-  "type": "module"
+  "type": "module",
+  "devDependencies": {
+    "@biomejs/biome": "2.6.6"
+  }
 }
