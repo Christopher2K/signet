@@ -149,8 +149,26 @@ Full specimen in `design/client-designs.pen` §3.
 
 Base unit 4px in `design/client-designs.pen` §4. Use `--sp-*` and `--radius-*` variables, do not hard-code.
 
+### 3.4 Logo — The Stack
+
+**Source of truth:** [`design/logo.pen`](design/logo.pen) — full guidelines (construction, colour, scaling, lockups, clear space, app icons, misuse, in-use references). This section is the summary; the `.pen` file decides details.
+
+- **Mark:** three bookmark tabs stepped down and across, `mist #B4C5E4 → azure #3066BE → cobalt #090C9B` back to front (one collection, every client; the deepest blue is the one you touch). Front tab is always the deepest colour at every size.
+- **Optical masters — pick by rendered size (CSS px), never scale across ranges:**
+
+| Rendered size | Master | Tabs | Gap |
+|---|---|---|---|
+| ≤ 16px | 16 | 1 (front only) | none |
+| 17–24px | 24 | 2 (azure, cobalt) | 2px |
+| 25–40px | 32 | 3 | 2px |
+| > 40px | 48 | 3 | 1/24 of size |
+
+- **Dark colourway:** `#4F4A62 → azure-400 #5C84C6 → mist #B4C5E4` (azure #3066BE fails on ink; cobalt never on dark). Mono variants: ink on light surfaces, paper on cobalt/azure/photo.
+- **Lockups:** horizontal default (wordmark 0.625M, gap M/3, min mark 24px); stacked (0.5M, gap M/5, min 32px). Wordmark = Necto Mono 700, "Signet". Clear space M/4; minimum mark 16px (favicon only).
+- **Assets:** ship `logo-16/24/32/48.svg`; a `<Logo size>` component selects by the same thresholds. Export the gap as a cut-out, not an outline, so the mark works on any surface.
+
 - **Type / Spacing / Radii / Elevation:** See 3.2–3.3 above; Elevation TBD
-- **Components (Web):** App shell, Folder tree, Bookmark card (grid/list), Tag chip, Search input, Folder picker, Dialog / Bottom sheet, Toast, Empty state, Skeleton, Sync status dot, Public header, Settings nav. Map to components as `03-library-home.pen` lands.
+- **Components (Web):** App shell, Folder tree, Bookmark card (grid/list), Tag chip, Search input, Folder picker, Dialog / Bottom sheet, Toast, Empty state, Skeleton, Sync status dot, Public header, Settings nav. **Icons:** [Phosphor Icons](https://phosphoricons.com) (`regular 20–24`, `bold` emphasis, `fill` active) — production SVGs; canvas uses geometric stand-ins named by Phosphor name (e.g. `Icon-List`). Map to components as `03-library-home.pen` lands.
 - **Motion:** Reflect sync state, not decoration. Create feedback <2s, remote updates <5s, queue drain <10s must be visible, not silent.
 - **Responsive:** Desktop ≥1024px (3-zone shell), mobile 390px (drawer, bottom sheets). Public pages single-column, auth centered card.
 
@@ -170,5 +188,6 @@ Base unit 4px in `design/client-designs.pen` §4. Use `--sp-*` and `--radius-*` 
 SPECIFICATION.md          product scope (source)
 DESIGN.md                 this file — design system
 design/client-designs.pen  all clients — tokens, type, spacing, screens (iterative)
+design/logo.pen            logo guidelines — The Stack (§3.4): masters, colour, scaling, lockups, icons
 design/web/web-pages-map.md  web pages, dialogs, states, sitemap
 ```
