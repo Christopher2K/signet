@@ -1,4 +1,5 @@
 nodeLinker: hoisted
+savePrefix: "~"
 packages:
   - apps/*
   - libs/*
