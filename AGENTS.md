@@ -2,8 +2,16 @@
 
 ---
 
-This is a multi repo for the Signet application ecosystem. Apps can be found at
+This is a multi repo for the Signet application ecosystem.
 
-- for the design direction, follow the [design specification](./DESIGN.md)
-- for the product direction, follow the [product specification](./SPECIFICATION.md)
+## Repository structure
+
+- `apps` contains all clients.
+  - The mobile app is built with React Native and Expo.
+- `libs` contains all shared libraries that clients can reuse.
+
+## Specifications
+
+- For the design direction, follow the [design specification](./DESIGN.md).
+- For the product direction, follow the [product specification](./SPECIFICATION.md).
 
