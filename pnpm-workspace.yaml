@@ -1,5 +1,7 @@
 nodeLinker: hoisted
 savePrefix: "~"
+allowBuilds:
+  esbuild: true
 packages:
   - apps/*
   - libs/*

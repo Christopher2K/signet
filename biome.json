@@ -6,7 +6,12 @@
     "useIgnoreFile": true
   },
   "files": {
-    "includes": ["apps/**", "libs/**", "!**/routeTree.gen.ts"],
+    "includes": [
+      "apps/**",
+      "libs/**",
+      "!**/storybook.requires.ts",
+      "!**/routeTree.gen.ts"
+    ],
     "ignoreUnknown": false
   },
   "formatter": {
