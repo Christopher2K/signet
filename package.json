@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "format": "biome check --write --unsafe"
+    "format": "biome check --write --unsafe",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "{apps,libs}/**/*.{js,jsx,ts,tsx,json,jsonc,css}": "biome check --write"
   },
   "keywords": [],
   "author": "",
@@ -19,6 +23,8 @@
   "packageManager": "pnpm@12.18.0",
   "type": "module",
   "devDependencies": {
-    "@biomejs/biome": "2.6.6"
+    "@biomejs/biome": "2.6.6",
+    "husky": "~9.1.7",
+    "lint-staged": "~17.6.0"
   }
 }
