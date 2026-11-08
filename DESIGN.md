@@ -122,7 +122,34 @@ For tints/shades between source tones (interpolated, keep hue):
   }
   ```
 
-- **Type / Spacing / Radii / Elevation:** TBD
+### 3.2 Type — Necto Mono
+
+**Primary typeface (all text): Necto Mono** — Collettivo, [collletttivo.it/typefaces/necto-mono](https://www.collletttivo.it/typefaces/necto-mono). Designed by Marco Condello (2019), 1 family / 1 style, SIL OFL. Low contrast, medium apertures, slanted terminals — "aseptic" monospace. Chosen as the sole monospace in the Collettivo catalogue; fits bookmark UX where URLs, tags, and tables must scan at 12–15px.
+
+> Canvas trade-off: pen.dev does not ship Necto Mono, so `design/client-designs.pen` renders samples in IBM Plex Mono as a stand-in. Production token remains `font-primary: "Necto Mono"`.
+
+| Style | Token | Size / Weight | Usage |
+|---|---|---|---|
+| Display | `type-display` | 48 / 700 | Public pages (P1/P2), empty states |
+| Headline | `type-h1` | 32 / 700 | Auth (A1/A2), Settings headers |
+| Title | `type-h2` | 20 / 600 | Folder (L2), bookmark cards |
+| Body | `type-body` | 15 / 400 | Notes, titles, folder names |
+| Caption | `type-caption` | 12 / 400 | URLs, metadata, timestamps, tags |
+| Code | `type-mono` | 13 / 400 | JSON export, tokens, sync state |
+
+Full specimen in `design/client-designs.pen` §3.
+
+### 3.3 Spacing & radii — 4pt grid
+
+| Token | Value |
+|---|---|
+| `sp-1 … sp-12` | 4, 8, 12, 16, 24, 32, 48 |
+| `radius-sm / md / lg` | 4 / 8 / 12 |
+| `radius-card / pill` | 16 / 999 |
+
+Base unit 4px in `design/client-designs.pen` §4. Use `--sp-*` and `--radius-*` variables, do not hard-code.
+
+- **Type / Spacing / Radii / Elevation:** See 3.2–3.3 above; Elevation TBD
 - **Components (Web):** App shell, Folder tree, Bookmark card (grid/list), Tag chip, Search input, Folder picker, Dialog / Bottom sheet, Toast, Empty state, Skeleton, Sync status dot, Public header, Settings nav. Map to components as `03-library-home.pen` lands.
 - **Motion:** Reflect sync state, not decoration. Create feedback <2s, remote updates <5s, queue drain <10s must be visible, not silent.
 - **Responsive:** Desktop ≥1024px (3-zone shell), mobile 390px (drawer, bottom sheets). Public pages single-column, auth centered card.
@@ -142,6 +169,6 @@ For tints/shades between source tones (interpolated, keep hue):
 ```
 SPECIFICATION.md          product scope (source)
 DESIGN.md                 this file — design system
+design/client-designs.pen  all clients — tokens, type, spacing, screens (iterative)
 design/web/web-pages-map.md  web pages, dialogs, states, sitemap
-design/web/*.pen          pencil designs, named in web-pages-map §9
 ```
