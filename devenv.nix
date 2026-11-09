@@ -84,6 +84,16 @@ in
         "$@"
     '';
 
+    generate-api-client.exec = ''
+      generate-openapi
+      exec pnpm --filter @signet/api generate "$@"
+    '';
+
+    check-api-client.exec = ''
+      generate-api-client
+      exec git diff --exit-code -- apps/api/openapi.json libs/api/src/generated
+    '';
+
     ios.exec = ''
       ${isolateMobileToolchain}
 

@@ -20,7 +20,7 @@
   },
   "linter": {
     "enabled": true,
-    "includes": ["**", "!**/*.svg"],
+    "includes": ["**", "!**/*.svg", "!libs/api/src/generated/**"],
     "rules": {
       "preset": "recommended"
     }

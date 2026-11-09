@@ -1,0 +1,39 @@
+{
+  "name": "@signet/api",
+  "version": "1.0.0",
+  "description": "Signet's generated cross-platform API client.",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "default": "./src/index.ts"
+    },
+    "./react-query": {
+      "types": "./src/react-query.ts",
+      "default": "./src/react-query.ts"
+    }
+  },
+  "files": [
+    "src"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "generate": "openapi-ts && biome format --write src/generated",
+    "check-generated": "pnpm generate && git diff --exit-code -- src/generated",
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "@tanstack/react-query": "^5.102.0"
+  },
+  "peerDependenciesMeta": {
+    "@tanstack/react-query": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@hey-api/openapi-ts": "~0.99.0",
+    "@tanstack/react-query": "catalog:",
+    "typescript": "catalog:"
+  },
+  "license": "ISC"
+}
