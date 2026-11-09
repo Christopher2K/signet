@@ -1,0 +1,4 @@
+interface:
+  display_name: "React Strict DOM"
+  short_description: "Build and debug shared RSD UI in Signet"
+  default_prompt: "Use React Strict DOM and Signet's verified monorepo setup to implement and validate shared web/native UI."
