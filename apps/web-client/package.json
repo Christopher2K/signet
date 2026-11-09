@@ -19,13 +19,13 @@
     "@tanstack/react-start": "1.169.5",
     "react": "catalog:",
     "react-dom": "catalog:",
-    "react-strict-dom": "0.0.55"
+    "react-strict-dom": "catalog:"
   },
   "devDependencies": {
-    "@babel/core": "~7.29.13",
+    "@babel/core": "catalog:",
     "@types/node": "^22.10.2",
     "@types/react": "catalog:",
-    "@types/react-dom": "^19.2.0",
+    "@types/react-dom": "catalog:",
     "@vitejs/plugin-react": "^6.0.1",
     "typescript": "catalog:",
     "vite": "^8.0.0",

@@ -17,7 +17,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "react-strict-dom": "0.0.55"
+    "react-strict-dom": "catalog:"
   },
   "peerDependencies": {
     "react": "^19.0.0",
@@ -35,10 +35,10 @@
   "devDependencies": {
     "@storybook/react": "10.6.6",
     "@types/react": "catalog:",
-    "@types/react-dom": "^19.2.0",
+    "@types/react-dom": "catalog:",
     "react": "catalog:",
     "react-dom": "catalog:",
-    "react-native": "0.88.1",
+    "react-native": "catalog:",
     "storybook": "catalog:",
     "typescript": "catalog:"
   },
