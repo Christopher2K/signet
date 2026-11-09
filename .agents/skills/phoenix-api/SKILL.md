@@ -5,7 +5,7 @@ description: Work on Signet's Phoenix API in apps/api. Use when writing, editing
 
 # Phoenix API
 
-Signet's API is a web application written using the Phoenix web framework.
+Signet's API is a web application written using the Phoenix web framework. Load and follow the `elixir-style` skill for typespecs, documentation, and return values.
 
 ## Project guidelines
 
