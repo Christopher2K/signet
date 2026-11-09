@@ -7,6 +7,12 @@ description: Use when writing, editing, or reviewing React components in TSX, in
 
 Apply these rules to React code you create or edit. Do not rewrite unrelated code or framework-generated files. Load and follow the `typescript-style` skill for TypeScript declarations and inline documentation.
 
+## Visual handoff
+
+- At the end of every frontend implementation or visual change, run the app and capture screenshots of the affected screens and important states at the relevant viewport sizes.
+- Include the screenshots in the final response using absolute file paths so the user can validate the rendered work. Do not substitute test results or text descriptions for screenshots.
+- If no browser or device is available, explicitly report that screenshots could not be captured and explain what is blocking them.
+
 ## Component contracts
 
 - Always make component props explicit with a named `<Component>Props` type.

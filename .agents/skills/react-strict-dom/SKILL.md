@@ -74,4 +74,5 @@ Use React Strict DOM as a strict, web-aligned API for shared web and React Nativ
 - Shared stories appear in both Storybooks with usable controls.
 - Web rendering and computed styles are inspected.
 - Native rendering is inspected on a device, or the missing device/runtime verification is reported explicitly.
+- Screenshots of every affected screen and important state are captured at relevant viewport or device sizes and included in the final response using absolute file paths. If capture is impossible, the response explains what blocked it.
 - Changed files pass the repository formatter and linter.

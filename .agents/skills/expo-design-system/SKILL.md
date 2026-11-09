@@ -350,6 +350,8 @@ After building or changing a screen, screenshot it and check it against these pr
 
 Recheck the rendered result after fixing a value; moving it into the theme does not itself fix the layout. If the same defect recurs across screens, fix the shared token or component. Also run the primary-task and content checks in `expo-native-ui`'s Behavior section; screenshots alone cannot verify interaction.
 
+At the end of every frontend implementation or visual change, include the captured screenshots in the final response using absolute file paths so the user can validate the rendered work. Cover the affected screens and important states at relevant device or viewport sizes. If no browser or device is available, explicitly report what prevented screenshot capture.
+
 ## Named Failures: Native Slop
 
 Use these names to recognize common mistakes when building and reviewing:
