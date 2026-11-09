@@ -16,6 +16,7 @@
     "@react-native-async-storage/async-storage": "2.2.0",
     "@react-native-community/datetimepicker": "9.2.1",
     "@react-native-community/slider": "5.2.1",
+    "@signet/design-system": "workspace:*",
     "@storybook/addon-ondevice-actions": "~10.7.1",
     "@storybook/addon-ondevice-controls": "~10.7.1",
     "@storybook/react-native": "~10.7.1",
@@ -44,10 +45,13 @@
     "react-native-screens": "~4.30.1",
     "react-native-svg": "15.16.0",
     "react-native-worklets": "0.13.0",
+    "react-strict-dom": "0.0.55",
     "storybook": "catalog:"
   },
   "devDependencies": {
+    "@babel/core": "~7.29.13",
     "@types/react": "catalog:",
+    "babel-preset-expo": "~58.0.24",
     "typescript": "catalog:"
   },
   "private": true

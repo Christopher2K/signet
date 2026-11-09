@@ -1,13 +1,46 @@
 {
   "name": "@signet/design-system",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "description": "Signet's cross-platform React Strict DOM design system.",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "default": "./src/index.ts"
+    }
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "module"
+  "files": [
+    "src"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "react-strict-dom": "0.0.55"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-native": ">=0.79.5"
+  },
+  "peerDependenciesMeta": {
+    "react-dom": {
+      "optional": true
+    },
+    "react-native": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@storybook/react": "10.6.6",
+    "@types/react": "catalog:",
+    "@types/react-dom": "^19.2.0",
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "react-native": "0.88.1",
+    "storybook": "catalog:",
+    "typescript": "catalog:"
+  },
+  "license": "ISC"
 }

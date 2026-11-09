@@ -1,4 +1,5 @@
 import type { Preview } from "@storybook/tanstack-react";
+import "../src/strict.css";
 
 const preview: Preview = {
   parameters: {

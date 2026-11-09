@@ -1,0 +1,25 @@
+const reactStrictPreset = require("react-strict-dom/babel-preset");
+
+function getPlatform(caller) {
+  return caller?.platform;
+}
+
+function getIsDev(caller) {
+  if (caller?.isDev != null) return caller.isDev;
+  return (
+    process.env.BABEL_ENV === "development" ||
+    process.env.NODE_ENV === "development"
+  );
+}
+
+module.exports = (api) => {
+  const platform = api.caller(getPlatform);
+  const dev = api.caller(getIsDev);
+
+  return {
+    presets: [
+      "babel-preset-expo",
+      [reactStrictPreset, { debug: dev, dev, platform }],
+    ],
+  };
+};

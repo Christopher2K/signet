@@ -1,5 +1,11 @@
 {
-  "include": ["**/*.ts", "**/*.tsx"],
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    ".storybook/**/*.tsx",
+    "../../libs/design-system/src/**/*.ts",
+    "../../libs/design-system/src/**/*.tsx"
+  ],
   "compilerOptions": {
     "target": "ES2022",
     "jsx": "react-jsx",
