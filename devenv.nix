@@ -1,6 +1,13 @@
 { pkgs, ... }:
 
 let
+  apiDatabase = {
+    hostname = "localhost";
+    password = "postgres";
+    port = 5432;
+    username = "postgres";
+  };
+
   isolateMobileToolchain = ''
     # Prefer Apple's tools over Nix wrappers for native mobile builds.
     export PATH="/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
@@ -28,6 +35,34 @@ in
   };
 
   languages.ruby.enable = true;
+
+  env = {
+    SIGNET_API_DB_HOSTNAME = apiDatabase.hostname;
+    SIGNET_API_DB_PASSWORD = apiDatabase.password;
+    SIGNET_API_DB_PORT = toString apiDatabase.port;
+    SIGNET_API_DB_USERNAME = apiDatabase.username;
+  };
+
+  services.postgres = {
+    enable = true;
+    listen_addresses = apiDatabase.hostname;
+    port = apiDatabase.port;
+    initialDatabases = [
+      {
+        name = "signet_dev";
+        user = apiDatabase.username;
+        pass = apiDatabase.password;
+      }
+      {
+        name = "signet_test";
+        user = apiDatabase.username;
+        pass = apiDatabase.password;
+      }
+    ];
+    initialScript = ''
+      ALTER ROLE postgres WITH CREATEDB;
+    '';
+  };
 
   scripts = {
     ios.exec = ''
