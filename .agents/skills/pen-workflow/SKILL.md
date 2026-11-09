@@ -67,16 +67,20 @@ All top-level artboard frames live in **one vertical column**, top-to-bottom in 
 - If a new section is added, append it below the last frame; do not insert it mid-column without re-stacking the tail.
 - After re-stacking, re-read bounds to confirm no overlap (all `x=0`, strictly increasing `y`).
 
-### Current inventory (as of §5 — ids are pen-generated, re-lookup with `Get`)
+### Current inventory (§0–§36 — ids are pen-generated, re-lookup with `Get`)
 
-| Frame | id | y | w × h (re-read) | Notes |
-|---|---|---|---|---|
-| §0 Cover — Signet Paper & Cobalt | `mApjQ` | `0` | `1277 × ~215` | Cover is the width exception (`1277`); don't "fix" to 1200 |
-| §1 Foundations — Color Scales | `G5z73D` | `260` | `1200 × ~245` | |
-| §2 Variants — Light / Dark Tokens | `mtl7O` | `549` | `1200 × ~352` | |
-| §3 Typography — Necto Mono | `YYynH` | `946` | `1200 × ~362` | |
-| §4 Spacing & Radii — 4pt grid | `jd3QR` | `1346` | `1200 × ~229` | |
-| §5 Components — Button + Bookmark Card | `H6jw09` | `1619` | `1200 × ~678` | Next section: `y = 1619 + h + 48` (≈ `2345` — recompute) |
+All 37 top-level frames are vertically stacked at `x=0` with 48px gutters. Re-read bounds after every edit; heights and y positions drift as content changes.
+
+| Frame | id | Notes |
+|---|---|---|
+| §0 Cover — Signet Paper & Cobalt | `mApjQ` | Width exception (`1277`); don't "fix" to 1200 |
+| §1 Foundations — Color Scales | `G5z73D` | |
+| §2 Variants — Light / Dark Tokens | `mtl7O` | |
+| §3 Typography — Necto Mono | `YYynH` | |
+| §4 Spacing & Radii — 4pt grid | `jd3QR` | |
+| §5 Components — Button + Bookmark Card | `H6jw09` | Foundational component variants |
+| §6–§35 Screens and states | `VXf93` … `fq5mP` | Stable page/state IDs and titles are inventoried in `design/web/web-pages-map.md`; re-lookup frame IDs with `Get` |
+| §36 Shared States & Component Inventory | `V4X15` | Cross-page auth/form validation, toasts, sync/pending states, component inventory, and official Phosphor regular paths; keep shared variants here rather than duplicating them across every screen |
 
 ## 4. Always refer to `DESIGN.md` — never deviate silently
 
@@ -90,12 +94,12 @@ Before any design op, read `DESIGN.md` **and** `design/web/web-pages-map.md`.
 - **Type:** `Necto Mono` (Collettivo, SIL OFL, Marco Condello) for everything (DESIGN.md §3.2). Sizes/weights from the type scale (Display 48/700, Headline 32/700, Title 20/600, Body 15/400, Caption 12/400, Code 13/400). Canvas renders in IBM Plex Mono as a stand-in, token stays Necto Mono. Established section-shell pattern (§1–§5): header `18 / 700` in cobalt, note `12` in `ink-400 #6B6578` — caption the stand-in in the note so samples are never mistaken for the production font.
 - **Spacing / radii:** 4pt grid only (`sp-*` = 4, 8, 12, 16, 24, 32, 48; radii 4/8/12/16 + pill — DESIGN.md §3.3). **File convention is literals + token captions:** `design/client-designs.pen` currently holds **no variables** (`GetVariables()` returns `{variables:{}}`) and all foundations use literal numbers (`padding:24`, `gap:12`, `cornerRadius:8`). Match that: use literal 4pt-multiples for padding/gaps/radii and name the token in the adjacent caption (e.g. `sp-12 × sp-24`, `r-8 radius-md`). Do not introduce `$sp-*` / `$radius-*` references mid-file (half-migrated file). If a future migration binds variables, migrate the whole column at once.
 - **Components / sections:** name frames with stable IDs from the web map (`A1`, `L1`, `B1`…) and keep them discoverable as top-level frames. Mirror the map's zones, actions, and states — don't add chrome the spec doesn't ask for. Sections use `clip:true`, `cornerRadius:16`, `stroke:#8FA3C6` 1px, `layout:"vertical"`, `gap:12`, `padding:24`, starting with an `H` text node.
-- **New system component?** Only add a token/component/section if you also **update `DESIGN.md`** in the same change, documenting the new addition and its tokens. If you are just implementing an existing token, don't edit `DESIGN.md`. §5 added no token and no new component (Bookmark card + Tag chip already inventoried; Button implements existing `--primary`/`--accent`/`--selection`), so `DESIGN.md` was left untouched — that's the pattern to follow.
+- **New system component?** Only add a token/component/section if you also **update `DESIGN.md`** in the same change, documenting the new addition and its tokens. If you are just implementing an existing token, don't edit `DESIGN.md`. The current semantic color rules live in `DESIGN.md` §3.1 and the component inventory pointer in §3.4; keep both synchronized with the canvas.
 - When in doubt, ask before deviating. A deviating design is a bug, not a variant.
 
 ## 5. Components — Button + Bookmark Card (§5)
 
-First component sheet: `§5 Components — Button + Bookmark Card` (`H6jw09`, y `1619`, w `1200`). Two component families, each as a section inside the one frame: `Buttons` (`Uzsf8`) and `BookmarkCard` (`ACaVo`). Both carry a `Title-20/600` heading plus a `Caption-12 ink-400` notes line citing tokens and SPEC refs. Labels in the sheet use `Body 15` (`normal`) and captions `12` (`normal`); only section heads use `18/700` and subsection heads `20/600`.
+Foundational component sheet: `§5 Components — Button + Bookmark Card` (`H6jw09`, w `1200`; re-read `y`). Two component families, each as a section inside the one frame: `Buttons` (`Uzsf8`) and `BookmarkCard` (`ACaVo`). Both carry a `Title-20/600` heading plus a `Caption-12 ink-400` notes line citing tokens and SPEC refs. Labels in the sheet use `Body 15` (`normal`) and captions `12` (`normal`); only section heads use `18/700` and subsection heads `20/600`. Shared topbar, folder-tree, search, and dark-action components are also instanced throughout the screen sheets.
 
 ### Button — variants & states
 
@@ -112,7 +116,7 @@ Structure per variant: vertical cell (`width:fill_container`, `gap:8`) holding `
 | Pressed (Primary Pressed) | `#090C9B` | `#FBFFF1` | `--primary-active` (`cobalt`) |
 | Focus Ring | `Primary` inside cobalt/azure-200 wrap | `#FBFFF1` | `--focus-ring` — see construction above |
 
-Conventions: all sample buttons labelled `New Bookmark` (Body 15) to isolate variant styling; token notes under each button name the fills + hex + role. Dark rule to always caption: dark primary is `azure-400 #5C84C6`, never `azure #3066BE` on ink (2.07:1). Secondary doubles as the selection token.
+Conventions: all foundational sample buttons are labelled `New Bookmark` (Body 15) to isolate variant styling; token notes under each button name the fills + hex + role. Dark primary is `azure-400 #5C84C6` with `ink-900 #131220` text (4.91:1), never `azure #3066BE` on ink (2.07:1). Dark secondary uses mist + ink; dark ghost uses mist text/strokes. Light secondary doubles as the light selection token, but dark selection is cobalt + paper and is distinct from tags and secondary actions.
 
 Build pattern (proven in §5): capture ids in the same call — `btnId = Insert(cell, bo); Insert(btnId, {...label})` — don't try to fetch a fresh child's id via `Get(cell).children`. The shell pattern is `bo = {type:"frame", ...}` then `if(b[1]) bo.fill=b[1]; if(b[2]){bo.stroke=b[2]; bo.strokeWidth=1}` so Ghost works with an empty fill slot.
 
@@ -135,14 +139,14 @@ Folder (12, ink-400 / mist)   "Folder: Guide / Self-hosting"
 | Title | `ink #3C3744` | `paper #FBFFF1` | `<title>` else hostname |
 | Host / Folder | `ink-400 #6B6578` | `mist #B4C5E4` | search/hostname context; Folder shows `folderId` name (`null` = Unfiled) |
 | Notes | `ink` | `paper` | snippet of ≤2000 chars (list detail) |
-| Chips | `mist #B4C5E4` + `ink`, pill `999`, `padding:[4,12]`, `Caption 12` | same mist + ink | `--selection` survives both themes; `work, reading` example is F04 |
+| Chips | `mist #B4C5E4` + `ink`, pill `999`, `padding:[4,12]`, `Caption 12` | same mist + ink | `--tag` in both themes; cobalt stays reserved for selection/emphasis; `work, reading` example is F04 |
 | Pending badge | `#9A6A00` + `paper`, pill | same | F07 / W-08 offline queue (`Pending sync`), always paired with text |
 
 Why side-by-side in one frame: Light + Dark belong in the same §5 sheet (per section brief). Only top-level artboards are forbidden from 2-column grids — rows inside a sheet use `width:fill_container` columns, which is how `CardPair` works. New components sections follow the same rule: one top-level sheet, rows inside.
 
 ### Component marking — what is `reusable`
 
-In Pen, `reusable: true` = component/symbol; `type:"ref"` with `ref:<id>` = instance. §5 was marked in place (no instances created — the showcase nodes themselves are the components):
+In Pen, `reusable: true` = component/symbol; `type:"ref"` with `ref:<id>` = instance. The §5 showcase nodes were marked in place, then shared components were instanced across the screen sheets. Preserve component IDs and instance overrides when restructuring: reparent existing nodes with `Move` instead of recreating them.
 
 ```js
 // batch — one Update per id, then verify:
@@ -150,21 +154,24 @@ Update("cTUQz",{reusable:true});Update("D8CdJ",{reusable:true});  // …for ever
 Get(n=>n.reusable && Print(n.name, n.id))
 ```
 
-Inventory (16 — re-lookup with `Get`, ids are pen-generated):
+Inventory (31 — re-lookup with `Get`, ids are pen-generated):
 
-- **Buttons (8 `Btn`):** `cTUQz` Primary, `D8CdJ` Secondary, `aoaIT` Accent, `DHIm0` Ghost, `qYDBk` Disabled, `P3dgHI` Hover, `LkNZO` Pressed, `F6uXZ` Focus-inner.
+- **Buttons (11):** `cTUQz` Primary, `D8CdJ` Secondary, `aoaIT` Accent, `DHIm0` Ghost, `qYDBk` Disabled, `P3dgHI` Hover, `LkNZO` Pressed, `F6uXZ` Focus-inner, `vumi8` DarkPrimary, `J8Fs0U` DarkGhost, `n37HS` Error.
 - **Cards (2):** `AVo6i` LightCard, `FfqnB` DarkCard.
 - **Chips (4 `Chip`):** `RQEbD`, `ZEk0l` (light), `AMK69`, `O7BFSN` (dark) — each displays its own label (`work`/`reading`).
 - **Badges (2 `Badge`):** `eAiUm` (light), `IVX47` (dark).
+- **Search (2):** `O5Ha8B` Light, `OHy6I` Dark.
+- **Topbars (6):** `iSLzd` Desktop Light, `AZE8U` Desktop Dark, `wPuYy` Tablet Light, `yN4nW` Tablet Dark, `P1Fcih` Mobile Light, `HjKP7` Mobile Dark.
+- **Folder trees (4):** `rRXjr` Desktop Light, `VnuC4` Desktop Dark, `k7B2RV` Tablet Light, `NR0NI` Tablet Dark.
 
-**Not reusable (intentional):** the §5 shell, `Buttons` / `BookmarkCard` sections, `VariantRow` / `StateRow` / `CardPair` rows, variant cells + `Lab`/`Tok` wrappers, `FocusOuter`/`FocusInner` wrappers, `OG` placeholders, `TextCol` / `MetaRow`. Don't mark section shells, rows, or placeholder/decoration wrappers as components — only leaf repeatable UI (`Btn` / Card / `Chip` / `Badge`) is marked. If you add instances later, instantiate with `{type:"ref", ref:<componentId>}` and override descendants via `Update(instanceId+"/childId", {...})` or `Replace(...)` for slots; never `Update` a descendant id of a `Copy` (ids are regenerated) and never `Get` an instance without `resolveInstances:true` to discover its children.
+**Not reusable (intentional):** the §5 shell, `Buttons` / `BookmarkCard` sections, `VariantRow` / `StateRow` / `CardPair` rows, variant cells + `Lab`/`Tok` wrappers, `FocusOuter`/`FocusInner` wrappers, `OG` placeholders, `TextCol` / `MetaRow`. Don't mark section shells, rows, or placeholder/decoration wrappers as components. Instantiate repeatable UI with `{type:"ref", ref:<componentId>}` and override descendants via the instance `descendants` map, `Update(instanceId+"/childId", {...})`, or `Replace(...)` for slots; never `Update` a descendant id of a `Copy` (ids are regenerated) and never `Get` an instance without `resolveInstances:true` to discover its children.
 
 ## 6. Don'ts
 
 - No `designs/` (plural) paths — always `design/`.
 - No MIME of `.pen` contents into Read/Grep/Edit shell pipelines.
 - No horizontal grids, no overlapping artboards at `0,0`. One vertical column, `x=0`, 48px gutter (§3).
-- No `reusable` on section shells, rows, cells, `OG` placeholders, or focus wrappers — only leaf components (§5).
+- No `reusable` on section shells, rows, cells, `OG` placeholders, or focus wrappers — only repeatable UI components (§5).
 - No new hex / font / spacing value without a corresponding `DESIGN.md` entry. Disabled, Pending, Focus, Ghost must reuse derived/status tokens (§4).
 - No `$sp-*` / `$radius-*` variable refs until the file migrates to variables as a whole (§4).
 - No `pen --prompt` AI-generation runs without explicitly flagging that they need agent auth and may not match `DESIGN.md`.
@@ -201,7 +208,7 @@ Inventory (16 — re-lookup with `Get`, ids are pen-generated):
 
 ## 10. Icons — Phosphor — HOW
 
-- **Pack:** [Phosphor Icons](https://phosphoricons.com) (open source, MIT, 6 weights: Thin/Light/Regular/Bold/Fill/Duotone; drawn at `16` and scaled). Use it for every icon — no custom glyphs, no emoji, no text substitutes like `Menu`. Name icons by their Phosphor name in code (`List`, `MagnifyingGlass`, `Plus`, `BookmarkSimple`, `Folder`, `Tag`, `Gear`, `Export`, `Import`, `Link`, `Share`, `Trash`, `X`, `Check`, `Copy`, `SquaresFour`, `List`).
+- **Pack:** [Phosphor Icons](https://phosphoricons.com) (open source, MIT, 6 weights: Thin/Light/Regular/Bold/Fill/Duotone; drawn at `16` and scaled). Use it for every icon — no custom glyphs, no emoji, no text substitutes like `Menu`. Name icons by their exact Phosphor name in code (`List`, `MagnifyingGlass`, `Plus`, `BookmarkSimple`, `Folder`, `Tag`, `Gear`, `Export`, `DownloadSimple`, `Link`, `Share`, `Trash`, `X`, `Check`, `Copy`, `SquaresFour`). Phosphor has no `Import` glyph; use `DownloadSimple` for the Import action and caption that mapping.
 - **Default weight / size:** `regular` at `20` (form fields / buttons) or `24` (nav / headers); `bold` for emphasis; `fill` only for active/selected. Color follows the text token of the slot (`--text` on light, `paper/mist` on dark, `paper` on primary fill). Hit target `36×36` with `r-8`; never below `24` visible or `36` tappable.
-- **Canvas stand-in:** Pen does not ship the Phosphor SVG/font. Draw a `36×36` (`r-8`, `stroke --border`) frame centered on a glyph or geometric bars that read as the icon at 2× — e.g. `List` = three `16×3` bars (`gap 4`), `MagnifyingGlass` = `20×20` circle (`r-999` stroke) + handle. Caption the frame name with the Phosphor name (e.g. `Icon-List`) so the stand-in is never mistaken for the production asset. This is the same stand-in pattern as Necto Mono → IBM Plex Mono.
-- **Gallery mapping:** keep the Phosphor name in the node name (`Icon-List`, `Icon-Search`) and the design note. If an icon is missing, add the Phosphor name as a proposed addition rather than inventing a one-off glyph.
+- **Canvas geometry:** Pen does not ship the Phosphor font, so embed the **official SVG path data** from `phosphor-icons/core/assets/<weight>/` — never approximate an icon with invented circles, rectangles, or chevrons. Keep the source `viewBox:[0,0,256,256]`, use a `path` node named `Phosphor-Regular-<Name>`, and apply the slot's color as `fill`. In a `36×36` target, render the path at `20×20`, `x=8`, `y=8`; in a `20×20` inline slot, render at `20×20`, `x=0`, `y=0`. Preserve the outer target's dimensions, fill, stroke, and theme color when replacing its glyph.
+- **Gallery mapping:** keep the exact Phosphor name in the frame (`Icon-List`, `Icon-MagnifyingGlass`) and the design note. If an action has no same-named Phosphor glyph, choose an official equivalent and document it (Import → `DownloadSimple`) rather than inventing a one-off glyph.

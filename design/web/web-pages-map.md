@@ -215,22 +215,6 @@ All under `/s/:token`. No signup/login prompt (F10). Internal same-server sharin
 
 ---
 
-## 9. Naming for design files
+## 9. Naming in the canonical design file
 
-Suggested `design/web/` structure (to create as designs land):
-
-```
-design/web/
-├── web-pages-map.md       (this file)
-├── 01-auth-login.pen    (A1)
-├── 02-auth-signup.pen   (A2)
-├── 03-library-home.pen  (L1 + app shell)
-├── 04-create-bookmark.pen (B1)
-├── 05-edit-bookmark.pen (B2)
-├── 06-folder-view.pen   (L2 + F1 + D2)
-├── 07-search-tags.pen   (L3 + L4 + L5)
-├── 08-settings-data-links.pen (S1–S3 + D4)
-└── 09-public-share.pen  (P1–P4)
-```
-
-Adjust when starting Pencil work.
+All screens live as vertically stacked top-level sections in `design/client-designs.pen`; do not split pages into separate `.pen` files. Section names carry the stable page/state ID and title (for example `§6 A1 Login`, `§8 L1 All Bookmarks`, `§23 D4 Share`). Shared components and cross-page states live in their own sections. Keep this map as the page inventory and `DESIGN.md` as the token/component specification.

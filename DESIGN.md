@@ -35,7 +35,7 @@ Out of scope for web v1 (§9 of SPEC): password reset, email verification, OIDC,
 
 ## 3. Design language
 
-_To be defined as designs land. Web-first; tokens extracted from Pencil designs under `design/web/`._
+_Web-first tokens and components are maintained in `design/client-designs.pen`; this document defines their semantic roles and production rules._
 
 ### 3.1 Color — Signet Paper & Cobalt
 
@@ -44,7 +44,7 @@ Source palette (Coolors, [`design/assets/palette.png`](design/assets/palette.png
 | Token | Hex | RGB | Role in palette |
 |---|---|---|---|
 | `ink` | `#3C3744` | 60, 55, 68 | Dark plum-slate — ink, text, dark surfaces |
-| `cobalt` | `#090C9B` | 9, 12, 155 | Deep cobalt-indigo — emphasis, focused/selected, dark primary |
+| `cobalt` | `#090C9B` | 9, 12, 155 | Deep cobalt-indigo — emphasis, focused/selected |
 | `azure` | `#3066BE` | 48, 102, 190 | Mid blue — primary interactive (buttons, links) |
 | `mist` | `#B4C5E4` | 180, 197, 228 | Pale periwinkle — tints, selection, soft surfaces |
 | `paper` | `#FBFFF1` | 251, 255, 241 | Warm off-white — app canvas |
@@ -85,7 +85,7 @@ For tints/shades between source tones (interpolated, keep hue):
 | `--primary-hover` | `azure-600` `#2752A6` | Hover | — |
 | `--primary-active` | `cobalt` `#090C9B` | Pressed / emphasized | 13.45:1 on paper |
 | `--accent` | `cobalt` `#090C9B` | Selected nav, focus ring, public header | Use `mist` text on cobalt (7.84:1) |
-| `--selection` | `mist` `#B4C5E4` + `ink` text | Selected rows, tags | 6.61:1 (AA) |
+| `--selection` | `mist` `#B4C5E4` + `ink` text | Selected rows and navigation | 6.61:1 (AA) |
 | `--focus-ring` | `cobalt` `#090C9B` + 2px `azure-200` outer | Keyboard focus | Must be visible on paper and mist |
 
 **Dark (derived from ink + paper):**
@@ -98,16 +98,21 @@ For tints/shades between source tones (interpolated, keep hue):
 | `--text-secondary` | `mist` `#B4C5E4` | Secondary (6.61:1 on ink) |
 | `--border` | `#4F4A62` (ink lightened) | Borders |
 | `--primary` | `azure-400` `#5C84C6` | Buttons/links on dark (`azure` `#3066BE` is only 2.07:1 on ink — never use it on dark) |
-| `--selection` | `cobalt` `#090C9B` + `paper` text | Selected rows (13.45:1) |
-| `--accent` | `azure-200` `#B4C5E4` | Links, highlights on dark |
+| `--on-primary` | `ink-900` `#131220` | Text on dark primary buttons (4.91:1; ink-500 and paper both fail) |
+| `--text-muted` | `ink-300` `#ABA3B8` | Placeholders only (5.67:1 on ink-600) |
+| `--selection` | `cobalt` `#090C9B` + `paper` text | Selected nav and rows (13.45:1) |
+| `--tag` | `mist` `#B4C5E4` + `ink` text | Tag chips and filter chips in both themes |
+| `--accent` | `azure-200` `#B4C5E4` | Links, ghost-button text/strokes, highlights on dark |
 
 #### Color rules
 
-- **Text:** Only `ink` on `paper`, `paper`/`mist` on `ink`, and `cobalt` on `paper`/`mist` meet AA. `mist` is never text on light (1.72:1). `azure` is text/link only on `paper`/`white`, never body copy.
+- **Text:** Core body combinations are `ink` on `paper`, `paper`/`mist` on `ink`, and `cobalt` on `paper`/`mist`. Dark primary buttons additionally use `ink-900` on `azure-400` (4.91:1); status combinations are listed below. `mist` is never text on light (1.72:1). `azure` is text/link only on `paper`/`white`, never body copy.
 - **Primary action:** Light = `azure` fill with `paper`/`white` text. Emphasized/hero and selected states = `cobalt` fill with `paper`/`mist` text. Do not use `cobalt` for body backgrounds on light.
 - **Surfaces:** `paper` canvas vs `white` cards distinguished by `border` `#8FA3C6`, not by paper/white contrast (1.02). Sidebar = `azure-50` tint.
-- **Selection/tags:** `mist` fill + `ink` text everywhere; it survives both themes.
-- **Status (not in source palette — extend minimally):** Success `#2E7D52`, Warning `#9A6A00`, Error `#B42318` on `paper` for toasts and field errors; same hues lightened for dark. Always pair with icon/text, never color alone.
+- **Selection:** light = `mist` fill + `ink` text; dark = `cobalt` fill + `paper` text. Use for selected nav and rows, not tags.
+- **Tags/filter chips:** `mist` fill + `ink` text in both themes (`--tag`). Cobalt is reserved for selection and emphasis.
+- **Dark secondary actions:** `mist` fill + `ink` text. Do not use cobalt for Cancel next to an azure-400 primary; the primary action must remain the strongest action.
+- **Status (not in source palette — extend minimally):** Light: Success `#2E7D52`, Warning `#9A6A00`, Error `#B42318`. Dark text/icons: Success `#75D6A0`, Warning `#F2C14E`, Error `#F97066` (4.93:1 or better on ink-600). Filled badges/toasts may keep the light status fills with `paper` text in both themes. Always pair with icon/text, never color alone.
 - **CSS starter:**
   ```css
   :root {
@@ -118,7 +123,9 @@ For tints/shades between source tones (interpolated, keep hue):
   }
   [data-theme="dark"] {
     --bg:var(--signet-ink); --surface:#2F2B3A; --text:var(--signet-paper);
-    --primary:#5C84C6; --accent:var(--signet-mist);
+    --primary:#5C84C6; --on-primary:#131220; --accent:var(--signet-mist);
+    --tag:var(--signet-mist); --on-tag:var(--signet-ink);
+    --text-muted:#ABA3B8; --success:#75D6A0; --warning:#F2C14E; --error:#F97066;
   }
   ```
 
@@ -137,7 +144,7 @@ For tints/shades between source tones (interpolated, keep hue):
 | Caption | `type-caption` | 12 / 400 | URLs, metadata, timestamps, tags |
 | Code | `type-mono` | 13 / 400 | JSON export, tokens, sync state |
 
-Full specimen in `design/client-designs.pen` §3.
+Full specimen in `design/client-designs.pen` §3. Display is 48px on desktop/tablet and may step down to Headline 32px at 390px to avoid excessive wrapping. Code 13px is used for sync timestamps, share URLs, and machine-oriented values; it is the same Necto Mono family, not a second font.
 
 ### 3.3 Spacing & radii — 4pt grid
 
@@ -147,7 +154,7 @@ Full specimen in `design/client-designs.pen` §3.
 | `radius-sm / md / lg` | 4 / 8 / 12 |
 | `radius-card / pill` | 16 / 999 |
 
-Base unit 4px in `design/client-designs.pen` §4. Use `--sp-*` and `--radius-*` variables, do not hard-code.
+Base unit 4px in `design/client-designs.pen` §4. The canvas uses literal 4pt values with adjacent token captions until a whole-file variable migration; production code must use `--sp-*` and `--radius-*` variables rather than hard-coded values. Do not mix variable-bound and literal sections in the canvas.
 
 ### 3.4 Logo — The Stack
 
@@ -168,7 +175,7 @@ Base unit 4px in `design/client-designs.pen` §4. Use `--sp-*` and `--radius-*` 
 - **Assets:** ship `logo-16/24/32/48.svg`; a `<Logo size>` component selects by the same thresholds. Export the gap as a cut-out, not an outline, so the mark works on any surface.
 
 - **Type / Spacing / Radii / Elevation:** See 3.2–3.3 above; Elevation TBD
-- **Components (Web):** App shell, Folder tree, Bookmark card (grid/list), Tag chip, Search input, Folder picker, Dialog / Bottom sheet, Toast, Empty state, Skeleton, Sync status dot, Public header, Settings nav. **Icons:** [Phosphor Icons](https://phosphoricons.com) (`regular 20–24`, `bold` emphasis, `fill` active) — production SVGs; canvas uses geometric stand-ins named by Phosphor name (e.g. `Icon-List`). Map to components as `03-library-home.pen` lands.
+- **Components (Web):** App shell, Topbar, Account menu, Folder tree, Bookmark card (grid/list), Tag chip, Search input, Text field, Folder picker, View toggle, Sort control, Dialog / Bottom sheet, Toast, Empty state, Skeleton, Sync status dot, Public header, Settings nav. Repeated canvas UI uses Pen components and `ref` instances rather than detached copies; page-specific compositions stay ordinary frames. **Icons:** [Phosphor Icons](https://phosphoricons.com) (`regular 20–24`, `bold` emphasis, `fill` active) — production SVGs; the canvas embeds official Phosphor SVG path geometry inside targets named by the exact Phosphor name (e.g. `Icon-List`). Import uses `DownloadSimple` because Phosphor has no `Import` glyph. The component and icon inventory lives in `design/client-designs.pen` §36.
 - **Motion:** Reflect sync state, not decoration. Create feedback <2s, remote updates <5s, queue drain <10s must be visible, not silent.
 - **Responsive:** Desktop ≥1024px (3-zone shell), mobile 390px (drawer, bottom sheets). Public pages single-column, auth centered card.
 
