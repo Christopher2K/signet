@@ -45,5 +45,11 @@ defmodule SignetWeb.Endpoint do
   plug Plug.MethodOverride
   plug Plug.Head
   plug Plug.Session, @session_options
+
+  plug CORSPlug,
+    origin: &SignetWeb.CORS.origins/0,
+    methods: ["GET", "POST", "OPTIONS"],
+    headers: ["Authorization", "Content-Type"]
+
   plug SignetWeb.Router
 end

@@ -51,7 +51,9 @@ config :signet, SignetWeb.Endpoint,
 # different ports.
 
 # Enable dev routes for dashboard and mailbox
-config :signet, dev_routes: true
+config :signet,
+  dev_routes: true,
+  cors_origins: ["http://localhost:3000"]
 
 # Do not include metadata nor timestamps in development logs
 config :logger, :default_formatter, format: "[$level] $message\n"

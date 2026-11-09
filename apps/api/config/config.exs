@@ -9,7 +9,12 @@ import Config
 
 config :signet,
   ecto_repos: [Signet.Repo],
-  generators: [timestamp_type: :utc_datetime]
+  generators: [timestamp_type: :utc_datetime],
+  cors_origins: []
+
+config :signet, SignetWeb.RateLimit,
+  period: 60_000,
+  limit: 10
 
 # Configure the endpoint
 config :signet, SignetWeb.Endpoint,

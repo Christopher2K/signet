@@ -57,6 +57,15 @@ if config_env() == :prod do
 
   config :signet, :dns_cluster_query, System.get_env("DNS_CLUSTER_QUERY")
 
+  cors_origins =
+    "SIGNET_CORS_ORIGINS"
+    |> System.get_env("")
+    |> String.split(",", trim: true)
+    |> Enum.map(&String.trim/1)
+    |> Enum.reject(&(&1 == ""))
+
+  config :signet, :cors_origins, cors_origins
+
   config :signet, SignetWeb.Endpoint,
     url: [host: host, port: 443, scheme: "https"],
     http: [

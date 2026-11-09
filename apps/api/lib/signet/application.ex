@@ -12,6 +12,7 @@ defmodule Signet.Application do
       Signet.Repo,
       {DNSCluster, query: Application.get_env(:signet, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: Signet.PubSub},
+      {PlugAttack.Storage.Ets, [name: SignetWeb.RateLimit.Storage]},
       # Start a worker by calling: Signet.Worker.start_link(arg)
       # {Signet.Worker, arg},
       # Start to serve requests, typically the last entry

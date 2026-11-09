@@ -21,6 +21,17 @@ config :signet, SignetWeb.Endpoint,
   secret_key_base: "rNVpIDzZaVWigx/R9kvPL0EXIwCmxawTFNt0mIrIqUXQ1yv9SA7xC12wvnTGhgBv",
   server: false
 
+config :signet,
+  cors_origins: ["https://web.example.com"]
+
+config :signet, SignetWeb.RateLimit,
+  period: 60_000,
+  limit: 1_000
+
+config :argon2_elixir,
+  t_cost: 1,
+  m_cost: 8
+
 # In test we don't send emails
 config :signet, Signet.Mailer, adapter: Swoosh.Adapters.Test
 

@@ -3,10 +3,25 @@ defmodule SignetWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug SignetWeb.RateLimit
   end
 
-  scope "/api", SignetWeb do
+  pipeline :require_authenticated_user do
+    plug SignetWeb.Plugs.RequireAuthenticatedUser
+  end
+
+  scope "/api/v1", SignetWeb.API.V1 do
     pipe_through :api
+
+    post "/auth/signup", AuthController, :signup
+    post "/auth/login", AuthController, :login
+  end
+
+  scope "/api/v1", SignetWeb.API.V1 do
+    pipe_through [:api, :require_authenticated_user]
+
+    post "/auth/logout", AuthController, :logout
+    get "/me", UserController, :show
   end
 
   # Enable Swoosh mailbox preview in development
