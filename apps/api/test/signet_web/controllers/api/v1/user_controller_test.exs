@@ -14,22 +14,22 @@ defmodule SignetWeb.API.V1.UserControllerTest do
       |> put_req_header("authorization", "Bearer #{authentication.token}")
       |> get(~p"/api/v1/me")
 
-    assert json_response(conn, 200) == %{
+    assert assert_api_response(conn, 200) == %{
              "data" => %{"id" => user.id, "name" => user.name, "email" => user.email}
            }
   end
 
   test "rejects missing, malformed, and unknown tokens", %{conn: conn} do
-    assert conn |> get(~p"/api/v1/me") |> json_response(401)
+    assert conn |> get(~p"/api/v1/me") |> assert_api_response(401, "current_user")
 
     assert build_conn()
            |> put_req_header("authorization", "Token something")
            |> get(~p"/api/v1/me")
-           |> json_response(401)
+           |> assert_api_response(401, "current_user")
 
     assert build_conn()
            |> put_req_header("authorization", "Bearer unknown")
            |> get(~p"/api/v1/me")
-           |> json_response(401)
+           |> assert_api_response(401, "current_user")
   end
 end

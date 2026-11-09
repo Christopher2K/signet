@@ -65,6 +65,25 @@ in
   };
 
   scripts = {
+    generate-openapi.exec = ''
+      export MIX_HOME="$DEVENV_ROOT/.devenv/mix"
+      export HEX_HOME="$DEVENV_ROOT/.devenv/hex"
+
+      cd "$DEVENV_ROOT/apps/api"
+      if ! mix hex.info >/dev/null 2>&1; then
+        mix local.hex --force
+      fi
+      mix deps.get
+
+      exec mix openapi.spec.json \
+        --spec SignetWeb.ApiSpec \
+        --start-app=false \
+        --pretty \
+        --vendor-extensions=false \
+        --filename "$DEVENV_ROOT/apps/api/openapi.json" \
+        "$@"
+    '';
+
     ios.exec = ''
       ${isolateMobileToolchain}
 

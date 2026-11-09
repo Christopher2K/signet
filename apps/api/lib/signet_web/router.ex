@@ -3,6 +3,7 @@ defmodule SignetWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug OpenApiSpex.Plug.PutApiSpec, module: SignetWeb.ApiSpec
     plug SignetWeb.RateLimit
   end
 

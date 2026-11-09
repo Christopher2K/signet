@@ -8,7 +8,7 @@ defmodule SignetWeb.API.V1.AuthControllerTest do
   describe "signup" do
     test "creates an account and returns a session", %{conn: conn} do
       conn =
-        post(conn, ~p"/api/v1/auth/signup", %{
+        post_json(conn, ~p"/api/v1/auth/signup", %{
           "name" => "  Jane Doe  ",
           "email" => " PERSON@EXAMPLE.COM ",
           "password" => valid_password()
@@ -23,35 +23,52 @@ defmodule SignetWeb.API.V1.AuthControllerTest do
                  },
                  "token" => token
                }
-             } = json_response(conn, 201)
+             } = assert_api_response(conn, 201)
 
       assert String.at(user_id, 14) == "7"
       assert is_binary(token)
-      refute json_response(conn, 201)["data"]["user"]["password_hash"]
+      refute assert_api_response(conn, 201)["data"]["user"]["password_hash"]
     end
 
     test "returns validation errors", %{conn: conn} do
-      conn = post(conn, ~p"/api/v1/auth/signup", %{"email" => "invalid", "password" => "short"})
+      conn =
+        post_json(conn, ~p"/api/v1/auth/signup", %{
+          "name" => "Jane Doe",
+          "email" => "invalid",
+          "password" => "short"
+        })
 
       assert %{"error" => %{"code" => "validation_failed", "details" => details}} =
-               json_response(conn, 422)
+               assert_api_response(conn, 422)
 
-      assert details["name"]
-      assert details["email"]
       assert details["password"]
+    end
+
+    test "returns domain validation errors", %{conn: conn} do
+      conn =
+        post_json(conn, ~p"/api/v1/auth/signup", %{
+          "name" => "Jane Doe",
+          "email" => "invalid",
+          "password" => valid_password()
+        })
+
+      assert %{"error" => %{"code" => "validation_failed", "details" => details}} =
+               assert_api_response(conn, 422)
+
+      assert details["email"]
     end
 
     test "rejects duplicate accounts", %{conn: conn} do
       user = user_fixture()
 
       conn =
-        post(conn, ~p"/api/v1/auth/signup", %{
+        post_json(conn, ~p"/api/v1/auth/signup", %{
           "name" => user.name,
           "email" => String.upcase(user.email),
           "password" => valid_password()
         })
 
-      assert %{"error" => %{"code" => "validation_failed"}} = json_response(conn, 422)
+      assert %{"error" => %{"code" => "validation_failed"}} = assert_api_response(conn, 422)
     end
   end
 
@@ -62,13 +79,13 @@ defmodule SignetWeb.API.V1.AuthControllerTest do
 
     test "returns a session for valid credentials", %{conn: conn, user: user} do
       conn =
-        post(conn, ~p"/api/v1/auth/login", %{
+        post_json(conn, ~p"/api/v1/auth/login", %{
           "email" => String.upcase(user.email),
           "password" => valid_password()
         })
 
       assert %{"data" => %{"user" => %{"id" => user_id}, "token" => token}} =
-               json_response(conn, 200)
+               assert_api_response(conn, 200)
 
       assert user_id == user.id
       assert is_binary(token)
@@ -76,28 +93,31 @@ defmodule SignetWeb.API.V1.AuthControllerTest do
 
     test "uses the same error for unknown email and wrong password", %{conn: conn, user: user} do
       wrong_password =
-        post(conn, ~p"/api/v1/auth/login", %{
+        post_json(conn, ~p"/api/v1/auth/login", %{
           "email" => user.email,
           "password" => "incorrect password"
         })
 
       unknown_email =
-        post(build_conn(), ~p"/api/v1/auth/login", %{
+        post_json(build_conn(), ~p"/api/v1/auth/login", %{
           "email" => "missing@example.com",
           "password" => valid_password()
         })
 
-      assert json_response(wrong_password, 401) == %{
+      assert assert_api_response(wrong_password, 401) == %{
                "error" => %{"code" => "invalid_credentials", "message" => "Invalid credentials"}
              }
 
-      assert json_response(unknown_email, 401) == json_response(wrong_password, 401)
+      assert assert_api_response(unknown_email, 401) == assert_api_response(wrong_password, 401)
     end
 
-    test "rejects malformed credentials without exposing validation details", %{conn: conn} do
-      conn = post(conn, ~p"/api/v1/auth/login", %{"email" => "person@example.com"})
+    test "rejects malformed credentials with validation errors", %{conn: conn} do
+      conn = post_json(conn, ~p"/api/v1/auth/login", %{"email" => "person@example.com"})
 
-      assert %{"error" => %{"code" => "invalid_credentials"}} = json_response(conn, 401)
+      assert %{"error" => %{"code" => "validation_failed", "details" => details}} =
+               assert_api_response(conn, 422)
+
+      assert details["password"]
     end
   end
 
@@ -110,18 +130,26 @@ defmodule SignetWeb.API.V1.AuthControllerTest do
       conn =
         conn
         |> authorize(first.token)
-        |> post(~p"/api/v1/auth/logout")
+        |> post_json(~p"/api/v1/auth/logout")
 
-      assert response(conn, 204)
+      assert assert_api_response(conn, 204)
 
-      assert build_conn() |> authorize(first.token) |> get(~p"/api/v1/me") |> response(401)
-      assert build_conn() |> authorize(second.token) |> get(~p"/api/v1/me") |> response(200)
+      assert build_conn()
+             |> authorize(first.token)
+             |> get(~p"/api/v1/me")
+             |> assert_api_response(401, "current_user")
+
+      assert build_conn()
+             |> authorize(second.token)
+             |> get(~p"/api/v1/me")
+             |> assert_api_response(200)
     end
 
     test "requires authentication", %{conn: conn} do
-      conn = post(conn, ~p"/api/v1/auth/logout")
+      conn = post_json(conn, ~p"/api/v1/auth/logout")
 
-      assert %{"error" => %{"code" => "unauthorized"}} = json_response(conn, 401)
+      assert %{"error" => %{"code" => "unauthorized"}} =
+               assert_api_response(conn, 401, "logout")
     end
   end
 

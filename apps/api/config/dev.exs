@@ -1,5 +1,7 @@
 import Config
 
+config :open_api_spex, :cache_adapter, OpenApiSpex.Plug.NoneCache
+
 # Configure your database
 config :signet, Signet.Repo,
   username: System.get_env("SIGNET_API_DB_USERNAME", "postgres"),

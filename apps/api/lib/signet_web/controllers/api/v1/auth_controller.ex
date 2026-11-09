@@ -2,11 +2,47 @@ defmodule SignetWeb.API.V1.AuthController do
   @moduledoc "HTTP endpoints for signup, login, and logout."
 
   use SignetWeb, :controller
+  use OpenApiSpex.ControllerSpecs
 
   alias Signet.Accounts
-  alias SignetWeb.API.V1.AuthJSON
+  alias SignetWeb.API.V1.{AuthJSON, RequestValidationError}
+  alias SignetWeb.Schemas.API.V1.{ErrorResponse, LoginRequest, SessionResponse, SignupRequest}
+
+  plug OpenApiSpex.Plug.CastAndValidate,
+    render_error: RequestValidationError,
+    replace_params: false
 
   action_fallback SignetWeb.API.V1.FallbackController
+
+  tags ["Authentication"]
+
+  operation :signup,
+    operation_id: "signup",
+    summary: "Create an account",
+    request_body: {"Account credentials", "application/json", SignupRequest, required: true},
+    responses: [
+      created: {"Account and session", "application/json", SessionResponse},
+      unprocessable_entity: {"Validation failed", "application/json", ErrorResponse}
+    ]
+
+  operation :login,
+    operation_id: "login",
+    summary: "Create a session",
+    request_body: {"Login credentials", "application/json", LoginRequest, required: true},
+    responses: [
+      ok: {"Account and session", "application/json", SessionResponse},
+      unauthorized: {"Invalid credentials", "application/json", ErrorResponse},
+      unprocessable_entity: {"Validation failed", "application/json", ErrorResponse}
+    ]
+
+  operation :logout,
+    operation_id: "logout",
+    summary: "Revoke the current session",
+    security: [%{"bearer_auth" => []}],
+    responses: [
+      no_content: "Session revoked",
+      unauthorized: {"Authentication required", "application/json", ErrorResponse}
+    ]
 
   @type action_result :: Plug.Conn.t() | {:error, :invalid_credentials | Ecto.Changeset.t()}
 
