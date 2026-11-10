@@ -67,9 +67,9 @@ All top-level artboard frames live in **one vertical column**, top-to-bottom in 
 - If a new section is added, append it below the last frame; do not insert it mid-column without re-stacking the tail.
 - After re-stacking, re-read bounds to confirm no overlap (all `x=0`, strictly increasing `y`).
 
-### Current inventory (§0–§36 — ids are pen-generated, re-lookup with `Get`)
+### Current inventory (§0–§40 — ids are pen-generated, re-lookup with `Get`)
 
-All 37 top-level frames are vertically stacked at `x=0` with 48px gutters. Re-read bounds after every edit; heights and y positions drift as content changes.
+All 41 top-level frames are vertically stacked at `x=0` with 48px gutters. Re-read bounds after every edit; heights and y positions drift as content changes.
 
 | Frame | id | Notes |
 |---|---|---|
@@ -81,6 +81,10 @@ All 37 top-level frames are vertically stacked at `x=0` with 48px gutters. Re-re
 | §5 Components — Button + Bookmark Card | `H6jw09` | Foundational component variants |
 | §6–§35 Screens and states | `VXf93` … `fq5mP` | Stable page/state IDs and titles are inventoried in `design/web/web-pages-map.md`; re-lookup frame IDs with `Get` |
 | §36 Shared States & Component Inventory | `V4X15` | Cross-page auth/form validation, toasts, sync/pending states, component inventory, and official Phosphor regular paths; keep shared variants here rather than duplicating them across every screen |
+| §37 Native A1 Login | `R1otS` | Native iOS/Android login, 390 × 844, light + dark, safe-area-aware cardless form |
+| §38 Native A2 Create account | `s2Tm4J` | Native iOS/Android signup, 390 × 844, light + dark, safe-area-aware cardless form |
+| §39 Native L1 Library Home | `RcLY9` | Current web-client `/` route: account header, logout, email, and empty-library state only |
+| §40 Native Server unavailable | `YV4VF` | Saved-session restore failure with exact web-client message and retry action |
 
 ## 4. Always refer to `DESIGN.md` — never deviate silently
 

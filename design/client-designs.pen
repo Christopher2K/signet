@@ -62105,6 +62105,2648 @@
           ]
         }
       ]
+    },
+    {
+      "type": "frame",
+      "id": "R1otS",
+      "x": 0,
+      "y": 123165,
+      "name": "§37 Native A1 Login",
+      "clip": true,
+      "width": 1200,
+      "fill": "#FFFFFF",
+      "cornerRadius": 16,
+      "stroke": "#8FA3C6",
+      "strokeWidth": 1,
+      "layout": "vertical",
+      "gap": 12,
+      "padding": 24,
+      "children": [
+        {
+          "type": "text",
+          "id": "ssrC1",
+          "name": "H",
+          "fill": "#090C9B",
+          "content": "§37 Native A1 Login",
+          "fontFamily": "IBM Plex Mono",
+          "fontSize": 18,
+          "fontWeight": "700"
+        },
+        {
+          "type": "text",
+          "id": "eikFg",
+          "name": "Note",
+          "fill": "#6B6578",
+          "textGrowth": "fixed-width",
+          "width": "fill_container",
+          "content": "Native iOS + Android · 390 × 844 · Light / Dark · Safe-area aware, keyboard-avoiding form · 48px controls · Deployment-configured backend, no server URL field · IBM Plex Mono stand-in for Necto Mono",
+          "fontFamily": "IBM Plex Mono",
+          "fontSize": 12,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "frame",
+          "id": "RWdA1",
+          "name": "NativeThemePair",
+          "width": "fill_container",
+          "gap": 24,
+          "justifyContent": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "ZQdj2",
+              "name": "Light",
+              "width": 390,
+              "layout": "vertical",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "I1Z8ns",
+                  "name": "ThemeLabel",
+                  "fill": "#090C9B",
+                  "content": "Light",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 12,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "frame",
+                  "id": "e8FvZY",
+                  "name": "Native-Login-Light",
+                  "clip": true,
+                  "width": 390,
+                  "height": 844,
+                  "fill": "#FBFFF1",
+                  "cornerRadius": 16,
+                  "stroke": "#8FA3C6",
+                  "strokeWidth": 1,
+                  "layout": "vertical",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "R2Ve4",
+                      "name": "StatusBar-SafeArea",
+                      "width": "fill_container",
+                      "height": 48,
+                      "padding": [
+                        0,
+                        24
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "fxJVx",
+                          "name": "Time",
+                          "fill": "#3C3744",
+                          "content": "9:41",
+                          "fontFamily": "IBM Plex Mono",
+                          "fontSize": 12,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "oz6E2",
+                          "name": "Network",
+                          "fill": "#6B6578",
+                          "content": "5G",
+                          "fontFamily": "IBM Plex Mono",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "EzxRC",
+                      "name": "SafeArea-Content",
+                      "width": "fill_container",
+                      "height": "fill_container",
+                      "layout": "vertical",
+                      "gap": 24,
+                      "padding": [
+                        32,
+                        24
+                      ],
+                      "justifyContent": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "WNHHF",
+                          "name": "Lockup-V",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 8,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "S1zEwS",
+                              "name": "Logo",
+                              "width": 48,
+                              "height": 48,
+                              "layout": "none",
+                              "children": [
+                                {
+                                  "type": "path",
+                                  "id": "tFOqc",
+                                  "x": 4,
+                                  "y": 4,
+                                  "name": "Tab-1",
+                                  "geometry": "M0 5a5 5 0 0 1 5-5h10a5 5 0 0 1 5 5v25l-10-7-10 7z",
+                                  "viewBox": [
+                                    0,
+                                    0,
+                                    20,
+                                    30
+                                  ],
+                                  "fill": "#B4C5E4",
+                                  "width": 20,
+                                  "height": 30
+                                },
+                                {
+                                  "type": "path",
+                                  "id": "P35oW",
+                                  "x": 14,
+                                  "y": 9,
+                                  "name": "Tab-2",
+                                  "geometry": "M0 5a5 5 0 0 1 5-5h10a5 5 0 0 1 5 5v25l-10-7-10 7z",
+                                  "viewBox": [
+                                    0,
+                                    0,
+                                    20,
+                                    30
+                                  ],
+                                  "fill": "#3066BE",
+                                  "width": 20,
+                                  "height": 30,
+                                  "stroke": "#FBFFF1",
+                                  "strokeWidth": 2,
+                                  "strokeAlignment": "outer"
+                                },
+                                {
+                                  "type": "path",
+                                  "id": "QgZrP",
+                                  "x": 24,
+                                  "y": 14,
+                                  "name": "Tab-3",
+                                  "geometry": "M0 5a5 5 0 0 1 5-5h10a5 5 0 0 1 5 5v25l-10-7-10 7z",
+                                  "viewBox": [
+                                    0,
+                                    0,
+                                    20,
+                                    30
+                                  ],
+                                  "fill": "#090C9B",
+                                  "width": 20,
+                                  "height": 30,
+                                  "stroke": "#FBFFF1",
+                                  "strokeWidth": 2,
+                                  "strokeAlignment": "outer"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "id": "W195hz",
+                              "name": "Word",
+                              "fill": "#3C3744",
+                              "content": "Signet",
+                              "fontFamily": "IBM Plex Mono",
+                              "fontSize": 20,
+                              "fontWeight": "700"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "nMD4t",
+                          "name": "Title",
+                          "fill": "#3C3744",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "Log in",
+                          "fontFamily": "IBM Plex Mono",
+                          "fontSize": 32,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "QhEpc",
+                          "name": "AuthForm",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 16,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "tXM0z",
+                              "name": "Field-Email",
+                              "width": "fill_container",
+                              "layout": "vertical",
+                              "gap": 8,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "m64cbd",
+                                  "name": "Label",
+                                  "fill": "#090C9B",
+                                  "content": "Email",
+                                  "fontFamily": "IBM Plex Mono",
+                                  "fontSize": 12,
+                                  "fontWeight": "700"
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "G7FZpl",
+                                  "name": "Input-Email",
+                                  "width": "fill_container",
+                                  "height": 48,
+                                  "fill": "#FFFFFF",
+                                  "cornerRadius": 12,
+                                  "stroke": "#8FA3C6",
+                                  "strokeWidth": 1,
+                                  "layout": "vertical",
+                                  "padding": [
+                                    0,
+                                    16
+                                  ],
+                                  "justifyContent": "center",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "BGxD7",
+                                      "name": "Value",
+                                      "fill": "#8A8499",
+                                      "textGrowth": "fixed-width",
+                                      "width": "fill_container",
+                                      "content": "you@example.com",
+                                      "fontFamily": "IBM Plex Mono",
+                                      "fontSize": 15,
+                                      "fontWeight": "normal"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "xtGJ6",
+                              "name": "Field-Password",
+                              "width": "fill_container",
+                              "layout": "vertical",
+                              "gap": 8,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "VjWb1",
+                                  "name": "Label",
+                                  "fill": "#090C9B",
+                                  "content": "Password",
+                                  "fontFamily": "IBM Plex Mono",
+                                  "fontSize": 12,
+                                  "fontWeight": "700"
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "LB4PV",
+                                  "name": "Input-Password",
+                                  "width": "fill_container",
+                                  "height": 48,
+                                  "fill": "#FFFFFF",
+                                  "cornerRadius": 12,
+                                  "stroke": "#8FA3C6",
+                                  "strokeWidth": 1,
+                                  "layout": "vertical",
+                                  "padding": [
+                                    0,
+                                    16
+                                  ],
+                                  "justifyContent": "center",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "L2MBuz",
+                                      "name": "Value",
+                                      "fill": "#3C3744",
+                                      "textGrowth": "fixed-width",
+                                      "width": "fill_container",
+                                      "content": "••••••••",
+                                      "fontFamily": "IBM Plex Mono",
+                                      "fontSize": 15,
+                                      "fontWeight": "normal"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "pNcEH",
+                              "name": "PrimaryAction",
+                              "width": "fill_container",
+                              "height": 48,
+                              "fill": "#3066BE",
+                              "cornerRadius": 12,
+                              "padding": [
+                                0,
+                                24
+                              ],
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "E6fZI",
+                                  "name": "Label",
+                                  "fill": "#FBFFF1",
+                                  "content": "Log in",
+                                  "fontFamily": "IBM Plex Mono",
+                                  "fontSize": 15,
+                                  "fontWeight": "700"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "JjISC",
+                              "name": "SwitchAuth",
+                              "width": "fill_container",
+                              "height": 48,
+                              "gap": 8,
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "OoCEU",
+                                  "name": "Prompt",
+                                  "fill": "#6B6578",
+                                  "content": "New to Signet?",
+                                  "fontFamily": "IBM Plex Mono",
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "SUDfW",
+                                  "name": "Link",
+                                  "fill": "#3066BE",
+                                  "content": "Create account",
+                                  "fontFamily": "IBM Plex Mono",
+                                  "fontSize": 15,
+                                  "fontWeight": "700"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "g3v4JF",
+                      "name": "HomeIndicator-SafeArea",
+                      "width": "fill_container",
+                      "height": 24,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "L5Et3L",
+                          "name": "HomeIndicator",
+                          "width": 128,
+                          "height": 4,
+                          "fill": "#3C3744",
+                          "cornerRadius": 999
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "GJSQh",
+              "name": "Dark",
+              "width": 390,
+              "layout": "vertical",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "Ksrua",
+                  "name": "ThemeLabel",
+                  "fill": "#090C9B",
+                  "content": "Dark",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 12,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "frame",
+                  "id": "Ux16U",
+                  "name": "Native-Login-Dark",
+                  "clip": true,
+                  "width": 390,
+                  "height": 844,
+                  "fill": "#3C3744",
+                  "cornerRadius": 16,
+                  "stroke": "#4F4A62",
+                  "strokeWidth": 1,
+                  "layout": "vertical",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "vnSdI",
+                      "name": "StatusBar-SafeArea",
+                      "width": "fill_container",
+                      "height": 48,
+                      "padding": [
+                        0,
+                        24
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "as8KK",
+                          "name": "Time",
+                          "fill": "#FBFFF1",
+                          "content": "9:41",
+                          "fontFamily": "IBM Plex Mono",
+                          "fontSize": 12,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "g0LfB",
+                          "name": "Network",
+                          "fill": "#B4C5E4",
+                          "content": "5G",
+                          "fontFamily": "IBM Plex Mono",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "cAHun",
+                      "name": "SafeArea-Content",
+                      "width": "fill_container",
+                      "height": "fill_container",
+                      "layout": "vertical",
+                      "gap": 24,
+                      "padding": [
+                        32,
+                        24
+                      ],
+                      "justifyContent": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "JnKsA",
+                          "name": "Lockup-V",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 8,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "zBfH5",
+                              "name": "Logo",
+                              "width": 48,
+                              "height": 48,
+                              "layout": "none",
+                              "children": [
+                                {
+                                  "type": "path",
+                                  "id": "lVfhJ",
+                                  "x": 4,
+                                  "y": 4,
+                                  "name": "Tab-1",
+                                  "geometry": "M0 5a5 5 0 0 1 5-5h10a5 5 0 0 1 5 5v25l-10-7-10 7z",
+                                  "viewBox": [
+                                    0,
+                                    0,
+                                    20,
+                                    30
+                                  ],
+                                  "fill": "#4F4A62",
+                                  "width": 20,
+                                  "height": 30
+                                },
+                                {
+                                  "type": "path",
+                                  "id": "YeYgO",
+                                  "x": 14,
+                                  "y": 9,
+                                  "name": "Tab-2",
+                                  "geometry": "M0 5a5 5 0 0 1 5-5h10a5 5 0 0 1 5 5v25l-10-7-10 7z",
+                                  "viewBox": [
+                                    0,
+                                    0,
+                                    20,
+                                    30
+                                  ],
+                                  "fill": "#5C84C6",
+                                  "width": 20,
+                                  "height": 30,
+                                  "stroke": "#3C3744",
+                                  "strokeWidth": 2,
+                                  "strokeAlignment": "outer"
+                                },
+                                {
+                                  "type": "path",
+                                  "id": "KmS0p",
+                                  "x": 24,
+                                  "y": 14,
+                                  "name": "Tab-3",
+                                  "geometry": "M0 5a5 5 0 0 1 5-5h10a5 5 0 0 1 5 5v25l-10-7-10 7z",
+                                  "viewBox": [
+                                    0,
+                                    0,
+                                    20,
+                                    30
+                                  ],
+                                  "fill": "#B4C5E4",
+                                  "width": 20,
+                                  "height": 30,
+                                  "stroke": "#3C3744",
+                                  "strokeWidth": 2,
+                                  "strokeAlignment": "outer"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "id": "apY2L",
+                              "name": "Word",
+                              "fill": "#FBFFF1",
+                              "content": "Signet",
+                              "fontFamily": "IBM Plex Mono",
+                              "fontSize": 20,
+                              "fontWeight": "700"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "PIdzC",
+                          "name": "Title",
+                          "fill": "#FBFFF1",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "Log in",
+                          "fontFamily": "IBM Plex Mono",
+                          "fontSize": 32,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "r1MShh",
+                          "name": "AuthForm",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 16,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "wS7QT",
+                              "name": "Field-Email",
+                              "width": "fill_container",
+                              "layout": "vertical",
+                              "gap": 8,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "kiGz7",
+                                  "name": "Label",
+                                  "fill": "#B4C5E4",
+                                  "content": "Email",
+                                  "fontFamily": "IBM Plex Mono",
+                                  "fontSize": 12,
+                                  "fontWeight": "700"
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "V9m3o8",
+                                  "name": "Input-Email",
+                                  "width": "fill_container",
+                                  "height": 48,
+                                  "fill": "#2F2B3A",
+                                  "cornerRadius": 12,
+                                  "stroke": "#4F4A62",
+                                  "strokeWidth": 1,
+                                  "layout": "vertical",
+                                  "padding": [
+                                    0,
+                                    16
+                                  ],
+                                  "justifyContent": "center",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "LZ9cw",
+                                      "name": "Value",
+                                      "fill": "#ABA3B8",
+                                      "textGrowth": "fixed-width",
+                                      "width": "fill_container",
+                                      "content": "you@example.com",
+                                      "fontFamily": "IBM Plex Mono",
+                                      "fontSize": 15,
+                                      "fontWeight": "normal"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "LJEih",
+                              "name": "Field-Password",
+                              "width": "fill_container",
+                              "layout": "vertical",
+                              "gap": 8,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "rYuqI",
+                                  "name": "Label",
+                                  "fill": "#B4C5E4",
+                                  "content": "Password",
+                                  "fontFamily": "IBM Plex Mono",
+                                  "fontSize": 12,
+                                  "fontWeight": "700"
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "pcGCs",
+                                  "name": "Input-Password",
+                                  "width": "fill_container",
+                                  "height": 48,
+                                  "fill": "#2F2B3A",
+                                  "cornerRadius": 12,
+                                  "stroke": "#4F4A62",
+                                  "strokeWidth": 1,
+                                  "layout": "vertical",
+                                  "padding": [
+                                    0,
+                                    16
+                                  ],
+                                  "justifyContent": "center",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "mS545",
+                                      "name": "Value",
+                                      "fill": "#FBFFF1",
+                                      "textGrowth": "fixed-width",
+                                      "width": "fill_container",
+                                      "content": "••••••••",
+                                      "fontFamily": "IBM Plex Mono",
+                                      "fontSize": 15,
+                                      "fontWeight": "normal"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "FLiKo",
+                              "name": "PrimaryAction",
+                              "width": "fill_container",
+                              "height": 48,
+                              "fill": "#5C84C6",
+                              "cornerRadius": 12,
+                              "padding": [
+                                0,
+                                24
+                              ],
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "A9htjr",
+                                  "name": "Label",
+                                  "fill": "#131220",
+                                  "content": "Log in",
+                                  "fontFamily": "IBM Plex Mono",
+                                  "fontSize": 15,
+                                  "fontWeight": "700"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "D0aErD",
+                              "name": "SwitchAuth",
+                              "width": "fill_container",
+                              "height": 48,
+                              "gap": 8,
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "aGytQ",
+                                  "name": "Prompt",
+                                  "fill": "#B4C5E4",
+                                  "content": "New to Signet?",
+                                  "fontFamily": "IBM Plex Mono",
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "kcLJP",
+                                  "name": "Link",
+                                  "fill": "#B4C5E4",
+                                  "content": "Create account",
+                                  "fontFamily": "IBM Plex Mono",
+                                  "fontSize": 15,
+                                  "fontWeight": "700"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "Ci6nV",
+                      "name": "HomeIndicator-SafeArea",
+                      "width": "fill_container",
+                      "height": 24,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "UDDz5",
+                          "name": "HomeIndicator",
+                          "width": 128,
+                          "height": 4,
+                          "fill": "#B4C5E4",
+                          "cornerRadius": 999
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "tfYep",
+          "name": "Behavior",
+          "fill": "#6B6578",
+          "textGrowth": "fixed-width",
+          "width": "fill_container",
+          "content": "Email keyboard · Secure password entry · Invalid credentials uses the shared inline error without leaking email existence · Create account opens Native A2",
+          "fontFamily": "IBM Plex Mono",
+          "fontSize": 12,
+          "fontWeight": "normal"
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "s2Tm4J",
+      "x": 0,
+      "y": 124236,
+      "name": "§38 Native A2 Create account",
+      "clip": true,
+      "width": 1200,
+      "fill": "#FFFFFF",
+      "cornerRadius": 16,
+      "stroke": "#8FA3C6",
+      "strokeWidth": 1,
+      "layout": "vertical",
+      "gap": 12,
+      "padding": 24,
+      "children": [
+        {
+          "type": "text",
+          "id": "ZYRke",
+          "name": "H",
+          "fill": "#090C9B",
+          "content": "§38 Native A2 Create account",
+          "fontFamily": "IBM Plex Mono",
+          "fontSize": 18,
+          "fontWeight": "700"
+        },
+        {
+          "type": "text",
+          "id": "rUIbO",
+          "name": "Note",
+          "fill": "#6B6578",
+          "textGrowth": "fixed-width",
+          "width": "fill_container",
+          "content": "Native iOS + Android · 390 × 844 · Light / Dark · Safe-area aware, keyboard-avoiding form · 48px controls · Deployment-configured backend, no server URL field · IBM Plex Mono stand-in for Necto Mono",
+          "fontFamily": "IBM Plex Mono",
+          "fontSize": 12,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "frame",
+          "id": "OSYZy",
+          "name": "NativeThemePair",
+          "width": "fill_container",
+          "gap": 24,
+          "justifyContent": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "XvWT7",
+              "name": "Light",
+              "width": 390,
+              "layout": "vertical",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "z1hmpy",
+                  "name": "ThemeLabel",
+                  "fill": "#090C9B",
+                  "content": "Light",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 12,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "frame",
+                  "id": "z586f8",
+                  "name": "Native-Signup-Light",
+                  "clip": true,
+                  "width": 390,
+                  "height": 844,
+                  "fill": "#FBFFF1",
+                  "cornerRadius": 16,
+                  "stroke": "#8FA3C6",
+                  "strokeWidth": 1,
+                  "layout": "vertical",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "JMg55",
+                      "name": "StatusBar-SafeArea",
+                      "width": "fill_container",
+                      "height": 48,
+                      "padding": [
+                        0,
+                        24
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "D1CeXY",
+                          "name": "Time",
+                          "fill": "#3C3744",
+                          "content": "9:41",
+                          "fontFamily": "IBM Plex Mono",
+                          "fontSize": 12,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "pYq8S",
+                          "name": "Network",
+                          "fill": "#6B6578",
+                          "content": "5G",
+                          "fontFamily": "IBM Plex Mono",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "Q1frNO",
+                      "name": "SafeArea-Content",
+                      "width": "fill_container",
+                      "height": "fill_container",
+                      "layout": "vertical",
+                      "gap": 24,
+                      "padding": [
+                        32,
+                        24
+                      ],
+                      "justifyContent": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "wlpo3",
+                          "name": "Lockup-V",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 8,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "KZSPW",
+                              "name": "Logo",
+                              "width": 48,
+                              "height": 48,
+                              "layout": "none",
+                              "children": [
+                                {
+                                  "type": "path",
+                                  "id": "f8CsjQ",
+                                  "x": 4,
+                                  "y": 4,
+                                  "name": "Tab-1",
+                                  "geometry": "M0 5a5 5 0 0 1 5-5h10a5 5 0 0 1 5 5v25l-10-7-10 7z",
+                                  "viewBox": [
+                                    0,
+                                    0,
+                                    20,
+                                    30
+                                  ],
+                                  "fill": "#B4C5E4",
+                                  "width": 20,
+                                  "height": 30
+                                },
+                                {
+                                  "type": "path",
+                                  "id": "NZ4zF",
+                                  "x": 14,
+                                  "y": 9,
+                                  "name": "Tab-2",
+                                  "geometry": "M0 5a5 5 0 0 1 5-5h10a5 5 0 0 1 5 5v25l-10-7-10 7z",
+                                  "viewBox": [
+                                    0,
+                                    0,
+                                    20,
+                                    30
+                                  ],
+                                  "fill": "#3066BE",
+                                  "width": 20,
+                                  "height": 30,
+                                  "stroke": "#FBFFF1",
+                                  "strokeWidth": 2,
+                                  "strokeAlignment": "outer"
+                                },
+                                {
+                                  "type": "path",
+                                  "id": "HlnrP",
+                                  "x": 24,
+                                  "y": 14,
+                                  "name": "Tab-3",
+                                  "geometry": "M0 5a5 5 0 0 1 5-5h10a5 5 0 0 1 5 5v25l-10-7-10 7z",
+                                  "viewBox": [
+                                    0,
+                                    0,
+                                    20,
+                                    30
+                                  ],
+                                  "fill": "#090C9B",
+                                  "width": 20,
+                                  "height": 30,
+                                  "stroke": "#FBFFF1",
+                                  "strokeWidth": 2,
+                                  "strokeAlignment": "outer"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "id": "KEYwU",
+                              "name": "Word",
+                              "fill": "#3C3744",
+                              "content": "Signet",
+                              "fontFamily": "IBM Plex Mono",
+                              "fontSize": 20,
+                              "fontWeight": "700"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "jn3G8",
+                          "name": "Title",
+                          "fill": "#3C3744",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "Create account",
+                          "fontFamily": "IBM Plex Mono",
+                          "fontSize": 32,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "u0I4r",
+                          "name": "AuthForm",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 16,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "ksbCV",
+                              "name": "Field-Name",
+                              "width": "fill_container",
+                              "layout": "vertical",
+                              "gap": 8,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "vCkvN",
+                                  "name": "Label",
+                                  "fill": "#090C9B",
+                                  "content": "Name",
+                                  "fontFamily": "IBM Plex Mono",
+                                  "fontSize": 12,
+                                  "fontWeight": "700"
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "VQpwW",
+                                  "name": "Input-Name",
+                                  "width": "fill_container",
+                                  "height": 48,
+                                  "fill": "#FFFFFF",
+                                  "cornerRadius": 12,
+                                  "stroke": "#8FA3C6",
+                                  "strokeWidth": 1,
+                                  "layout": "vertical",
+                                  "padding": [
+                                    0,
+                                    16
+                                  ],
+                                  "justifyContent": "center",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "nKlxp",
+                                      "name": "Value",
+                                      "fill": "#3C3744",
+                                      "textGrowth": "fixed-width",
+                                      "width": "fill_container",
+                                      "content": "Jane Doe",
+                                      "fontFamily": "IBM Plex Mono",
+                                      "fontSize": 15,
+                                      "fontWeight": "normal"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "C4dbx",
+                              "name": "Field-Email",
+                              "width": "fill_container",
+                              "layout": "vertical",
+                              "gap": 8,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "mfCls",
+                                  "name": "Label",
+                                  "fill": "#090C9B",
+                                  "content": "Email",
+                                  "fontFamily": "IBM Plex Mono",
+                                  "fontSize": 12,
+                                  "fontWeight": "700"
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "XpsLu",
+                                  "name": "Input-Email",
+                                  "width": "fill_container",
+                                  "height": 48,
+                                  "fill": "#FFFFFF",
+                                  "cornerRadius": 12,
+                                  "stroke": "#8FA3C6",
+                                  "strokeWidth": 1,
+                                  "layout": "vertical",
+                                  "padding": [
+                                    0,
+                                    16
+                                  ],
+                                  "justifyContent": "center",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "viqus",
+                                      "name": "Value",
+                                      "fill": "#8A8499",
+                                      "textGrowth": "fixed-width",
+                                      "width": "fill_container",
+                                      "content": "you@example.com",
+                                      "fontFamily": "IBM Plex Mono",
+                                      "fontSize": 15,
+                                      "fontWeight": "normal"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "BatDk",
+                              "name": "Field-Password",
+                              "width": "fill_container",
+                              "layout": "vertical",
+                              "gap": 8,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "Wnb88",
+                                  "name": "Label",
+                                  "fill": "#090C9B",
+                                  "content": "Password",
+                                  "fontFamily": "IBM Plex Mono",
+                                  "fontSize": 12,
+                                  "fontWeight": "700"
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "S5CoX",
+                                  "name": "Input-Password",
+                                  "width": "fill_container",
+                                  "height": 48,
+                                  "fill": "#FFFFFF",
+                                  "cornerRadius": 12,
+                                  "stroke": "#8FA3C6",
+                                  "strokeWidth": 1,
+                                  "layout": "vertical",
+                                  "padding": [
+                                    0,
+                                    16
+                                  ],
+                                  "justifyContent": "center",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "yrQgJ",
+                                      "name": "Value",
+                                      "fill": "#3C3744",
+                                      "textGrowth": "fixed-width",
+                                      "width": "fill_container",
+                                      "content": "••••••••",
+                                      "fontFamily": "IBM Plex Mono",
+                                      "fontSize": 15,
+                                      "fontWeight": "normal"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "RdcXG",
+                              "name": "PrimaryAction",
+                              "width": "fill_container",
+                              "height": 48,
+                              "fill": "#3066BE",
+                              "cornerRadius": 12,
+                              "padding": [
+                                0,
+                                24
+                              ],
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "dpZ5f",
+                                  "name": "Label",
+                                  "fill": "#FBFFF1",
+                                  "content": "Create account",
+                                  "fontFamily": "IBM Plex Mono",
+                                  "fontSize": 15,
+                                  "fontWeight": "700"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "lLRG8",
+                              "name": "SwitchAuth",
+                              "width": "fill_container",
+                              "height": 48,
+                              "gap": 8,
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "KRovV",
+                                  "name": "Prompt",
+                                  "fill": "#6B6578",
+                                  "content": "Already have an account?",
+                                  "fontFamily": "IBM Plex Mono",
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "RW7ha",
+                                  "name": "Link",
+                                  "fill": "#3066BE",
+                                  "content": "Log in",
+                                  "fontFamily": "IBM Plex Mono",
+                                  "fontSize": 15,
+                                  "fontWeight": "700"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "UNa5V",
+                      "name": "HomeIndicator-SafeArea",
+                      "width": "fill_container",
+                      "height": 24,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "KJEdV",
+                          "name": "HomeIndicator",
+                          "width": 128,
+                          "height": 4,
+                          "fill": "#3C3744",
+                          "cornerRadius": 999
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "fHV3B",
+              "name": "Dark",
+              "width": 390,
+              "layout": "vertical",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "pDW0M",
+                  "name": "ThemeLabel",
+                  "fill": "#090C9B",
+                  "content": "Dark",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 12,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "frame",
+                  "id": "xtHK0",
+                  "name": "Native-Signup-Dark",
+                  "clip": true,
+                  "width": 390,
+                  "height": 844,
+                  "fill": "#3C3744",
+                  "cornerRadius": 16,
+                  "stroke": "#4F4A62",
+                  "strokeWidth": 1,
+                  "layout": "vertical",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "N4MaJ",
+                      "name": "StatusBar-SafeArea",
+                      "width": "fill_container",
+                      "height": 48,
+                      "padding": [
+                        0,
+                        24
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "JvxXP",
+                          "name": "Time",
+                          "fill": "#FBFFF1",
+                          "content": "9:41",
+                          "fontFamily": "IBM Plex Mono",
+                          "fontSize": 12,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "Jcstc",
+                          "name": "Network",
+                          "fill": "#B4C5E4",
+                          "content": "5G",
+                          "fontFamily": "IBM Plex Mono",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "feU4Q",
+                      "name": "SafeArea-Content",
+                      "width": "fill_container",
+                      "height": "fill_container",
+                      "layout": "vertical",
+                      "gap": 24,
+                      "padding": [
+                        32,
+                        24
+                      ],
+                      "justifyContent": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "uvENN",
+                          "name": "Lockup-V",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 8,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "W0LyK",
+                              "name": "Logo",
+                              "width": 48,
+                              "height": 48,
+                              "layout": "none",
+                              "children": [
+                                {
+                                  "type": "path",
+                                  "id": "t6pVjH",
+                                  "x": 4,
+                                  "y": 4,
+                                  "name": "Tab-1",
+                                  "geometry": "M0 5a5 5 0 0 1 5-5h10a5 5 0 0 1 5 5v25l-10-7-10 7z",
+                                  "viewBox": [
+                                    0,
+                                    0,
+                                    20,
+                                    30
+                                  ],
+                                  "fill": "#4F4A62",
+                                  "width": 20,
+                                  "height": 30
+                                },
+                                {
+                                  "type": "path",
+                                  "id": "EGqal",
+                                  "x": 14,
+                                  "y": 9,
+                                  "name": "Tab-2",
+                                  "geometry": "M0 5a5 5 0 0 1 5-5h10a5 5 0 0 1 5 5v25l-10-7-10 7z",
+                                  "viewBox": [
+                                    0,
+                                    0,
+                                    20,
+                                    30
+                                  ],
+                                  "fill": "#5C84C6",
+                                  "width": 20,
+                                  "height": 30,
+                                  "stroke": "#3C3744",
+                                  "strokeWidth": 2,
+                                  "strokeAlignment": "outer"
+                                },
+                                {
+                                  "type": "path",
+                                  "id": "ozE5L",
+                                  "x": 24,
+                                  "y": 14,
+                                  "name": "Tab-3",
+                                  "geometry": "M0 5a5 5 0 0 1 5-5h10a5 5 0 0 1 5 5v25l-10-7-10 7z",
+                                  "viewBox": [
+                                    0,
+                                    0,
+                                    20,
+                                    30
+                                  ],
+                                  "fill": "#B4C5E4",
+                                  "width": 20,
+                                  "height": 30,
+                                  "stroke": "#3C3744",
+                                  "strokeWidth": 2,
+                                  "strokeAlignment": "outer"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "id": "hG1Gx",
+                              "name": "Word",
+                              "fill": "#FBFFF1",
+                              "content": "Signet",
+                              "fontFamily": "IBM Plex Mono",
+                              "fontSize": 20,
+                              "fontWeight": "700"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "mHN37",
+                          "name": "Title",
+                          "fill": "#FBFFF1",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "Create account",
+                          "fontFamily": "IBM Plex Mono",
+                          "fontSize": 32,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "Ygyb4",
+                          "name": "AuthForm",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 16,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "kDsJL",
+                              "name": "Field-Name",
+                              "width": "fill_container",
+                              "layout": "vertical",
+                              "gap": 8,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "tYzxG",
+                                  "name": "Label",
+                                  "fill": "#B4C5E4",
+                                  "content": "Name",
+                                  "fontFamily": "IBM Plex Mono",
+                                  "fontSize": 12,
+                                  "fontWeight": "700"
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "K3Etu",
+                                  "name": "Input-Name",
+                                  "width": "fill_container",
+                                  "height": 48,
+                                  "fill": "#2F2B3A",
+                                  "cornerRadius": 12,
+                                  "stroke": "#4F4A62",
+                                  "strokeWidth": 1,
+                                  "layout": "vertical",
+                                  "padding": [
+                                    0,
+                                    16
+                                  ],
+                                  "justifyContent": "center",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "tIe12",
+                                      "name": "Value",
+                                      "fill": "#FBFFF1",
+                                      "textGrowth": "fixed-width",
+                                      "width": "fill_container",
+                                      "content": "Jane Doe",
+                                      "fontFamily": "IBM Plex Mono",
+                                      "fontSize": 15,
+                                      "fontWeight": "normal"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "jHyta",
+                              "name": "Field-Email",
+                              "width": "fill_container",
+                              "layout": "vertical",
+                              "gap": 8,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "mMlAK",
+                                  "name": "Label",
+                                  "fill": "#B4C5E4",
+                                  "content": "Email",
+                                  "fontFamily": "IBM Plex Mono",
+                                  "fontSize": 12,
+                                  "fontWeight": "700"
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "zI6sA",
+                                  "name": "Input-Email",
+                                  "width": "fill_container",
+                                  "height": 48,
+                                  "fill": "#2F2B3A",
+                                  "cornerRadius": 12,
+                                  "stroke": "#4F4A62",
+                                  "strokeWidth": 1,
+                                  "layout": "vertical",
+                                  "padding": [
+                                    0,
+                                    16
+                                  ],
+                                  "justifyContent": "center",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "DQBV3",
+                                      "name": "Value",
+                                      "fill": "#ABA3B8",
+                                      "textGrowth": "fixed-width",
+                                      "width": "fill_container",
+                                      "content": "you@example.com",
+                                      "fontFamily": "IBM Plex Mono",
+                                      "fontSize": 15,
+                                      "fontWeight": "normal"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "aYhlH",
+                              "name": "Field-Password",
+                              "width": "fill_container",
+                              "layout": "vertical",
+                              "gap": 8,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "Ssylv",
+                                  "name": "Label",
+                                  "fill": "#B4C5E4",
+                                  "content": "Password",
+                                  "fontFamily": "IBM Plex Mono",
+                                  "fontSize": 12,
+                                  "fontWeight": "700"
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "hxVqS",
+                                  "name": "Input-Password",
+                                  "width": "fill_container",
+                                  "height": 48,
+                                  "fill": "#2F2B3A",
+                                  "cornerRadius": 12,
+                                  "stroke": "#4F4A62",
+                                  "strokeWidth": 1,
+                                  "layout": "vertical",
+                                  "padding": [
+                                    0,
+                                    16
+                                  ],
+                                  "justifyContent": "center",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "kaGYW",
+                                      "name": "Value",
+                                      "fill": "#FBFFF1",
+                                      "textGrowth": "fixed-width",
+                                      "width": "fill_container",
+                                      "content": "••••••••",
+                                      "fontFamily": "IBM Plex Mono",
+                                      "fontSize": 15,
+                                      "fontWeight": "normal"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "WiH22",
+                              "name": "PrimaryAction",
+                              "width": "fill_container",
+                              "height": 48,
+                              "fill": "#5C84C6",
+                              "cornerRadius": 12,
+                              "padding": [
+                                0,
+                                24
+                              ],
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "R7elY",
+                                  "name": "Label",
+                                  "fill": "#131220",
+                                  "content": "Create account",
+                                  "fontFamily": "IBM Plex Mono",
+                                  "fontSize": 15,
+                                  "fontWeight": "700"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "QsvAw",
+                              "name": "SwitchAuth",
+                              "width": "fill_container",
+                              "height": 48,
+                              "gap": 8,
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "a05FCn",
+                                  "name": "Prompt",
+                                  "fill": "#B4C5E4",
+                                  "content": "Already have an account?",
+                                  "fontFamily": "IBM Plex Mono",
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "v60z6t",
+                                  "name": "Link",
+                                  "fill": "#B4C5E4",
+                                  "content": "Log in",
+                                  "fontFamily": "IBM Plex Mono",
+                                  "fontSize": 15,
+                                  "fontWeight": "700"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "dz8Zm",
+                      "name": "HomeIndicator-SafeArea",
+                      "width": "fill_container",
+                      "height": 24,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "Bu6g8",
+                          "name": "HomeIndicator",
+                          "width": 128,
+                          "height": 4,
+                          "fill": "#B4C5E4",
+                          "cornerRadius": 999
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "sfdS2",
+          "name": "Behavior",
+          "fill": "#6B6578",
+          "textGrowth": "fixed-width",
+          "width": "fill_container",
+          "content": "Name 1–100 characters · Email keyboard · Secure password entry · Create account opens the empty library within 2s · Log in returns to Native A1",
+          "fontFamily": "IBM Plex Mono",
+          "fontSize": 12,
+          "fontWeight": "normal"
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "RcLY9",
+      "x": 0,
+      "y": 125307,
+      "name": "§39 Native L1 Library Home",
+      "clip": true,
+      "width": 1200,
+      "fill": "#FFFFFF",
+      "cornerRadius": 16,
+      "stroke": "#8FA3C6",
+      "strokeWidth": 1,
+      "layout": "vertical",
+      "gap": 12,
+      "padding": 24,
+      "children": [
+        {
+          "type": "text",
+          "id": "UJhyP",
+          "name": "H",
+          "fill": "#090C9B",
+          "content": "§39 Native L1 Library Home",
+          "fontFamily": "IBM Plex Mono",
+          "fontSize": 18,
+          "fontWeight": "700"
+        },
+        {
+          "type": "text",
+          "id": "V9BO3D",
+          "name": "Note",
+          "fill": "#6B6578",
+          "textGrowth": "fixed-width",
+          "width": "fill_container",
+          "content": "Native iOS + Android · 390 × 844 · Light / Dark · Current apps/web-client / route only · Empty library, account email and logout · No unimplemented search, folder or bookmark controls · IBM Plex Mono stand-in for Necto Mono",
+          "fontFamily": "IBM Plex Mono",
+          "fontSize": 12,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "frame",
+          "id": "M6G37m",
+          "name": "NativeThemePair",
+          "width": "fill_container",
+          "gap": 24,
+          "justifyContent": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "Hzz8d",
+              "name": "Light",
+              "width": 390,
+              "layout": "vertical",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "SNxAt",
+                  "name": "ThemeLabel",
+                  "fill": "#090C9B",
+                  "content": "Light",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 12,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "frame",
+                  "id": "SzTP8",
+                  "name": "Native-Library-Light",
+                  "clip": true,
+                  "width": 390,
+                  "height": 844,
+                  "fill": "#FBFFF1",
+                  "cornerRadius": 16,
+                  "stroke": "#8FA3C6",
+                  "strokeWidth": 1,
+                  "layout": "vertical",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "wohft",
+                      "name": "StatusBar-SafeArea",
+                      "width": "fill_container",
+                      "height": 48,
+                      "padding": [
+                        0,
+                        24
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "gNVvG",
+                          "name": "Time",
+                          "fill": "#3C3744",
+                          "content": "9:41",
+                          "fontFamily": "IBM Plex Mono",
+                          "fontSize": 12,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "HmkeH",
+                          "name": "Network",
+                          "fill": "#6B6578",
+                          "content": "5G",
+                          "fontFamily": "IBM Plex Mono",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "upGBo",
+                      "name": "AppHeader",
+                      "width": "fill_container",
+                      "fill": "#FFFFFF",
+                      "stroke": "#8FA3C6",
+                      "strokeWidth": {
+                        "bottom": 1
+                      },
+                      "gap": 16,
+                      "padding": [
+                        8,
+                        16
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "lD92g",
+                          "name": "Brand",
+                          "fill": "#090C9B",
+                          "content": "SIGNET",
+                          "fontFamily": "IBM Plex Mono",
+                          "fontSize": 15,
+                          "fontWeight": "700",
+                          "letterSpacing": 2
+                        },
+                        {
+                          "type": "frame",
+                          "id": "vTXXB",
+                          "name": "LogoutAction",
+                          "height": 48,
+                          "fill": "#B4C5E4",
+                          "cornerRadius": 12,
+                          "padding": [
+                            0,
+                            16
+                          ],
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "POaaZ",
+                              "name": "Label",
+                              "fill": "#3C3744",
+                              "content": "Log out",
+                              "fontFamily": "IBM Plex Mono",
+                              "fontSize": 12,
+                              "fontWeight": "700"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "PN5R7",
+                      "name": "LibraryContent",
+                      "width": "fill_container",
+                      "height": "fill_container",
+                      "layout": "vertical",
+                      "gap": 32,
+                      "padding": 24,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "MVRZB",
+                          "name": "Heading",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 8,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "l8VgjW",
+                              "name": "Title",
+                              "fill": "#3C3744",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "Your library",
+                              "fontFamily": "IBM Plex Mono",
+                              "fontSize": 32,
+                              "fontWeight": "700"
+                            },
+                            {
+                              "type": "text",
+                              "id": "bQcvU",
+                              "name": "Email",
+                              "fill": "#6B6578",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "jane@example.com",
+                              "fontFamily": "IBM Plex Mono",
+                              "fontSize": 12,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "HV41R",
+                          "name": "EmptyLibrary",
+                          "width": "fill_container",
+                          "fill": "#FFFFFF",
+                          "cornerRadius": 16,
+                          "stroke": "#8FA3C6",
+                          "strokeWidth": 1,
+                          "layout": "vertical",
+                          "gap": 12,
+                          "padding": 48,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "TG51n",
+                              "name": "EmptyTitle",
+                              "fill": "#3C3744",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "No bookmarks yet",
+                              "textAlign": "center",
+                              "fontFamily": "IBM Plex Mono",
+                              "fontSize": 20,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "text",
+                              "id": "a1WUZ",
+                              "name": "EmptyBody",
+                              "fill": "#6B6578",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "Your saved bookmarks will appear here.",
+                              "textAlign": "center",
+                              "fontFamily": "IBM Plex Mono",
+                              "fontSize": 15,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "m9pCQc",
+                      "name": "HomeIndicator-SafeArea",
+                      "width": "fill_container",
+                      "height": 24,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "m0qz9",
+                          "name": "HomeIndicator",
+                          "width": 128,
+                          "height": 4,
+                          "fill": "#3C3744",
+                          "cornerRadius": 999
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "nElQZ",
+              "name": "Dark",
+              "width": 390,
+              "layout": "vertical",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "mYJU0",
+                  "name": "ThemeLabel",
+                  "fill": "#090C9B",
+                  "content": "Dark",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 12,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "frame",
+                  "id": "QONJ3",
+                  "name": "Native-Library-Dark",
+                  "clip": true,
+                  "width": 390,
+                  "height": 844,
+                  "fill": "#3C3744",
+                  "cornerRadius": 16,
+                  "stroke": "#4F4A62",
+                  "strokeWidth": 1,
+                  "layout": "vertical",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "P7k8r5",
+                      "name": "StatusBar-SafeArea",
+                      "width": "fill_container",
+                      "height": 48,
+                      "padding": [
+                        0,
+                        24
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "zynwJ",
+                          "name": "Time",
+                          "fill": "#FBFFF1",
+                          "content": "9:41",
+                          "fontFamily": "IBM Plex Mono",
+                          "fontSize": 12,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "W5nIJ",
+                          "name": "Network",
+                          "fill": "#B4C5E4",
+                          "content": "5G",
+                          "fontFamily": "IBM Plex Mono",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "ZliCz",
+                      "name": "AppHeader",
+                      "width": "fill_container",
+                      "fill": "#2F2B3A",
+                      "stroke": "#4F4A62",
+                      "strokeWidth": {
+                        "bottom": 1
+                      },
+                      "gap": 16,
+                      "padding": [
+                        8,
+                        16
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "z1mDKN",
+                          "name": "Brand",
+                          "fill": "#B4C5E4",
+                          "content": "SIGNET",
+                          "fontFamily": "IBM Plex Mono",
+                          "fontSize": 15,
+                          "fontWeight": "700",
+                          "letterSpacing": 2
+                        },
+                        {
+                          "type": "frame",
+                          "id": "vdcCv",
+                          "name": "LogoutAction",
+                          "height": 48,
+                          "fill": "#B4C5E4",
+                          "cornerRadius": 12,
+                          "padding": [
+                            0,
+                            16
+                          ],
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "DK0wB",
+                              "name": "Label",
+                              "fill": "#3C3744",
+                              "content": "Log out",
+                              "fontFamily": "IBM Plex Mono",
+                              "fontSize": 12,
+                              "fontWeight": "700"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "bjOSf",
+                      "name": "LibraryContent",
+                      "width": "fill_container",
+                      "height": "fill_container",
+                      "layout": "vertical",
+                      "gap": 32,
+                      "padding": 24,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "CNkWe",
+                          "name": "Heading",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 8,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "f8n4eS",
+                              "name": "Title",
+                              "fill": "#FBFFF1",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "Your library",
+                              "fontFamily": "IBM Plex Mono",
+                              "fontSize": 32,
+                              "fontWeight": "700"
+                            },
+                            {
+                              "type": "text",
+                              "id": "jr766",
+                              "name": "Email",
+                              "fill": "#B4C5E4",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "jane@example.com",
+                              "fontFamily": "IBM Plex Mono",
+                              "fontSize": 12,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "s2bws",
+                          "name": "EmptyLibrary",
+                          "width": "fill_container",
+                          "fill": "#2F2B3A",
+                          "cornerRadius": 16,
+                          "stroke": "#4F4A62",
+                          "strokeWidth": 1,
+                          "layout": "vertical",
+                          "gap": 12,
+                          "padding": 48,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "Tdf6c",
+                              "name": "EmptyTitle",
+                              "fill": "#FBFFF1",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "No bookmarks yet",
+                              "textAlign": "center",
+                              "fontFamily": "IBM Plex Mono",
+                              "fontSize": 20,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "text",
+                              "id": "I9tsfB",
+                              "name": "EmptyBody",
+                              "fill": "#B4C5E4",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "Your saved bookmarks will appear here.",
+                              "textAlign": "center",
+                              "fontFamily": "IBM Plex Mono",
+                              "fontSize": 15,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "b7fJM",
+                      "name": "HomeIndicator-SafeArea",
+                      "width": "fill_container",
+                      "height": 24,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "NpS1F",
+                          "name": "HomeIndicator",
+                          "width": 128,
+                          "height": 4,
+                          "fill": "#B4C5E4",
+                          "cornerRadius": 999
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "N3YnP",
+          "name": "Behavior",
+          "fill": "#6B6578",
+          "textGrowth": "fixed-width",
+          "width": "fill_container",
+          "content": "Log out → Logging out… with disabled azure-100 / ink-400 styling → clear session and cache → Native A1 · Empty state copy matches apps/web-client",
+          "fontFamily": "IBM Plex Mono",
+          "fontSize": 12,
+          "fontWeight": "normal"
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "YV4VF",
+      "x": 0,
+      "y": 126378,
+      "name": "§40 Native Server unavailable",
+      "clip": true,
+      "width": 1200,
+      "fill": "#FFFFFF",
+      "cornerRadius": 16,
+      "stroke": "#8FA3C6",
+      "strokeWidth": 1,
+      "layout": "vertical",
+      "gap": 12,
+      "padding": 24,
+      "children": [
+        {
+          "type": "text",
+          "id": "nY6u8",
+          "name": "H",
+          "fill": "#090C9B",
+          "content": "§40 Native Server unavailable",
+          "fontFamily": "IBM Plex Mono",
+          "fontSize": 18,
+          "fontWeight": "700"
+        },
+        {
+          "type": "text",
+          "id": "gYFnH",
+          "name": "Note",
+          "fill": "#6B6578",
+          "textGrowth": "fixed-width",
+          "width": "fill_container",
+          "content": "Native iOS + Android · 390 × 844 · Light / Dark · Saved-session restore failure from the web route guards · Exact web error copy and retry action · Restoring session remains covered by the existing splash",
+          "fontFamily": "IBM Plex Mono",
+          "fontSize": 12,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "frame",
+          "id": "PZXZp",
+          "name": "NativeThemePair",
+          "width": "fill_container",
+          "gap": 24,
+          "justifyContent": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "FxFhC",
+              "name": "Light",
+              "width": 390,
+              "layout": "vertical",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "UW9W1",
+                  "name": "ThemeLabel",
+                  "fill": "#090C9B",
+                  "content": "Light",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 12,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "frame",
+                  "id": "g76jju",
+                  "name": "Native-Server-Unavailable-Light",
+                  "clip": true,
+                  "width": 390,
+                  "height": 844,
+                  "fill": "#FBFFF1",
+                  "cornerRadius": 16,
+                  "stroke": "#8FA3C6",
+                  "strokeWidth": 1,
+                  "layout": "vertical",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "vjl4l",
+                      "name": "StatusBar-SafeArea",
+                      "width": "fill_container",
+                      "height": 48,
+                      "padding": [
+                        0,
+                        24
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "tzTUS",
+                          "name": "Time",
+                          "fill": "#3C3744",
+                          "content": "9:41",
+                          "fontFamily": "IBM Plex Mono",
+                          "fontSize": 12,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "lAcJ9",
+                          "name": "Network",
+                          "fill": "#6B6578",
+                          "content": "5G",
+                          "fontFamily": "IBM Plex Mono",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "B5Xe7",
+                      "name": "SessionFeedback",
+                      "width": "fill_container",
+                      "height": "fill_container",
+                      "layout": "vertical",
+                      "gap": 24,
+                      "padding": 32,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "N0wy5E",
+                          "name": "Title",
+                          "fill": "#3C3744",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "Server unavailable",
+                          "textAlign": "center",
+                          "fontFamily": "IBM Plex Mono",
+                          "fontSize": 32,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "PdziB",
+                          "name": "Message",
+                          "fill": "#6B6578",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "Cannot reach the server. Check your connection and try again.",
+                          "textAlign": "center",
+                          "fontFamily": "IBM Plex Mono",
+                          "fontSize": 15,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "B4ILJN",
+                          "name": "RetryAction",
+                          "width": "fill_container",
+                          "height": 48,
+                          "fill": "#3066BE",
+                          "cornerRadius": 12,
+                          "padding": [
+                            0,
+                            24
+                          ],
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "VVaJe",
+                              "name": "Label",
+                              "fill": "#FBFFF1",
+                              "content": "Try again",
+                              "fontFamily": "IBM Plex Mono",
+                              "fontSize": 15,
+                              "fontWeight": "700"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "uaY9n",
+                      "name": "HomeIndicator-SafeArea",
+                      "width": "fill_container",
+                      "height": 24,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "yBhFh",
+                          "name": "HomeIndicator",
+                          "width": 128,
+                          "height": 4,
+                          "fill": "#3C3744",
+                          "cornerRadius": 999
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "z5Ulbp",
+              "name": "Dark",
+              "width": 390,
+              "layout": "vertical",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "e0pJF",
+                  "name": "ThemeLabel",
+                  "fill": "#090C9B",
+                  "content": "Dark",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 12,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "frame",
+                  "id": "vG6Q8",
+                  "name": "Native-Server-Unavailable-Dark",
+                  "clip": true,
+                  "width": 390,
+                  "height": 844,
+                  "fill": "#3C3744",
+                  "cornerRadius": 16,
+                  "stroke": "#4F4A62",
+                  "strokeWidth": 1,
+                  "layout": "vertical",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "Q5r6tf",
+                      "name": "StatusBar-SafeArea",
+                      "width": "fill_container",
+                      "height": 48,
+                      "padding": [
+                        0,
+                        24
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "E3lmf",
+                          "name": "Time",
+                          "fill": "#FBFFF1",
+                          "content": "9:41",
+                          "fontFamily": "IBM Plex Mono",
+                          "fontSize": 12,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "WHx56",
+                          "name": "Network",
+                          "fill": "#B4C5E4",
+                          "content": "5G",
+                          "fontFamily": "IBM Plex Mono",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "o2XH7",
+                      "name": "SessionFeedback",
+                      "width": "fill_container",
+                      "height": "fill_container",
+                      "layout": "vertical",
+                      "gap": 24,
+                      "padding": 32,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "n6VzMr",
+                          "name": "Title",
+                          "fill": "#FBFFF1",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "Server unavailable",
+                          "textAlign": "center",
+                          "fontFamily": "IBM Plex Mono",
+                          "fontSize": 32,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "xOEJ9",
+                          "name": "Message",
+                          "fill": "#B4C5E4",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "Cannot reach the server. Check your connection and try again.",
+                          "textAlign": "center",
+                          "fontFamily": "IBM Plex Mono",
+                          "fontSize": 15,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "DWqwj",
+                          "name": "RetryAction",
+                          "width": "fill_container",
+                          "height": 48,
+                          "fill": "#5C84C6",
+                          "cornerRadius": 12,
+                          "padding": [
+                            0,
+                            24
+                          ],
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "tUFQQ",
+                              "name": "Label",
+                              "fill": "#131220",
+                              "content": "Try again",
+                              "fontFamily": "IBM Plex Mono",
+                              "fontSize": 15,
+                              "fontWeight": "700"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "ua5wh",
+                      "name": "HomeIndicator-SafeArea",
+                      "width": "fill_container",
+                      "height": 24,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "O0i3nX",
+                          "name": "HomeIndicator",
+                          "width": 128,
+                          "height": 4,
+                          "fill": "#B4C5E4",
+                          "cornerRadius": 999
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "XQyuv",
+          "name": "Behavior",
+          "fill": "#6B6578",
+          "textGrowth": "fixed-width",
+          "width": "fill_container",
+          "content": "Try again refetches the saved session · Success opens Native L1 · Unauthorized clears the session and opens Native A1 · Network failure stays here with the same message",
+          "fontFamily": "IBM Plex Mono",
+          "fontSize": 12,
+          "fontWeight": "normal"
+        }
+      ]
     }
   ],
   "fileToken": "224632bc-c75a-460a-be3f-59b75870aa27"

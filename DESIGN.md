@@ -2,7 +2,7 @@
 
 > **Source of truth for design direction.** Product scope is defined in `SPECIFICATION.md`. This file defines the design language; per-client page inventory lives in `design/web/web-pages-map.md` and is not duplicated here.
 
-**Status:** v1 draft — Web scope first  
+**Status:** v1 draft — Web system + native core screens
 **Source:** `SPECIFICATION.md` v1 draft 2026-11-07
 
 ---
@@ -13,7 +13,7 @@
 |---|---|---|
 | **Website** | P0 — defines v1 | This file for system + [design/web/web-pages-map.md](design/web/web-pages-map.md) for pages |
 | Browser extension | P0 | TBD |
-| Mobile (iOS/Android) | P0 | TBD |
+| Mobile (iOS/Android) | P0 | `design/client-designs.pen` §37–§40 (auth, library, session feedback) |
 
 Website is the primary manager: responsive (desktop + 390px), no install, email/password against a self-hosted server URL. If a feature works anywhere, it works on web first.
 
@@ -178,6 +178,14 @@ Base unit 4px in `design/client-designs.pen` §4. The canvas uses literal 4pt va
 - **Components (Web):** App shell, Topbar, Account menu, Folder tree, Bookmark card (grid/list), Tag chip, Search input, Text field, Folder picker, View toggle, Sort control, Dialog / Bottom sheet, Toast, Empty state, Skeleton, Sync status dot, Public header, Settings nav. Repeated canvas UI uses Pen components and `ref` instances rather than detached copies; page-specific compositions stay ordinary frames. **Icons:** [Phosphor Icons](https://phosphoricons.com) (`regular 20–24`, `bold` emphasis, `fill` active) — production SVGs; the canvas embeds official Phosphor SVG path geometry inside targets named by the exact Phosphor name (e.g. `Icon-List`). Import uses `DownloadSimple` because Phosphor has no `Import` glyph. The component and icon inventory lives in `design/client-designs.pen` §36.
 - **Motion:** Reflect sync state, not decoration. Create feedback <2s, remote updates <5s, queue drain <10s must be visible, not silent.
 - **Responsive:** Desktop ≥1024px (3-zone shell), mobile 390px (drawer, bottom sheets). Public pages single-column, auth centered card.
+
+### 3.5 Native auth
+
+Native A1/A2 live in `design/client-designs.pen` §37–§38, with light and dark 390 × 844 screens for iOS/Android. They use the existing color, type, spacing, and radii tokens: a full-bleed `paper`/`ink` canvas, safe-area-aware cardless layout, 48px full-width inputs and primary action, and `radius-lg` controls. Forms must remain keyboard-avoiding and scrollable so the action stays reachable. Keep the same fields, cross-links, backend behavior, and inline errors as web A1/A2; do not add a server URL field or duplicate the existing splash screen.
+
+### 3.6 Native library and session feedback
+
+Native L1 and the server-unavailable state live in `design/client-designs.pen` §39–§40. They mirror only the currently implemented `apps/web-client` `/` route and route guards: account header with logout, signed-in email, empty-library message, and saved-session retry. Do not add search, folders, bookmark creation, or other future web-map controls to these parity screens until those flows exist in the client. Logout uses the existing disabled button tokens while pending; session restoration remains covered by the native splash.
 
 ---
 
