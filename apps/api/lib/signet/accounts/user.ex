@@ -1,14 +1,11 @@
 defmodule Signet.Accounts.User do
   @moduledoc "Registered account and its password credentials."
 
-  use Ecto.Schema
+  use Signet.Schema
 
   import Ecto.Changeset
 
   @email_regex ~r/^[^\s]+@[^\s]+$/
-
-  @primary_key {:id, UUIDv7.Type, autogenerate: true}
-  @foreign_key_type UUIDv7.Type
   schema "users" do
     field :name, :string
     field :email, :string

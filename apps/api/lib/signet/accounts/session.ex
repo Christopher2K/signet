@@ -1,14 +1,12 @@
 defmodule Signet.Accounts.Session do
   @moduledoc "Persistent authentication session identified by a hashed bearer token."
 
-  use Ecto.Schema
+  use Signet.Schema
 
   import Ecto.Changeset
 
   alias Signet.Accounts.User
 
-  @primary_key {:id, UUIDv7.Type, autogenerate: true}
-  @foreign_key_type UUIDv7.Type
   schema "user_sessions" do
     field :token_hash, :binary, redact: true
 
