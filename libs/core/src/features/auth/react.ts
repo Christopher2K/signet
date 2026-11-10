@@ -1,3 +1,7 @@
+export {
+  type AuthApiContextValue,
+  useAuthApiContext,
+} from "./auth-api-context";
 export { useAuth } from "./auth-context";
 export {
   AuthProvider,

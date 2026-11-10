@@ -52,6 +52,14 @@ export const colors = css.defineVars({
     default: "#3C3744",
     [darkMode]: "#FBFFF1",
   },
+  tag: {
+    default: "#B4C5E4",
+    [darkMode]: "#B4C5E4",
+  },
+  onTag: {
+    default: "#3C3744",
+    [darkMode]: "#3C3744",
+  },
   accent: {
     default: "#090C9B",
     [darkMode]: "#B4C5E4",

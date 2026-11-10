@@ -39,10 +39,12 @@
     "@storybook/addon-a11y": "^10.6.6",
     "@storybook/addon-docs": "^10.6.6",
     "@storybook/addon-mcp": "^10.6.6",
+    "@testing-library/react": "latest",
     "@tanstack/router-plugin": "1.169.0",
     "vitest": "catalog:",
     "@vitest/coverage-v8": "latest",
     "autoprefixer": "~10.6.2",
+    "jsdom": "latest",
     "vite-plugin-babel": "~1.7.3"
   },
   "pnpm": {
