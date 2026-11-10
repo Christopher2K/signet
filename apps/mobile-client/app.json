@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "signet",
+    "name": "Signet",
     "slug": "signet",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -8,9 +8,11 @@
     "scheme": "signet",
     "userInterfaceStyle": "automatic",
     "ios": {
-      "icon": "./assets/expo.icon"
+      "icon": "./assets/expo.icon",
+      "bundleIdentifier": "co.signetapp.app"
     },
     "android": {
+      "package": "co.signetapp.app",
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/images/android-icon-foreground.png",
