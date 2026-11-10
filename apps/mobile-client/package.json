@@ -17,6 +17,7 @@
     "@react-native-community/datetimepicker": "9.2.1",
     "@react-native-community/slider": "5.2.1",
     "@signet/api": "workspace:*",
+    "@signet/core": "workspace:*",
     "@signet/design-system": "workspace:*",
     "@tanstack/react-query": "catalog:",
     "@storybook/addon-ondevice-actions": "~10.7.1",

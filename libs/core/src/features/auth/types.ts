@@ -10,16 +10,21 @@ export type AuthSession = {
   user: User;
 };
 
+/** Optional server selection accepted by authentication operations. */
+export type ServerSelection = {
+  serverUrl?: string;
+};
+
 /** Credentials accepted by the login form. */
-export type LoginValues = LoginRequestWritable;
+export type LoginValues = LoginRequestWritable & ServerSelection;
 
 /** Account details accepted by the signup form. */
-export type SignupValues = SignupRequestWritable;
+export type SignupValues = SignupRequestWritable & ServerSelection;
 
-/** Authentication operations used by the web client. */
+/** Authentication operations used by the clients. */
 export type AuthApi = {
-  login: (values: LoginValues) => Promise<AuthSession>;
-  signup: (values: SignupValues) => Promise<AuthSession>;
+  login: (values: LoginRequestWritable) => Promise<AuthSession>;
+  signup: (values: SignupRequestWritable) => Promise<AuthSession>;
   currentUser: () => Promise<User>;
   logout: () => Promise<void>;
 };
@@ -34,6 +39,7 @@ export type AuthState =
 /** Authentication state and operations exposed by the auth provider. */
 export type AuthContextValue = {
   state: AuthState;
+  serverUrl: string;
   login: (values: LoginValues) => Promise<void>;
   signup: (values: SignupValues) => Promise<void>;
   logout: () => Promise<void>;

@@ -1,3 +1,4 @@
+import { useAuth } from "@signet/core/auth/react";
 import { Button, spacing, Typography } from "@signet/design-system";
 import {
   nativeSpacing,
@@ -6,7 +7,6 @@ import {
 import { useState } from "react";
 import { ScrollView, StyleSheet } from "react-native";
 import { css, html } from "react-strict-dom";
-import { useAuth } from "../../../features/auth/auth-context";
 
 const AccountScreen = () => {
   const { logout, state } = useAuth();

@@ -19,6 +19,7 @@
 
     /* Bundler mode */
     "moduleResolution": "bundler",
+    "moduleSuffixes": [".web", ""],
     "allowImportingTsExtensions": true,
     "verbatimModuleSyntax": true,
     "noEmit": true,

@@ -8,14 +8,14 @@ import {
 import { toAuthError } from "./errors";
 import type { AuthApi } from "./types";
 
-/** Runtime dependencies for the browser auth API. */
+/** Runtime dependencies for the auth API. */
 export type CreateAuthApiOptions = {
   baseUrl: string;
   getToken: () => string | null | undefined;
   fetch?: typeof fetch;
 };
 
-/** Creates auth operations backed by the deployment-configured API. */
+/** Creates auth operations backed by the configured API. */
 export const createAuthApi = ({
   baseUrl,
   fetch,

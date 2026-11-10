@@ -88,3 +88,8 @@ export const toAuthError = (value: unknown): AuthError => {
 /** Returns a human-readable message for rendering outside auth forms. */
 export const getAuthErrorMessage = (value: unknown): string =>
   toAuthError(value).message;
+
+/** Returns whether an error represents an invalid or expired session. */
+export const isUnauthorized = (value: unknown): boolean =>
+  value instanceof AuthError &&
+  (value.kind === "invalid_credentials" || value.kind === "unauthorized");

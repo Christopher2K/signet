@@ -10,13 +10,14 @@
     "generate-routes": "vite build",
     "build": "vite build",
     "preview": "vite preview",
-    "test": "vitest run",
+    "test": "vitest run --passWithNoTests",
     "typecheck": "tsc --noEmit",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
   "dependencies": {
     "@signet/api": "workspace:*",
+    "@signet/core": "workspace:*",
     "@signet/design-system": "workspace:*",
     "@tanstack/react-query": "catalog:",
     "@tanstack/react-router": "1.170.46",
@@ -39,7 +40,7 @@
     "@storybook/addon-docs": "^10.6.6",
     "@storybook/addon-mcp": "^10.6.6",
     "@tanstack/router-plugin": "1.169.0",
-    "vitest": "latest",
+    "vitest": "catalog:",
     "@vitest/coverage-v8": "latest",
     "autoprefixer": "~10.6.2",
     "vite-plugin-babel": "~1.7.3"

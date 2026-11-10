@@ -1,12 +1,11 @@
+import { normalizeServerUrl, toAuthError } from "@signet/core/auth";
+import { useAuth } from "@signet/core/auth/react";
 import { Button, TextField, Typography } from "@signet/design-system";
 import { nativeSpacing } from "@signet/design-system/native-theme";
 import { useRouter } from "expo-router";
 import { useState } from "react";
 import { Keyboard, Pressable, StyleSheet } from "react-native";
 import { css, html } from "react-strict-dom";
-import { useAuth } from "../auth-context";
-import { toAuthError } from "../errors";
-import { normalizeServerUrl } from "../server-url";
 import type { LoginValues } from "../types";
 import { type FormFieldErrors, validateLogin } from "../validation";
 

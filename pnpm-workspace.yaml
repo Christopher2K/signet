@@ -16,6 +16,7 @@ catalog:
   react-strict-dom: 0.0.55
   storybook: ^10.6.6
   typescript: ~6.0.3
+  vitest: latest
 minimumReleaseAgeExclude:
   - "@tanstack/react-start-client@1.168.45"
   - "@tanstack/react-start-rsc@0.1.66"

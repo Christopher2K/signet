@@ -1,12 +1,9 @@
-import { type ReactNode, useMemo } from "react";
-import { createAuthApi } from "./api";
-import { AuthApiContext } from "./auth-api-context";
-import { AuthSessionProvider } from "./auth-session-provider";
-import { readSessionToken } from "./session-storage";
-import type { AuthApi } from "./types";
+import type { AuthApi } from "@signet/core/auth";
+import { AuthProvider as CoreAuthProvider } from "@signet/core/auth/react";
+import type { ReactNode } from "react";
 
-export { useAuth } from "./auth-context-value";
-export type { AuthContextValue, AuthState } from "./types";
+export type { AuthContextValue, AuthState } from "@signet/core/auth";
+export { useAuth } from "@signet/core/auth/react";
 
 /** Authentication provider dependencies. */
 export type AuthProviderProps = {
@@ -24,19 +21,13 @@ const getConfiguredApiUrl = (): string => {
 };
 
 export const AuthProvider = ({ api, children }: AuthProviderProps) => {
-  const resolvedApi = useMemo(
-    () =>
-      api ??
-      createAuthApi({
-        baseUrl: getConfiguredApiUrl(),
-        getToken: readSessionToken,
-      }),
-    [api],
-  );
+  if (api) {
+    return <CoreAuthProvider api={api}>{children}</CoreAuthProvider>;
+  }
 
   return (
-    <AuthApiContext.Provider value={resolvedApi}>
-      <AuthSessionProvider>{children}</AuthSessionProvider>
-    </AuthApiContext.Provider>
+    <CoreAuthProvider defaultServerUrl={getConfiguredApiUrl()}>
+      {children}
+    </CoreAuthProvider>
   );
 };

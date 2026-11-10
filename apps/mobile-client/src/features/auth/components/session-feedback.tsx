@@ -1,3 +1,4 @@
+import { useAuth } from "@signet/core/auth/react";
 import { Button, Typography } from "@signet/design-system";
 import {
   nativeSpacing,
@@ -6,7 +7,6 @@ import {
 import { StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { css } from "react-strict-dom";
-import { useAuth } from "../auth-context";
 
 export const SessionFeedback = () => {
   const { retryRestore, state } = useAuth();

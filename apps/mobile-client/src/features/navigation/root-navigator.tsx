@@ -1,9 +1,9 @@
+import { useAuth } from "@signet/core/auth/react";
 import { useNativeTheme } from "@signet/design-system/native-theme";
 import { Redirect, Stack, usePathname } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
-import { useAuth } from "../auth/auth-context";
 import { SessionFeedback } from "../auth/components/session-feedback";
 
 /** Root navigator properties. */

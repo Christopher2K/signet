@@ -1,12 +1,15 @@
+import {
+  type FormFieldErrors,
+  type SignupValues,
+  toAuthError,
+  validateSignup,
+} from "@signet/core/auth";
 import { Button, TextField, Typography } from "@signet/design-system";
 import { spacing } from "@signet/design-system/tokens.css";
 import { useNavigate } from "@tanstack/react-router";
 import { type FormEvent, useState } from "react";
 import { css, html } from "react-strict-dom";
 import { useAuth } from "../auth-context";
-import { toAuthError } from "../errors";
-import type { SignupValues } from "../types";
-import { type FormFieldErrors, validateSignup } from "../validation";
 
 const initialValues: SignupValues = { email: "", name: "", password: "" };
 
