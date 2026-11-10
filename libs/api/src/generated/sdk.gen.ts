@@ -9,9 +9,21 @@ import type {
 } from "./client";
 import { client } from "./client.gen";
 import type {
+  CreateBookmarkData,
+  CreateBookmarkErrors,
+  CreateBookmarkResponses,
   CurrentUserData,
   CurrentUserErrors,
   CurrentUserResponses,
+  DeleteBookmarkData,
+  DeleteBookmarkErrors,
+  DeleteBookmarkResponses,
+  GetBookmarkData,
+  GetBookmarkErrors,
+  GetBookmarkResponses,
+  ListBookmarksData,
+  ListBookmarksErrors,
+  ListBookmarksResponses,
   LoginData,
   LoginErrors,
   LoginResponses,
@@ -21,6 +33,9 @@ import type {
   SignupData,
   SignupErrors,
   SignupResponses,
+  UpdateBookmarkData,
+  UpdateBookmarkErrors,
+  UpdateBookmarkResponses,
 } from "./types.gen";
 
 export type Options<
@@ -78,6 +93,94 @@ export const signup = <ThrowOnError extends boolean = false>(
 ): RequestResult<SignupResponses, SignupErrors, ThrowOnError> =>
   (options.client ?? client).post<SignupResponses, SignupErrors, ThrowOnError>({
     url: "/api/v1/auth/signup",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List bookmarks or find saved URLs
+ */
+export const listBookmarks = <ThrowOnError extends boolean = false>(
+  options?: Options<ListBookmarksData, ThrowOnError>,
+): RequestResult<ListBookmarksResponses, ListBookmarksErrors, ThrowOnError> =>
+  (options?.client ?? client).get<
+    ListBookmarksResponses,
+    ListBookmarksErrors,
+    ThrowOnError
+  >({
+    security: [{ scheme: "bearer", type: "http" }],
+    url: "/api/v1/bookmarks",
+    ...options,
+  });
+
+/**
+ * Create a bookmark
+ */
+export const createBookmark = <ThrowOnError extends boolean = false>(
+  options: Options<CreateBookmarkData, ThrowOnError>,
+): RequestResult<CreateBookmarkResponses, CreateBookmarkErrors, ThrowOnError> =>
+  (options.client ?? client).post<
+    CreateBookmarkResponses,
+    CreateBookmarkErrors,
+    ThrowOnError
+  >({
+    security: [{ scheme: "bearer", type: "http" }],
+    url: "/api/v1/bookmarks",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a bookmark
+ */
+export const deleteBookmark = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteBookmarkData, ThrowOnError>,
+): RequestResult<DeleteBookmarkResponses, DeleteBookmarkErrors, ThrowOnError> =>
+  (options.client ?? client).delete<
+    DeleteBookmarkResponses,
+    DeleteBookmarkErrors,
+    ThrowOnError
+  >({
+    security: [{ scheme: "bearer", type: "http" }],
+    url: "/api/v1/bookmarks/{id}",
+    ...options,
+  });
+
+/**
+ * Get a bookmark
+ */
+export const getBookmark = <ThrowOnError extends boolean = false>(
+  options: Options<GetBookmarkData, ThrowOnError>,
+): RequestResult<GetBookmarkResponses, GetBookmarkErrors, ThrowOnError> =>
+  (options.client ?? client).get<
+    GetBookmarkResponses,
+    GetBookmarkErrors,
+    ThrowOnError
+  >({
+    security: [{ scheme: "bearer", type: "http" }],
+    url: "/api/v1/bookmarks/{id}",
+    ...options,
+  });
+
+/**
+ * Update a bookmark
+ */
+export const updateBookmark = <ThrowOnError extends boolean = false>(
+  options: Options<UpdateBookmarkData, ThrowOnError>,
+): RequestResult<UpdateBookmarkResponses, UpdateBookmarkErrors, ThrowOnError> =>
+  (options.client ?? client).patch<
+    UpdateBookmarkResponses,
+    UpdateBookmarkErrors,
+    ThrowOnError
+  >({
+    security: [{ scheme: "bearer", type: "http" }],
+    url: "/api/v1/bookmarks/{id}",
     ...options,
     headers: {
       "Content-Type": "application/json",

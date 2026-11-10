@@ -3,11 +3,34 @@
 import { queryOptions, type UseMutationOptions } from "@tanstack/react-query";
 
 import { client } from "../client.gen";
-import { currentUser, login, logout, type Options, signup } from "../sdk.gen";
+import {
+  createBookmark,
+  currentUser,
+  deleteBookmark,
+  getBookmark,
+  listBookmarks,
+  login,
+  logout,
+  type Options,
+  signup,
+  updateBookmark,
+} from "../sdk.gen";
 import type {
+  CreateBookmarkData,
+  CreateBookmarkError,
+  CreateBookmarkResponse,
   CurrentUserData,
   CurrentUserError,
   CurrentUserResponse,
+  DeleteBookmarkData,
+  DeleteBookmarkError,
+  DeleteBookmarkResponse,
+  GetBookmarkData,
+  GetBookmarkError,
+  GetBookmarkResponse,
+  ListBookmarksData,
+  ListBookmarksError,
+  ListBookmarksResponse,
   LoginData,
   LoginError,
   LoginResponse,
@@ -17,6 +40,9 @@ import type {
   SignupData,
   SignupError,
   SignupResponse,
+  UpdateBookmarkData,
+  UpdateBookmarkError,
+  UpdateBookmarkResponse,
 } from "../types.gen";
 
 /**
@@ -126,6 +152,137 @@ const createQueryKey = <TOptions extends Options>(
     params.query = options.query;
   }
   return [params];
+};
+
+export const listBookmarksQueryKey = (options?: Options<ListBookmarksData>) =>
+  createQueryKey("listBookmarks", options);
+
+/**
+ * List bookmarks or find saved URLs
+ */
+export const listBookmarksOptions = (options?: Options<ListBookmarksData>) =>
+  queryOptions<
+    ListBookmarksResponse,
+    ListBookmarksError,
+    ListBookmarksResponse,
+    ReturnType<typeof listBookmarksQueryKey>
+  >({
+    queryFn: async ({ queryKey, signal }) => {
+      const { data } = await listBookmarks({
+        ...options,
+        ...queryKey[0],
+        signal,
+        throwOnError: true,
+      });
+      return data;
+    },
+    queryKey: listBookmarksQueryKey(options),
+  });
+
+/**
+ * Create a bookmark
+ */
+export const createBookmarkMutation = (
+  options?: Partial<Options<CreateBookmarkData>>,
+): UseMutationOptions<
+  CreateBookmarkResponse,
+  CreateBookmarkError,
+  Options<CreateBookmarkData>
+> => {
+  const mutationOptions: UseMutationOptions<
+    CreateBookmarkResponse,
+    CreateBookmarkError,
+    Options<CreateBookmarkData>
+  > = {
+    mutationFn: async (fnOptions) => {
+      const { data } = await createBookmark({
+        ...options,
+        ...fnOptions,
+        throwOnError: true,
+      });
+      return data;
+    },
+  };
+  return mutationOptions;
+};
+
+/**
+ * Delete a bookmark
+ */
+export const deleteBookmarkMutation = (
+  options?: Partial<Options<DeleteBookmarkData>>,
+): UseMutationOptions<
+  DeleteBookmarkResponse,
+  DeleteBookmarkError,
+  Options<DeleteBookmarkData>
+> => {
+  const mutationOptions: UseMutationOptions<
+    DeleteBookmarkResponse,
+    DeleteBookmarkError,
+    Options<DeleteBookmarkData>
+  > = {
+    mutationFn: async (fnOptions) => {
+      const { data } = await deleteBookmark({
+        ...options,
+        ...fnOptions,
+        throwOnError: true,
+      });
+      return data;
+    },
+  };
+  return mutationOptions;
+};
+
+export const getBookmarkQueryKey = (options: Options<GetBookmarkData>) =>
+  createQueryKey("getBookmark", options);
+
+/**
+ * Get a bookmark
+ */
+export const getBookmarkOptions = (options: Options<GetBookmarkData>) =>
+  queryOptions<
+    GetBookmarkResponse,
+    GetBookmarkError,
+    GetBookmarkResponse,
+    ReturnType<typeof getBookmarkQueryKey>
+  >({
+    queryFn: async ({ queryKey, signal }) => {
+      const { data } = await getBookmark({
+        ...options,
+        ...queryKey[0],
+        signal,
+        throwOnError: true,
+      });
+      return data;
+    },
+    queryKey: getBookmarkQueryKey(options),
+  });
+
+/**
+ * Update a bookmark
+ */
+export const updateBookmarkMutation = (
+  options?: Partial<Options<UpdateBookmarkData>>,
+): UseMutationOptions<
+  UpdateBookmarkResponse,
+  UpdateBookmarkError,
+  Options<UpdateBookmarkData>
+> => {
+  const mutationOptions: UseMutationOptions<
+    UpdateBookmarkResponse,
+    UpdateBookmarkError,
+    Options<UpdateBookmarkData>
+  > = {
+    mutationFn: async (fnOptions) => {
+      const { data } = await updateBookmark({
+        ...options,
+        ...fnOptions,
+        throwOnError: true,
+      });
+      return data;
+    },
+  };
+  return mutationOptions;
 };
 
 export const currentUserQueryKey = (options?: Options<CurrentUserData>) =>

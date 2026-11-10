@@ -5,6 +5,96 @@ export type ClientOptions = {
 };
 
 /**
+ * Bookmark
+ *
+ * A URL saved by a user
+ */
+export type Bookmark = {
+  /**
+   * Creation timestamp
+   */
+  createdAt: string;
+  /**
+   * Bookmark ID
+   */
+  id: string;
+  /**
+   * Optional HTTP(S) image URL
+   */
+  image: string | null;
+  /**
+   * Optional notes
+   */
+  notes: string | null;
+  /**
+   * Owner account ID
+   */
+  ownerId: string;
+  /**
+   * Normalized tags
+   */
+  tags: Array<string>;
+  /**
+   * Bookmark title
+   */
+  title: string;
+  /**
+   * Last update timestamp
+   */
+  updatedAt: string;
+  /**
+   * Canonical HTTP(S) URL
+   */
+  url: string;
+};
+
+/**
+ * BookmarkListResponse
+ *
+ * Bookmark list response
+ */
+export type BookmarkListResponse = {
+  data: Array<Bookmark>;
+};
+
+/**
+ * BookmarkResponse
+ *
+ * Single bookmark response
+ */
+export type BookmarkResponse = {
+  data: Bookmark;
+};
+
+/**
+ * CreateBookmarkRequest
+ *
+ * New bookmark fields
+ */
+export type CreateBookmarkRequest = {
+  /**
+   * Optional absolute HTTP(S) image URL
+   */
+  image?: string | null;
+  /**
+   * Optional notes
+   */
+  notes?: string | null;
+  /**
+   * Bookmark tags
+   */
+  tags?: Array<string>;
+  /**
+   * Bookmark title
+   */
+  title: string;
+  /**
+   * Absolute HTTP(S) URL
+   */
+  url: string;
+};
+
+/**
  * ErrorResponse
  *
  * API error response
@@ -60,6 +150,34 @@ export type SessionResponse = {
 export type SignupRequest = {
   email: string;
   name: string;
+};
+
+/**
+ * UpdateBookmarkRequest
+ *
+ * Optional bookmark fields to update
+ */
+export type UpdateBookmarkRequest = {
+  /**
+   * Optional absolute HTTP(S) image URL
+   */
+  image?: string | null;
+  /**
+   * Optional notes
+   */
+  notes?: string | null;
+  /**
+   * Bookmark tags
+   */
+  tags?: Array<string>;
+  /**
+   * Bookmark title
+   */
+  title?: string;
+  /**
+   * Absolute HTTP(S) URL
+   */
+  url?: string;
 };
 
 /**
@@ -196,6 +314,197 @@ export type SignupResponses = {
 };
 
 export type SignupResponse = SignupResponses[keyof SignupResponses];
+
+export type ListBookmarksData = {
+  body?: never;
+  path?: never;
+  query?: {
+    /**
+     * Absolute URL for canonical duplicate lookup
+     */
+    url?: string;
+  };
+  url: "/api/v1/bookmarks";
+};
+
+export type ListBookmarksErrors = {
+  /**
+   * Authentication required
+   */
+  401: ErrorResponse;
+  /**
+   * Validation failed
+   */
+  422: ErrorResponse;
+};
+
+export type ListBookmarksError = ListBookmarksErrors[keyof ListBookmarksErrors];
+
+export type ListBookmarksResponses = {
+  /**
+   * Bookmark list
+   */
+  200: BookmarkListResponse;
+};
+
+export type ListBookmarksResponse =
+  ListBookmarksResponses[keyof ListBookmarksResponses];
+
+export type CreateBookmarkData = {
+  /**
+   * Bookmark fields
+   */
+  body: CreateBookmarkRequest;
+  path?: never;
+  query?: never;
+  url: "/api/v1/bookmarks";
+};
+
+export type CreateBookmarkErrors = {
+  /**
+   * Authentication required
+   */
+  401: ErrorResponse;
+  /**
+   * Validation failed
+   */
+  422: ErrorResponse;
+};
+
+export type CreateBookmarkError =
+  CreateBookmarkErrors[keyof CreateBookmarkErrors];
+
+export type CreateBookmarkResponses = {
+  /**
+   * Created bookmark
+   */
+  201: BookmarkResponse;
+};
+
+export type CreateBookmarkResponse =
+  CreateBookmarkResponses[keyof CreateBookmarkResponses];
+
+export type DeleteBookmarkData = {
+  body?: never;
+  path: {
+    /**
+     * Bookmark ID
+     */
+    id: string;
+  };
+  query?: never;
+  url: "/api/v1/bookmarks/{id}";
+};
+
+export type DeleteBookmarkErrors = {
+  /**
+   * Authentication required
+   */
+  401: ErrorResponse;
+  /**
+   * Bookmark not found
+   */
+  404: ErrorResponse;
+  /**
+   * Validation failed
+   */
+  422: ErrorResponse;
+};
+
+export type DeleteBookmarkError =
+  DeleteBookmarkErrors[keyof DeleteBookmarkErrors];
+
+export type DeleteBookmarkResponses = {
+  /**
+   * Bookmark deleted
+   */
+  204: void;
+};
+
+export type DeleteBookmarkResponse =
+  DeleteBookmarkResponses[keyof DeleteBookmarkResponses];
+
+export type GetBookmarkData = {
+  body?: never;
+  path: {
+    /**
+     * Bookmark ID
+     */
+    id: string;
+  };
+  query?: never;
+  url: "/api/v1/bookmarks/{id}";
+};
+
+export type GetBookmarkErrors = {
+  /**
+   * Authentication required
+   */
+  401: ErrorResponse;
+  /**
+   * Bookmark not found
+   */
+  404: ErrorResponse;
+  /**
+   * Validation failed
+   */
+  422: ErrorResponse;
+};
+
+export type GetBookmarkError = GetBookmarkErrors[keyof GetBookmarkErrors];
+
+export type GetBookmarkResponses = {
+  /**
+   * Bookmark
+   */
+  200: BookmarkResponse;
+};
+
+export type GetBookmarkResponse =
+  GetBookmarkResponses[keyof GetBookmarkResponses];
+
+export type UpdateBookmarkData = {
+  /**
+   * Editable bookmark fields
+   */
+  body: UpdateBookmarkRequest;
+  path: {
+    /**
+     * Bookmark ID
+     */
+    id: string;
+  };
+  query?: never;
+  url: "/api/v1/bookmarks/{id}";
+};
+
+export type UpdateBookmarkErrors = {
+  /**
+   * Authentication required
+   */
+  401: ErrorResponse;
+  /**
+   * Bookmark not found
+   */
+  404: ErrorResponse;
+  /**
+   * Validation failed
+   */
+  422: ErrorResponse;
+};
+
+export type UpdateBookmarkError =
+  UpdateBookmarkErrors[keyof UpdateBookmarkErrors];
+
+export type UpdateBookmarkResponses = {
+  /**
+   * Updated bookmark
+   */
+  200: BookmarkResponse;
+};
+
+export type UpdateBookmarkResponse =
+  UpdateBookmarkResponses[keyof UpdateBookmarkResponses];
 
 export type CurrentUserData = {
   body?: never;

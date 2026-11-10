@@ -23,6 +23,11 @@ defmodule SignetWeb.Router do
 
     post "/auth/logout", AuthController, :logout
     get "/me", UserController, :show
+    get "/bookmarks", BookmarkController, :index
+    post "/bookmarks", BookmarkController, :create
+    get "/bookmarks/:id", BookmarkController, :show
+    patch "/bookmarks/:id", BookmarkController, :update
+    delete "/bookmarks/:id", BookmarkController, :delete
   end
 
   # Enable Swoosh mailbox preview in development

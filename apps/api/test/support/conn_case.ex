@@ -24,6 +24,13 @@ defmodule SignetWeb.ConnCase do
     Phoenix.ConnTest.dispatch(conn, SignetWeb.Endpoint, :post, path, params)
   end
 
+  @doc "Sends a PATCH request with a JSON content type."
+  @spec patch_json(Plug.Conn.t(), String.t(), map()) :: Plug.Conn.t()
+  def patch_json(conn, path, params \\ %{}) do
+    conn = Plug.Conn.put_req_header(conn, "content-type", "application/json")
+    Phoenix.ConnTest.dispatch(conn, SignetWeb.Endpoint, :patch, path, params)
+  end
+
   @doc "Asserts an API response status and validates its body against the operation schema."
   @spec assert_api_response(Plug.Conn.t(), non_neg_integer(), String.t() | nil) ::
           map() | String.t()
