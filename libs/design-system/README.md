@@ -5,7 +5,7 @@ Shared Signet UI built with [React Strict DOM](https://facebook.github.io/react-
 ## Usage
 
 ```tsx
-import { Button, colors, spacing } from "@signet/design-system";
+import { Button, colors, spacing, Typography } from "@signet/design-system";
 
 export const SaveButton = () => (
   <Button variant="primary" size="md" onClick={() => {}}>
@@ -15,6 +15,17 @@ export const SaveButton = () => (
 ```
 
 `Button` supports `primary` and `secondary` variants, `sm`, `md`, and `lg` sizes, and the native `disabled` state. Additional React Strict DOM button properties can be passed through.
+
+`Typography` centralizes the six type variants from `DESIGN.md`. Its polymorphic `as` prop accepts React Strict DOM tags while preserving tag-specific properties, and `tone` selects a semantic text color.
+
+```tsx
+<Typography as="h1" variant="headline">
+  Your library
+</Typography>
+<Typography as="p" tone="secondary">
+  Your saved bookmarks will appear here.
+</Typography>
+```
 
 ## Consumers
 

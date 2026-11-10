@@ -15,7 +15,7 @@
 
 | Cluster | Pages | Dialogs / Overlays | Notes |
 |---|---|---|---|
-| **A. Auth** (unauthenticated) | 2 | 0 | Server URL first, persisted per client (§3.2) |
+| **A. Auth** (unauthenticated) | 2 | 0 | Deployment-configured backend; email/password auth (§3.2) |
 | **B. App Library** (authenticated) | 4 core + 2 filtered views | 7 | Browse, search, CRUD, sync, offline |
 | **C. Settings & Data** | 3 sections (1 shell) | 2 | Import/Export (F09), Public links mgmt (F10), Session |
 | **D. Public / Sharing** | 3 | 0 | Anonymous, read-only, no login prompt (§F10) |
@@ -69,10 +69,10 @@ AUTHENTICATED (app shell: topbar + folder tree + main)
 
 | ID | Name | Route | Spec refs | Purpose | Key zones & actions |
 |---|---|---|---|---|---|
-| **A1 Login** | Login | `/login` | §3.2, F01, W-01 | Log in to self-hosted server | Server URL first (placeholder `https://`, persisted), email, password, [Log in], link to Signup, inline `Invalid credentials` error (no email leak) |
-| **A2 Signup** | Create account | `/signup` | §3.2, F01, W-01 | Create account on same instance | Server URL, email, password, [Create account], link to Login. On success → empty library within 2s. No verification email |
+| **A1 Login** | Login | `/login` | §3.2, F01, W-01 | Log in on the deployment-configured backend | Email, password, [Log in], link to Signup, inline `Invalid credentials` error (no email leak) |
+| **A2 Signup** | Create account | `/signup` | §3.2, F01, W-01 | Create account on the same backend | Name (1–100 characters), email, password, [Create account], link to Login. On success → empty library within 2s. No verification email |
 
-**Shared auth states:** Server URL unreachable / invalid URL, login failure, signup success redirect, session persist across restart (§3.3), logout → back to A1 + cache clear.
+**Shared auth states:** Backend unavailable, login failure, signup success redirect, session persist across restart (§3.3), logout → back to A1 + cache clear.
 
 *Out of scope for v1 (§9):* No forgot/reset password, no email verification, no OIDC/OAuth, no admin invites.
 
@@ -164,7 +164,7 @@ All under `/s/:token`. No signup/login prompt (F10). Internal same-server sharin
 - **Desktop ≥1024px:** 3-zone app shell (sidebar tree + main). Grid/list toggle in L1/L2.
 - **Mobile 390px (W-09):** Sidebar → drawer (hamburger), list stays usable with touch, dialogs → bottom sheets, B1/B2 full-screen sheets.
 - **Public pages (P1/P2):** Single column, max-width, OG image hero, tag chips, no app shell.
-- **Auth (A1/A2):** Centered card, server URL first field.
+- **Auth (A1/A2):** Centered card using the deployment-configured backend; no server URL field.
 
 ---
 

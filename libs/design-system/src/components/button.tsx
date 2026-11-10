@@ -1,6 +1,7 @@
 import type { ComponentPropsWithoutRef } from "react";
 import { css, html } from "react-strict-dom";
-import { colors, radii, spacing, typography } from "../tokens.css";
+import { colors, radii, spacing } from "../tokens.css";
+import { Typography } from "./typography";
 
 type StrictButtonProps = ComponentPropsWithoutRef<typeof html.button>;
 
@@ -40,9 +41,9 @@ export const Button = ({
       ]}
       type={type}
     >
-      <html.span style={[styles.label, labelVariantStyles[variant]]}>
+      <Typography style={[styles.label, labelVariantStyles[variant]]}>
         {children}
-      </html.span>
+      </Typography>
     </html.button>
   );
 };
@@ -65,8 +66,6 @@ const styles = css.create({
     },
   },
   label: {
-    fontFamily: typography.fontFamily,
-    fontSize: typography.bodySize,
     fontWeight: "600",
     textAlign: "center",
   },

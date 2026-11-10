@@ -56,6 +56,10 @@ export const colors = css.defineVars({
     default: "#090C9B",
     [darkMode]: "#B4C5E4",
   },
+  danger: {
+    default: "#A4252C",
+    [darkMode]: "#FFB4AB",
+  },
 });
 
 /** Four-point spacing scale. Pixel strings work in web CSS and native RSD. */

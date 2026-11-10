@@ -22,7 +22,13 @@
     "enabled": true,
     "includes": ["**", "!**/*.svg", "!libs/api/src/generated/**"],
     "rules": {
-      "preset": "recommended"
+      "preset": "recommended",
+      "correctness": {
+        "noReactNativeRawText": {
+          "level": "error",
+          "options": { "skip": ["Button", "Typography"] }
+        }
+      }
     }
   },
   "javascript": {

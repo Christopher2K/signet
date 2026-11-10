@@ -1,58 +1,33 @@
 import type { QueryClient } from "@tanstack/react-query";
-import {
-  createRootRouteWithContext,
-  HeadContent,
-  Scripts,
-} from "@tanstack/react-router";
+import { createRootRouteWithContext, Outlet } from "@tanstack/react-router";
+import { css, html } from "react-strict-dom";
+import { AuthProvider } from "#/features/auth";
+import { webTheme } from "#/web-theme.css";
 
-import appCss from "../styles.css?url";
-import "../strict.css";
-
-/** Root document properties. */
-type RootDocumentProps = {
-  children: React.ReactNode;
-};
-
-/** Dependencies available to every route loader. */
+/** Dependencies available to every route. */
 type RootRouteContext = {
   queryClient: QueryClient;
 };
 
-const RootDocument = ({ children }: RootDocumentProps) => {
+const Root = () => {
   return (
-    <html lang="en">
-      <head>
-        <HeadContent />
-      </head>
-      <body>
-        {children}
-
-        <Scripts />
-      </body>
-    </html>
+    <AuthProvider>
+      <html.div
+        data-layoutconformance="strict"
+        style={[webTheme as unknown as typeof styles.app, styles.app]}
+      >
+        <Outlet />
+      </html.div>
+    </AuthProvider>
   );
 };
 
+const styles = css.create({
+  app: {
+    minHeight: "100vh",
+  },
+});
+
 export const Route = createRootRouteWithContext<RootRouteContext>()({
-  head: () => ({
-    meta: [
-      {
-        charSet: "utf-8",
-      },
-      {
-        name: "viewport",
-        content: "width=device-width, initial-scale=1",
-      },
-      {
-        title: "TanStack Start Starter",
-      },
-    ],
-    links: [
-      {
-        rel: "stylesheet",
-        href: appCss,
-      },
-    ],
-  }),
-  shellComponent: RootDocument,
+  component: Root,
 });

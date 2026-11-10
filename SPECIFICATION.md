@@ -56,17 +56,18 @@ All three clients authenticate with the same email/password against the same ser
 
 ### 3.2 Account model
 
-- Accounts are email + password only.
-- **Signup:** First-time user enters server URL → creates account with email + password → logged in immediately. No verification email.
-- **Login:** Enter server URL (persisted per client) + email + password → session token stored securely.
+- Accounts have a display name and authenticate with email + password only.
+- **Signup:** First-time user creates an account with name + email + password on the configured server → logged in immediately. No verification email.
+- **Login:** Enter email + password on the configured server → session token stored securely.
+- **Website backend:** The website uses the backend URL configured by its deployment. Signup and login forms do not show a server URL field.
 - **Logout:** Clears local token. Does not delete server data.
 - **Password reset:** Not in v1. Admin resets by directly updating the database. Must be documented in server README.
 
 | Flow | Acceptance Criteria |
 |---|---|
-| Signup | **Given** a valid server URL, **When** a new user submits email + password, **Then** account is created, session is issued, and user sees an empty library within 2s. |
+| Signup | **Given** a reachable configured server, **When** a new user submits name + email + password, **Then** account is created, session is issued, and user sees an empty library within 2s. |
 | Login | **Given** account exists, **When** correct email + password are submitted, **Then** session is issued and library syncs. **When** password is wrong, **Then** `Invalid credentials` is shown, no info leak about email existence. |
-| Server URL | **Given** fresh client, **When** user opens login, **Then** server URL field is shown first with `https://` placeholder. URL is persisted per client after first login. |
+| Server URL | **Given** a fresh non-web client, **When** user opens login, **Then** server URL field is shown first with `https://` placeholder. URL is persisted per client after first login. The website uses its deployment-configured backend instead. |
 | Logout | **Given** logged-in user, **When** they log out, **Then** local token is revoked on server and UI returns to login screen. Local cache is cleared. |
 | Multi-user isolation | **Given** two users A and B on same server, **When** A creates a bookmark, **Then** B cannot see it unless accessed via a public link. |
 
@@ -252,7 +253,7 @@ Covered in §3.2.
 **Platform:** Responsive web app. Must work on desktop and mobile browsers. No install required.
 
 **Key flows:**
-1. Enter server URL → signup/login → empty library or synced library
+1. Signup/login on the deployment-configured backend → empty library or synced library
 2. Browse folders (tree) + bookmark list (grid/list toggle)
 3. Create/edit bookmark (title, URL, image, notes, tags, folder)
 4. Search/filter by text, folder, tag
@@ -275,7 +276,7 @@ Covered in §3.2.
 
 | ID | Criterion |
 |---|---|
-| W-01 | First load shows server URL + email/login CTA. After login, library renders without manual refresh. |
+| W-01 | First load shows email/password login with a signup CTA. After login, library renders without manual refresh. |
 | W-02 | User can create a bookmark via URL only (title/image auto-filled) and see it in list within 2s. |
 | W-03 | User can create a 3-level deep folder hierarchy and see it in tree on reload. |
 | W-04 | Search for a tag returns the correct bookmark in <1s for <5k items. |

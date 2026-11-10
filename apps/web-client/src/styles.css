@@ -2,12 +2,46 @@
   box-sizing: border-box;
 }
 
-body {
-  margin: 0;
-  font-family: system-ui, sans-serif;
+:root {
+  color-scheme: light dark;
+  font-family: "Necto Mono", monospace;
 }
 
-main {
-  width: min(42rem, calc(100% - 2rem));
-  margin: 4rem auto;
+body {
+  margin: 0;
+  min-width: 320px;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+.auth-link {
+  color: #3066be;
+  font-weight: 700;
+  text-underline-offset: 3px;
+}
+
+.auth-link:focus-visible {
+  border-radius: 2px;
+  outline: 2px solid #3066be;
+  outline-offset: 3px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .auth-link {
+    color: #b4c5e4;
+  }
+
+  .auth-link:focus-visible {
+    outline-color: #b4c5e4;
+  }
+}
+
+@media (max-width: 480px) {
+  .auth-link {
+    display: inline-block;
+    padding-block: 4px;
+  }
 }
