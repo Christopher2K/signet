@@ -27,4 +27,5 @@ Commit the endpoint changes together with `apps/api/openapi.json` and `libs/api/
 
 - For the design direction, follow the [design specification](./DESIGN.md).
 - For the product direction, follow the [product specification](./SPECIFICATION.md).
+- Whenever app designs change, update the corresponding screens in `design/client-designs.pen` in the same change so the implementation and canonical Pen designs stay in sync.
 

@@ -15,9 +15,6 @@ const LibraryScreen = () => {
       style={{ backgroundColor: theme.background }}
     >
       <html.div data-layoutconformance="strict" style={strictStyles.content}>
-        <Typography as="h1" variant="headline">
-          Your library
-        </Typography>
         <html.div style={strictStyles.emptyState}>
           <Typography as="h2" style={strictStyles.centered} variant="title">
             No bookmarks yet

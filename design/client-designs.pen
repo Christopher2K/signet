@@ -62225,7 +62225,7 @@
                       "width": "fill_container",
                       "height": "fill_container",
                       "layout": "vertical",
-                      "gap": 24,
+                      "gap": 32,
                       "padding": [
                         32,
                         24
@@ -62319,18 +62319,6 @@
                               "fontWeight": "700"
                             }
                           ]
-                        },
-                        {
-                          "type": "text",
-                          "id": "nMD4t",
-                          "name": "Title",
-                          "fill": "#3C3744",
-                          "textGrowth": "fixed-width",
-                          "width": "fill_container",
-                          "content": "Log in",
-                          "fontFamily": "IBM Plex Mono",
-                          "fontSize": 32,
-                          "fontWeight": "700"
                         },
                         {
                           "type": "frame",
@@ -62653,7 +62641,7 @@
                       "width": "fill_container",
                       "height": "fill_container",
                       "layout": "vertical",
-                      "gap": 24,
+                      "gap": 32,
                       "padding": [
                         32,
                         24
@@ -62747,18 +62735,6 @@
                               "fontWeight": "700"
                             }
                           ]
-                        },
-                        {
-                          "type": "text",
-                          "id": "PIdzC",
-                          "name": "Title",
-                          "fill": "#FBFFF1",
-                          "textGrowth": "fixed-width",
-                          "width": "fill_container",
-                          "content": "Log in",
-                          "fontFamily": "IBM Plex Mono",
-                          "fontSize": 32,
-                          "fontWeight": "700"
                         },
                         {
                           "type": "frame",
@@ -63143,7 +63119,7 @@
                       "width": "fill_container",
                       "height": "fill_container",
                       "layout": "vertical",
-                      "gap": 24,
+                      "gap": 32,
                       "padding": [
                         32,
                         24
@@ -63237,18 +63213,6 @@
                               "fontWeight": "700"
                             }
                           ]
-                        },
-                        {
-                          "type": "text",
-                          "id": "jn3G8",
-                          "name": "Title",
-                          "fill": "#3C3744",
-                          "textGrowth": "fixed-width",
-                          "width": "fill_container",
-                          "content": "Create account",
-                          "fontFamily": "IBM Plex Mono",
-                          "fontSize": 32,
-                          "fontWeight": "700"
                         },
                         {
                           "type": "frame",
@@ -63622,7 +63586,7 @@
                       "width": "fill_container",
                       "height": "fill_container",
                       "layout": "vertical",
-                      "gap": 24,
+                      "gap": 32,
                       "padding": [
                         32,
                         24
@@ -63716,18 +63680,6 @@
                               "fontWeight": "700"
                             }
                           ]
-                        },
-                        {
-                          "type": "text",
-                          "id": "mHN37",
-                          "name": "Title",
-                          "fill": "#FBFFF1",
-                          "textGrowth": "fixed-width",
-                          "width": "fill_container",
-                          "content": "Create account",
-                          "fontFamily": "IBM Plex Mono",
-                          "fontSize": 32,
-                          "fontWeight": "700"
                         },
                         {
                           "type": "frame",
@@ -64077,7 +64029,7 @@
           "fill": "#6B6578",
           "textGrowth": "fixed-width",
           "width": "fill_container",
-          "content": "Native iOS + Android · 390 × 844 · Light / Dark · Native navigation title, large-title content and bottom tabs · Library and Account only · No unimplemented search, folder or bookmark controls · IBM Plex Mono stand-in for Necto Mono",
+          "content": "Native iOS + Android · 390 × 844 · Light / Dark · Native navigation title and bottom tabs · Library and Account only · No unimplemented search, folder or bookmark controls · IBM Plex Mono stand-in for Necto Mono",
           "fontFamily": "IBM Plex Mono",
           "fontSize": 12,
           "fontWeight": "normal"
@@ -64196,28 +64148,6 @@
                       "gap": 32,
                       "padding": 24,
                       "children": [
-                        {
-                          "type": "frame",
-                          "id": "MVRZB",
-                          "name": "Heading",
-                          "width": "fill_container",
-                          "layout": "vertical",
-                          "gap": 8,
-                          "children": [
-                            {
-                              "type": "text",
-                              "id": "l8VgjW",
-                              "name": "Title",
-                              "fill": "#3C3744",
-                              "textGrowth": "fixed-width",
-                              "width": "fill_container",
-                              "content": "Your library",
-                              "fontFamily": "IBM Plex Mono",
-                              "fontSize": 32,
-                              "fontWeight": "700"
-                            }
-                          ]
-                        },
                         {
                           "type": "frame",
                           "id": "HV41R",
@@ -64510,28 +64440,6 @@
                       "gap": 32,
                       "padding": 24,
                       "children": [
-                        {
-                          "type": "frame",
-                          "id": "CNkWe",
-                          "name": "Heading",
-                          "width": "fill_container",
-                          "layout": "vertical",
-                          "gap": 8,
-                          "children": [
-                            {
-                              "type": "text",
-                              "id": "f8n4eS",
-                              "name": "Title",
-                              "fill": "#FBFFF1",
-                              "textGrowth": "fixed-width",
-                              "width": "fill_container",
-                              "content": "Your library",
-                              "fontFamily": "IBM Plex Mono",
-                              "fontSize": 32,
-                              "fontWeight": "700"
-                            }
-                          ]
-                        },
                         {
                           "type": "frame",
                           "id": "s2bws",

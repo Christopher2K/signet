@@ -32,9 +32,6 @@ const AccountScreen = () => {
       style={{ backgroundColor: theme.background }}
     >
       <html.div data-layoutconformance="strict" style={strictStyles.content}>
-        <Typography as="h1" variant="headline">
-          Account
-        </Typography>
         <html.div style={strictStyles.identity}>
           <Typography tone="secondary" variant="caption">
             Signed in as

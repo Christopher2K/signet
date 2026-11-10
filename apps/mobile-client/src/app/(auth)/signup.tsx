@@ -2,7 +2,7 @@ import { AuthScreenLayout } from "../../features/auth/components/auth-screen-lay
 import { SignupForm } from "../../features/auth/components/signup-form";
 
 const SignupScreen = () => (
-  <AuthScreenLayout title="Create account">
+  <AuthScreenLayout>
     <SignupForm />
   </AuthScreenLayout>
 );

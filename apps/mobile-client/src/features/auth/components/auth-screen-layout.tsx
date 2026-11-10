@@ -17,13 +17,9 @@ import { css, html } from "react-strict-dom";
 /** Shared native authentication screen properties. */
 type AuthScreenLayoutProps = {
   children: ReactNode;
-  title: string;
 };
 
-export const AuthScreenLayout = ({
-  children,
-  title,
-}: AuthScreenLayoutProps) => {
+export const AuthScreenLayout = ({ children }: AuthScreenLayoutProps) => {
   const theme = useNativeTheme();
   const [keyboardVisible, setKeyboardVisible] = useState(false);
 
@@ -72,9 +68,6 @@ export const AuthScreenLayout = ({
                 Signet
               </Typography>
             </html.div>
-            <Typography as="h1" variant="headline">
-              {title}
-            </Typography>
             {children}
           </html.div>
         </ScrollView>
@@ -117,7 +110,6 @@ const strictStyles = css.create({
     display: "flex",
     flexDirection: "column",
     gap: nativeSpacing[2],
-    marginBottom: nativeSpacing[6],
   },
   brandName: {
     fontWeight: "700",
