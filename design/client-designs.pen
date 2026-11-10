@@ -63873,7 +63873,7 @@
           "fill": "#6B6578",
           "textGrowth": "fixed-width",
           "width": "fill_container",
-          "content": "Native iOS + Android · 390 × 844 · Light / Dark · Current apps/web-client / route only · Empty library, account email and logout · No unimplemented search, folder or bookmark controls · IBM Plex Mono stand-in for Necto Mono",
+          "content": "Native iOS + Android · 390 × 844 · Light / Dark · Native navigation title, large-title content and bottom tabs · Library and Account only · No unimplemented search, folder or bookmark controls · IBM Plex Mono stand-in for Necto Mono",
           "fontFamily": "IBM Plex Mono",
           "fontSize": 12,
           "fontWeight": "normal"
@@ -63955,7 +63955,7 @@
                     {
                       "type": "frame",
                       "id": "upGBo",
-                      "name": "AppHeader",
+                      "name": "NavigationBar",
                       "width": "fill_container",
                       "fill": "#FFFFFF",
                       "stroke": "#8FA3C6",
@@ -63967,45 +63967,18 @@
                         8,
                         16
                       ],
-                      "justifyContent": "space_between",
+                      "justifyContent": "center",
                       "alignItems": "center",
                       "children": [
                         {
                           "type": "text",
                           "id": "lD92g",
-                          "name": "Brand",
-                          "fill": "#090C9B",
-                          "content": "SIGNET",
+                          "name": "NavigationTitle",
+                          "fill": "#3C3744",
+                          "content": "Library",
                           "fontFamily": "IBM Plex Mono",
                           "fontSize": 15,
-                          "fontWeight": "700",
-                          "letterSpacing": 2
-                        },
-                        {
-                          "type": "frame",
-                          "id": "vTXXB",
-                          "name": "LogoutAction",
-                          "height": 48,
-                          "fill": "#B4C5E4",
-                          "cornerRadius": 12,
-                          "padding": [
-                            0,
-                            16
-                          ],
-                          "justifyContent": "center",
-                          "alignItems": "center",
-                          "children": [
-                            {
-                              "type": "text",
-                              "id": "POaaZ",
-                              "name": "Label",
-                              "fill": "#3C3744",
-                              "content": "Log out",
-                              "fontFamily": "IBM Plex Mono",
-                              "fontSize": 12,
-                              "fontWeight": "700"
-                            }
-                          ]
+                          "fontWeight": "600"
                         }
                       ]
                     },
@@ -64038,18 +64011,6 @@
                               "fontFamily": "IBM Plex Mono",
                               "fontSize": 32,
                               "fontWeight": "700"
-                            },
-                            {
-                              "type": "text",
-                              "id": "bQcvU",
-                              "name": "Email",
-                              "fill": "#6B6578",
-                              "textGrowth": "fixed-width",
-                              "width": "fill_container",
-                              "content": "jane@example.com",
-                              "fontFamily": "IBM Plex Mono",
-                              "fontSize": 12,
-                              "fontWeight": "normal"
                             }
                           ]
                         },
@@ -64099,7 +64060,125 @@
                     },
                     {
                       "type": "frame",
-                      "id": "m9pCQc",
+                      "id": "OYhrj",
+                      "name": "BottomTabBar",
+                      "width": "fill_container",
+                      "fill": "#FFFFFF",
+                      "stroke": "#8FA3C6",
+                      "strokeWidth": {
+                        "top": 1
+                      },
+                      "gap": 24,
+                      "padding": [
+                        8,
+                        24
+                      ],
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "zHT5w",
+                          "name": "Tab-Library-Selected",
+                          "width": "fill_container",
+                          "height": 48,
+                          "layout": "vertical",
+                          "gap": 4,
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "gxZn3",
+                              "name": "Icon-SquaresFour",
+                              "width": 20,
+                              "height": 20,
+                              "layout": "none",
+                              "children": [
+                                {
+                                  "type": "path",
+                                  "id": "yt6DV",
+                                  "x": 0,
+                                  "y": 0,
+                                  "name": "Phosphor-Regular-SquaresFour",
+                                  "geometry": "M104 40h-48a16 16 0 0 0-16 16v48a16 16 0 0 0 16 16h48a16 16 0 0 0 16-16v-48a16 16 0 0 0-16-16z m0 64h-48v-48h48v48z m96-64h-48a16 16 0 0 0-16 16v48a16 16 0 0 0 16 16h48a16 16 0 0 0 16-16v-48a16 16 0 0 0-16-16z m0 64h-48v-48h48v48z m-96 32h-48a16 16 0 0 0-16 16v48a16 16 0 0 0 16 16h48a16 16 0 0 0 16-16v-48a16 16 0 0 0-16-16z m0 64h-48v-48h48v48z m96-64h-48a16 16 0 0 0-16 16v48a16 16 0 0 0 16 16h48a16 16 0 0 0 16-16v-48a16 16 0 0 0-16-16z m0 64h-48v-48h48v48z",
+                                  "viewBox": [
+                                    0,
+                                    0,
+                                    256,
+                                    256
+                                  ],
+                                  "fill": "#3066BE",
+                                  "width": 20,
+                                  "height": 20
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "id": "TRZ9O",
+                              "name": "Label",
+                              "fill": "#3066BE",
+                              "content": "Library",
+                              "fontFamily": "IBM Plex Mono",
+                              "fontSize": 12,
+                              "fontWeight": "600"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "G3ncY",
+                          "name": "Tab-Account",
+                          "width": "fill_container",
+                          "height": 48,
+                          "layout": "vertical",
+                          "gap": 4,
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "qEeZD",
+                              "name": "Icon-User",
+                              "width": 20,
+                              "height": 20,
+                              "layout": "none",
+                              "children": [
+                                {
+                                  "type": "path",
+                                  "id": "fPzGS",
+                                  "x": 0,
+                                  "y": 0,
+                                  "name": "Phosphor-Regular-User",
+                                  "geometry": "M230.92 212c-15.23-26.33-38.7-45.21-66.09-54.16a72 72 0 1 0-73.66 0c-27.39 8.94-50.86 27.82-66.09 54.16a8 8 0 1 0 13.85 8c18.84-32.56 52.14-52 89.07-52s70.23 19.44 89.07 52a8 8 0 1 0 13.85-8z m-158.92-116a56 56 0 1 1 56 56 56.06 56.06 0 0 1-56-56z",
+                                  "viewBox": [
+                                    0,
+                                    0,
+                                    256,
+                                    256
+                                  ],
+                                  "fill": "#6B6578",
+                                  "width": 20,
+                                  "height": 20
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "id": "mjmmw",
+                              "name": "Label",
+                              "fill": "#6B6578",
+                              "content": "Account",
+                              "fontFamily": "IBM Plex Mono",
+                              "fontSize": 12,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "F6FLs1",
                       "name": "HomeIndicator-SafeArea",
                       "width": "fill_container",
                       "height": 24,
@@ -64108,7 +64187,7 @@
                       "children": [
                         {
                           "type": "frame",
-                          "id": "m0qz9",
+                          "id": "coafA",
                           "name": "HomeIndicator",
                           "width": 128,
                           "height": 4,
@@ -64190,7 +64269,7 @@
                     {
                       "type": "frame",
                       "id": "ZliCz",
-                      "name": "AppHeader",
+                      "name": "NavigationBar",
                       "width": "fill_container",
                       "fill": "#2F2B3A",
                       "stroke": "#4F4A62",
@@ -64202,45 +64281,18 @@
                         8,
                         16
                       ],
-                      "justifyContent": "space_between",
+                      "justifyContent": "center",
                       "alignItems": "center",
                       "children": [
                         {
                           "type": "text",
                           "id": "z1mDKN",
-                          "name": "Brand",
-                          "fill": "#B4C5E4",
-                          "content": "SIGNET",
+                          "name": "NavigationTitle",
+                          "fill": "#FBFFF1",
+                          "content": "Library",
                           "fontFamily": "IBM Plex Mono",
                           "fontSize": 15,
-                          "fontWeight": "700",
-                          "letterSpacing": 2
-                        },
-                        {
-                          "type": "frame",
-                          "id": "vdcCv",
-                          "name": "LogoutAction",
-                          "height": 48,
-                          "fill": "#B4C5E4",
-                          "cornerRadius": 12,
-                          "padding": [
-                            0,
-                            16
-                          ],
-                          "justifyContent": "center",
-                          "alignItems": "center",
-                          "children": [
-                            {
-                              "type": "text",
-                              "id": "DK0wB",
-                              "name": "Label",
-                              "fill": "#3C3744",
-                              "content": "Log out",
-                              "fontFamily": "IBM Plex Mono",
-                              "fontSize": 12,
-                              "fontWeight": "700"
-                            }
-                          ]
+                          "fontWeight": "600"
                         }
                       ]
                     },
@@ -64273,18 +64325,6 @@
                               "fontFamily": "IBM Plex Mono",
                               "fontSize": 32,
                               "fontWeight": "700"
-                            },
-                            {
-                              "type": "text",
-                              "id": "jr766",
-                              "name": "Email",
-                              "fill": "#B4C5E4",
-                              "textGrowth": "fixed-width",
-                              "width": "fill_container",
-                              "content": "jane@example.com",
-                              "fontFamily": "IBM Plex Mono",
-                              "fontSize": 12,
-                              "fontWeight": "normal"
                             }
                           ]
                         },
@@ -64334,7 +64374,125 @@
                     },
                     {
                       "type": "frame",
-                      "id": "b7fJM",
+                      "id": "oZ5sM",
+                      "name": "BottomTabBar",
+                      "width": "fill_container",
+                      "fill": "#2F2B3A",
+                      "stroke": "#4F4A62",
+                      "strokeWidth": {
+                        "top": 1
+                      },
+                      "gap": 24,
+                      "padding": [
+                        8,
+                        24
+                      ],
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "ToszT",
+                          "name": "Tab-Library-Selected",
+                          "width": "fill_container",
+                          "height": 48,
+                          "layout": "vertical",
+                          "gap": 4,
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "d5lRM",
+                              "name": "Icon-SquaresFour",
+                              "width": 20,
+                              "height": 20,
+                              "layout": "none",
+                              "children": [
+                                {
+                                  "type": "path",
+                                  "id": "EKqnV",
+                                  "x": 0,
+                                  "y": 0,
+                                  "name": "Phosphor-Regular-SquaresFour",
+                                  "geometry": "M104 40h-48a16 16 0 0 0-16 16v48a16 16 0 0 0 16 16h48a16 16 0 0 0 16-16v-48a16 16 0 0 0-16-16z m0 64h-48v-48h48v48z m96-64h-48a16 16 0 0 0-16 16v48a16 16 0 0 0 16 16h48a16 16 0 0 0 16-16v-48a16 16 0 0 0-16-16z m0 64h-48v-48h48v48z m-96 32h-48a16 16 0 0 0-16 16v48a16 16 0 0 0 16 16h48a16 16 0 0 0 16-16v-48a16 16 0 0 0-16-16z m0 64h-48v-48h48v48z m96-64h-48a16 16 0 0 0-16 16v48a16 16 0 0 0 16 16h48a16 16 0 0 0 16-16v-48a16 16 0 0 0-16-16z m0 64h-48v-48h48v48z",
+                                  "viewBox": [
+                                    0,
+                                    0,
+                                    256,
+                                    256
+                                  ],
+                                  "fill": "#5C84C6",
+                                  "width": 20,
+                                  "height": 20
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "id": "l7Dbb",
+                              "name": "Label",
+                              "fill": "#5C84C6",
+                              "content": "Library",
+                              "fontFamily": "IBM Plex Mono",
+                              "fontSize": 12,
+                              "fontWeight": "600"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "JhKp1",
+                          "name": "Tab-Account",
+                          "width": "fill_container",
+                          "height": 48,
+                          "layout": "vertical",
+                          "gap": 4,
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "ldvdv",
+                              "name": "Icon-User",
+                              "width": 20,
+                              "height": 20,
+                              "layout": "none",
+                              "children": [
+                                {
+                                  "type": "path",
+                                  "id": "ofVEe",
+                                  "x": 0,
+                                  "y": 0,
+                                  "name": "Phosphor-Regular-User",
+                                  "geometry": "M230.92 212c-15.23-26.33-38.7-45.21-66.09-54.16a72 72 0 1 0-73.66 0c-27.39 8.94-50.86 27.82-66.09 54.16a8 8 0 1 0 13.85 8c18.84-32.56 52.14-52 89.07-52s70.23 19.44 89.07 52a8 8 0 1 0 13.85-8z m-158.92-116a56 56 0 1 1 56 56 56.06 56.06 0 0 1-56-56z",
+                                  "viewBox": [
+                                    0,
+                                    0,
+                                    256,
+                                    256
+                                  ],
+                                  "fill": "#B4C5E4",
+                                  "width": 20,
+                                  "height": 20
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "id": "m0BBdt",
+                              "name": "Label",
+                              "fill": "#B4C5E4",
+                              "content": "Account",
+                              "fontFamily": "IBM Plex Mono",
+                              "fontSize": 12,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "axhoY",
                       "name": "HomeIndicator-SafeArea",
                       "width": "fill_container",
                       "height": 24,
@@ -64343,7 +64501,7 @@
                       "children": [
                         {
                           "type": "frame",
-                          "id": "NpS1F",
+                          "id": "V1SpNn",
                           "name": "HomeIndicator",
                           "width": 128,
                           "height": 4,
@@ -64365,7 +64523,7 @@
           "fill": "#6B6578",
           "textGrowth": "fixed-width",
           "width": "fill_container",
-          "content": "Log out → Logging out… with disabled azure-100 / ink-400 styling → clear session and cache → Native A1 · Empty state copy matches apps/web-client",
+          "content": "Library selected · Account owns the signed-in email and Log out → Logging out… with disabled styling → clear session and cache → Native A1 · Empty state copy matches apps/web-client",
           "fontFamily": "IBM Plex Mono",
           "fontSize": 12,
           "fontWeight": "normal"
@@ -64376,7 +64534,7 @@
       "type": "frame",
       "id": "YV4VF",
       "x": 0,
-      "y": 126378,
+      "y": 126394,
       "name": "§40 Native Server unavailable",
       "clip": true,
       "width": 1200,

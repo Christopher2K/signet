@@ -83,7 +83,7 @@ All 41 top-level frames are vertically stacked at `x=0` with 48px gutters. Re-re
 | §36 Shared States & Component Inventory | `V4X15` | Cross-page auth/form validation, toasts, sync/pending states, component inventory, and official Phosphor regular paths; keep shared variants here rather than duplicating them across every screen |
 | §37 Native A1 Login | `R1otS` | Native iOS/Android login, 390 × 844, light + dark, safe-area-aware cardless form |
 | §38 Native A2 Create account | `s2Tm4J` | Native iOS/Android signup, 390 × 844, light + dark, safe-area-aware cardless form |
-| §39 Native L1 Library Home | `RcLY9` | Current web-client `/` route: account header, logout, email, and empty-library state only |
+| §39 Native L1 Library Home | `RcLY9` | Current web-client `/` route: native navigation title, large-title empty-library state, and Library/Account bottom tabs; Account owns email and logout |
 | §40 Native Server unavailable | `YV4VF` | Saved-session restore failure with exact web-client message and retry action |
 
 ## 4. Always refer to `DESIGN.md` — never deviate silently

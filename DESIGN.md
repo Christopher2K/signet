@@ -185,7 +185,7 @@ Native A1/A2 live in `design/client-designs.pen` §37–§38, with light and dar
 
 ### 3.6 Native library and session feedback
 
-Native L1 and the server-unavailable state live in `design/client-designs.pen` §39–§40. They mirror only the currently implemented `apps/web-client` `/` route and route guards: account header with logout, signed-in email, empty-library message, and saved-session retry. Do not add search, folders, bookmark creation, or other future web-map controls to these parity screens until those flows exist in the client. Logout uses the existing disabled button tokens while pending; session restoration remains covered by the native splash.
+Native L1 and the server-unavailable state live in `design/client-designs.pen` §39–§40. They mirror only the currently implemented `apps/web-client` `/` route and route guards. L1 uses a native navigation title, large-title content, and a bottom tab bar with **Library** (selected) and **Account**. Library contains only the empty-library message; Account owns the signed-in email and logout. §40 provides the saved-session retry. Do not add search, folders, bookmark creation, or other future web-map controls to these parity screens until those flows exist in the client. Logout uses the existing disabled button tokens while pending; session restoration remains covered by the native splash.
 
 ---
 
