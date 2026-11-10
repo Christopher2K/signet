@@ -39,6 +39,6 @@ Run Storybook with `pnpm --filter @signet/web-client storybook` or `pnpm --filte
 
 ## Tokens and fonts
 
-Semantic light/dark colors, spacing, radii, and typography are exported from `src/tokens.css.ts`. Color values come from the Paper & Cobalt palette in `DESIGN.md`.
+Semantic light/dark colors, spacing, radii, and typography are exported from `src/tokens.css.ts`. Color values come from the Paper & Cobalt palette in `DESIGN.md`. Native-only chrome and layout tokens are available from `@signet/design-system/native-theme`, keeping React Native out of web bundles.
 
-The typography token names **Necto Mono**. Font files are not bundled yet; native consumers must register Necto Mono with Expo Font, and web consumers must provide a matching `@font-face` rule to render that exact typeface. Until then, each platform uses its normal missing-font fallback.
+The typography token names **Necto Mono**. The mobile client bundles and registers Necto Mono with Expo Font; web consumers must provide a matching `@font-face` rule to render that exact typeface.

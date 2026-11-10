@@ -1,0 +1,81 @@
+import { Button, spacing, Typography } from "@signet/design-system";
+import {
+  nativeSpacing,
+  useNativeTheme,
+} from "@signet/design-system/native-theme";
+import { useState } from "react";
+import { ScrollView, StyleSheet } from "react-native";
+import { css, html } from "react-strict-dom";
+import { useAuth } from "../../../features/auth/auth-context";
+
+const AccountScreen = () => {
+  const { logout, state } = useAuth();
+  const theme = useNativeTheme();
+  const [pending, setPending] = useState(false);
+
+  const handleLogout = async () => {
+    setPending(true);
+    try {
+      await logout();
+    } finally {
+      setPending(false);
+    }
+  };
+
+  if (state.status !== "authenticated") {
+    return null;
+  }
+
+  return (
+    <ScrollView
+      contentContainerStyle={styles.content}
+      style={{ backgroundColor: theme.background }}
+    >
+      <html.div data-layoutconformance="strict" style={strictStyles.content}>
+        <Typography as="h1" variant="headline">
+          Account
+        </Typography>
+        <html.div style={strictStyles.identity}>
+          <Typography tone="secondary" variant="caption">
+            Signed in as
+          </Typography>
+          <Typography>{state.user.email}</Typography>
+        </html.div>
+        <Button
+          disabled={pending}
+          onClick={() => void handleLogout()}
+          size="lg"
+          style={strictStyles.logout}
+          variant="secondary"
+        >
+          {pending ? "Logging out…" : "Log out"}
+        </Button>
+      </html.div>
+    </ScrollView>
+  );
+};
+
+const styles = StyleSheet.create({
+  content: {
+    padding: nativeSpacing[4],
+  },
+});
+
+const strictStyles = css.create({
+  content: {
+    display: "flex",
+    flexDirection: "column",
+    gap: spacing[6],
+  },
+  identity: {
+    display: "flex",
+    flexDirection: "column",
+    gap: spacing[2],
+  },
+  logout: {
+    alignSelf: "stretch",
+    borderRadius: 12,
+  },
+});
+
+export default AccountScreen;

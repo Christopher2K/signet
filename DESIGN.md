@@ -181,7 +181,7 @@ Base unit 4px in `design/client-designs.pen` §4. The canvas uses literal 4pt va
 
 ### 3.5 Native auth
 
-Native A1/A2 live in `design/client-designs.pen` §37–§38, with light and dark 390 × 844 screens for iOS/Android. They use the existing color, type, spacing, and radii tokens: a full-bleed `paper`/`ink` canvas, safe-area-aware cardless layout, 48px full-width inputs and primary action, and `radius-lg` controls. Forms must remain keyboard-avoiding and scrollable so the action stays reachable. Keep the same fields, cross-links, backend behavior, and inline errors as web A1/A2; do not add a server URL field or duplicate the existing splash screen.
+Native A1/A2 live in `design/client-designs.pen` §37–§38, with light and dark 390 × 844 screens for iOS/Android. They use the existing color, type, spacing, and radii tokens: a full-bleed `paper`/`ink` canvas, safe-area-aware cardless layout, 48px full-width inputs and primary action, and `radius-lg` controls. Forms must remain keyboard-avoiding and scrollable so the action stays reachable. Both forms place an editable **Server URL** field before the account fields. Native authentication uses the selected absolute HTTP/HTTPS origin, normalizes trailing slashes, and persists the normalized URL with the session; the last selected server remains after logout and is used for restoration and retry. Other fields, cross-links, backend behavior, and inline errors match web A1/A2; do not duplicate the existing splash screen.
 
 ### 3.6 Native library and session feedback
 

@@ -55,14 +55,17 @@ const styles = css.create({
     borderRadius: radii.md,
     borderStyle: "solid",
     borderWidth: 1,
+    boxSizing: "border-box",
     display: "flex",
     justifyContent: "center",
-    outlineColor: colors.accent,
-    outlineOffset: 2,
-    outlineStyle: "solid",
-    outlineWidth: {
-      default: 0,
-      ":focus-visible": 2,
+    "@media (pointer: fine)": {
+      outlineColor: colors.accent,
+      outlineOffset: 2,
+      outlineStyle: "solid",
+      outlineWidth: {
+        default: 0,
+        ":focus-visible": 2,
+      },
     },
   },
   label: {

@@ -62139,7 +62139,7 @@
           "fill": "#6B6578",
           "textGrowth": "fixed-width",
           "width": "fill_container",
-          "content": "Native iOS + Android · 390 × 844 · Light / Dark · Safe-area aware, keyboard-avoiding form · 48px controls · Deployment-configured backend, no server URL field · IBM Plex Mono stand-in for Necto Mono",
+          "content": "Native iOS + Android · 390 × 844 · Light / Dark · Safe-area aware, keyboard-avoiding form · 48px controls · Editable Server URL, persisted with the session · IBM Plex Mono stand-in for Necto Mono",
           "fontFamily": "IBM Plex Mono",
           "fontSize": 12,
           "fontWeight": "normal"
@@ -62340,6 +62340,57 @@
                           "layout": "vertical",
                           "gap": 16,
                           "children": [
+                            {
+                              "type": "frame",
+                              "id": "d9E4ZT",
+                              "name": "Field-ServerURL",
+                              "width": "fill_container",
+                              "layout": "vertical",
+                              "gap": 8,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "uxzgT",
+                                  "name": "Label",
+                                  "fill": "#090C9B",
+                                  "content": "Server URL",
+                                  "fontFamily": "IBM Plex Mono",
+                                  "fontSize": 12,
+                                  "fontWeight": "700"
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "cnXqV",
+                                  "name": "Input-ServerURL",
+                                  "width": "fill_container",
+                                  "height": 48,
+                                  "fill": "#FFFFFF",
+                                  "cornerRadius": 12,
+                                  "stroke": "#8FA3C6",
+                                  "strokeWidth": 1,
+                                  "layout": "vertical",
+                                  "padding": [
+                                    0,
+                                    16
+                                  ],
+                                  "justifyContent": "center",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "lJQ6z",
+                                      "name": "Value",
+                                      "fill": "#8A8499",
+                                      "textGrowth": "fixed-width",
+                                      "width": "fill_container",
+                                      "content": "https://signet.example.com",
+                                      "fontFamily": "IBM Plex Mono",
+                                      "fontSize": 15,
+                                      "fontWeight": "normal"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
                             {
                               "type": "frame",
                               "id": "tXM0z",
@@ -62719,6 +62770,57 @@
                           "children": [
                             {
                               "type": "frame",
+                              "id": "G6S0s4",
+                              "name": "Field-ServerURL",
+                              "width": "fill_container",
+                              "layout": "vertical",
+                              "gap": 8,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "tTMRC",
+                                  "name": "Label",
+                                  "fill": "#B4C5E4",
+                                  "content": "Server URL",
+                                  "fontFamily": "IBM Plex Mono",
+                                  "fontSize": 12,
+                                  "fontWeight": "700"
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "vxfY6",
+                                  "name": "Input-ServerURL",
+                                  "width": "fill_container",
+                                  "height": 48,
+                                  "fill": "#2F2B3A",
+                                  "cornerRadius": 12,
+                                  "stroke": "#4F4A62",
+                                  "strokeWidth": 1,
+                                  "layout": "vertical",
+                                  "padding": [
+                                    0,
+                                    16
+                                  ],
+                                  "justifyContent": "center",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "IKZDW",
+                                      "name": "Value",
+                                      "fill": "#ABA3B8",
+                                      "textGrowth": "fixed-width",
+                                      "width": "fill_container",
+                                      "content": "https://signet.example.com",
+                                      "fontFamily": "IBM Plex Mono",
+                                      "fontSize": 15,
+                                      "fontWeight": "normal"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
                               "id": "wS7QT",
                               "name": "Field-Email",
                               "width": "fill_container",
@@ -62915,7 +63017,7 @@
           "fill": "#6B6578",
           "textGrowth": "fixed-width",
           "width": "fill_container",
-          "content": "Email keyboard · Secure password entry · Invalid credentials uses the shared inline error without leaking email existence · Create account opens Native A2",
+          "content": "Server URL is required and must be absolute HTTP/HTTPS · Trailing slashes are normalized · Selection persists with the session and after logout · Email keyboard · Secure password entry · Invalid credentials uses the shared inline error without leaking email existence · Create account opens Native A2",
           "fontFamily": "IBM Plex Mono",
           "fontSize": 12,
           "fontWeight": "normal"
@@ -62926,7 +63028,7 @@
       "type": "frame",
       "id": "s2Tm4J",
       "x": 0,
-      "y": 124236,
+      "y": 124252,
       "name": "§38 Native A2 Create account",
       "clip": true,
       "width": 1200,
@@ -62955,7 +63057,7 @@
           "fill": "#6B6578",
           "textGrowth": "fixed-width",
           "width": "fill_container",
-          "content": "Native iOS + Android · 390 × 844 · Light / Dark · Safe-area aware, keyboard-avoiding form · 48px controls · Deployment-configured backend, no server URL field · IBM Plex Mono stand-in for Necto Mono",
+          "content": "Native iOS + Android · 390 × 844 · Light / Dark · Safe-area aware, keyboard-avoiding form · 48px controls · Editable Server URL, persisted with the session · IBM Plex Mono stand-in for Necto Mono",
           "fontFamily": "IBM Plex Mono",
           "fontSize": 12,
           "fontWeight": "normal"
@@ -63156,6 +63258,57 @@
                           "layout": "vertical",
                           "gap": 16,
                           "children": [
+                            {
+                              "type": "frame",
+                              "id": "KoNY0",
+                              "name": "Field-ServerURL",
+                              "width": "fill_container",
+                              "layout": "vertical",
+                              "gap": 8,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "V98L5F",
+                                  "name": "Label",
+                                  "fill": "#090C9B",
+                                  "content": "Server URL",
+                                  "fontFamily": "IBM Plex Mono",
+                                  "fontSize": 12,
+                                  "fontWeight": "700"
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "cNdqK",
+                                  "name": "Input-ServerURL",
+                                  "width": "fill_container",
+                                  "height": 48,
+                                  "fill": "#FFFFFF",
+                                  "cornerRadius": 12,
+                                  "stroke": "#8FA3C6",
+                                  "strokeWidth": 1,
+                                  "layout": "vertical",
+                                  "padding": [
+                                    0,
+                                    16
+                                  ],
+                                  "justifyContent": "center",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "fekg3",
+                                      "name": "Value",
+                                      "fill": "#8A8499",
+                                      "textGrowth": "fixed-width",
+                                      "width": "fill_container",
+                                      "content": "https://signet.example.com",
+                                      "fontFamily": "IBM Plex Mono",
+                                      "fontSize": 15,
+                                      "fontWeight": "normal"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
                             {
                               "type": "frame",
                               "id": "ksbCV",
@@ -63586,6 +63739,57 @@
                           "children": [
                             {
                               "type": "frame",
+                              "id": "UqQ01",
+                              "name": "Field-ServerURL",
+                              "width": "fill_container",
+                              "layout": "vertical",
+                              "gap": 8,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "pWYw6",
+                                  "name": "Label",
+                                  "fill": "#B4C5E4",
+                                  "content": "Server URL",
+                                  "fontFamily": "IBM Plex Mono",
+                                  "fontSize": 12,
+                                  "fontWeight": "700"
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "acgMI",
+                                  "name": "Input-ServerURL",
+                                  "width": "fill_container",
+                                  "height": 48,
+                                  "fill": "#2F2B3A",
+                                  "cornerRadius": 12,
+                                  "stroke": "#4F4A62",
+                                  "strokeWidth": 1,
+                                  "layout": "vertical",
+                                  "padding": [
+                                    0,
+                                    16
+                                  ],
+                                  "justifyContent": "center",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "A2xnyn",
+                                      "name": "Value",
+                                      "fill": "#ABA3B8",
+                                      "textGrowth": "fixed-width",
+                                      "width": "fill_container",
+                                      "content": "https://signet.example.com",
+                                      "fontFamily": "IBM Plex Mono",
+                                      "fontSize": 15,
+                                      "fontWeight": "normal"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
                               "id": "kDsJL",
                               "name": "Field-Name",
                               "width": "fill_container",
@@ -63833,7 +64037,7 @@
           "fill": "#6B6578",
           "textGrowth": "fixed-width",
           "width": "fill_container",
-          "content": "Name 1–100 characters · Email keyboard · Secure password entry · Create account opens the empty library within 2s · Log in returns to Native A1",
+          "content": "Server URL is required and must be absolute HTTP/HTTPS · Trailing slashes are normalized · Selection persists with the session and after logout · Name 1–100 characters · Email keyboard · Secure password entry · Create account opens the empty library within 2s · Log in returns to Native A1",
           "fontFamily": "IBM Plex Mono",
           "fontSize": 12,
           "fontWeight": "normal"
@@ -63844,7 +64048,7 @@
       "type": "frame",
       "id": "RcLY9",
       "x": 0,
-      "y": 125307,
+      "y": 125339,
       "name": "§39 Native L1 Library Home",
       "clip": true,
       "width": 1200,
@@ -64534,7 +64738,7 @@
       "type": "frame",
       "id": "YV4VF",
       "x": 0,
-      "y": 126394,
+      "y": 126426,
       "name": "§40 Native Server unavailable",
       "clip": true,
       "width": 1200,

@@ -11,6 +11,10 @@
     "./tokens.css": {
       "types": "./src/tokens.css.ts",
       "default": "./src/tokens.css.ts"
+    },
+    "./native-theme": {
+      "types": "./src/native-theme.ts",
+      "default": "./src/native-theme.ts"
     }
   },
   "files": [
