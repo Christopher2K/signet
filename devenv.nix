@@ -21,6 +21,7 @@ in
 {
   packages = [
     pkgs.cocoapods
+    pkgs.eas-cli
     pkgs.elixir_1_18
     pkgs.erlang_28
     pkgs.git
@@ -116,6 +117,21 @@ in
     check-api-client.exec = ''
       generate-api-client
       exec git diff --exit-code -- apps/api/openapi.json libs/api/src/generated
+    '';
+
+    build-development.exec = ''
+      cd "$DEVENV_ROOT/apps/mobile-client"
+      exec eas build --profile development --platform android "$@"
+    '';
+
+    build-preview.exec = ''
+      cd "$DEVENV_ROOT/apps/mobile-client"
+      exec eas build --profile preview --platform all "$@"
+    '';
+
+    build-production.exec = ''
+      cd "$DEVENV_ROOT/apps/mobile-client"
+      exec eas build --profile production --platform all "$@"
     '';
 
     ios.exec = ''
