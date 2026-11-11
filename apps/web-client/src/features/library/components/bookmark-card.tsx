@@ -1,8 +1,8 @@
 import type { Bookmark } from "@signet/api";
+import { getBookmarkHostname } from "@signet/core/bookmarks";
 import { Typography } from "@signet/design-system";
 import { colors, radii, spacing } from "@signet/design-system/tokens.css";
 import { css, html } from "react-strict-dom";
-import { getBookmarkHostname } from "../bookmark-validation";
 import { BookmarkArtwork } from "./bookmark-artwork";
 import { Icon } from "./icon";
 

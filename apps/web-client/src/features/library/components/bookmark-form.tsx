@@ -1,16 +1,16 @@
 import type { CreateBookmarkRequest } from "@signet/api";
-import { Button, TextField, Typography } from "@signet/design-system";
-import { colors, radii, spacing } from "@signet/design-system/tokens.css";
-import { type FormEvent, useEffect, useState } from "react";
-import { css, html } from "react-strict-dom";
-import { getBookmarkError } from "../bookmark-errors";
 import {
   type BookmarkFormErrors,
   type BookmarkFormValues,
   emptyBookmarkValues,
+  getBookmarkError,
   toBookmarkRequest,
   validateBookmark,
-} from "../bookmark-validation";
+} from "@signet/core/bookmarks";
+import { Button, TextField, Typography } from "@signet/design-system";
+import { colors, radii, spacing } from "@signet/design-system/tokens.css";
+import { type FormEvent, useEffect, useState } from "react";
+import { css, html } from "react-strict-dom";
 
 /** Shared bookmark editor properties. */
 export type BookmarkFormProps = {

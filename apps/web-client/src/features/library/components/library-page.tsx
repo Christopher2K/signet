@@ -1,10 +1,10 @@
 import type { Bookmark } from "@signet/api";
+import { getBookmarkError } from "@signet/core/bookmarks";
+import { useBookmarks } from "@signet/core/bookmarks/react";
 import { Button, Typography } from "@signet/design-system";
 import { colors, radii, spacing } from "@signet/design-system/tokens.css";
 import { useState } from "react";
 import { css, html } from "react-strict-dom";
-import { getBookmarkError } from "../bookmark-errors";
-import { useBookmarks } from "../use-bookmarks";
 import { BookmarkCard, type BookmarkView } from "./bookmark-card";
 import { CreateBookmarkDialog } from "./create-bookmark-dialog";
 import { DeleteBookmarkDialog } from "./delete-bookmark-dialog";

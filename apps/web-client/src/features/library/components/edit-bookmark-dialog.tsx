@@ -1,16 +1,15 @@
 import type { Bookmark } from "@signet/api";
 import { updateBookmarkMutation } from "@signet/api/react-query";
-import { Button, Typography } from "@signet/design-system";
-import { spacing } from "@signet/design-system/tokens.css";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { css, html } from "react-strict-dom";
-import { getBookmarkError } from "../bookmark-errors";
-import type { BookmarkFormValues } from "../bookmark-validation";
+import { bookmarkToFormValues, getBookmarkError } from "@signet/core/bookmarks";
 import {
   cacheUpdatedBookmark,
   useBookmark,
   useBookmarkClient,
-} from "../use-bookmarks";
+} from "@signet/core/bookmarks/react";
+import { Button, Typography } from "@signet/design-system";
+import { spacing } from "@signet/design-system/tokens.css";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { css, html } from "react-strict-dom";
 import { BookmarkForm } from "./bookmark-form";
 import { Dialog } from "./dialog";
 
@@ -53,15 +52,7 @@ export const EditBookmarkDialog = ({
     onClose();
   };
 
-  const initialValues: BookmarkFormValues | undefined = bookmark
-    ? {
-        image: bookmark.image ?? "",
-        notes: bookmark.notes ?? "",
-        tags: bookmark.tags.join(", "),
-        title: bookmark.title,
-        url: bookmark.url,
-      }
-    : undefined;
+  const initialValues = bookmark ? bookmarkToFormValues(bookmark) : undefined;
 
   return (
     <Dialog onClose={onClose} title="Edit Bookmark">

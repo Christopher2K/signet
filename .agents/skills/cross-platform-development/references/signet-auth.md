@@ -14,7 +14,7 @@ This reference records the architecture established for shared authentication. R
 - `libs/core/src/features/auth/server-url.ts` — pure HTTP/HTTPS URL normalization and validation.
 - `libs/core/src/features/auth/auth-provider.tsx` — API/storage configuration and provider composition.
 - `libs/core/src/features/auth/auth-session-provider.tsx` — shared React Query session lifecycle and operation ordering.
-- `libs/core/src/features/auth/hooks/` — shared login, signup, logout, and current-user hooks.
+- `libs/core/src/features/auth/queries/` — shared login, signup, logout, and current-user hooks.
 - `libs/core/src/features/auth/session-storage.types.ts` — common asynchronous persistence contract.
 - `libs/core/src/features/auth/session-storage.native.ts` — AsyncStorage token and selected-server adapter.
 - `libs/core/src/features/auth/session-storage.web.ts` — guarded browser localStorage adapter.
@@ -57,7 +57,7 @@ The native adapter currently uses AsyncStorage. Product requirement M-06 calls f
 - `session-storage.web.test.ts` — browser round trips and blocked storage access.
 - `session-storage.native.test.ts` — token/server persistence, token-only clearing, and native read failures.
 - `auth-provider.test.tsx` — restoration, server selection, persistence failures, unauthorized cleanup, and deferred concurrency cases.
-- `hooks/use-me-query.test.tsx` — verifies that the query function and query key use the same server.
+- `queries/use-me-query.test.tsx` — verifies that the query function and query key use the same server.
 
 Keep provider tests independent of real native/browser storage by injecting API and storage adapters. Use deferred promises to control operation ordering explicitly.
 

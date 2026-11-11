@@ -21,6 +21,14 @@ const LibraryLayout = () => {
       }}
     >
       <Stack.Screen name="index" options={{ title: "Library" }} />
+      <Stack.Screen
+        name="create"
+        options={{ presentation: "modal", title: "New Bookmark" }}
+      />
+      <Stack.Screen
+        name="bookmark/[id]"
+        options={{ presentation: "modal", title: "Edit Bookmark" }}
+      />
     </Stack>
   );
 };

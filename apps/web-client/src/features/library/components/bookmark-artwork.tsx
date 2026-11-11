@@ -1,8 +1,8 @@
 import type { Bookmark } from "@signet/api";
+import { getBookmarkHostname } from "@signet/core/bookmarks";
 import { colors, radii } from "@signet/design-system/tokens.css";
 import { useEffect, useState } from "react";
 import { css, html } from "react-strict-dom";
-import { getBookmarkHostname } from "../bookmark-validation";
 import { Icon } from "./icon";
 
 /** Bookmark artwork properties. */

@@ -55,7 +55,7 @@ libs/core/src/features/<feature>/
 ├── errors.ts
 ├── types.ts
 ├── validation.ts
-├── hooks/
+├── queries/
 ├── <provider>.tsx
 ├── <resource>-storage.types.ts
 ├── <resource>-storage.native.ts

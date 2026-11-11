@@ -11,6 +11,14 @@
     "./auth/react": {
       "types": "./src/features/auth/react.ts",
       "default": "./src/features/auth/react.ts"
+    },
+    "./bookmarks": {
+      "types": "./src/features/bookmarks/index.ts",
+      "default": "./src/features/bookmarks/index.ts"
+    },
+    "./bookmarks/react": {
+      "types": "./src/features/bookmarks/react.ts",
+      "default": "./src/features/bookmarks/react.ts"
     }
   },
   "files": [

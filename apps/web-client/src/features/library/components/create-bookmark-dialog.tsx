@@ -1,17 +1,19 @@
 import type { Bookmark, CreateBookmarkRequest } from "@signet/api";
 import { createBookmarkMutation } from "@signet/api/react-query";
+import {
+  type BookmarkFormValues,
+  getBookmarkError,
+} from "@signet/core/bookmarks";
+import {
+  cacheCreatedBookmark,
+  findDuplicateBookmarks,
+  useBookmarkClient,
+} from "@signet/core/bookmarks/react";
 import { Button, Typography } from "@signet/design-system";
 import { colors, radii, spacing } from "@signet/design-system/tokens.css";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { css, html } from "react-strict-dom";
-import { getBookmarkError } from "../bookmark-errors";
-import type { BookmarkFormValues } from "../bookmark-validation";
-import {
-  cacheCreatedBookmark,
-  findDuplicateBookmarks,
-  useBookmarkClient,
-} from "../use-bookmarks";
 import { BookmarkForm } from "./bookmark-form";
 import { Dialog } from "./dialog";
 import { Icon } from "./icon";

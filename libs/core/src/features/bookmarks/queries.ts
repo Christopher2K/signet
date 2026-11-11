@@ -10,14 +10,13 @@ import {
   listBookmarksOptions,
   listBookmarksQueryKey,
 } from "@signet/api/react-query";
-import { useAuthApiContext } from "@signet/core/auth/react";
 import {
   type QueryClient,
   useQuery,
   useQueryClient,
 } from "@tanstack/react-query";
 import { useMemo } from "react";
-import { useAuth } from "#/features/auth";
+import { useAuth, useAuthApiContext } from "../auth/react";
 
 /** Returns a generated API client bound to the active session token. */
 export const useBookmarkClient = (): ApiClient => {

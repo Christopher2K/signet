@@ -10,10 +10,10 @@ import {
 import { useAuthApiContext } from "./auth-api-context";
 import { AuthContext } from "./auth-context";
 import { getAuthErrorMessage, isUnauthorized } from "./errors";
-import { useLoginMutation } from "./hooks/use-login-mutation";
-import { useLogoutMutation } from "./hooks/use-logout-mutation";
-import { useMeQuery } from "./hooks/use-me-query";
-import { useSignupMutation } from "./hooks/use-signup-mutation";
+import { useLoginMutation } from "./queries/use-login-mutation";
+import { useLogoutMutation } from "./queries/use-logout-mutation";
+import { useMeQuery } from "./queries/use-me-query";
+import { useSignupMutation } from "./queries/use-signup-mutation";
 import { normalizeServerUrl } from "./server-url";
 import type { SessionStorageAdapter } from "./session-storage.types";
 import type { AuthSession, AuthState } from "./types";

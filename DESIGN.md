@@ -13,7 +13,7 @@
 |---|---|---|
 | **Website** | P0 — defines v1 | This file for system + [design/web/web-pages-map.md](design/web/web-pages-map.md) for pages |
 | Browser extension | P0 | TBD |
-| Mobile (iOS/Android) | P0 | `design/client-designs.pen` §37–§40 (auth, library, session feedback) |
+| Mobile (iOS/Android) | P0 | `design/client-designs.pen` §37–§41 (auth, library, bookmark CRUD, session feedback) |
 
 Website is the primary manager: responsive (desktop + 390px), no install, email/password against a self-hosted server URL. If a feature works anywhere, it works on web first.
 
@@ -185,7 +185,9 @@ Native A1/A2 live in `design/client-designs.pen` §37–§38, with light and dar
 
 ### 3.6 Native library and session feedback
 
-Native L1 and the server-unavailable state live in `design/client-designs.pen` §39–§40. They mirror only the currently implemented `apps/web-client` `/` route and route guards. L1 uses a native navigation title and a bottom tab bar with **Library** (selected) and **Account**. Library contains only the empty-library message; Account owns the signed-in email and logout. §40 provides the saved-session retry. Do not add search, folders, bookmark creation, or other future web-map controls to these parity screens until those flows exist in the client. Logout uses the existing disabled button tokens while pending; session restoration remains covered by the native splash.
+Native L1 and the server-unavailable state live in `design/client-designs.pen` §39–§40. Native bookmark CRUD lives in §41 and mirrors the currently implemented `apps/web-client` `/` route. L1 uses a native navigation title and a bottom tab bar with **Library** (selected) and **Account**. The Library navigation bar owns the primary create action: a trailing native toolbar button with accessibility label **New Bookmark**. On iOS, use the `plus` SF Symbol in a prominent native button so iOS 26+ supplies Liquid Glass and earlier versions use the standard native appearance. On Android, use the native Compose icon button with a 24dp plus icon tinted `azure`/`azure-400`. Preserve system touch targets, pressed states, contrast, and reduce-transparency behavior rather than recreating the chrome with custom views. Do not duplicate the create button in the collection header or empty state. The action remains available in loading, empty, error, and populated states. Library shows the newest-first bookmark collection with loading, error, and empty states; each card opens the external link or a modal editor. Account owns the signed-in email and logout. §40 provides the saved-session retry.
+
+Native create and edit use full-screen modal forms with 48px controls, keyboard-avoiding scroll content, and safe-area-aware actions. Create checks the canonical URL before saving and presents **Already saved** with **Open existing** / **Save anyway**; a failed duplicate check still permits a deliberate save. Edit includes notes, tags, image override, timestamps, and a platform confirmation before permanent deletion. Successful mutations update the visible collection without a manual refresh. Do not add search, folders, offline queues, or other future controls to these parity screens until those flows exist in the client. Logout uses the existing disabled button tokens while pending; session restoration remains covered by the native splash.
 
 ---
 

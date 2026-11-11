@@ -1,12 +1,15 @@
 import type { Bookmark } from "@signet/api";
 import { deleteBookmarkMutation } from "@signet/api/react-query";
+import { getBookmarkError } from "@signet/core/bookmarks";
+import {
+  cacheDeletedBookmark,
+  useBookmarkClient,
+} from "@signet/core/bookmarks/react";
 import { Button, Typography } from "@signet/design-system";
 import { colors, radii, spacing } from "@signet/design-system/tokens.css";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { css, html } from "react-strict-dom";
-import { getBookmarkError } from "../bookmark-errors";
-import { cacheDeletedBookmark, useBookmarkClient } from "../use-bookmarks";
 import { Dialog } from "./dialog";
 
 /** Delete confirmation properties. */

@@ -1,4 +1,4 @@
-import type { CreateBookmarkRequest } from "@signet/api";
+import type { Bookmark, CreateBookmarkRequest } from "@signet/api";
 
 /** Editable bookmark fields shown by the create and edit forms. */
 export type BookmarkFormValues = {
@@ -33,6 +33,17 @@ const isHttpUrl = (value: string): boolean => {
     return false;
   }
 };
+
+/** Converts a saved bookmark into editable form values. */
+export const bookmarkToFormValues = (
+  bookmark: Bookmark,
+): BookmarkFormValues => ({
+  image: bookmark.image ?? "",
+  notes: bookmark.notes ?? "",
+  tags: bookmark.tags.join(", "),
+  title: bookmark.title,
+  url: bookmark.url,
+});
 
 /** Normalizes free-form tags for case-insensitive filtering. */
 export const normalizeTags = (value: string): string[] => {
