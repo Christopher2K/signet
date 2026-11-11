@@ -16,7 +16,7 @@ import {
   useQueryClient,
 } from "@tanstack/react-query";
 import { useMemo } from "react";
-import { useAuth, useAuthApiContext } from "../auth/react";
+import { useAuth, useAuthApiContext } from "../auth/auth-react";
 
 /** Returns a generated API client bound to the active session token. */
 export const useBookmarkClient = (): ApiClient => {

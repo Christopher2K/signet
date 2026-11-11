@@ -1,5 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import type { SessionStorageAdapter } from "./session-storage.types";
+import type { SessionStorageAdapter } from "./auth-session-storage.types";
 
 const sessionTokenKey = "signet.session.token";
 const serverUrlKey = "signet.session.server-url";

@@ -1,4 +1,4 @@
-export { getBookmarkError } from "./errors";
+export { getBookmarkError } from "./bookmarks-errors";
 export {
   type BookmarkFormErrors,
   type BookmarkFormValues,
@@ -8,4 +8,4 @@ export {
   normalizeTags,
   toBookmarkRequest,
   validateBookmark,
-} from "./validation";
+} from "./bookmarks-validation";

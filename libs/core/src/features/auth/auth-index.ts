@@ -1,15 +1,15 @@
-export { type CreateAuthApiOptions, createAuthApi } from "./api";
+export { type CreateAuthApiOptions, createAuthApi } from "./auth-api";
 export {
   AuthError,
   type AuthErrorKind,
   getAuthErrorMessage,
   isUnauthorized,
   toAuthError,
-} from "./errors";
+} from "./auth-errors";
 export {
   normalizeServerUrl,
   validateServerUrl,
-} from "./server-url";
+} from "./auth-server-url";
 export type {
   AuthApi,
   AuthContextValue,
@@ -18,9 +18,9 @@ export type {
   LoginValues,
   ServerSelection,
   SignupValues,
-} from "./types";
+} from "./auth-types";
 export {
   type FormFieldErrors,
   validateLogin,
   validateSignup,
-} from "./validation";
+} from "./auth-validation";

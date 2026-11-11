@@ -9,14 +9,16 @@ import {
 } from "react";
 import { useAuthApiContext } from "./auth-api-context";
 import { AuthContext } from "./auth-context";
-import { getAuthErrorMessage, isUnauthorized } from "./errors";
-import { useLoginMutation } from "./queries/use-login-mutation";
-import { useLogoutMutation } from "./queries/use-logout-mutation";
-import { useMeQuery } from "./queries/use-me-query";
-import { useSignupMutation } from "./queries/use-signup-mutation";
-import { normalizeServerUrl } from "./server-url";
-import type { SessionStorageAdapter } from "./session-storage.types";
-import type { AuthSession, AuthState } from "./types";
+import { getAuthErrorMessage, isUnauthorized } from "./auth-errors";
+import {
+  useLoginMutation,
+  useLogoutMutation,
+  useMeQuery,
+  useSignupMutation,
+} from "./auth-queries";
+import { normalizeServerUrl } from "./auth-server-url";
+import type { SessionStorageAdapter } from "./auth-session-storage.types";
+import type { AuthSession, AuthState } from "./auth-types";
 
 /** Session provider properties. */
 type AuthSessionProviderProps = {

@@ -1,10 +1,10 @@
 import { type ReactNode, useCallback, useMemo, useRef } from "react";
-import { createAuthApi } from "./api";
+import { createAuthApi } from "./auth-api";
 import { AuthApiContext } from "./auth-api-context";
 import { AuthSessionProvider } from "./auth-session-provider";
-import { sessionStorage as platformSessionStorage } from "./session-storage";
-import type { SessionStorageAdapter } from "./session-storage.types";
-import type { AuthApi } from "./types";
+import { sessionStorage as platformSessionStorage } from "./auth-session-storage";
+import type { SessionStorageAdapter } from "./auth-session-storage.types";
+import type { AuthApi } from "./auth-types";
 
 /** Authentication provider properties shared by every configuration. */
 type AuthProviderBaseProps = {

@@ -1,6 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import { sessionStorage } from "./session-storage.native";
+import { sessionStorage } from "./auth-session-storage.native";
 
 vi.mock("@react-native-async-storage/async-storage", () => ({
   default: {

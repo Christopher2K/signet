@@ -4,7 +4,7 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 import {
   type BrowserSessionStorage,
   createWebSessionStorage,
-} from "./session-storage.web";
+} from "./auth-session-storage.web";
 
 const createStorage = (): BrowserSessionStorage => {
   const values = new Map<string, string>();

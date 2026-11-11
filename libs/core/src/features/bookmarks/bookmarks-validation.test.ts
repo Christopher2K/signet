@@ -5,7 +5,7 @@ import {
   getBookmarkHostname,
   toBookmarkRequest,
   validateBookmark,
-} from "./validation";
+} from "./bookmarks-validation";
 
 describe("bookmark validation", () => {
   it("requires a title and valid HTTP(S) URLs", () => {

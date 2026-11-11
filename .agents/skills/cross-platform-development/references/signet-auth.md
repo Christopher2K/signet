@@ -7,17 +7,17 @@ This reference records the architecture established for shared authentication. R
 ### Shared package
 
 - `libs/core/package.json` — source exports for `@signet/core/auth` and `@signet/core/auth/react`, plus optional React/platform peers.
-- `libs/core/src/features/auth/api.ts` — generated-client adapter with injected base URL, token callback, and optional fetch.
-- `libs/core/src/features/auth/errors.ts` — stable API/network error categories and messages.
-- `libs/core/src/features/auth/types.ts` — shared API, credential, session-state, and context contracts.
-- `libs/core/src/features/auth/validation.ts` — common email, name, and password rules.
-- `libs/core/src/features/auth/server-url.ts` — pure HTTP/HTTPS URL normalization and validation.
+- `libs/core/src/features/auth/auth-api.ts` — generated-client adapter with injected base URL, token callback, and optional fetch.
+- `libs/core/src/features/auth/auth-errors.ts` — stable API/network error categories and messages.
+- `libs/core/src/features/auth/auth-types.ts` — shared API, credential, session-state, and context contracts.
+- `libs/core/src/features/auth/auth-validation.ts` — common email, name, and password rules.
+- `libs/core/src/features/auth/auth-server-url.ts` — pure HTTP/HTTPS URL normalization and validation.
 - `libs/core/src/features/auth/auth-provider.tsx` — API/storage configuration and provider composition.
 - `libs/core/src/features/auth/auth-session-provider.tsx` — shared React Query session lifecycle and operation ordering.
-- `libs/core/src/features/auth/queries/` — shared login, signup, logout, and current-user hooks.
-- `libs/core/src/features/auth/session-storage.types.ts` — common asynchronous persistence contract.
-- `libs/core/src/features/auth/session-storage.native.ts` — AsyncStorage token and selected-server adapter.
-- `libs/core/src/features/auth/session-storage.web.ts` — guarded browser localStorage adapter.
+- `libs/core/src/features/auth/auth-queries.ts` — shared login, signup, logout, and current-user hooks.
+- `libs/core/src/features/auth/auth-session-storage.types.ts` — common asynchronous persistence contract.
+- `libs/core/src/features/auth/auth-session-storage.native.ts` — AsyncStorage token and selected-server adapter.
+- `libs/core/src/features/auth/auth-session-storage.web.ts` — guarded browser localStorage adapter.
 
 ### Native composition
 
@@ -50,14 +50,14 @@ The native adapter currently uses AsyncStorage. Product requirement M-06 calls f
 
 ## Test Map
 
-- `api.test.ts` — API URLs, response envelopes, bearer authentication, and error normalization.
-- `errors.test.ts` — stable messages, validation fields, network failures, and unexpected-error redaction.
-- `validation.test.ts` — shared credential rules.
-- `server-url.test.ts` — normalization, protocols, credentials, query strings, fragments, and malformed URLs.
-- `session-storage.web.test.ts` — browser round trips and blocked storage access.
-- `session-storage.native.test.ts` — token/server persistence, token-only clearing, and native read failures.
+- `auth-api.test.ts` — API URLs, response envelopes, bearer authentication, and error normalization.
+- `auth-errors.test.ts` — stable messages, validation fields, network failures, and unexpected-error redaction.
+- `auth-validation.test.ts` — shared credential rules.
+- `auth-server-url.test.ts` — normalization, protocols, credentials, query strings, fragments, and malformed URLs.
+- `auth-session-storage.web.test.ts` — browser round trips and blocked storage access.
+- `auth-session-storage.native.test.ts` — token/server persistence, token-only clearing, and native read failures.
 - `auth-provider.test.tsx` — restoration, server selection, persistence failures, unauthorized cleanup, and deferred concurrency cases.
-- `queries/use-me-query.test.tsx` — verifies that the query function and query key use the same server.
+- `auth-queries.test.tsx` — verifies that the query function and query key use the same server.
 
 Keep provider tests independent of real native/browser storage by injecting API and storage adapters. Use deferred promises to control operation ordering explicitly.
 

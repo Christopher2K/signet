@@ -3,9 +3,9 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { cleanup, render } from "@testing-library/react";
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { AuthProvider } from "../auth-provider";
-import type { SessionStorageAdapter } from "../session-storage.types";
-import { useMeQuery } from "./use-me-query";
+import { AuthProvider } from "./auth-provider";
+import { useMeQuery } from "./auth-queries";
+import type { SessionStorageAdapter } from "./auth-session-storage.types";
 
 const emptyStorage: SessionStorageAdapter = {
   readStoredSession: async () => ({ token: null, serverUrl: null }),

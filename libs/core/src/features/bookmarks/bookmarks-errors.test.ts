@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { getBookmarkError } from "./errors";
+import { getBookmarkError } from "./bookmarks-errors";
 
 describe("getBookmarkError", () => {
   it("extracts API field errors", () => {

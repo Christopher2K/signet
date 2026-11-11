@@ -1,4 +1,4 @@
-import type { SessionStorageAdapter } from "./session-storage.types";
+import type { SessionStorageAdapter } from "./auth-session-storage.types";
 
 const sessionTokenKey = "signet.session.token";
 

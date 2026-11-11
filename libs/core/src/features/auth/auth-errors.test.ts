@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { AuthError, toAuthError } from "./errors";
+import { AuthError, toAuthError } from "./auth-errors";
 
 describe("toAuthError", () => {
   it("preserves the exact invalid-credentials message", () => {

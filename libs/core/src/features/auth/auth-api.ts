@@ -5,8 +5,8 @@ import {
   logout,
   signup,
 } from "@signet/api";
-import { toAuthError } from "./errors";
-import type { AuthApi } from "./types";
+import { toAuthError } from "./auth-errors";
+import type { AuthApi } from "./auth-types";
 
 /** Runtime dependencies for the auth API. */
 export type CreateAuthApiOptions = {

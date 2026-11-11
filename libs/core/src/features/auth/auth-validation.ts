@@ -1,4 +1,4 @@
-import type { LoginValues, SignupValues } from "./types";
+import type { LoginValues, SignupValues } from "./auth-types";
 
 /** Field-specific client validation messages. */
 export type FormFieldErrors<TValues> = Partial<Record<keyof TValues, string>>;

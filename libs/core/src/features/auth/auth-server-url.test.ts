@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { normalizeServerUrl, validateServerUrl } from "./server-url";
+import { normalizeServerUrl, validateServerUrl } from "./auth-server-url";
 
 describe("normalizeServerUrl", () => {
   it("trims whitespace and trailing slashes", () => {

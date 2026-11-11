@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
-import { createAuthApi } from "./api";
-import type { AuthError } from "./errors";
+import { createAuthApi } from "./auth-api";
+import type { AuthError } from "./auth-errors";
 
 const user = {
   email: "name@example.com",

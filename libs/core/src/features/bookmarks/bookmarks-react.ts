@@ -9,4 +9,4 @@ export {
   useBookmarkClient,
   useBookmarks,
   useInvalidateBookmarks,
-} from "./queries";
+} from "./bookmarks-queries";

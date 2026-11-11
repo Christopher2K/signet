@@ -4,13 +4,13 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { useAuth } from "./auth-context";
+import { AuthError } from "./auth-errors";
 import { AuthProvider } from "./auth-provider";
-import { AuthError } from "./errors";
 import type {
   SessionStorageAdapter,
   StoredSession,
-} from "./session-storage.types";
-import type { AuthApi } from "./types";
+} from "./auth-session-storage.types";
+import type { AuthApi } from "./auth-types";
 
 const user = {
   email: "name@example.com",

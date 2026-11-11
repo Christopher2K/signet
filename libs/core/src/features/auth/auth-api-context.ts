@@ -1,5 +1,5 @@
 import { createContext, type RefObject, useContext } from "react";
-import type { AuthApi } from "./types";
+import type { AuthApi } from "./auth-types";
 
 /** API dependencies shared by the auth provider and mutation hooks. */
 export type AuthApiContextValue = {

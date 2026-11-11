@@ -5,20 +5,20 @@
   "type": "module",
   "exports": {
     "./auth": {
-      "types": "./src/features/auth/index.ts",
-      "default": "./src/features/auth/index.ts"
+      "types": "./src/features/auth/auth-index.ts",
+      "default": "./src/features/auth/auth-index.ts"
     },
     "./auth/react": {
-      "types": "./src/features/auth/react.ts",
-      "default": "./src/features/auth/react.ts"
+      "types": "./src/features/auth/auth-react.ts",
+      "default": "./src/features/auth/auth-react.ts"
     },
     "./bookmarks": {
-      "types": "./src/features/bookmarks/index.ts",
-      "default": "./src/features/bookmarks/index.ts"
+      "types": "./src/features/bookmarks/bookmarks-index.ts",
+      "default": "./src/features/bookmarks/bookmarks-index.ts"
     },
     "./bookmarks/react": {
-      "types": "./src/features/bookmarks/react.ts",
-      "default": "./src/features/bookmarks/react.ts"
+      "types": "./src/features/bookmarks/bookmarks-react.ts",
+      "default": "./src/features/bookmarks/bookmarks-react.ts"
     }
   },
   "files": [

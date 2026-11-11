@@ -49,18 +49,20 @@ Organize core by feature, not by technical layer:
 
 ```text
 libs/core/src/features/<feature>/
-├── index.ts                 # Pure feature entry point
-├── react.ts                 # Optional React entry point
-├── api.ts
-├── errors.ts
-├── types.ts
-├── validation.ts
-├── queries/
-├── <provider>.tsx
-├── <resource>-storage.types.ts
-├── <resource>-storage.native.ts
-└── <resource>-storage.web.ts
+├── <feature>-index.ts                 # Pure feature entry point
+├── <feature>-react.ts                 # Optional React entry point
+├── <feature>-api.ts
+├── <feature>-errors.ts
+├── <feature>-types.ts
+├── <feature>-validation.ts
+├── <feature>-queries.ts
+├── <feature>-<provider>.tsx
+├── <feature>-<resource>-storage.types.ts
+├── <feature>-<resource>-storage.native.ts
+└── <feature>-<resource>-storage.web.ts
 ```
+
+Prefix every file in a feature directory with `<feature>-`, including entry points and tests, so fuzzy file searches stay unambiguous. Keep related query and mutation hooks together in `<feature>-queries.ts` rather than a `queries/` directory. Map public package subpaths to the prefixed entry files explicitly.
 
 Expose deliberate package subpaths:
 

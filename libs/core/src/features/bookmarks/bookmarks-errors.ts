@@ -1,4 +1,4 @@
-import type { BookmarkFormErrors } from "./validation";
+import type { BookmarkFormErrors } from "./bookmarks-validation";
 
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   typeof value === "object" && value !== null;
