@@ -11,6 +11,7 @@ import {
   useBookmarkClient,
 } from "@signet/core/bookmarks/react";
 import { Button, Typography } from "@signet/design-system";
+import { useLocale, useTranslation } from "@signet/locale/react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useEffect, useRef, useState } from "react";
@@ -18,11 +19,11 @@ import { Alert } from "react-native";
 import { BookmarkForm } from "../../../../features/library/components/bookmark-form";
 import { BookmarkScreenLayout } from "../../../../features/library/components/bookmark-screen-layout";
 
-const formatTimestamp = (value: string): string => {
+const formatTimestamp = (value: string, locale: string): string | undefined => {
   const date = new Date(value);
   return Number.isNaN(date.getTime())
-    ? "Unavailable"
-    : new Intl.DateTimeFormat(undefined, {
+    ? undefined
+    : new Intl.DateTimeFormat(locale, {
         dateStyle: "medium",
         timeStyle: "short",
       }).format(date);
@@ -31,6 +32,8 @@ const formatTimestamp = (value: string): string => {
 const EditBookmarkScreen = () => {
   const { id } = useLocalSearchParams<{ id: string }>();
   const router = useRouter();
+  const { locale } = useLocale();
+  const { t } = useTranslation("mobile");
   const client = useBookmarkClient();
   const queryClient = useQueryClient();
   const bookmarkQuery = useBookmark(id);
@@ -71,12 +74,12 @@ const EditBookmarkScreen = () => {
       return;
     }
     Alert.alert(
-      "Delete Bookmark",
-      `Permanently remove “${bookmark.title}” from your library? This cannot be undone.`,
+      t("library.deleteTitle"),
+      t("library.deleteMessage", { title: bookmark.title }),
       [
-        { text: "Cancel", style: "cancel" },
+        { text: t("actions.cancel"), style: "cancel" },
         {
-          text: "Delete",
+          text: t("actions.delete"),
           style: "destructive",
           onPress: () => void handleDelete(),
         },
@@ -95,22 +98,31 @@ const EditBookmarkScreen = () => {
     <BookmarkScreenLayout>
       {bookmarkQuery.isPending ? (
         <Typography role="status" tone="secondary">
-          Loading bookmark…
+          {t("library.loadingBookmark")}
         </Typography>
       ) : bookmarkQuery.isError ? (
         <>
           <Typography role="alert" tone="danger">
-            {getBookmarkError(bookmarkQuery.error).message}
+            {t(getBookmarkError(bookmarkQuery.error).message)}
           </Typography>
           <Button onClick={() => void bookmarkQuery.refetch()}>
-            Try again
+            {t("actions.tryAgain")}
           </Button>
         </>
       ) : bookmark ? (
         <>
           <Typography tone="secondary" variant="caption">
-            Created {formatTimestamp(bookmark.createdAt)} · Updated{" "}
-            {formatTimestamp(bookmark.updatedAt)}
+            {t("library.createdOn", {
+              date:
+                formatTimestamp(bookmark.createdAt, locale) ??
+                t("library.timestampUnavailable"),
+            })}{" "}
+            ·{" "}
+            {t("library.updatedOn", {
+              date:
+                formatTimestamp(bookmark.updatedAt, locale) ??
+                t("library.timestampUnavailable"),
+            })}
           </Typography>
           <BookmarkForm
             deleteError={deleteError}
@@ -120,7 +132,7 @@ const EditBookmarkScreen = () => {
             onCancel={() => router.back()}
             onDelete={confirmDelete}
             onSubmit={handleSubmit}
-            submitLabel="Save changes"
+            submitLabel={t("actions.saveChanges")}
           />
         </>
       ) : null}

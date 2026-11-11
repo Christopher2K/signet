@@ -1,3 +1,4 @@
+import { createApiClient, currentUser } from "@signet/api";
 import { describe, expect, it, vi } from "vitest";
 import { createAuthApi } from "./auth-api";
 import type { AuthError } from "./auth-errors";
@@ -39,6 +40,7 @@ describe("auth API", () => {
     expect((request as Request).url).toBe(
       "https://bookmarks.example.com/api/v1/auth/signup",
     );
+    expect((request as Request).headers.get("Accept-Language")).toBe("en");
   });
 
   it("returns the current user with a bearer authorization header", async () => {
@@ -54,6 +56,44 @@ describe("auth API", () => {
     await expect(api.currentUser()).resolves.toEqual(user);
     const request = fetchMock.mock.calls[0]?.[0] as Request;
     expect(request.headers.get("Authorization")).toBe("Bearer saved-token");
+  });
+
+  it("uses the current language on every request", async () => {
+    let language = "fr";
+    const fetchMock = vi
+      .fn<typeof fetch>()
+      .mockImplementation(async () => jsonResponse({ data: user }));
+    const api = createAuthApi({
+      baseUrl: "https://bookmarks.example.com",
+      fetch: fetchMock,
+      getLanguage: () => language,
+      getToken: () => "saved-token",
+    });
+
+    await api.currentUser();
+    language = "en";
+    await api.currentUser();
+
+    const firstRequest = fetchMock.mock.calls[0]?.[0] as Request;
+    const secondRequest = fetchMock.mock.calls[1]?.[0] as Request;
+    expect(firstRequest.headers.get("Accept-Language")).toBe("fr");
+    expect(secondRequest.headers.get("Accept-Language")).toBe("en");
+  });
+
+  it("preserves an explicit request language", async () => {
+    const fetchMock = vi
+      .fn<typeof fetch>()
+      .mockResolvedValue(jsonResponse({ data: user }));
+    const client = createApiClient({
+      baseUrl: "https://bookmarks.example.com",
+      fetch: fetchMock,
+      getLanguage: () => "fr",
+    });
+
+    await currentUser({ client, headers: { "Accept-Language": "en" } });
+
+    const request = fetchMock.mock.calls[0]?.[0] as Request;
+    expect(request.headers.get("Accept-Language")).toBe("en");
   });
 
   it("normalizes invalid login responses", async () => {

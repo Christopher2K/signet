@@ -12,6 +12,13 @@ This is a multi repo for the Signet application ecosystem.
   - The web app is built with TanStack Start, React, and Vite.
 - `libs` contains all shared libraries that clients can reuse.
 
+## Internationalization
+
+Everything user-facing must be translated into English (`en`) and French (`fr`). Never introduce hard-coded user-facing text or leave a message in only one language. This includes labels, placeholders, accessibility text, loading and empty states, validation, errors, alerts, and native metadata when applicable.
+
+- Use the `client-internationalization` skill for mobile, web, and shared client messages, locale detection and formatting, and API language propagation.
+- Use the `api-internationalization` skill for Phoenix messages, Gettext catalogs, and request locale negotiation.
+
 ## API client generation
 
 Whenever you add, change, or remove an API endpoint or its request/response schemas, regenerate the OpenAPI document and shared TypeScript client before finishing:

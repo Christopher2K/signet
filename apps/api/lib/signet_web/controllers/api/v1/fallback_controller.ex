@@ -10,11 +10,15 @@ defmodule SignetWeb.API.V1.FallbackController do
   @doc "Renders a domain error as JSON."
   @spec call(Plug.Conn.t(), error()) :: Plug.Conn.t()
   def call(conn, {:error, :invalid_credentials}) do
-    error(conn, :unauthorized, ErrorJSON.error("invalid_credentials", "Invalid credentials"))
+    error(
+      conn,
+      :unauthorized,
+      ErrorJSON.error("invalid_credentials", gettext("Invalid credentials"))
+    )
   end
 
   def call(conn, {:error, :not_found}) do
-    error(conn, :not_found, ErrorJSON.error("not_found", "Resource not found"))
+    error(conn, :not_found, ErrorJSON.error("not_found", gettext("Resource not found")))
   end
 
   def call(conn, {:error, %Ecto.Changeset{} = changeset}) do

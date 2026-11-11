@@ -11,6 +11,7 @@ import {
 } from "@signet/core/bookmarks/react";
 import { Button, Typography } from "@signet/design-system";
 import { colors, radii, spacing } from "@signet/design-system/tokens.css";
+import { useTranslation } from "@signet/locale/react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { css, html } from "react-strict-dom";
@@ -33,6 +34,7 @@ export const CreateBookmarkDialog = ({
   onClose,
   onOpenExisting,
 }: CreateBookmarkDialogProps) => {
+  const { t } = useTranslation("web");
   const client = useBookmarkClient();
   const queryClient = useQueryClient();
   const mutation = useMutation(createBookmarkMutation({ client }));
@@ -111,9 +113,9 @@ export const CreateBookmarkDialog = ({
       title={
         warning
           ? warning.checkFailed
-            ? "Couldn't check for duplicates"
-            : "Already saved"
-          : "New Bookmark"
+            ? t("library.create.duplicateCheckFailedTitle")
+            : t("library.create.duplicateTitle")
+          : t("actions.newBookmark")
       }
     >
       {warning ? (
@@ -122,8 +124,8 @@ export const CreateBookmarkDialog = ({
             <Icon name="warning" size={24} />
             <Typography as="p" style={styles.message} tone="secondary">
               {warning.checkFailed
-                ? "We couldn't check whether this link is already saved. You can return to the form or save it anyway."
-                : "This link is already in your library."}
+                ? t("library.create.duplicateCheckFailedMessage")
+                : t("library.create.duplicateMessage")}
             </Typography>
           </html.div>
           <html.div style={styles.linkPreview}>
@@ -133,7 +135,7 @@ export const CreateBookmarkDialog = ({
           </html.div>
           {warningError ? (
             <Typography role="alert" tone="danger">
-              {warningError}
+              {t(warningError)}
             </Typography>
           ) : null}
           <html.div style={styles.warningActions}>
@@ -142,7 +144,7 @@ export const CreateBookmarkDialog = ({
               onClick={() => setWarning(undefined)}
               variant="secondary"
             >
-              Back to form
+              {t("actions.backToForm")}
             </Button>
             {existing ? (
               <Button
@@ -150,29 +152,33 @@ export const CreateBookmarkDialog = ({
                 onClick={() => onOpenExisting(existing.id)}
                 variant="secondary"
               >
-                Open existing
+                {t("actions.openExisting")}
               </Button>
             ) : null}
             <Button
               disabled={savingAnyway}
               onClick={() => void handleSaveAnyway()}
             >
-              {savingAnyway ? "Saving…" : "Save anyway"}
+              {savingAnyway
+                ? t("library.form.saving")
+                : t("actions.saveAnyway")}
             </Button>
           </html.div>
         </html.div>
       ) : (
         <>
           <Typography as="p" tone="secondary" variant="caption">
-            Add a link with a title, artwork, notes, and tags.
+            {t("library.create.description")}
           </Typography>
           <BookmarkForm
             idPrefix="create-bookmark"
             initialValues={initialValues}
             onCancel={handleClose}
             onSubmit={handleSubmit}
-            pendingLabel={checking ? "Checking…" : "Saving…"}
-            submitLabel="Save"
+            pendingLabel={
+              checking ? t("library.create.checking") : t("library.form.saving")
+            }
+            submitLabel={t("actions.save")}
           />
         </>
       )}

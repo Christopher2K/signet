@@ -2,10 +2,12 @@ import {
   nativeFontFamily,
   useNativeTheme,
 } from "@signet/design-system/native-theme";
+import { useTranslation } from "@signet/locale/react";
 import { NativeTabs } from "expo-router/native-tabs";
 
 const AppLayout = () => {
   const theme = useNativeTheme();
+  const { t } = useTranslation("mobile");
 
   return (
     <NativeTabs
@@ -29,11 +31,11 @@ const AppLayout = () => {
       tintColor={theme.primary}
     >
       <NativeTabs.Trigger name="(library)">
-        <NativeTabs.Trigger.Label children="Library" />
+        <NativeTabs.Trigger.Label children={t("navigation.library")} />
         <NativeTabs.Trigger.Icon sf="square.grid.2x2" md="grid_view" />
       </NativeTabs.Trigger>
       <NativeTabs.Trigger name="(account)">
-        <NativeTabs.Trigger.Label children="Account" />
+        <NativeTabs.Trigger.Label children={t("navigation.account")} />
         <NativeTabs.Trigger.Icon sf="person" md="person" />
       </NativeTabs.Trigger>
     </NativeTabs>

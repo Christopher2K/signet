@@ -1,16 +1,19 @@
+import { useTranslation } from "@signet/locale/react";
 import { createFileRoute } from "@tanstack/react-router";
 import { AuthLayout } from "#/features/auth/components/auth-layout";
 import { GuestRoute } from "#/features/auth/components/route-guards";
 import { SignupForm } from "#/features/auth/components/signup-form";
 
 const Signup = () => {
+  const { t } = useTranslation("web");
+
   return (
     <GuestRoute>
       <AuthLayout
-        footerLinkText="Log in"
+        footerLinkText={t("auth.signup.footerLink")}
         footerLinkTo="/login"
-        footerQuestion="Already have an account?"
-        title="Create account"
+        footerQuestion={t("auth.signup.footerQuestion")}
+        title={t("auth.signup.title")}
       >
         <SignupForm />
       </AuthLayout>

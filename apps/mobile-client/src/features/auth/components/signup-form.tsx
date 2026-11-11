@@ -2,6 +2,7 @@ import { normalizeServerUrl, toAuthError } from "@signet/core/auth";
 import { useAuth } from "@signet/core/auth/react";
 import { Button, TextField, Typography } from "@signet/design-system";
 import { nativeSpacing } from "@signet/design-system/native-theme";
+import { useTranslation } from "@signet/locale/react";
 import { useRouter } from "expo-router";
 import { useState } from "react";
 import { Keyboard, Pressable, StyleSheet } from "react-native";
@@ -12,6 +13,7 @@ import { type FormFieldErrors, validateSignup } from "../validation";
 export const SignupForm = () => {
   const router = useRouter();
   const { serverUrl, signup } = useAuth();
+  const { t } = useTranslation("mobile");
   const [values, setValues] = useState<SignupValues>(() => ({
     email: "",
     name: "",
@@ -73,9 +75,9 @@ export const SignupForm = () => {
           autoCapitalize="none"
           autoComplete="off"
           disabled={pending}
-          error={fieldErrors.serverUrl}
+          error={fieldErrors.serverUrl ? t(fieldErrors.serverUrl) : undefined}
           id="signup-server-url"
-          label="Server URL"
+          label={t("auth.serverUrl")}
           name="serverUrl"
           onValueChange={(value) => updateValue("serverUrl", value)}
           placeholder="https://signet.example.com"
@@ -87,13 +89,13 @@ export const SignupForm = () => {
         <TextField
           autoComplete="name"
           disabled={pending}
-          error={fieldErrors.name}
+          error={fieldErrors.name ? t(fieldErrors.name) : undefined}
           id="signup-name"
-          label="Name"
+          label={t("auth.name")}
           maxLength={100}
           name="name"
           onValueChange={(value) => updateValue("name", value)}
-          placeholder="Jane Doe"
+          placeholder={t("auth.namePlaceholder")}
           required
           style={strictStyles.input}
           type="text"
@@ -103,9 +105,9 @@ export const SignupForm = () => {
           autoCapitalize="none"
           autoComplete="email"
           disabled={pending}
-          error={fieldErrors.email}
+          error={fieldErrors.email ? t(fieldErrors.email) : undefined}
           id="signup-email"
-          label="Email"
+          label={t("auth.email")}
           name="email"
           onValueChange={(value) => updateValue("email", value)}
           placeholder="name@example.com"
@@ -118,9 +120,9 @@ export const SignupForm = () => {
           autoCapitalize="none"
           autoComplete="new-password"
           disabled={pending}
-          error={fieldErrors.password}
+          error={fieldErrors.password ? t(fieldErrors.password) : undefined}
           id="signup-password"
-          label="Password"
+          label={t("auth.password")}
           maxLength={128}
           name="password"
           onValueChange={(value) => updateValue("password", value)}
@@ -130,7 +132,7 @@ export const SignupForm = () => {
           value={values.password}
         />
         <Typography as="p" tone="secondary" variant="caption">
-          Use at least 12 characters.
+          {t("auth.passwordHint")}
         </Typography>
         {formError ? (
           <Typography
@@ -140,7 +142,7 @@ export const SignupForm = () => {
             tone="danger"
             variant="caption"
           >
-            {formError}
+            {t(formError)}
           </Typography>
         ) : null}
         <Button
@@ -149,7 +151,7 @@ export const SignupForm = () => {
           size="lg"
           style={strictStyles.submit}
         >
-          {pending ? "Creating account…" : "Create account"}
+          {pending ? t("auth.creatingAccount") : t("auth.createAccount")}
         </Button>
       </html.div>
       <Pressable
@@ -158,9 +160,9 @@ export const SignupForm = () => {
         style={({ pressed }) => [styles.footer, pressed && styles.pressed]}
       >
         <Typography tone="secondary">
-          Already have an account?{" "}
+          {t("auth.alreadyHaveAccount")}{" "}
           <Typography style={strictStyles.link} tone="accent">
-            Log in
+            {t("auth.logIn")}
           </Typography>
         </Typography>
       </Pressable>

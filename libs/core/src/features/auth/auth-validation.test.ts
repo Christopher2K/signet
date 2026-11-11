@@ -10,15 +10,15 @@ describe("validateLogin", () => {
 
   it("requires an email and password", () => {
     expect(validateLogin({ email: "", password: "" })).toEqual({
-      email: "Email is required.",
-      password: "Password is required.",
+      email: "common:validation.emailRequired",
+      password: "common:validation.passwordRequired",
     });
   });
 
   it("rejects malformed email addresses", () => {
     expect(
       validateLogin({ email: "not-an-email", password: "secret" }).email,
-    ).toBe("Enter a valid email address.");
+    ).toBe("common:validation.emailInvalid");
   });
 
   it("supports Standard Schema validation", async () => {
@@ -52,7 +52,7 @@ describe("validateSignup", () => {
         name: "   ",
         password: "a secure password",
       }).name,
-    ).toBe("Name is required.");
+    ).toBe("common:validation.nameRequired");
   });
 
   it("enforces the API password length constraints", () => {
@@ -62,7 +62,7 @@ describe("validateSignup", () => {
         name: "Jane Doe",
         password: "short",
       }).password,
-    ).toBe("Password must be at least 12 characters.");
+    ).toBe("common:validation.passwordTooShort");
 
     expect(
       validateSignup({
@@ -70,6 +70,6 @@ describe("validateSignup", () => {
         name: "Jane Doe",
         password: "x".repeat(129),
       }).password,
-    ).toBe("Password must be 128 characters or fewer.");
+    ).toBe("common:validation.passwordTooLong");
   });
 });

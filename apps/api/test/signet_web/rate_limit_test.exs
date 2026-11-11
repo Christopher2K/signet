@@ -15,4 +15,13 @@ defmodule SignetWeb.RateLimitTest do
              "error" => %{"code" => "too_many_requests", "message" => "Too many requests"}
            }
   end
+
+  test "returns a localized JSON 429 response when throttled" do
+    Gettext.put_locale(SignetWeb.Gettext, "fr")
+    conn = RateLimit.block_action(build_conn(), {:throttle, []}, [])
+
+    assert json_response(conn, 429) == %{
+             "error" => %{"code" => "too_many_requests", "message" => "Trop de requêtes"}
+           }
+  end
 end

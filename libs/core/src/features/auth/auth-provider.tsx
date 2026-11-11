@@ -1,3 +1,4 @@
+import { useLocale } from "@signet/locale/react";
 import { type ReactNode, useCallback, useMemo, useRef } from "react";
 import { createAuthApi } from "./auth-api";
 import { AuthApiContext } from "./auth-api-context";
@@ -37,6 +38,7 @@ export const AuthProvider = ({
   requireStoredServerUrl = false,
   storage = platformSessionStorage,
 }: AuthProviderProps) => {
+  const { getLocale } = useLocale();
   const tokenRef = useRef<string | null>(null);
   const serverUrlRef = useRef(defaultServerUrl);
   const getApi = useCallback(
@@ -44,9 +46,10 @@ export const AuthProvider = ({
       api ??
       createAuthApi({
         baseUrl,
+        getLanguage: getLocale,
         getToken: () => tokenRef.current,
       }),
-    [api],
+    [api, getLocale],
   );
   const apiContext = useMemo(
     () => ({ defaultServerUrl, getApi, serverUrlRef, tokenRef }),

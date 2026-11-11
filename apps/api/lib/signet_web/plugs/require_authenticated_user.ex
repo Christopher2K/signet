@@ -3,6 +3,8 @@ defmodule SignetWeb.Plugs.RequireAuthenticatedUser do
 
   import Plug.Conn
 
+  use Gettext, backend: SignetWeb.Gettext
+
   alias Signet.Accounts
   alias SignetWeb.API.V1.ErrorJSON
 
@@ -31,7 +33,7 @@ defmodule SignetWeb.Plugs.RequireAuthenticatedUser do
 
   @spec unauthorized(Plug.Conn.t()) :: Plug.Conn.t()
   defp unauthorized(conn) do
-    body = ErrorJSON.error("unauthorized", "Authentication required")
+    body = ErrorJSON.error("unauthorized", gettext("Authentication required"))
 
     conn
     |> put_resp_header("www-authenticate", "Bearer")

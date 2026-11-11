@@ -29,14 +29,12 @@ describe("toAuthError", () => {
     const error = toAuthError(new TypeError("Failed to fetch"));
 
     expect(error.kind).toBe("unavailable");
-    expect(error.message).toBe(
-      "Cannot reach the server. Check your connection and try again.",
-    );
+    expect(error.message).toBe("common:errors.unavailable");
   });
 
   it("does not expose unexpected server details", () => {
     expect(toAuthError(new Error("Sensitive internals")).message).toBe(
-      "Something went wrong. Please try again.",
+      "common:errors.unknown",
     );
   });
 });

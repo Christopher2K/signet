@@ -7,6 +7,7 @@ import {
   spacing,
   Typography,
 } from "@signet/design-system";
+import { useLocale, useTranslation } from "@signet/locale/react";
 import { css, html } from "react-strict-dom";
 import { BookmarkArtwork } from "./bookmark-artwork";
 
@@ -17,11 +18,11 @@ type BookmarkCardProps = {
   onOpen: (url: string) => void;
 };
 
-const formatDate = (value: string): string => {
+const formatDate = (value: string, locale: string): string | undefined => {
   const date = new Date(value);
   return Number.isNaN(date.getTime())
-    ? "Date unavailable"
-    : new Intl.DateTimeFormat(undefined, { dateStyle: "medium" }).format(date);
+    ? undefined
+    : new Intl.DateTimeFormat(locale, { dateStyle: "medium" }).format(date);
 };
 
 export const BookmarkCard = ({
@@ -29,6 +30,8 @@ export const BookmarkCard = ({
   onEdit,
   onOpen,
 }: BookmarkCardProps) => {
+  const { locale } = useLocale();
+  const { t } = useTranslation("mobile");
   const edited = bookmark.updatedAt !== bookmark.createdAt;
 
   return (
@@ -48,7 +51,7 @@ export const BookmarkCard = ({
         <Typography style={styles.notes}>{bookmark.notes}</Typography>
       ) : null}
       {bookmark.tags.length > 0 ? (
-        <html.div aria-label="Tags" style={styles.tags}>
+        <html.div aria-label={t("library.tags")} style={styles.tags}>
           {bookmark.tags.map((tag) => (
             <Typography key={tag} style={styles.tag} variant="caption">
               {tag}
@@ -57,8 +60,18 @@ export const BookmarkCard = ({
         </html.div>
       ) : null}
       <Typography tone="secondary" variant="caption">
-        Saved {formatDate(bookmark.createdAt)}
-        {edited ? ` · Updated ${formatDate(bookmark.updatedAt)}` : ""}
+        {t("library.savedOn", {
+          date:
+            formatDate(bookmark.createdAt, locale) ??
+            t("library.dateUnavailable"),
+        })}
+        {edited
+          ? ` · ${t("library.updatedOn", {
+              date:
+                formatDate(bookmark.updatedAt, locale) ??
+                t("library.dateUnavailable"),
+            })}`
+          : ""}
       </Typography>
       <html.div style={styles.actions}>
         <Button
@@ -66,7 +79,7 @@ export const BookmarkCard = ({
           size="sm"
           style={styles.action}
         >
-          Open
+          {t("actions.open")}
         </Button>
         <Button
           onClick={() => onEdit(bookmark.id)}
@@ -74,7 +87,7 @@ export const BookmarkCard = ({
           style={styles.action}
           variant="secondary"
         >
-          Edit
+          {t("actions.edit")}
         </Button>
       </html.div>
     </html.div>

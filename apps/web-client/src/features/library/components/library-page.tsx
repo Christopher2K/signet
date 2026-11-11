@@ -3,6 +3,7 @@ import { getBookmarkError } from "@signet/core/bookmarks";
 import { useBookmarks } from "@signet/core/bookmarks/react";
 import { Button, Typography } from "@signet/design-system";
 import { colors, radii, spacing } from "@signet/design-system/tokens.css";
+import { useTranslation } from "@signet/locale/react";
 import { useState } from "react";
 import { css, html } from "react-strict-dom";
 import { BookmarkCard, type BookmarkView } from "./bookmark-card";
@@ -13,6 +14,7 @@ import { Icon } from "./icon";
 import { LibraryHeader } from "./library-header";
 
 export const LibraryPage = () => {
+  const { t } = useTranslation("web");
   const bookmarksQuery = useBookmarks();
   const [view, setView] = useState<BookmarkView>("list");
   const [creating, setCreating] = useState(false);
@@ -44,21 +46,21 @@ export const LibraryPage = () => {
         <html.div style={styles.headingRow}>
           <html.div style={styles.heading}>
             <Typography as="h1" variant="headline">
-              All Bookmarks
+              {t("library.allBookmarks")}
             </Typography>
             <Typography as="p" tone="secondary" variant="caption">
               {bookmarksQuery.isPending
-                ? "Loading your library"
-                : `${bookmarks.length} ${bookmarks.length === 1 ? "bookmark" : "bookmarks"} · Newest first`}
+                ? t("library.loadingLibrary")
+                : `${t("common:bookmarkCount", { count: bookmarks.length })} · ${t("library.newestFirst")}`}
             </Typography>
           </html.div>
           <html.div
-            aria-label="Bookmark layout"
+            aria-label={t("library.view.layout")}
             role="group"
             style={styles.viewToggle}
           >
             <html.button
-              aria-label="List view"
+              aria-label={t("library.view.listView")}
               aria-pressed={view === "list"}
               onClick={() => setView("list")}
               style={[
@@ -68,10 +70,12 @@ export const LibraryPage = () => {
               type="button"
             >
               <Icon name="list" />
-              <Typography variant="caption">List</Typography>
+              <Typography variant="caption">
+                {t("library.view.list")}
+              </Typography>
             </html.button>
             <html.button
-              aria-label="Grid view"
+              aria-label={t("library.view.gridView")}
               aria-pressed={view === "grid"}
               onClick={() => setView("grid")}
               style={[
@@ -81,7 +85,9 @@ export const LibraryPage = () => {
               type="button"
             >
               <Icon name="grid" />
-              <Typography variant="caption">Grid</Typography>
+              <Typography variant="caption">
+                {t("library.view.grid")}
+              </Typography>
             </html.button>
           </html.div>
         </html.div>
@@ -89,7 +95,7 @@ export const LibraryPage = () => {
         {bookmarksQuery.isPending ? (
           <html.section aria-busy={true} style={styles.list}>
             <Typography role="status" tone="secondary">
-              Loading bookmarks…
+              {t("library.loading")}
             </Typography>
             {[0, 1, 2].map((item) => (
               <html.div key={item} style={styles.skeleton}>
@@ -105,13 +111,13 @@ export const LibraryPage = () => {
         ) : bookmarksQuery.isError ? (
           <html.section role="alert" style={styles.state}>
             <Typography as="h2" variant="title">
-              Couldn't load your bookmarks
+              {t("library.loadError")}
             </Typography>
             <Typography as="p" style={styles.stateMessage} tone="secondary">
-              {getBookmarkError(bookmarksQuery.error).message}
+              {t(getBookmarkError(bookmarksQuery.error).message)}
             </Typography>
             <Button onClick={() => void bookmarksQuery.refetch()}>
-              Try again
+              {t("actions.tryAgain")}
             </Button>
           </html.section>
         ) : bookmarks.length === 0 ? (
@@ -120,19 +126,18 @@ export const LibraryPage = () => {
               <Icon name="bookmark" size={32} />
             </html.div>
             <Typography as="h2" variant="headline">
-              No bookmarks yet
+              {t("library.empty.title")}
             </Typography>
             <Typography as="p" style={styles.stateMessage} tone="secondary">
-              Add your first bookmark by link. Your notes and tags will live
-              here too.
+              {t("library.empty.description")}
             </Typography>
             <Button onClick={() => setCreating(true)} size="lg">
-              New Bookmark
+              {t("actions.newBookmark")}
             </Button>
           </html.section>
         ) : (
           <html.section
-            aria-label="Saved bookmarks"
+            aria-label={t("library.savedBookmarks")}
             style={[styles.list, view === "grid" && styles.grid]}
           >
             {bookmarks.map((bookmark) => (

@@ -2,6 +2,7 @@ import type { Bookmark } from "@signet/api";
 import { getBookmarkHostname } from "@signet/core/bookmarks";
 import { Typography } from "@signet/design-system";
 import { colors, radii, spacing } from "@signet/design-system/tokens.css";
+import { useLocale, useTranslation } from "@signet/locale/react";
 import { css, html } from "react-strict-dom";
 import { BookmarkArtwork } from "./bookmark-artwork";
 import { Icon } from "./icon";
@@ -16,14 +17,20 @@ export type BookmarkCardProps = {
   view: BookmarkView;
 };
 
-const formatDate = (value: string): string => {
+const formatDate = (
+  value: string,
+  locale: string,
+  unavailable: string,
+): string => {
   const date = new Date(value);
   return Number.isNaN(date.getTime())
-    ? "Date unavailable"
-    : new Intl.DateTimeFormat(undefined, { dateStyle: "medium" }).format(date);
+    ? unavailable
+    : new Intl.DateTimeFormat(locale, { dateStyle: "medium" }).format(date);
 };
 
 export const BookmarkCard = ({ bookmark, onEdit, view }: BookmarkCardProps) => {
+  const { locale } = useLocale();
+  const { t } = useTranslation("web");
   const edited = bookmark.updatedAt !== bookmark.createdAt;
 
   return (
@@ -43,7 +50,7 @@ export const BookmarkCard = ({ bookmark, onEdit, view }: BookmarkCardProps) => {
           </html.a>
           <html.div style={styles.actions}>
             <html.button
-              aria-label={`Edit ${bookmark.title}`}
+              aria-label={t("library.item.edit", { title: bookmark.title })}
               onClick={() => onEdit(bookmark.id)}
               style={styles.iconButton}
               type="button"
@@ -51,7 +58,7 @@ export const BookmarkCard = ({ bookmark, onEdit, view }: BookmarkCardProps) => {
               <Icon name="pencil" />
             </html.button>
             <html.a
-              aria-label={`Open ${bookmark.title} in a new tab`}
+              aria-label={t("library.item.open", { title: bookmark.title })}
               href={bookmark.url}
               rel="noreferrer"
               style={styles.iconButton}
@@ -75,7 +82,7 @@ export const BookmarkCard = ({ bookmark, onEdit, view }: BookmarkCardProps) => {
           </Typography>
         ) : null}
         {bookmark.tags.length > 0 ? (
-          <html.div aria-label="Tags" style={styles.tags}>
+          <html.div aria-label={t("library.item.tags")} style={styles.tags}>
             {bookmark.tags.map((tag) => (
               <Typography key={tag} style={styles.tag} variant="caption">
                 {tag}
@@ -84,8 +91,22 @@ export const BookmarkCard = ({ bookmark, onEdit, view }: BookmarkCardProps) => {
           </html.div>
         ) : null}
         <Typography as="p" tone="secondary" variant="caption">
-          Saved {formatDate(bookmark.createdAt)}
-          {edited ? ` · Updated ${formatDate(bookmark.updatedAt)}` : ""}
+          {t("library.item.saved", {
+            date: formatDate(
+              bookmark.createdAt,
+              locale,
+              t("library.item.dateUnavailable"),
+            ),
+          })}
+          {edited
+            ? ` · ${t("library.item.updated", {
+                date: formatDate(
+                  bookmark.updatedAt,
+                  locale,
+                  t("library.item.dateUnavailable"),
+                ),
+              })}`
+            : ""}
         </Typography>
       </html.div>
     </html.article>

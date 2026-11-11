@@ -12,6 +12,7 @@ catalog:
   "@types/react-dom": ^19.2.0
   react: 19.3.0
   react-dom: 19.3.0
+  react-i18next: ~18.0.1
   react-native: 0.88.1
   react-strict-dom: 0.0.55
   storybook: ^10.6.6

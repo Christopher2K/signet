@@ -12,6 +12,12 @@ defmodule SignetWeb.CORSTest do
 
     assert response(conn, 204)
     assert get_resp_header(conn, "access-control-allow-origin") == ["https://web.example.com"]
+
+    assert get_resp_header(conn, "access-control-allow-headers") == [
+             "Authorization,Content-Type,Accept-Language"
+           ]
+
+    assert get_resp_header(conn, "vary") == ["Origin, Accept-Language"]
   end
 
   test "does not allow unknown browser origins" do

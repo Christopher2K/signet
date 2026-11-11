@@ -2,10 +2,12 @@ import {
   nativeFontFamily,
   useNativeTheme,
 } from "@signet/design-system/native-theme";
+import { useTranslation } from "@signet/locale/react";
 import { Stack } from "expo-router";
 
 const LibraryLayout = () => {
   const theme = useNativeTheme();
+  const { t } = useTranslation("mobile");
 
   return (
     <Stack
@@ -20,14 +22,20 @@ const LibraryLayout = () => {
         },
       }}
     >
-      <Stack.Screen name="index" options={{ title: "Library" }} />
+      <Stack.Screen name="index" options={{ title: t("navigation.library") }} />
       <Stack.Screen
         name="create"
-        options={{ presentation: "modal", title: "New Bookmark" }}
+        options={{
+          presentation: "modal",
+          title: t("navigation.newBookmark"),
+        }}
       />
       <Stack.Screen
         name="bookmark/[id]"
-        options={{ presentation: "modal", title: "Edit Bookmark" }}
+        options={{
+          presentation: "modal",
+          title: t("navigation.editBookmark"),
+        }}
       />
     </Stack>
   );

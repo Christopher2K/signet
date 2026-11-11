@@ -17,9 +17,9 @@ describe("bookmark validation", () => {
         url: "example.com",
       }),
     ).toEqual({
-      image: "Enter a valid absolute HTTP(S) image URL.",
-      title: "Enter a title.",
-      url: "Enter a valid absolute HTTP(S) URL.",
+      image: "common:validation.imageUrlInvalid",
+      title: "common:validation.titleRequired",
+      url: "common:validation.urlInvalid",
     });
   });
 
@@ -31,7 +31,7 @@ describe("bookmark validation", () => {
         title: "Example",
         url: "https://example.com",
       }).notes,
-    ).toBe("Notes must be 2000 characters or fewer.");
+    ).toBe("common:validation.notesTooLong");
   });
 
   it("normalizes request fields and deduplicates tags case-insensitively", () => {

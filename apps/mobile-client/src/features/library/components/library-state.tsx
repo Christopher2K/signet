@@ -6,6 +6,7 @@ import {
   Typography,
 } from "@signet/design-system";
 import { useNativeTheme } from "@signet/design-system/native-theme";
+import { useTranslation } from "@signet/locale/react";
 import { ActivityIndicator, StyleSheet } from "react-native";
 import { css, html } from "react-strict-dom";
 
@@ -22,6 +23,7 @@ export const LibraryState = ({
   onRetry,
 }: LibraryStateProps) => {
   const theme = useNativeTheme();
+  const { t } = useTranslation("mobile");
 
   return (
     <html.div data-layoutconformance="strict" style={styles.state}>
@@ -32,27 +34,26 @@ export const LibraryState = ({
             style={nativeStyles.loader}
           />
           <Typography role="status" tone="secondary">
-            Loading bookmarks…
+            {t("library.loadingBookmarks")}
           </Typography>
         </>
       ) : error ? (
         <>
           <Typography as="h2" style={styles.centered} variant="title">
-            Couldn't load your bookmarks
+            {t("library.errorTitle")}
           </Typography>
           <Typography role="alert" style={styles.centered} tone="secondary">
-            {error}
+            {t(error)}
           </Typography>
-          <Button onClick={onRetry}>Try again</Button>
+          <Button onClick={onRetry}>{t("actions.tryAgain")}</Button>
         </>
       ) : (
         <>
           <Typography as="h2" style={styles.centered} variant="title">
-            No bookmarks yet
+            {t("library.emptyTitle")}
           </Typography>
           <Typography style={styles.centered} tone="secondary">
-            Add your first bookmark by link. Your notes and tags will live here
-            too.
+            {t("library.emptyMessage")}
           </Typography>
         </>
       )}

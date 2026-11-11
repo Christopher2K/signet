@@ -1,0 +1,115 @@
+export const web = {
+  actions: {
+    backToForm: "Back to form",
+    cancel: "Cancel",
+    closeDialog: "Close dialog",
+    delete: "Delete",
+    new: "New",
+    newBookmark: "New Bookmark",
+    openExisting: "Open existing",
+    save: "Save",
+    saveAnyway: "Save anyway",
+    saveChanges: "Save changes",
+    tryAgain: "Try again",
+  },
+  auth: {
+    fields: {
+      email: "Email",
+      name: "Name",
+      password: "Password",
+    },
+    login: {
+      footerLink: "Create account",
+      footerQuestion: "New to Signet?",
+      pending: "Logging in…",
+      title: "Log in",
+    },
+    placeholders: {
+      email: "name@example.com",
+      name: "Jane Doe",
+    },
+    session: {
+      checking: "Checking your saved session with the server.",
+      restoring: "Restoring your session…",
+      unavailable: "Server unavailable",
+    },
+    signup: {
+      footerLink: "Log in",
+      footerQuestion: "Already have an account?",
+      passwordHint: "Use at least 12 characters.",
+      pending: "Creating account…",
+      title: "Create account",
+    },
+  },
+  library: {
+    allBookmarks: "All Bookmarks",
+    create: {
+      checking: "Checking…",
+      description: "Add a link with a title, artwork, notes, and tags.",
+      duplicateCheckFailedMessage:
+        "We couldn't check whether this link is already saved. You can return to the form or save it anyway.",
+      duplicateCheckFailedTitle: "Couldn't check for duplicates",
+      duplicateMessage: "This link is already in your library.",
+      duplicateTitle: "Already saved",
+    },
+    deleteDialog: {
+      description:
+        "This will permanently remove the bookmark from your library. This cannot be undone.",
+      pending: "Deleting…",
+      title: "Delete Bookmark",
+    },
+    edit: {
+      created: "Created {{date}}",
+      loading: "Loading bookmark…",
+      title: "Edit Bookmark",
+      unavailable: "Unavailable",
+      updated: "Updated {{date}}",
+    },
+    empty: {
+      description:
+        "Add your first bookmark by link. Your notes and tags will live here too.",
+      title: "No bookmarks yet",
+    },
+    form: {
+      imagePreviewAlt: "Bookmark artwork preview",
+      imagePreviewUnavailable:
+        "Image preview unavailable. You can still save this URL.",
+      imageUrl: "Image URL (optional)",
+      link: "Link",
+      notes: "Notes (optional)",
+      notesPlaceholder: "Add notes",
+      saving: "Saving…",
+      tags: "Tags (optional)",
+      tagsHelp: "Separate tags with commas. Tags are trimmed and lower-cased.",
+      tagsPlaceholder: "work, reading",
+      title: "Title",
+      titlePlaceholder: "Article title",
+    },
+    header: {
+      library: "Library",
+      logOut: "Log out",
+      loggingOut: "Logging out…",
+    },
+    item: {
+      artwork: "{{hostname}} bookmark artwork",
+      dateUnavailable: "Date unavailable",
+      edit: "Edit {{title}}",
+      open: "Open {{title}} in a new tab",
+      saved: "Saved {{date}}",
+      tags: "Tags",
+      updated: "Updated {{date}}",
+    },
+    loadError: "Couldn't load your bookmarks",
+    loading: "Loading bookmarks…",
+    loadingLibrary: "Loading your library",
+    newestFirst: "Newest first",
+    savedBookmarks: "Saved bookmarks",
+    view: {
+      grid: "Grid",
+      gridView: "Grid view",
+      layout: "Bookmark layout",
+      list: "List",
+      listView: "List view",
+    },
+  },
+} as const;

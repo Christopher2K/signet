@@ -19,10 +19,12 @@
     "@signet/api": "workspace:*",
     "@signet/core": "workspace:*",
     "@signet/design-system": "workspace:*",
+    "@signet/locale": "workspace:*",
     "@tanstack/react-query": "catalog:",
     "@tanstack/react-router": "1.170.46",
     "react": "catalog:",
     "react-dom": "catalog:",
+    "react-i18next": "catalog:",
     "react-strict-dom": "catalog:"
   },
   "devDependencies": {

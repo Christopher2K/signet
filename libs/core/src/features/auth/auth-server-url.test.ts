@@ -16,7 +16,9 @@ describe("validateServerUrl", () => {
   });
 
   it("requires a server URL", () => {
-    expect(validateServerUrl("   ")).toBe("Server URL is required.");
+    expect(validateServerUrl("   ")).toBe(
+      "common:validation.serverUrlRequired",
+    );
   });
 
   it.each([
@@ -26,8 +28,6 @@ describe("validateServerUrl", () => {
     "https://example.com?query=true",
     "https://example.com#fragment",
   ])("rejects invalid or unsupported URL %s", (value) => {
-    expect(validateServerUrl(value)).toBe(
-      "Enter a valid HTTP or HTTPS server URL.",
-    );
+    expect(validateServerUrl(value)).toBe("common:validation.serverUrlInvalid");
   });
 });

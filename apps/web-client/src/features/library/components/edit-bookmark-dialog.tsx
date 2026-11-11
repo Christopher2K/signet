@@ -8,6 +8,7 @@ import {
 } from "@signet/core/bookmarks/react";
 import { Button, Typography } from "@signet/design-system";
 import { spacing } from "@signet/design-system/tokens.css";
+import { useLocale, useTranslation } from "@signet/locale/react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { css, html } from "react-strict-dom";
 import { BookmarkForm } from "./bookmark-form";
@@ -20,11 +21,15 @@ export type EditBookmarkDialogProps = {
   onDelete: (bookmark: Bookmark) => void;
 };
 
-const formatTimestamp = (value: string): string => {
+const formatTimestamp = (
+  value: string,
+  locale: string,
+  unavailable: string,
+): string => {
   const date = new Date(value);
   return Number.isNaN(date.getTime())
-    ? "Unavailable"
-    : new Intl.DateTimeFormat(undefined, {
+    ? unavailable
+    : new Intl.DateTimeFormat(locale, {
         dateStyle: "medium",
         timeStyle: "short",
       }).format(date);
@@ -35,6 +40,8 @@ export const EditBookmarkDialog = ({
   onClose,
   onDelete,
 }: EditBookmarkDialogProps) => {
+  const { locale } = useLocale();
+  const { t } = useTranslation("web");
   const client = useBookmarkClient();
   const queryClient = useQueryClient();
   const bookmarkQuery = useBookmark(id);
@@ -55,25 +62,38 @@ export const EditBookmarkDialog = ({
   const initialValues = bookmark ? bookmarkToFormValues(bookmark) : undefined;
 
   return (
-    <Dialog onClose={onClose} title="Edit Bookmark">
+    <Dialog onClose={onClose} title={t("library.edit.title")}>
       {bookmarkQuery.isPending ? (
         <Typography role="status" tone="secondary">
-          Loading bookmark…
+          {t("library.edit.loading")}
         </Typography>
       ) : bookmarkQuery.isError ? (
         <html.div role="alert" style={styles.error}>
           <Typography tone="danger">
-            {getBookmarkError(bookmarkQuery.error).message}
+            {t(getBookmarkError(bookmarkQuery.error).message)}
           </Typography>
           <Button onClick={() => void bookmarkQuery.refetch()}>
-            Try again
+            {t("actions.tryAgain")}
           </Button>
         </html.div>
       ) : bookmark ? (
         <>
           <Typography tone="secondary" variant="caption">
-            Created {formatTimestamp(bookmark.createdAt)} · Updated{" "}
-            {formatTimestamp(bookmark.updatedAt)}
+            {t("library.edit.created", {
+              date: formatTimestamp(
+                bookmark.createdAt,
+                locale,
+                t("library.edit.unavailable"),
+              ),
+            })}{" "}
+            ·{" "}
+            {t("library.edit.updated", {
+              date: formatTimestamp(
+                bookmark.updatedAt,
+                locale,
+                t("library.edit.unavailable"),
+              ),
+            })}
           </Typography>
           <BookmarkForm
             idPrefix="edit-bookmark"
@@ -82,7 +102,7 @@ export const EditBookmarkDialog = ({
             onCancel={onClose}
             onDelete={() => onDelete(bookmark)}
             onSubmit={handleSubmit}
-            submitLabel="Save changes"
+            submitLabel={t("actions.saveChanges")}
           />
         </>
       ) : null}

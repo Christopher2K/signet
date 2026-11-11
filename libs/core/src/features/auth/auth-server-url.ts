@@ -23,8 +23,8 @@ const isValidServerUrl = (value: string): boolean => {
 export const serverUrlSchema = v.pipe(
   v.string(),
   v.transform(normalizeServerUrl),
-  v.nonEmpty("Server URL is required."),
-  v.check(isValidServerUrl, "Enter a valid HTTP or HTTPS server URL."),
+  v.nonEmpty("common:validation.serverUrlRequired"),
+  v.check(isValidServerUrl, "common:validation.serverUrlInvalid"),
 );
 
 /** Validates an absolute HTTP or HTTPS server URL. */

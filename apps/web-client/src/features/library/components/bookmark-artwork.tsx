@@ -1,6 +1,7 @@
 import type { Bookmark } from "@signet/api";
 import { getBookmarkHostname } from "@signet/core/bookmarks";
 import { colors, radii } from "@signet/design-system/tokens.css";
+import { useTranslation } from "@signet/locale/react";
 import { useEffect, useState } from "react";
 import { css, html } from "react-strict-dom";
 import { Icon } from "./icon";
@@ -17,6 +18,7 @@ export const BookmarkArtwork = ({
   bookmark,
   expanded = false,
 }: BookmarkArtworkProps) => {
+  const { t } = useTranslation("web");
   const [stage, setStage] = useState<ArtworkStage>(
     bookmark.image ? "image" : "favicon",
   );
@@ -50,7 +52,9 @@ export const BookmarkArtwork = ({
         />
       ) : (
         <html.div
-          aria-label={`${getBookmarkHostname(bookmark.url)} bookmark artwork`}
+          aria-label={t("library.item.artwork", {
+            hostname: getBookmarkHostname(bookmark.url),
+          })}
           role="img"
           style={styles.fallback}
         >

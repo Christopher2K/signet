@@ -23,9 +23,8 @@ export class AuthError extends Error {
   }
 }
 
-const unavailableMessage =
-  "Cannot reach the server. Check your connection and try again.";
-const unknownMessage = "Something went wrong. Please try again.";
+const unavailableMessage = "common:errors.unavailable";
+const unknownMessage = "common:errors.unknown";
 
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   typeof value === "object" && value !== null;
@@ -63,7 +62,7 @@ export const toAuthError = (value: unknown): AuthError => {
         : unknownMessage;
 
     if (code === "invalid_credentials") {
-      return new AuthError("Invalid credentials", "invalid_credentials");
+      return new AuthError(message, "invalid_credentials");
     }
     if (code === "unauthorized") {
       return new AuthError(message, "unauthorized");
@@ -85,7 +84,7 @@ export const toAuthError = (value: unknown): AuthError => {
   return new AuthError(unknownMessage);
 };
 
-/** Returns a human-readable message for rendering outside auth forms. */
+/** Returns a localized server message or a translation key for display. */
 export const getAuthErrorMessage = (value: unknown): string =>
   toAuthError(value).message;
 

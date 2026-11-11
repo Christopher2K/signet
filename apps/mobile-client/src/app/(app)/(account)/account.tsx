@@ -4,6 +4,7 @@ import {
   nativeSpacing,
   useNativeTheme,
 } from "@signet/design-system/native-theme";
+import { useTranslation } from "@signet/locale/react";
 import { useState } from "react";
 import { ScrollView, StyleSheet } from "react-native";
 import { css, html } from "react-strict-dom";
@@ -11,6 +12,7 @@ import { css, html } from "react-strict-dom";
 const AccountScreen = () => {
   const { logout, state } = useAuth();
   const theme = useNativeTheme();
+  const { t } = useTranslation("mobile");
   const [pending, setPending] = useState(false);
 
   const handleLogout = async () => {
@@ -34,7 +36,7 @@ const AccountScreen = () => {
       <html.div data-layoutconformance="strict" style={strictStyles.content}>
         <html.div style={strictStyles.identity}>
           <Typography tone="secondary" variant="caption">
-            Signed in as
+            {t("account.signedInAs")}
           </Typography>
           <Typography>{state.user.email}</Typography>
         </html.div>
@@ -45,7 +47,7 @@ const AccountScreen = () => {
           style={strictStyles.logout}
           variant="secondary"
         >
-          {pending ? "Logging out…" : "Log out"}
+          {pending ? t("account.loggingOut") : t("account.logOut")}
         </Button>
       </html.div>
     </ScrollView>

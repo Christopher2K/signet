@@ -9,6 +9,7 @@ import {
 } from "@signet/core/bookmarks";
 import { Button, TextField, Typography } from "@signet/design-system";
 import { colors, radii, spacing } from "@signet/design-system/tokens.css";
+import { useTranslation } from "@signet/locale/react";
 import { type FormEvent, useEffect, useState } from "react";
 import { css, html } from "react-strict-dom";
 
@@ -29,9 +30,10 @@ export const BookmarkForm = ({
   onCancel,
   onDelete,
   onSubmit,
-  pendingLabel = "Saving…",
+  pendingLabel,
   submitLabel,
 }: BookmarkFormProps) => {
+  const { t } = useTranslation("web");
   const [values, setValues] = useState(initialValues);
   const [fieldErrors, setFieldErrors] = useState<BookmarkFormErrors>({});
   const [formError, setFormError] = useState<string>();
@@ -91,9 +93,9 @@ export const BookmarkForm = ({
         autoComplete="url"
         autoFocus
         disabled={pending}
-        error={fieldErrors.url}
+        error={fieldErrors.url ? t(fieldErrors.url) : undefined}
         id={`${idPrefix}-url`}
-        label="Link"
+        label={t("library.form.link")}
         name="url"
         onValueChange={(value) => updateValue("url", value)}
         placeholder="https://example.com/article"
@@ -103,22 +105,22 @@ export const BookmarkForm = ({
       />
       <TextField
         disabled={pending}
-        error={fieldErrors.title}
+        error={fieldErrors.title ? t(fieldErrors.title) : undefined}
         id={`${idPrefix}-title`}
-        label="Title"
+        label={t("library.form.title")}
         maxLength={200}
         name="title"
         onValueChange={(value) => updateValue("title", value)}
-        placeholder="Article title"
+        placeholder={t("library.form.titlePlaceholder")}
         required
         type="text"
         value={values.title}
       />
       <TextField
         disabled={pending}
-        error={fieldErrors.image}
+        error={fieldErrors.image ? t(fieldErrors.image) : undefined}
         id={`${idPrefix}-image`}
-        label="Image URL (optional)"
+        label={t("library.form.imageUrl")}
         name="image"
         onValueChange={(value) => updateValue("image", value)}
         placeholder="https://example.com/image.jpg"
@@ -129,11 +131,11 @@ export const BookmarkForm = ({
         <html.div style={styles.preview}>
           {previewFailed ? (
             <Typography tone="secondary" variant="caption">
-              Image preview unavailable. You can still save this URL.
+              {t("library.form.imagePreviewUnavailable")}
             </Typography>
           ) : (
             <html.img
-              alt="Bookmark artwork preview"
+              alt={t("library.form.imagePreviewAlt")}
               onError={() => setPreviewFailed(true)}
               src={values.image.trim()}
               style={styles.previewImage}
@@ -149,7 +151,7 @@ export const BookmarkForm = ({
           tone="accent"
           variant="caption"
         >
-          Notes (optional)
+          {t("library.form.notes")}
         </Typography>
         <html.textarea
           aria-describedby={
@@ -163,7 +165,7 @@ export const BookmarkForm = ({
           onChange={(event: { target: { value: string } }) =>
             updateValue("notes", event.target.value)
           }
-          placeholder="Add notes"
+          placeholder={t("library.form.notesPlaceholder")}
           rows={4}
           style={[
             styles.textarea,
@@ -178,27 +180,27 @@ export const BookmarkForm = ({
             tone="danger"
             variant="caption"
           >
-            {fieldErrors.notes}
+            {t(fieldErrors.notes)}
           </Typography>
         ) : null}
       </html.div>
       <TextField
         disabled={pending}
-        error={fieldErrors.tags}
+        error={fieldErrors.tags ? t(fieldErrors.tags) : undefined}
         id={`${idPrefix}-tags`}
-        label="Tags (optional)"
+        label={t("library.form.tags")}
         name="tags"
         onValueChange={(value) => updateValue("tags", value)}
-        placeholder="work, reading"
+        placeholder={t("library.form.tagsPlaceholder")}
         type="text"
         value={values.tags}
       />
       <Typography tone="secondary" variant="caption">
-        Separate tags with commas. Tags are trimmed and lower-cased.
+        {t("library.form.tagsHelp")}
       </Typography>
       {formError ? (
         <Typography role="alert" style={styles.error} tone="danger">
-          {formError}
+          {t(formError)}
         </Typography>
       ) : null}
       <html.div style={styles.actions}>
@@ -209,7 +211,7 @@ export const BookmarkForm = ({
             style={[styles.delete, styles.actionButton]}
             type="button"
           >
-            Delete
+            {t("actions.delete")}
           </Button>
         ) : null}
         <html.div style={styles.actionGroup}>
@@ -220,10 +222,10 @@ export const BookmarkForm = ({
             type="button"
             variant="secondary"
           >
-            Cancel
+            {t("actions.cancel")}
           </Button>
           <Button disabled={pending} style={styles.actionButton} type="submit">
-            {pending ? pendingLabel : submitLabel}
+            {pending ? (pendingLabel ?? t("library.form.saving")) : submitLabel}
           </Button>
         </html.div>
       </html.div>

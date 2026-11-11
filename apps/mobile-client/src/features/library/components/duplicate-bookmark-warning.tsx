@@ -7,6 +7,7 @@ import {
   Typography,
 } from "@signet/design-system";
 import { useNativeTheme } from "@signet/design-system/native-theme";
+import { useTranslation } from "@signet/locale/react";
 import { css, html } from "react-strict-dom";
 import { BookmarkIcon } from "./bookmark-icon";
 
@@ -33,24 +34,25 @@ export const DuplicateBookmarkWarning = ({
   url,
 }: DuplicateBookmarkWarningProps) => {
   const theme = useNativeTheme();
+  const { t } = useTranslation("mobile");
 
   return (
     <html.div data-layoutconformance="strict" style={styles.content}>
       <BookmarkIcon color={theme.primary} name="warning" size={32} />
       <Typography as="h1" variant="headline">
-        {checkFailed ? "Couldn't check for duplicates" : "Already saved"}
+        {checkFailed ? t("duplicate.checkFailed") : t("duplicate.alreadySaved")}
       </Typography>
       <Typography style={styles.message} tone="secondary">
         {checkFailed
-          ? "We couldn't check whether this link is already saved. You can return to the form or save it anyway."
-          : "This link is already in your library."}
+          ? t("duplicate.checkFailedMessage")
+          : t("duplicate.alreadySavedMessage")}
       </Typography>
       <html.div style={styles.linkPreview}>
         <Typography variant="code">{url}</Typography>
       </html.div>
       {error ? (
         <Typography role="alert" tone="danger">
-          {error}
+          {t(error)}
         </Typography>
       ) : null}
       <html.div style={styles.actions}>
@@ -61,7 +63,7 @@ export const DuplicateBookmarkWarning = ({
           style={styles.action}
           variant="secondary"
         >
-          Back to form
+          {t("actions.backToForm")}
         </Button>
         {existing ? (
           <Button
@@ -71,7 +73,7 @@ export const DuplicateBookmarkWarning = ({
             style={styles.action}
             variant="secondary"
           >
-            Open existing
+            {t("actions.openExisting")}
           </Button>
         ) : null}
         <Button
@@ -80,7 +82,7 @@ export const DuplicateBookmarkWarning = ({
           size="lg"
           style={styles.action}
         >
-          {pending ? "Saving…" : "Save anyway"}
+          {pending ? t("actions.saving") : t("actions.saveAnyway")}
         </Button>
       </html.div>
     </html.div>

@@ -1,0 +1,36 @@
+msgid ""
+msgstr ""
+"Language: fr\n"
+
+msgid "Authentication required"
+msgstr "Authentification requise"
+
+msgid "Bad Request"
+msgstr "Requête invalide"
+
+msgid "Internal Server Error"
+msgstr "Erreur interne du serveur"
+
+msgid "Invalid credentials"
+msgstr "Identifiants invalides"
+
+msgid "Not Acceptable"
+msgstr "Format de réponse non accepté"
+
+msgid "Not Found"
+msgstr "Ressource introuvable"
+
+msgid "Request Entity Too Large"
+msgstr "Corps de requête trop volumineux"
+
+msgid "Resource not found"
+msgstr "Ressource introuvable"
+
+msgid "Too many requests"
+msgstr "Trop de requêtes"
+
+msgid "Unsupported Media Type"
+msgstr "Type de contenu non pris en charge"
+
+msgid "Validation failed"
+msgstr "Échec de la validation"

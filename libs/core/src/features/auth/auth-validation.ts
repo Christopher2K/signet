@@ -1,7 +1,7 @@
 import * as v from "valibot";
 import type { LoginValues, SignupValues } from "./auth-types";
 
-/** Field-specific client validation messages. */
+/** Field-specific client validation translation keys. */
 export type FormFieldErrors<TValues> = Partial<Record<keyof TValues, string>>;
 
 const emailPattern = /^[^\s]+@[^\s]+$/;
@@ -9,9 +9,9 @@ const emailPattern = /^[^\s]+@[^\s]+$/;
 const emailSchema = v.pipe(
   v.string(),
   v.trim(),
-  v.nonEmpty("Email is required."),
-  v.maxLength(254, "Enter a valid email address."),
-  v.regex(emailPattern, "Enter a valid email address."),
+  v.nonEmpty("common:validation.emailRequired"),
+  v.maxLength(254, "common:validation.emailInvalid"),
+  v.regex(emailPattern, "common:validation.emailInvalid"),
 );
 
 /** Standard Schema for login credentials. */
@@ -19,8 +19,8 @@ export const loginSchema = v.object({
   email: emailSchema,
   password: v.pipe(
     v.string(),
-    v.nonEmpty("Password is required."),
-    v.maxLength(128, "Password must be 128 characters or fewer."),
+    v.nonEmpty("common:validation.passwordRequired"),
+    v.maxLength(128, "common:validation.passwordTooLong"),
   ),
   serverUrl: v.optional(v.string()),
 });
@@ -31,13 +31,13 @@ export const signupSchema = v.object({
   name: v.pipe(
     v.string(),
     v.trim(),
-    v.nonEmpty("Name is required."),
-    v.maxLength(100, "Name must be 100 characters or fewer."),
+    v.nonEmpty("common:validation.nameRequired"),
+    v.maxLength(100, "common:validation.nameTooLong"),
   ),
   password: v.pipe(
     v.string(),
-    v.minLength(12, "Password must be at least 12 characters."),
-    v.maxLength(128, "Password must be 128 characters or fewer."),
+    v.minLength(12, "common:validation.passwordTooShort"),
+    v.maxLength(128, "common:validation.passwordTooLong"),
   ),
   serverUrl: v.optional(v.string()),
 });

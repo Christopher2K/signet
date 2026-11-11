@@ -10,7 +10,7 @@ export type BookmarkFormValues = {
   url: string;
 };
 
-/** Field errors associated with the bookmark form. */
+/** Field-specific bookmark validation translation keys. */
 export type BookmarkFormErrors = Partial<
   Record<keyof BookmarkFormValues, string>
 >;
@@ -51,7 +51,7 @@ export const normalizeTags = (value: string): string[] => {
   const seen = new Set<string>();
   return value
     .split(",")
-    .map((tag) => tag.trim().toLocaleLowerCase())
+    .map((tag) => tag.trim().toLowerCase())
     .filter((tag) => {
       if (!tag || seen.has(tag)) {
         return false;
@@ -68,19 +68,23 @@ export const bookmarkSchema = v.object({
     v.trim(),
     v.check(
       (value) => !value || isHttpUrl(value),
-      "Enter a valid absolute HTTP(S) image URL.",
+      "common:validation.imageUrlInvalid",
     ),
   ),
   notes: v.pipe(
     v.string(),
-    v.maxLength(2000, "Notes must be 2000 characters or fewer."),
+    v.maxLength(2000, "common:validation.notesTooLong"),
   ),
   tags: v.string(),
-  title: v.pipe(v.string(), v.trim(), v.nonEmpty("Enter a title.")),
+  title: v.pipe(
+    v.string(),
+    v.trim(),
+    v.nonEmpty("common:validation.titleRequired"),
+  ),
   url: v.pipe(
     v.string(),
     v.trim(),
-    v.check(isHttpUrl, "Enter a valid absolute HTTP(S) URL."),
+    v.check(isHttpUrl, "common:validation.urlInvalid"),
   ),
 });
 

@@ -2,6 +2,7 @@ import { normalizeServerUrl, toAuthError } from "@signet/core/auth";
 import { useAuth } from "@signet/core/auth/react";
 import { Button, TextField, Typography } from "@signet/design-system";
 import { nativeSpacing } from "@signet/design-system/native-theme";
+import { useTranslation } from "@signet/locale/react";
 import { useRouter } from "expo-router";
 import { useState } from "react";
 import { Keyboard, Pressable, StyleSheet } from "react-native";
@@ -12,6 +13,7 @@ import { type FormFieldErrors, validateLogin } from "../validation";
 export const LoginForm = () => {
   const router = useRouter();
   const { login, serverUrl } = useAuth();
+  const { t } = useTranslation("mobile");
   const [values, setValues] = useState<LoginValues>(() => ({
     email: "",
     password: "",
@@ -70,9 +72,9 @@ export const LoginForm = () => {
           autoCapitalize="none"
           autoComplete="off"
           disabled={pending}
-          error={fieldErrors.serverUrl}
+          error={fieldErrors.serverUrl ? t(fieldErrors.serverUrl) : undefined}
           id="login-server-url"
-          label="Server URL"
+          label={t("auth.serverUrl")}
           name="serverUrl"
           onValueChange={(value) => updateValue("serverUrl", value)}
           placeholder="https://signet.example.com"
@@ -85,9 +87,9 @@ export const LoginForm = () => {
           autoCapitalize="none"
           autoComplete="email"
           disabled={pending}
-          error={fieldErrors.email}
+          error={fieldErrors.email ? t(fieldErrors.email) : undefined}
           id="login-email"
-          label="Email"
+          label={t("auth.email")}
           name="email"
           onValueChange={(value) => updateValue("email", value)}
           placeholder="name@example.com"
@@ -100,9 +102,9 @@ export const LoginForm = () => {
           autoCapitalize="none"
           autoComplete="current-password"
           disabled={pending}
-          error={fieldErrors.password}
+          error={fieldErrors.password ? t(fieldErrors.password) : undefined}
           id="login-password"
-          label="Password"
+          label={t("auth.password")}
           maxLength={128}
           name="password"
           onValueChange={(value) => updateValue("password", value)}
@@ -119,7 +121,7 @@ export const LoginForm = () => {
             tone="danger"
             variant="caption"
           >
-            {formError}
+            {t(formError)}
           </Typography>
         ) : null}
         <Button
@@ -128,7 +130,7 @@ export const LoginForm = () => {
           size="lg"
           style={strictStyles.submit}
         >
-          {pending ? "Logging in…" : "Log in"}
+          {pending ? t("auth.loggingIn") : t("auth.logIn")}
         </Button>
       </html.div>
       <Pressable
@@ -137,9 +139,9 @@ export const LoginForm = () => {
         style={({ pressed }) => [styles.footer, pressed && styles.pressed]}
       >
         <Typography tone="secondary">
-          New to Signet?{" "}
+          {t("auth.newToSignet")}{" "}
           <Typography style={strictStyles.link} tone="accent">
-            Create account
+            {t("auth.createAccount")}
           </Typography>
         </Typography>
       </Pressable>

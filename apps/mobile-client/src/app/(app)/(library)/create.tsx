@@ -10,6 +10,7 @@ import {
   useBookmarkClient,
 } from "@signet/core/bookmarks/react";
 import { Typography } from "@signet/design-system";
+import { useTranslation } from "@signet/locale/react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "expo-router";
 import { useEffect, useRef, useState } from "react";
@@ -24,6 +25,7 @@ type DuplicateWarning = {
 
 const CreateBookmarkScreen = () => {
   const router = useRouter();
+  const { t } = useTranslation("mobile");
   const client = useBookmarkClient();
   const queryClient = useQueryClient();
   const mutation = useMutation(createBookmarkMutation({ client }));
@@ -127,14 +129,16 @@ const CreateBookmarkScreen = () => {
       ) : (
         <>
           <Typography tone="secondary" variant="caption">
-            Add a link with a title, artwork, notes, and tags.
+            {t("library.createDescription")}
           </Typography>
           <BookmarkForm
             initialValues={initialValues}
             onCancel={() => router.back()}
             onSubmit={handleSubmit}
-            pendingLabel={checking ? "Checking…" : "Saving…"}
-            submitLabel="Save"
+            pendingLabel={
+              checking ? t("actions.checking") : t("actions.saving")
+            }
+            submitLabel={t("actions.save")}
           />
         </>
       )}

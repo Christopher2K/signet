@@ -6,6 +6,7 @@ import {
 } from "@signet/core/auth";
 import { Button, TextField, Typography } from "@signet/design-system";
 import { spacing } from "@signet/design-system/tokens.css";
+import { useTranslation } from "@signet/locale/react";
 import { useNavigate } from "@tanstack/react-router";
 import { type FormEvent, useState } from "react";
 import { css, html } from "react-strict-dom";
@@ -14,6 +15,7 @@ import { useAuth } from "../auth-context";
 const initialValues: SignupValues = { email: "", name: "", password: "" };
 
 export const SignupForm = () => {
+  const { t } = useTranslation("web");
   const navigate = useNavigate();
   const { signup } = useAuth();
   const [values, setValues] = useState(initialValues);
@@ -73,13 +75,13 @@ export const SignupForm = () => {
       <TextField
         autoComplete="name"
         disabled={pending}
-        error={fieldErrors.name}
+        error={fieldErrors.name ? t(fieldErrors.name) : undefined}
         id="signup-name"
-        label="Name"
+        label={t("auth.fields.name")}
         maxLength={100}
         name="name"
         onValueChange={(value) => updateValue("name", value)}
-        placeholder="Jane Doe"
+        placeholder={t("auth.placeholders.name")}
         required
         type="text"
         value={values.name}
@@ -87,12 +89,12 @@ export const SignupForm = () => {
       <TextField
         autoComplete="email"
         disabled={pending}
-        error={fieldErrors.email}
+        error={fieldErrors.email ? t(fieldErrors.email) : undefined}
         id="signup-email"
-        label="Email"
+        label={t("auth.fields.email")}
         name="email"
         onValueChange={(value) => updateValue("email", value)}
-        placeholder="name@example.com"
+        placeholder={t("auth.placeholders.email")}
         required
         type="email"
         value={values.email}
@@ -100,9 +102,9 @@ export const SignupForm = () => {
       <TextField
         autoComplete="new-password"
         disabled={pending}
-        error={fieldErrors.password}
+        error={fieldErrors.password ? t(fieldErrors.password) : undefined}
         id="signup-password"
-        label="Password"
+        label={t("auth.fields.password")}
         maxLength={128}
         minLength={12}
         name="password"
@@ -112,7 +114,7 @@ export const SignupForm = () => {
         value={values.password}
       />
       <Typography as="p" tone="secondary" variant="caption">
-        Use at least 12 characters.
+        {t("auth.signup.passwordHint")}
       </Typography>
       {formError ? (
         <Typography
@@ -122,11 +124,11 @@ export const SignupForm = () => {
           tone="danger"
           variant="caption"
         >
-          {formError}
+          {t(formError)}
         </Typography>
       ) : null}
       <Button disabled={pending} size="lg" style={styles.submit} type="submit">
-        {pending ? "Creating account…" : "Create account"}
+        {pending ? t("auth.signup.pending") : t("auth.signup.title")}
       </Button>
     </html.form>
   );

@@ -2,6 +2,7 @@ import type { Bookmark } from "@signet/api";
 import { getBookmarkHostname } from "@signet/core/bookmarks";
 import { colors, radii, spacing } from "@signet/design-system";
 import { useNativeTheme } from "@signet/design-system/native-theme";
+import { useTranslation } from "@signet/locale/react";
 import { Image } from "expo-image";
 import { useEffect, useState } from "react";
 import { StyleSheet } from "react-native";
@@ -17,6 +18,7 @@ type ArtworkStage = "favicon" | "fallback" | "image";
 
 export const BookmarkArtwork = ({ bookmark }: BookmarkArtworkProps) => {
   const theme = useNativeTheme();
+  const { t } = useTranslation("mobile");
   const [stage, setStage] = useState<ArtworkStage>(
     bookmark.image ? "image" : "favicon",
   );
@@ -37,7 +39,9 @@ export const BookmarkArtwork = ({ bookmark }: BookmarkArtworkProps) => {
     <html.div style={styles.frame}>
       {stage !== "fallback" && source ? (
         <Image
-          accessibilityLabel={`${getBookmarkHostname(bookmark.url)} bookmark artwork`}
+          accessibilityLabel={t("library.artwork", {
+            hostname: getBookmarkHostname(bookmark.url),
+          })}
           contentFit="cover"
           onError={() =>
             setStage((current) =>

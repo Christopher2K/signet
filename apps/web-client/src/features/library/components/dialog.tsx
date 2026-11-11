@@ -1,5 +1,6 @@
 import { Typography } from "@signet/design-system";
 import { colors, radii, spacing } from "@signet/design-system/tokens.css";
+import { useTranslation } from "@signet/locale/react";
 import { type ReactNode, useEffect, useId, useRef } from "react";
 import { css, html } from "react-strict-dom";
 import { Icon } from "./icon";
@@ -15,6 +16,7 @@ const focusableSelector =
   'button:not([disabled]), a[href], input:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
 export const Dialog = ({ children, onClose, title }: DialogProps) => {
+  const { t } = useTranslation("web");
   const titleId = useId();
   const panelRef = useRef<HTMLDivElement>(null);
   const onCloseRef = useRef(onClose);
@@ -78,7 +80,7 @@ export const Dialog = ({ children, onClose, title }: DialogProps) => {
             {title}
           </Typography>
           <html.button
-            aria-label="Close dialog"
+            aria-label={t("actions.closeDialog")}
             onClick={onClose}
             style={styles.close}
             type="button"

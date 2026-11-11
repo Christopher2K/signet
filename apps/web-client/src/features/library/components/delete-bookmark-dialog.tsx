@@ -7,6 +7,7 @@ import {
 } from "@signet/core/bookmarks/react";
 import { Button, Typography } from "@signet/design-system";
 import { colors, radii, spacing } from "@signet/design-system/tokens.css";
+import { useTranslation } from "@signet/locale/react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { css, html } from "react-strict-dom";
@@ -24,6 +25,7 @@ export const DeleteBookmarkDialog = ({
   onCancel,
   onDeleted,
 }: DeleteBookmarkDialogProps) => {
+  const { t } = useTranslation("web");
   const client = useBookmarkClient();
   const queryClient = useQueryClient();
   const [error, setError] = useState<string>();
@@ -41,10 +43,9 @@ export const DeleteBookmarkDialog = ({
   };
 
   return (
-    <Dialog onClose={onCancel} title="Delete Bookmark">
+    <Dialog onClose={onCancel} title={t("library.deleteDialog.title")}>
       <Typography as="p" style={styles.message} tone="secondary">
-        This will permanently remove the bookmark from your library. This cannot
-        be undone.
+        {t("library.deleteDialog.description")}
       </Typography>
       <html.div style={styles.bookmark}>
         <Typography as="p" style={styles.bookmarkTitle}>
@@ -56,7 +57,7 @@ export const DeleteBookmarkDialog = ({
       </html.div>
       {error ? (
         <Typography role="alert" tone="danger">
-          {error}
+          {t(error)}
         </Typography>
       ) : null}
       <html.div style={styles.actions}>
@@ -65,14 +66,16 @@ export const DeleteBookmarkDialog = ({
           onClick={onCancel}
           variant="secondary"
         >
-          Cancel
+          {t("actions.cancel")}
         </Button>
         <Button
           disabled={mutation.isPending}
           onClick={() => void handleDelete()}
           style={styles.delete}
         >
-          {mutation.isPending ? "Deleting…" : "Delete"}
+          {mutation.isPending
+            ? t("library.deleteDialog.pending")
+            : t("actions.delete")}
         </Button>
       </html.div>
     </Dialog>

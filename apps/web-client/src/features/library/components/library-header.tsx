@@ -1,5 +1,6 @@
 import { Button, Typography } from "@signet/design-system";
 import { colors, spacing } from "@signet/design-system/tokens.css";
+import { useTranslation } from "@signet/locale/react";
 import { useState } from "react";
 import { css, html } from "react-strict-dom";
 import { useAuth } from "#/features/auth";
@@ -11,6 +12,7 @@ export type LibraryHeaderProps = {
 };
 
 export const LibraryHeader = ({ onNewBookmark }: LibraryHeaderProps) => {
+  const { t } = useTranslation("web");
   const { logout, state } = useAuth();
   const [pending, setPending] = useState(false);
 
@@ -30,7 +32,7 @@ export const LibraryHeader = ({ onNewBookmark }: LibraryHeaderProps) => {
           Signet
         </Typography>
         <Typography style={styles.libraryLabel} tone="secondary">
-          Library
+          {t("library.header.library")}
         </Typography>
       </html.div>
       <html.div style={styles.account}>
@@ -39,15 +41,23 @@ export const LibraryHeader = ({ onNewBookmark }: LibraryHeaderProps) => {
             {state.user.email}
           </Typography>
         ) : null}
-        <Button aria-label="New Bookmark" onClick={onNewBookmark} size="sm">
+        <Button
+          aria-label={t("actions.newBookmark")}
+          onClick={onNewBookmark}
+          size="sm"
+        >
           <html.span style={styles.buttonContent}>
             <Icon name="plus" size={16} />
-            <html.span style={styles.newLabel}>New Bookmark</html.span>
-            <html.span style={styles.newLabelMobile}>New</html.span>
+            <html.span style={styles.newLabel}>
+              {t("actions.newBookmark")}
+            </html.span>
+            <html.span style={styles.newLabelMobile}>
+              {t("actions.new")}
+            </html.span>
           </html.span>
         </Button>
         <html.button
-          aria-label="Log out"
+          aria-label={t("library.header.logOut")}
           disabled={pending}
           onClick={() => void handleLogout()}
           style={styles.logout}
@@ -55,7 +65,9 @@ export const LibraryHeader = ({ onNewBookmark }: LibraryHeaderProps) => {
         >
           <Icon name="sign-out" />
           <Typography style={styles.logoutLabel} variant="caption">
-            {pending ? "Logging out…" : "Log out"}
+            {pending
+              ? t("library.header.loggingOut")
+              : t("library.header.logOut")}
           </Typography>
         </html.button>
       </html.div>

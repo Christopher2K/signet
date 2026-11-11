@@ -4,6 +4,7 @@ import {
   nativeSpacing,
   useNativeTheme,
 } from "@signet/design-system/native-theme";
+import { useTranslation } from "@signet/locale/react";
 import { StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { css } from "react-strict-dom";
@@ -11,6 +12,7 @@ import { css } from "react-strict-dom";
 export const SessionFeedback = () => {
   const { retryRestore, state } = useAuth();
   const theme = useNativeTheme();
+  const { t } = useTranslation("mobile");
   const unavailable = state.status === "unavailable";
 
   return (
@@ -19,16 +21,16 @@ export const SessionFeedback = () => {
     >
       <View style={styles.content}>
         <Typography as="h1" style={strictStyles.centered} variant="headline">
-          {unavailable ? "Server unavailable" : "Restoring your session…"}
+          {unavailable
+            ? t("session.serverUnavailable")
+            : t("session.restoring")}
         </Typography>
         <Typography style={strictStyles.centered} tone="secondary">
-          {unavailable
-            ? state.message
-            : "Checking your saved session with the server."}
+          {unavailable ? t(state.message) : t("session.checking")}
         </Typography>
         {unavailable ? (
           <Button onClick={retryRestore} size="lg" style={strictStyles.retry}>
-            Try again
+            {t("actions.tryAgain")}
           </Button>
         ) : null}
       </View>

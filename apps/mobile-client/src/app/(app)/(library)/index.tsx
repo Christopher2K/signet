@@ -6,6 +6,7 @@ import {
   nativeSpacing,
   useNativeTheme,
 } from "@signet/design-system/native-theme";
+import { useLocale, useTranslation } from "@signet/locale/react";
 import { Stack, useRouter } from "expo-router";
 import * as WebBrowser from "expo-web-browser";
 import {
@@ -27,6 +28,8 @@ const newBookmarkIcon = Platform.select({
 const LibraryScreen = () => {
   const router = useRouter();
   const theme = useNativeTheme();
+  const { locale } = useLocale();
+  const { t } = useTranslation("mobile");
   const bookmarksQuery = useBookmarks();
   const bookmarks = bookmarksQuery.data?.data ?? [];
 
@@ -36,10 +39,7 @@ const LibraryScreen = () => {
     try {
       await WebBrowser.openBrowserAsync(url);
     } catch {
-      Alert.alert(
-        "Couldn't open bookmark",
-        "Your device could not open this link. Please try again.",
-      );
+      Alert.alert(t("library.openErrorTitle"), t("library.openErrorMessage"));
     }
   };
 
@@ -53,12 +53,17 @@ const LibraryScreen = () => {
     />
   );
 
+  const bookmarkCount = t("library.bookmarkCount", {
+    count: bookmarks.length,
+    formattedCount: new Intl.NumberFormat(locale).format(bookmarks.length),
+  });
+
   return (
     <>
       <Stack.Toolbar placement="right">
         <Stack.Toolbar.Button
-          accessibilityHint="Create a bookmark"
-          accessibilityLabel="New Bookmark"
+          accessibilityHint={t("navigation.createBookmarkHint")}
+          accessibilityLabel={t("navigation.newBookmark")}
           icon={newBookmarkIcon}
           onPress={handleCreate}
           tintColor={theme.primary}
@@ -89,12 +94,12 @@ const LibraryScreen = () => {
             style={strictStyles.heading}
           >
             <Typography as="h1" variant="title">
-              All Bookmarks
+              {t("library.allBookmarks")}
             </Typography>
             <Typography tone="secondary" variant="caption">
               {bookmarksQuery.isPending
-                ? "Loading your library"
-                : `${bookmarks.length} ${bookmarks.length === 1 ? "bookmark" : "bookmarks"} · Newest first`}
+                ? t("library.loadingLibrary")
+                : `${bookmarkCount} · ${t("library.newestFirst")}`}
             </Typography>
           </html.div>
         }

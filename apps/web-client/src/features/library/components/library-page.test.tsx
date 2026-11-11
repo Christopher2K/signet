@@ -3,6 +3,7 @@
 import type { Bookmark } from "@signet/api";
 import type { AuthApi } from "@signet/core/auth";
 import { AuthProvider } from "@signet/core/auth/react";
+import { LocaleProvider } from "@signet/locale/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
@@ -143,18 +144,20 @@ const authApi: AuthApi = {
   signup: vi.fn(),
 };
 
-const renderLibrary = () => {
+const renderLibrary = (locale: "en" | "fr" = "en") => {
   const queryClient = new QueryClient({
     defaultOptions: { queries: { retry: false } },
   });
   render(
-    <QueryClientProvider client={queryClient}>
-      <AuthProvider api={authApi} defaultServerUrl="https://api.example.com">
-        <ProtectedRoute>
-          <LibraryPage />
-        </ProtectedRoute>
-      </AuthProvider>
-    </QueryClientProvider>,
+    <LocaleProvider locale={locale}>
+      <QueryClientProvider client={queryClient}>
+        <AuthProvider api={authApi} defaultServerUrl="https://api.example.com">
+          <ProtectedRoute>
+            <LibraryPage />
+          </ProtectedRoute>
+        </AuthProvider>
+      </QueryClientProvider>
+    </LocaleProvider>,
   );
   return queryClient;
 };
@@ -215,13 +218,18 @@ describe("LibraryPage", () => {
     const emptyApi = createFetchMock();
     vi.stubGlobal("fetch", emptyApi.fetchMock);
     const { unmount } = render(
-      <QueryClientProvider client={new QueryClient()}>
-        <AuthProvider api={authApi} defaultServerUrl="https://api.example.com">
-          <ProtectedRoute>
-            <LibraryPage />
-          </ProtectedRoute>
-        </AuthProvider>
-      </QueryClientProvider>,
+      <LocaleProvider locale="en">
+        <QueryClientProvider client={new QueryClient()}>
+          <AuthProvider
+            api={authApi}
+            defaultServerUrl="https://api.example.com"
+          >
+            <ProtectedRoute>
+              <LibraryPage />
+            </ProtectedRoute>
+          </AuthProvider>
+        </QueryClientProvider>
+      </LocaleProvider>,
     );
     expect(await screen.findByText("No bookmarks yet")).toBeTruthy();
     unmount();
@@ -347,17 +355,57 @@ describe("LibraryPage", () => {
     expect(screen.queryByRole("dialog")).toBeNull();
   });
 
+  it("renders French UI, plurals, accessibility labels, and validation", async () => {
+    const api = createFetchMock({ initialBookmarks: [makeBookmark()] });
+    vi.stubGlobal("fetch", api.fetchMock);
+    renderLibrary("fr");
+
+    expect(await screen.findByText("Original bookmark")).toBeTruthy();
+    expect(screen.getByText("1 favori · Plus récents en premier")).toBeTruthy();
+    expect(
+      screen.getByRole("button", { name: "Modifier Original bookmark" }),
+    ).toBeTruthy();
+    fireEvent.click(screen.getByRole("button", { name: "Nouveau favori" }));
+    expect(
+      await screen.findByRole("dialog", { name: "Nouveau favori" }),
+    ).toBeTruthy();
+    fireEvent.click(screen.getByRole("button", { name: "Enregistrer" }));
+    expect(await screen.findByText("Saisissez un titre.")).toBeTruthy();
+    expect(
+      screen.getByText("Saisissez une URL HTTP(S) absolue valide."),
+    ).toBeTruthy();
+  });
+
+  it("translates core network errors while preserving API messages", async () => {
+    vi.stubGlobal(
+      "fetch",
+      vi.fn().mockRejectedValue(new TypeError("fetch failed")),
+    );
+    renderLibrary("fr");
+
+    expect(
+      await screen.findByText(
+        "Impossible de contacter le serveur. Vérifiez votre connexion et réessayez.",
+      ),
+    ).toBeTruthy();
+  });
+
   it("shows server validation and inaccessible-record errors", async () => {
     const validationApi = createFetchMock({ createStatus: 422 });
     vi.stubGlobal("fetch", validationApi.fetchMock);
     const { unmount } = render(
-      <QueryClientProvider client={new QueryClient()}>
-        <AuthProvider api={authApi} defaultServerUrl="https://api.example.com">
-          <ProtectedRoute>
-            <LibraryPage />
-          </ProtectedRoute>
-        </AuthProvider>
-      </QueryClientProvider>,
+      <LocaleProvider locale="en">
+        <QueryClientProvider client={new QueryClient()}>
+          <AuthProvider
+            api={authApi}
+            defaultServerUrl="https://api.example.com"
+          >
+            <ProtectedRoute>
+              <LibraryPage />
+            </ProtectedRoute>
+          </AuthProvider>
+        </QueryClientProvider>
+      </LocaleProvider>,
     );
     await openCreateDialog();
     fillRequiredFields();
@@ -376,8 +424,6 @@ describe("LibraryPage", () => {
     fireEvent.click(
       await screen.findByRole("button", { name: "Edit Original bookmark" }),
     );
-    expect(
-      await screen.findByText("This bookmark is no longer available."),
-    ).toBeTruthy();
+    expect(await screen.findByText("Bookmark not found")).toBeTruthy();
   });
 });

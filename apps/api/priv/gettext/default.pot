@@ -1,0 +1,38 @@
+## This is a PO Template file.
+##
+## Messages that are only referenced dynamically are listed manually.
+msgid ""
+msgstr ""
+
+msgid "Authentication required"
+msgstr ""
+
+msgid "Bad Request"
+msgstr ""
+
+msgid "Internal Server Error"
+msgstr ""
+
+msgid "Invalid credentials"
+msgstr ""
+
+msgid "Not Acceptable"
+msgstr ""
+
+msgid "Not Found"
+msgstr ""
+
+msgid "Request Entity Too Large"
+msgstr ""
+
+msgid "Resource not found"
+msgstr ""
+
+msgid "Too many requests"
+msgstr ""
+
+msgid "Unsupported Media Type"
+msgstr ""
+
+msgid "Validation failed"
+msgstr ""

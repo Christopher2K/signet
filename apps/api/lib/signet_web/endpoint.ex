@@ -36,8 +36,9 @@ defmodule SignetWeb.Endpoint do
 
   plug Plug.RequestId
   plug Plug.Telemetry, event_prefix: [:phoenix, :endpoint]
+  plug SignetWeb.Plugs.SetLocale
 
-  plug Plug.Parsers,
+  plug SignetWeb.Plugs.Parsers,
     parsers: [:urlencoded, :multipart, :json],
     pass: ["*/*"],
     json_decoder: Phoenix.json_library()
@@ -49,7 +50,7 @@ defmodule SignetWeb.Endpoint do
   plug CORSPlug,
     origin: &SignetWeb.CORS.origins/0,
     methods: ["GET", "POST", "OPTIONS"],
-    headers: ["Authorization", "Content-Type"]
+    headers: ["Authorization", "Content-Type", "Accept-Language"]
 
   plug SignetWeb.Router
 end

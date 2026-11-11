@@ -1,0 +1,124 @@
+msgid ""
+msgstr ""
+"Language: fr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+msgid "can't be blank"
+msgstr "ne peut pas être vide"
+
+msgid "has already been taken"
+msgstr "est déjà utilisé"
+
+msgid "is invalid"
+msgstr "n'est pas valide"
+
+msgid "does not exist"
+msgstr "n'existe pas"
+
+msgid "must be accepted"
+msgstr "doit être accepté"
+
+msgid "has invalid format"
+msgstr "n'a pas un format valide"
+
+msgid "has an invalid entry"
+msgstr "contient une entrée invalide"
+
+msgid "is reserved"
+msgstr "est réservé"
+
+msgid "does not match confirmation"
+msgstr "ne correspond pas à la confirmation"
+
+msgid "is still associated with this entry"
+msgstr "est toujours associé à cette entrée"
+
+msgid "are still associated with this entry"
+msgstr "sont toujours associés à cette entrée"
+
+msgid "must be an absolute HTTP(S) URL with a hostname"
+msgstr "doit être une URL HTTP(S) absolue avec un nom d'hôte"
+
+msgid "should have %{count} item(s)"
+msgid_plural "should have %{count} item(s)"
+msgstr[0] "doit contenir %{count} élément"
+msgstr[1] "doit contenir %{count} éléments"
+
+msgid "should be %{count} character(s)"
+msgid_plural "should be %{count} character(s)"
+msgstr[0] "doit contenir %{count} caractère"
+msgstr[1] "doit contenir %{count} caractères"
+
+msgid "should be %{count} byte(s)"
+msgid_plural "should be %{count} byte(s)"
+msgstr[0] "doit contenir %{count} octet"
+msgstr[1] "doit contenir %{count} octets"
+
+msgid "should have at least %{count} item(s)"
+msgid_plural "should have at least %{count} item(s)"
+msgstr[0] "doit contenir au moins %{count} élément"
+msgstr[1] "doit contenir au moins %{count} éléments"
+
+msgid "should be at least %{count} character(s)"
+msgid_plural "should be at least %{count} character(s)"
+msgstr[0] "doit contenir au moins %{count} caractère"
+msgstr[1] "doit contenir au moins %{count} caractères"
+
+msgid "should be at least %{count} byte(s)"
+msgid_plural "should be at least %{count} byte(s)"
+msgstr[0] "doit contenir au moins %{count} octet"
+msgstr[1] "doit contenir au moins %{count} octets"
+
+msgid "should have at most %{count} item(s)"
+msgid_plural "should have at most %{count} item(s)"
+msgstr[0] "doit contenir au plus %{count} élément"
+msgstr[1] "doit contenir au plus %{count} éléments"
+
+msgid "should be at most %{count} character(s)"
+msgid_plural "should be at most %{count} character(s)"
+msgstr[0] "doit contenir au plus %{count} caractère"
+msgstr[1] "doit contenir au plus %{count} caractères"
+
+msgid "should be at most %{count} byte(s)"
+msgid_plural "should be at most %{count} byte(s)"
+msgstr[0] "doit contenir au plus %{count} octet"
+msgstr[1] "doit contenir au plus %{count} octets"
+
+msgid "must be less than %{number}"
+msgstr "doit être inférieur à %{number}"
+
+msgid "must be greater than %{number}"
+msgstr "doit être supérieur à %{number}"
+
+msgid "must be less than or equal to %{number}"
+msgstr "doit être inférieur ou égal à %{number}"
+
+msgid "must be greater than or equal to %{number}"
+msgstr "doit être supérieur ou égal à %{number}"
+
+msgid "must be equal to %{number}"
+msgstr "doit être égal à %{number}"
+
+msgid "Invalid format. Expected %{format}"
+msgstr "Format invalide. Format attendu : %{format}"
+
+msgid "Invalid %{type}. Got: %{value_type}"
+msgstr "Type %{type} invalide. Reçu : %{value_type}"
+
+msgid "Missing field: %{name}"
+msgstr "Champ manquant : %{name}"
+
+msgid "String length is larger than maxLength: %{length}"
+msgstr "La longueur de la chaîne dépasse maxLength : %{length}"
+
+msgid "String length is smaller than minLength: %{length}"
+msgstr "La longueur de la chaîne est inférieure à minLength : %{length}"
+
+msgid "Unexpected field: %{name}"
+msgstr "Champ inattendu : %{name}"
+
+msgid "null value"
+msgstr "valeur nulle"
+
+msgid "null value where %{type} expected"
+msgstr "valeur nulle alors qu’un type %{type} est attendu"

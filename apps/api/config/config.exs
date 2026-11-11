@@ -16,6 +16,10 @@ config :signet, SignetWeb.RateLimit,
   period: 60_000,
   limit: 10
 
+config :signet, SignetWeb.Gettext,
+  default_locale: "en",
+  allowed_locales: ["en", "fr"]
+
 # Configure the endpoint
 config :signet, SignetWeb.Endpoint,
   url: [host: "localhost"],

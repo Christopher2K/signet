@@ -10,6 +10,7 @@ import {
   listBookmarksOptions,
   listBookmarksQueryKey,
 } from "@signet/api/react-query";
+import { useLocale } from "@signet/locale/react";
 import {
   type QueryClient,
   useQuery,
@@ -20,6 +21,7 @@ import { useAuth, useAuthApiContext } from "../auth/auth-react";
 
 /** Returns a generated API client bound to the active session token. */
 export const useBookmarkClient = (): ApiClient => {
+  const { getLocale } = useLocale();
   const { serverUrl } = useAuth();
   const { tokenRef } = useAuthApiContext();
   return useMemo(
@@ -27,8 +29,9 @@ export const useBookmarkClient = (): ApiClient => {
       createApiClient({
         auth: () => tokenRef.current ?? undefined,
         baseUrl: serverUrl,
+        getLanguage: getLocale,
       }),
-    [serverUrl, tokenRef],
+    [getLocale, serverUrl, tokenRef],
   );
 };
 

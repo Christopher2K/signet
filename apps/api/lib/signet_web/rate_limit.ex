@@ -4,6 +4,7 @@ defmodule SignetWeb.RateLimit do
   import Plug.Conn
 
   use PlugAttack
+  use Gettext, backend: SignetWeb.Gettext
 
   alias SignetWeb.API.V1.ErrorJSON
 
@@ -26,7 +27,7 @@ defmodule SignetWeb.RateLimit do
   @spec block_action(Plug.Conn.t(), term(), term()) :: Plug.Conn.t()
   @impl true
   def block_action(conn, _data, _opts) do
-    body = ErrorJSON.error("too_many_requests", "Too many requests")
+    body = ErrorJSON.error("too_many_requests", gettext("Too many requests"))
 
     conn
     |> put_resp_header("retry-after", @period |> div(1000) |> Integer.to_string())

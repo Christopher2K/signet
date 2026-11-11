@@ -13,18 +13,21 @@ export type CreateAuthApiOptions = {
   baseUrl: string;
   getToken: () => string | null | undefined;
   fetch?: typeof fetch;
+  getLanguage?: () => string;
 };
 
 /** Creates auth operations backed by the configured API. */
 export const createAuthApi = ({
   baseUrl,
   fetch,
+  getLanguage,
   getToken,
 }: CreateAuthApiOptions): AuthApi => {
   const client = createApiClient({
     auth: () => getToken() ?? undefined,
     baseUrl,
     fetch,
+    getLanguage,
   });
 
   return {

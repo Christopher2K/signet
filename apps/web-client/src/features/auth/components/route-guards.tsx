@@ -1,5 +1,6 @@
 import { Button, Typography } from "@signet/design-system";
 import { colors, spacing } from "@signet/design-system/tokens.css";
+import { useTranslation } from "@signet/locale/react";
 import { Navigate } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 import { css, html } from "react-strict-dom";
@@ -11,6 +12,7 @@ export type RouteGuardProps = {
 };
 
 const SessionFeedback = () => {
+  const { t } = useTranslation("web");
   const { retryRestore, state } = useAuth();
   const unavailable = state.status === "unavailable";
 
@@ -18,7 +20,9 @@ const SessionFeedback = () => {
     <html.main style={styles.page}>
       <html.section style={styles.card}>
         <Typography as="h1" variant="title">
-          {unavailable ? "Server unavailable" : "Restoring your session…"}
+          {unavailable
+            ? t("auth.session.unavailable")
+            : t("auth.session.restoring")}
         </Typography>
         <Typography
           as="p"
@@ -26,13 +30,11 @@ const SessionFeedback = () => {
           style={styles.message}
           tone="secondary"
         >
-          {unavailable
-            ? state.message
-            : "Checking your saved session with the server."}
+          {unavailable ? t(state.message) : t("auth.session.checking")}
         </Typography>
         {unavailable ? (
           <Button onClick={retryRestore} style={styles.retry} type="button">
-            Try again
+            {t("actions.tryAgain")}
           </Button>
         ) : null}
       </html.section>

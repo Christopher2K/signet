@@ -17,15 +17,19 @@ describe("getBookmarkError", () => {
     });
   });
 
-  it("normalizes not-found, unauthorized, and network failures", () => {
-    expect(getBookmarkError({ error: { code: "not_found" } }).message).toBe(
-      "This bookmark is no longer available.",
-    );
-    expect(getBookmarkError({ error: { code: "unauthorized" } }).message).toBe(
-      "Your session is no longer valid. Log in and try again.",
-    );
+  it("preserves localized API messages and normalizes network failures", () => {
+    expect(
+      getBookmarkError({
+        error: { code: "not_found", message: "Signet introuvable" },
+      }).message,
+    ).toBe("Signet introuvable");
+    expect(
+      getBookmarkError({
+        error: { code: "unauthorized", message: "Authentification requise" },
+      }).message,
+    ).toBe("Authentification requise");
     expect(getBookmarkError(new TypeError("fetch failed")).message).toBe(
-      "Cannot reach the server. Check your connection and try again.",
+      "common:errors.unavailable",
     );
   });
 });

@@ -12,7 +12,7 @@ export const getBookmarkError = (
     const message =
       typeof value.error.message === "string"
         ? value.error.message
-        : "Something went wrong. Please try again.";
+        : "common:errors.unknown";
     const fieldErrors: BookmarkFormErrors = {};
     if (isRecord(value.error.details)) {
       for (const field of ["title", "url", "image", "notes", "tags"] as const) {
@@ -22,28 +22,19 @@ export const getBookmarkError = (
         }
       }
     }
-    if (code === "not_found") {
-      return {
-        fieldErrors,
-        message: "This bookmark is no longer available.",
-      };
-    }
-    if (code === "unauthorized") {
-      return {
-        fieldErrors,
-        message: "Your session is no longer valid. Log in and try again.",
-      };
+    if (code === "not_found" || code === "unauthorized") {
+      return { fieldErrors, message };
     }
     return { fieldErrors, message };
   }
   if (value instanceof TypeError) {
     return {
       fieldErrors: {},
-      message: "Cannot reach the server. Check your connection and try again.",
+      message: "common:errors.unavailable",
     };
   }
   return {
     fieldErrors: {},
-    message: "Something went wrong. Please try again.",
+    message: "common:errors.unknown",
   };
 };

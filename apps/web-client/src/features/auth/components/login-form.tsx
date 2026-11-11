@@ -6,6 +6,7 @@ import {
 } from "@signet/core/auth";
 import { Button, TextField, Typography } from "@signet/design-system";
 import { spacing } from "@signet/design-system/tokens.css";
+import { useTranslation } from "@signet/locale/react";
 import { useNavigate } from "@tanstack/react-router";
 import { type FormEvent, useState } from "react";
 import { css, html } from "react-strict-dom";
@@ -14,6 +15,7 @@ import { useAuth } from "../auth-context";
 const initialValues: LoginValues = { email: "", password: "" };
 
 export const LoginForm = () => {
+  const { t } = useTranslation("web");
   const navigate = useNavigate();
   const { login } = useAuth();
   const [values, setValues] = useState(initialValues);
@@ -68,12 +70,12 @@ export const LoginForm = () => {
       <TextField
         autoComplete="email"
         disabled={pending}
-        error={fieldErrors.email}
+        error={fieldErrors.email ? t(fieldErrors.email) : undefined}
         id="login-email"
-        label="Email"
+        label={t("auth.fields.email")}
         name="email"
         onValueChange={(value) => updateValue("email", value)}
-        placeholder="name@example.com"
+        placeholder={t("auth.placeholders.email")}
         required
         type="email"
         value={values.email}
@@ -81,9 +83,9 @@ export const LoginForm = () => {
       <TextField
         autoComplete="current-password"
         disabled={pending}
-        error={fieldErrors.password}
+        error={fieldErrors.password ? t(fieldErrors.password) : undefined}
         id="login-password"
-        label="Password"
+        label={t("auth.fields.password")}
         maxLength={128}
         name="password"
         onValueChange={(value) => updateValue("password", value)}
@@ -99,11 +101,11 @@ export const LoginForm = () => {
           tone="danger"
           variant="caption"
         >
-          {formError}
+          {t(formError)}
         </Typography>
       ) : null}
       <Button disabled={pending} size="lg" style={styles.submit} type="submit">
-        {pending ? "Logging in…" : "Log in"}
+        {pending ? t("auth.login.pending") : t("auth.login.title")}
       </Button>
     </html.form>
   );
