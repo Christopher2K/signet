@@ -3,7 +3,8 @@ import {
   useNativeTheme,
 } from "@signet/design-system/native-theme";
 import type { ReactNode } from "react";
-import { KeyboardAvoidingView, ScrollView, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
+import { KeyboardAwareScrollView } from "react-native-keyboard-controller";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { css, html } from "react-strict-dom";
 
@@ -22,29 +23,22 @@ export const BookmarkScreenLayout = ({
       edges={["bottom"]}
       style={[styles.safeArea, { backgroundColor: theme.background }]}
     >
-      <KeyboardAvoidingView behavior="padding" style={styles.keyboardView}>
-        <ScrollView
-          contentContainerStyle={styles.content}
-          keyboardDismissMode="interactive"
-          keyboardShouldPersistTaps="handled"
-        >
-          <html.div
-            data-layoutconformance="strict"
-            style={strictStyles.content}
-          >
-            {children}
-          </html.div>
-        </ScrollView>
-      </KeyboardAvoidingView>
+      <KeyboardAwareScrollView
+        bottomOffset={nativeSpacing[4]}
+        contentContainerStyle={styles.content}
+        keyboardDismissMode="interactive"
+        keyboardShouldPersistTaps="handled"
+      >
+        <html.div data-layoutconformance="strict" style={strictStyles.content}>
+          {children}
+        </html.div>
+      </KeyboardAwareScrollView>
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   safeArea: {
-    flex: 1,
-  },
-  keyboardView: {
     flex: 1,
   },
   content: {
