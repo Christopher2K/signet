@@ -13,9 +13,21 @@ void SplashScreen.preventAutoHideAsync();
 const queryClient = new QueryClient();
 
 const RootLayout = () => {
-  const [fontsLoaded] = useFonts({
-    "Necto Mono": require("../../assets/fonts/NectoMono-Regular.otf"),
-  });
+  const [fontsLoaded] = useFonts([
+    {
+      fontFamily: "Space Mono",
+      fontDefinitions: [
+        {
+          path: require("../../assets/fonts/SpaceMono-Regular.ttf"),
+          weight: 400,
+        },
+        {
+          path: require("../../assets/fonts/SpaceMono-Bold.ttf"),
+          weight: 700,
+        },
+      ],
+    },
+  ]);
   const locales = useLocales();
   const locale = resolveLocale(locales.map(({ languageTag }) => languageTag));
 

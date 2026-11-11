@@ -41,7 +41,7 @@ proc = subprocess.run(["pen","interactive","--in","design/client-designs.pen","-
 - `execute()` takes **no `uri` arg** in headless mode. Inside `execute`, use `document`, `Insert(document, ...)`, `Update(id, ...)`, `Delete(id)`, `Get(n => ...)`, `SetVariables(...)`, `Print(...)`, `Export(...)`.
 - Batch related inserts into one `execute()` call. Never set `id` manually — pen.dev generates it. Capture returned ids (`sec5 = Insert(...)`) and reuse them in later `Insert(sec5, ...)` calls in the same or later calls (globals persist across calls).
 - **`execute` input is one line — separate statements with `;`.** Collapsing multi-line JS with plain spaces (`}) Insert(`) fails with `SyntaxError: expecting ';'` and rolls back the whole block (`editId` in the error). Generate the snippet by joining stripped lines with `;`, e.g. `";".join(line.strip() for line in js.splitlines() if line.strip())`, and append a trailing `;`. Keep no single-quote inside the wrapped `'...'` input; use `"` for JS strings and `\uXXXX` escapes for `§/—/·` if shell encoding is a risk.
-- Keep `fontFamily` to an **installed** monospace for canvas rendering (`IBM Plex Mono`). Production token stays `Necto Mono` — Necto Mono is not shipped with the canvas (see DESIGN.md §3.2).
+- Keep `fontFamily` to an **installed** monospace for canvas rendering (`IBM Plex Mono`). Production token stays `Space Mono` — Space Mono is not shipped with the canvas (see DESIGN.md §3.2).
 
 Verify layout without screenshots:
 
@@ -76,7 +76,7 @@ All 41 top-level frames are vertically stacked at `x=0` with 48px gutters. Re-re
 | §0 Cover — Signet Paper & Cobalt | `mApjQ` | Width exception (`1277`); don't "fix" to 1200 |
 | §1 Foundations — Color Scales | `G5z73D` | |
 | §2 Variants — Light / Dark Tokens | `mtl7O` | |
-| §3 Typography — Necto Mono | `YYynH` | |
+| §3 Typography — Space Mono | `YYynH` | |
 | §4 Spacing & Radii — 4pt grid | `jd3QR` | |
 | §5 Components — Button + Bookmark Card | `H6jw09` | Foundational component variants |
 | §6–§35 Screens and states | `VXf93` … `fq5mP` | Stable page/state IDs and titles are inventoried in `design/web/web-pages-map.md`; re-lookup frame IDs with `Get` |
@@ -95,7 +95,7 @@ Before any design op, read `DESIGN.md` **and** `design/web/web-pages-map.md`.
   - Pending badge = `Warning #9A6A00` fill + `paper #FBFFF1` text (DESIGN.md status token).
   - Focus ring = `azure-200 #B4C5E4` outer (2px pad, r12) + `cobalt #090C9B` inner (2px pad, r10) around a Primary button — hand-built from fills, strokes can't layer.
   - Ghost = no fill + `azure` stroke/text.
-- **Type:** `Necto Mono` (Collettivo, SIL OFL, Marco Condello) for everything (DESIGN.md §3.2). Sizes/weights from the type scale (Display 48/700, Headline 32/700, Title 20/600, Body 15/400, Caption 12/400, Code 13/400). Canvas renders in IBM Plex Mono as a stand-in, token stays Necto Mono. Established section-shell pattern (§1–§5): header `18 / 700` in cobalt, note `12` in `ink-400 #6B6578` — caption the stand-in in the note so samples are never mistaken for the production font.
+- **Type:** `Space Mono` (Colophon Foundry, SIL OFL 1.1) for everything (DESIGN.md §3.2). Sizes/weights from the type scale (Display 48/700, Headline 32/700, Title 20/600, Body 15/400, Caption 12/400, Code 13/400). Canvas renders in IBM Plex Mono as a stand-in, token stays Space Mono; production bundles Regular 400 and Bold 700, with weight 600 resolving to 700. Established section-shell pattern (§1–§5): header `18 / 700` in cobalt, note `12` in `ink-400 #6B6578` — caption the stand-in in the note so samples are never mistaken for the production font.
 - **Spacing / radii:** 4pt grid only (`sp-*` = 4, 8, 12, 16, 24, 32, 48; radii 4/8/12/16 + pill — DESIGN.md §3.3). **File convention is literals + token captions:** `design/client-designs.pen` currently holds **no variables** (`GetVariables()` returns `{variables:{}}`) and all foundations use literal numbers (`padding:24`, `gap:12`, `cornerRadius:8`). Match that: use literal 4pt-multiples for padding/gaps/radii and name the token in the adjacent caption (e.g. `sp-12 × sp-24`, `r-8 radius-md`). Do not introduce `$sp-*` / `$radius-*` references mid-file (half-migrated file). If a future migration binds variables, migrate the whole column at once.
 - **Components / sections:** name frames with stable IDs from the web map (`A1`, `L1`, `B1`…) and keep them discoverable as top-level frames. Mirror the map's zones, actions, and states — don't add chrome the spec doesn't ask for. Sections use `clip:true`, `cornerRadius:16`, `stroke:#8FA3C6` 1px, `layout:"vertical"`, `gap:12`, `padding:24`, starting with an `H` text node.
 - **New system component?** Only add a token/component/section if you also **update `DESIGN.md`** in the same change, documenting the new addition and its tokens. If you are just implementing an existing token, don't edit `DESIGN.md`. The current semantic color rules live in `DESIGN.md` §3.1 and the component inventory pointer in §3.4; keep both synchronized with the canvas.

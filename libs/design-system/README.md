@@ -14,7 +14,7 @@ export const SaveButton = () => (
 );
 ```
 
-`Button` supports `primary` and `secondary` variants, `sm`, `md`, and `lg` sizes, and the native `disabled` state. Additional React Strict DOM button properties can be passed through.
+`Button` supports `primary` and `secondary` variants, `sm`, `md`, and `lg` sizes, and the native `disabled` state. Native presses include light haptic feedback and a subtle scale animation; disabled buttons do not trigger either. Additional React Strict DOM button properties can be passed through.
 
 `Typography` centralizes the six type variants from `DESIGN.md`. Its polymorphic `as` prop accepts React Strict DOM tags while preserving tag-specific properties, and `tone` selects a semantic text color.
 
@@ -41,4 +41,4 @@ Run Storybook with `pnpm --filter @signet/web-client storybook` or `pnpm --filte
 
 Semantic light/dark colors, spacing, radii, and typography are exported from `src/tokens.css.ts`. Color values come from the Paper & Cobalt palette in `DESIGN.md`. Native-only chrome and layout tokens are available from `@signet/design-system/native-theme`, keeping React Native out of web bundles.
 
-The typography token names **Necto Mono**. The mobile client bundles and registers Necto Mono with Expo Font; web consumers must provide a matching `@font-face` rule to render that exact typeface.
+The typography token names **Space Mono**. The mobile client bundles and registers its Regular 400 and Bold 700 cuts with Expo Font; web consumers must provide matching `@font-face` rules to render that exact typeface.

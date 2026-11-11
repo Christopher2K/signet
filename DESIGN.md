@@ -129,11 +129,11 @@ For tints/shades between source tones (interpolated, keep hue):
   }
   ```
 
-### 3.2 Type — Necto Mono
+### 3.2 Type — Space Mono
 
-**Primary typeface (all text): Necto Mono** — Collettivo, [collletttivo.it/typefaces/necto-mono](https://www.collletttivo.it/typefaces/necto-mono). Designed by Marco Condello (2019), 1 family / 1 style, SIL OFL. Low contrast, medium apertures, slanted terminals — "aseptic" monospace. Chosen as the sole monospace in the Collettivo catalogue; fits bookmark UX where URLs, tags, and tables must scan at 12–15px.
+**Primary typeface (all text): Space Mono** — Colophon Foundry, [github.com/googlefonts/spacemono](https://github.com/googlefonts/spacemono). An original monospace display family with Regular 400 and Bold 700 cuts, licensed under SIL OFL 1.1. Its geometric slab core and distinctive letterforms give Signet a retro-editorial voice, while the true Bold cut provides reliable native navigation titles and URL, tag, and table text remains fixed-width.
 
-> Canvas trade-off: pen.dev does not ship Necto Mono, so `design/client-designs.pen` renders samples in IBM Plex Mono as a stand-in. Production token remains `font-primary: "Necto Mono"`.
+> Canvas trade-off: pen.dev does not ship Space Mono, so `design/client-designs.pen` renders samples in IBM Plex Mono as a stand-in. Production token remains `font-primary: "Space Mono"`; mobile and web bundle the official Regular and Bold files.
 
 | Style | Token | Size / Weight | Usage |
 |---|---|---|---|
@@ -144,7 +144,7 @@ For tints/shades between source tones (interpolated, keep hue):
 | Caption | `type-caption` | 12 / 400 | URLs, metadata, timestamps, tags |
 | Code | `type-mono` | 13 / 400 | JSON export, tokens, sync state |
 
-Full specimen in `design/client-designs.pen` §3. Display is 48px on desktop/tablet and may step down to Headline 32px at 390px to avoid excessive wrapping. Code 13px is used for sync timestamps, share URLs, and machine-oriented values; it is the same Necto Mono family, not a second font.
+Full specimen in `design/client-designs.pen` §3. Display is 48px on desktop/tablet and may step down to Headline 32px at 390px to avoid excessive wrapping. Code 13px is used for sync timestamps, share URLs, and machine-oriented values; it is the same Space Mono family, not a second font. Because the family has no intermediate cuts, requests for weight 600 resolve to Bold 700 rather than a synthetic weight.
 
 ### 3.3 Spacing & radii — 4pt grid
 
@@ -171,7 +171,7 @@ Base unit 4px in `design/client-designs.pen` §4. The canvas uses literal 4pt va
 | > 40px | 48 | 3 | 1/24 of size |
 
 - **Dark colourway:** `#4F4A62 → azure-400 #5C84C6 → mist #B4C5E4` (azure #3066BE fails on ink; cobalt never on dark). Mono variants: ink on light surfaces, paper on cobalt/azure/photo.
-- **Lockups:** horizontal default (wordmark 0.625M, gap M/3, min mark 24px); stacked (0.5M, gap M/5, min 32px). Wordmark = Necto Mono 700, "Signet". Clear space M/4; minimum mark 16px (favicon only).
+- **Lockups:** horizontal default (wordmark 0.625M, gap M/3, min mark 24px); stacked (0.5M, gap M/5, min 32px). Wordmark = Space Mono 700, "Signet". Clear space M/4; minimum mark 16px (favicon only).
 - **Assets:** ship `logo-16/24/32/48.svg`; a `<Logo size>` component selects by the same thresholds. Export the gap as a cut-out, not an outline, so the mark works on any surface.
 
 - **Type / Spacing / Radii / Elevation:** See 3.2–3.3 above; Elevation TBD
@@ -185,7 +185,7 @@ Native A1/A2 live in `design/client-designs.pen` §37–§38, with light and dar
 
 ### 3.6 Native library and session feedback
 
-Native L1 and the server-unavailable state live in `design/client-designs.pen` §39–§40. Native bookmark CRUD lives in §41 and mirrors the currently implemented `apps/web-client` `/` route. L1 uses a native navigation title and a bottom tab bar with **Library** (selected) and **Account**. The Library navigation bar owns the primary create action: a trailing native toolbar button with accessibility label **New Bookmark**. On iOS, use the `plus` SF Symbol in a prominent native button so iOS 26+ supplies Liquid Glass and earlier versions use the standard native appearance. On Android, use the native Compose icon button with a 24dp plus icon tinted `azure`/`azure-400`. Preserve system touch targets, pressed states, contrast, and reduce-transparency behavior rather than recreating the chrome with custom views. Do not duplicate the create button in the collection header or empty state. The action remains available in loading, empty, error, and populated states. Library shows the newest-first bookmark collection with loading, error, and empty states; each card opens the external link or a modal editor. Account owns the signed-in email and logout. §40 provides the saved-session retry.
+Native L1 and the server-unavailable state live in `design/client-designs.pen` §39–§40. Native bookmark CRUD lives in §41 and mirrors the currently implemented `apps/web-client` `/` route. Native navigation titles use **Space Mono 700** on both iOS and Android for a bold, consistent screen hierarchy. Expo Font registers the official Regular 400 and Bold 700 cuts under one family so native chrome selects the real Bold face rather than synthesizing it. L1 uses a native navigation title and a bottom tab bar with **Library** (selected) and **Account**. The Library navigation bar owns the primary create action: a trailing native toolbar button with accessibility label **New Bookmark**. On iOS, use the `plus` SF Symbol in a prominent native button so iOS 26+ supplies Liquid Glass and earlier versions use the standard native appearance. On Android, use the native Compose icon button with a 24dp plus icon tinted `azure`/`azure-400`. Preserve system touch targets, pressed states, contrast, and reduce-transparency behavior rather than recreating the chrome with custom views. Do not duplicate the create button in the collection header or empty state. The action remains available in loading, empty, error, and populated states. Library shows the newest-first bookmark collection with loading, error, and empty states; each card opens the external link or a modal editor. Account owns the signed-in email and logout. §40 provides the saved-session retry.
 
 Native create and edit use full-screen modal forms with 48px controls, keyboard-avoiding scroll content, and safe-area-aware actions. Create checks the canonical URL before saving and presents **Already saved** with **Open existing** / **Save anyway**; a failed duplicate check still permits a deliberate save. Edit includes notes, tags, image override, timestamps, and a platform confirmation before permanent deletion. Successful mutations update the visible collection without a manual refresh. Do not add search, folders, offline queues, or other future controls to these parity screens until those flows exist in the client. Logout uses the existing disabled button tokens while pending; session restoration remains covered by the native splash.
 

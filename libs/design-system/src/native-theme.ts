@@ -1,4 +1,4 @@
-import { useColorScheme } from "react-native";
+import { type TextStyle, useColorScheme } from "react-native";
 
 /** Numeric spacing scale for native navigation and React Native views. */
 export const nativeSpacing = {
@@ -12,7 +12,14 @@ export const nativeSpacing = {
 } as const;
 
 /** Native font family registered by each application. */
-export const nativeFontFamily = "Necto Mono";
+export const nativeFontFamily = "Space Mono";
+
+/** Native navigation title using the registered Space Mono Bold face. */
+export const nativeNavigationTitleStyle = {
+  fontFamily: nativeFontFamily,
+  fontSize: 15,
+  fontWeight: "700",
+} as const satisfies TextStyle;
 
 /** Semantic native colors resolved from the active color scheme. */
 export type NativeTheme = {

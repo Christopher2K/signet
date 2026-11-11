@@ -1,5 +1,5 @@
 import {
-  nativeFontFamily,
+  nativeNavigationTitleStyle,
   useNativeTheme,
 } from "@signet/design-system/native-theme";
 import { useTranslation } from "@signet/locale/react";
@@ -15,11 +15,7 @@ const LibraryLayout = () => {
         contentStyle: { backgroundColor: theme.background },
         headerStyle: { backgroundColor: theme.surface },
         headerTintColor: theme.text,
-        headerTitleStyle: {
-          fontFamily: nativeFontFamily,
-          fontSize: 15,
-          fontWeight: "600",
-        },
+        headerTitleStyle: nativeNavigationTitleStyle,
       }}
     >
       <Stack.Screen name="index" options={{ title: t("navigation.library") }} />

@@ -30,7 +30,7 @@
           "id": "F5mhO",
           "name": "Sub",
           "fill": "#3C3744",
-          "content": "Colors · Variants · Tokens · Type · Spacing — Necto Mono (Collettivo), IBM Plex Mono stand-in on canvas",
+          "content": "Colors · Variants · Tokens · Type · Spacing — Space Mono (Colophon), IBM Plex Mono stand-in on canvas",
           "fontFamily": "IBM Plex Mono",
           "fontSize": 15,
           "fontWeight": "normal"
@@ -1056,7 +1056,7 @@
       "id": "YYynH",
       "x": 0,
       "y": 956,
-      "name": "§3 Typography — Necto Mono",
+      "name": "§3 Typography — Space Mono",
       "clip": true,
       "width": 1200,
       "fill": "#FFFFFF",
@@ -1072,7 +1072,7 @@
           "id": "Djk2u",
           "name": "H",
           "fill": "#090C9B",
-          "content": "TYPE — NECTO MONO (Collettivo)",
+          "content": "TYPE — SPACE MONO (Colophon)",
           "fontFamily": "IBM Plex Mono",
           "fontSize": 18,
           "fontWeight": "700"
@@ -1082,7 +1082,7 @@
           "id": "S0pGK",
           "name": "Note",
           "fill": "#6B6578",
-          "content": "Necto Mono by Marco Condello, SIL OFL — canvas stand-in IBM Plex Mono",
+          "content": "Space Mono by Colophon Foundry, SIL OFL 1.1 — Regular 400 + Bold 700 · weight 600 resolves to 700 · canvas stand-in IBM Plex Mono",
           "fontFamily": "IBM Plex Mono",
           "fontSize": 12,
           "fontWeight": "normal"
@@ -1698,7 +1698,7 @@
           "fill": "#6B6578",
           "textGrowth": "fixed-width",
           "width": "fill_container",
-          "content": "Web-first components · Necto Mono (canvas: IBM Plex Mono stand-in) · 4pt grid · L1 Library Home + B1 Create Bookmark · SPEC 4.1 bookmark fields",
+          "content": "Web-first components · Space Mono (canvas: IBM Plex Mono stand-in) · 4pt grid · L1 Library Home + B1 Create Bookmark · SPEC 4.1 bookmark fields",
           "fontFamily": "IBM Plex Mono",
           "fontSize": 12,
           "fontWeight": "normal"
@@ -59370,7 +59370,7 @@
           "fill": "#6B6578",
           "textGrowth": "fixed-width",
           "width": "fill_container",
-          "content": "Cross-page variants for A1/A2, B1/B2, E5–E7 · Necto Mono (canvas: IBM Plex Mono stand-in) · 4pt grid · inline errors stay beside their fields; server and sync failures use toasts.",
+          "content": "Cross-page variants for A1/A2, B1/B2, E5–E7 · Space Mono (canvas: IBM Plex Mono stand-in) · 4pt grid · inline errors stay beside their fields; server and sync failures use toasts.",
           "fontFamily": "IBM Plex Mono",
           "fontSize": 12,
           "fontWeight": "normal"
@@ -62140,7 +62140,7 @@
           "fill": "#6B6578",
           "textGrowth": "fixed-width",
           "width": "fill_container",
-          "content": "Native iOS + Android · 390 × 844 · Light / Dark · Safe-area aware, keyboard-avoiding form · 48px controls · Editable Server URL, persisted with the session · IBM Plex Mono stand-in for Necto Mono",
+          "content": "Native iOS + Android · 390 × 844 · Light / Dark · Safe-area aware, keyboard-avoiding form · 48px controls · Editable Server URL, persisted with the session · IBM Plex Mono stand-in for Space Mono",
           "fontFamily": "IBM Plex Mono",
           "fontSize": 12,
           "fontWeight": "normal"
@@ -63034,7 +63034,7 @@
           "fill": "#6B6578",
           "textGrowth": "fixed-width",
           "width": "fill_container",
-          "content": "Native iOS + Android · 390 × 844 · Light / Dark · Safe-area aware, keyboard-avoiding form · 48px controls · Editable Server URL, persisted with the session · IBM Plex Mono stand-in for Necto Mono",
+          "content": "Native iOS + Android · 390 × 844 · Light / Dark · Safe-area aware, keyboard-avoiding form · 48px controls · Editable Server URL, persisted with the session · IBM Plex Mono stand-in for Space Mono",
           "fontFamily": "IBM Plex Mono",
           "fontSize": 12,
           "fontWeight": "normal"
@@ -64030,7 +64030,7 @@
           "fill": "#6B6578",
           "textGrowth": "fixed-width",
           "width": "fill_container",
-          "content": "Native iOS + Android · 390 × 844 · Light / Dark · Native navigation title with trailing New Bookmark toolbar action and bottom tabs · iOS prominent SF Symbol uses system Liquid Glass on iOS 26+ · Android uses a native icon button · Library and Account only · IBM Plex Mono stand-in for Necto Mono",
+          "content": "Native iOS + Android · 390 × 844 · Light / Dark · Native navigation title with trailing New Bookmark toolbar action and bottom tabs · iOS prominent SF Symbol uses system Liquid Glass on iOS 26+ · Android uses a native icon button · Library and Account only · IBM Plex Mono canvas · Navigation titles: Space Mono 700 on iOS and Android",
           "fontFamily": "IBM Plex Mono",
           "fontSize": 12,
           "fontWeight": "normal"
@@ -64691,7 +64691,7 @@
       "type": "frame",
       "id": "YV4VF",
       "x": 0,
-      "y": 126442,
+      "y": 126458,
       "name": "§40 Native Server unavailable",
       "clip": true,
       "width": 1200,
@@ -65067,7 +65067,7 @@
       "type": "frame",
       "id": "qSiZt",
       "x": 0,
-      "y": 127529,
+      "y": 127545,
       "name": "§41 Native Bookmark CRUD",
       "clip": true,
       "width": 1200,
@@ -65096,7 +65096,7 @@
           "fill": "#6B6578",
           "textGrowth": "fixed-width",
           "width": "fill_container",
-          "content": "Native iOS + Android · 390 × 844 · Light / Dark · Current web-client bookmark parity · Safe-area-aware modal forms · 48px controls · IBM Plex Mono stand-in for Necto Mono",
+          "content": "Native iOS + Android · 390 × 844 · Light / Dark · Current web-client bookmark parity · Safe-area-aware modal forms · 48px controls · IBM Plex Mono canvas · Navigation titles: Space Mono 700 on iOS and Android",
           "fontFamily": "IBM Plex Mono",
           "fontSize": 12,
           "fontWeight": "normal"

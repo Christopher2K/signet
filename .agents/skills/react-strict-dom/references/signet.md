@@ -9,7 +9,7 @@ This reference describes the configuration verified in this repository. Re-read 
 - `src/tokens.css.ts` contains semantic light/dark colors, spacing, radii, and typography using `css.defineVars()`.
 - `src/components/button.tsx` is the initial shared component; `button.stories.tsx` supplies the same stories to web and native.
 - Dimensional token values use pixel strings because the current `css.defineVars()` typings rejected raw numbers. Ordinary RSD styles can still use supported numeric values.
-- Necto Mono is named by the typography token but is not bundled. Consumers must register it natively and provide `@font-face` on web for the intended appearance.
+- Space Mono is named by the typography token. Mobile and web bundle its Regular 400 and Bold 700 files; native consumers register both cuts with Expo Font and web provides matching `@font-face` rules.
 
 ## File Map
 

@@ -337,7 +337,7 @@
           "id": "EXwMf",
           "name": "Caption",
           "fill": "#6B6578",
-          "content": "Source of truth: design/logo.pen · referenced from DESIGN.md §3.4. Canvas renders IBM Plex Mono as a stand-in for Necto Mono.",
+          "content": "Source of truth: design/logo.pen · referenced from DESIGN.md §3.4. Canvas renders IBM Plex Mono as a stand-in for Space Mono.",
           "fontFamily": "IBM Plex Mono",
           "fontSize": 12,
           "fontWeight": "normal"
@@ -7212,7 +7212,7 @@
           "fill": "#6B6578",
           "textGrowth": "fixed-width",
           "width": "fill_container",
-          "content": "Three arrangements. Proportions are relative to the mark size M so they hold at any scale. Wordmark: Necto Mono 700, title case “Signet”, no tracking.",
+          "content": "Three arrangements. Proportions are relative to the mark size M so they hold at any scale. Wordmark: Space Mono 700, title case “Signet”, no tracking.",
           "lineHeight": 1.5,
           "fontFamily": "IBM Plex Mono",
           "fontSize": 12,

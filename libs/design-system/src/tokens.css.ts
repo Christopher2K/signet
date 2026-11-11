@@ -90,9 +90,9 @@ export const radii = css.defineVars({
   pill: "999px",
 });
 
-/** Necto Mono typography scale. Consumers must register the font on native. */
+/** Space Mono typography scale. Consumers must register the font on native. */
 export const typography = css.defineVars({
-  fontFamily: "Necto Mono",
+  fontFamily: "Space Mono",
   displaySize: "48px",
   headlineSize: "32px",
   titleSize: "20px",

@@ -2,9 +2,25 @@
   box-sizing: border-box;
 }
 
+@font-face {
+  font-display: swap;
+  font-family: "Space Mono";
+  font-style: normal;
+  font-weight: 400;
+  src: url("/fonts/SpaceMono-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Space Mono";
+  font-style: normal;
+  font-weight: 700;
+  src: url("/fonts/SpaceMono-Bold.ttf") format("truetype");
+}
+
 :root {
   color-scheme: light dark;
-  font-family: "Necto Mono", monospace;
+  font-family: "Space Mono", monospace;
 }
 
 body {
