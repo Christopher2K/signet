@@ -1,4 +1,5 @@
 import type { Bookmark, CreateBookmarkRequest } from "@signet/api";
+import * as v from "valibot";
 
 /** Editable bookmark fields shown by the create and edit forms. */
 export type BookmarkFormValues = {
@@ -60,22 +61,40 @@ export const normalizeTags = (value: string): string[] => {
     });
 };
 
+/** Standard Schema for editable bookmark fields. */
+export const bookmarkSchema = v.object({
+  image: v.pipe(
+    v.string(),
+    v.trim(),
+    v.check(
+      (value) => !value || isHttpUrl(value),
+      "Enter a valid absolute HTTP(S) image URL.",
+    ),
+  ),
+  notes: v.pipe(
+    v.string(),
+    v.maxLength(2000, "Notes must be 2000 characters or fewer."),
+  ),
+  tags: v.string(),
+  title: v.pipe(v.string(), v.trim(), v.nonEmpty("Enter a title.")),
+  url: v.pipe(
+    v.string(),
+    v.trim(),
+    v.check(isHttpUrl, "Enter a valid absolute HTTP(S) URL."),
+  ),
+});
+
 /** Validates required fields and absolute HTTP(S) URLs before sending data. */
 export const validateBookmark = (
   values: BookmarkFormValues,
 ): BookmarkFormErrors => {
   const errors: BookmarkFormErrors = {};
-  if (!values.title.trim()) {
-    errors.title = "Enter a title.";
-  }
-  if (!isHttpUrl(values.url.trim())) {
-    errors.url = "Enter a valid absolute HTTP(S) URL.";
-  }
-  if (values.image.trim() && !isHttpUrl(values.image.trim())) {
-    errors.image = "Enter a valid absolute HTTP(S) image URL.";
-  }
-  if (values.notes.length > 2000) {
-    errors.notes = "Notes must be 2000 characters or fewer.";
+  const result = v.safeParse(bookmarkSchema, values);
+  for (const issue of result.issues ?? []) {
+    const field = issue.path?.[0]?.key as keyof BookmarkFormValues | undefined;
+    if (field !== undefined && errors[field] === undefined) {
+      errors[field] = issue.message;
+    }
   }
   return errors;
 };

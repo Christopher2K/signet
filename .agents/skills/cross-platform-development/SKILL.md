@@ -84,6 +84,12 @@ Apps should import these entry points directly. Do not leave client files that o
 
 Do not share complete screens just because the underlying logic is shared. The design system owns visual primitives; core owns feature behavior; apps compose them into platform-appropriate experiences.
 
+## Frontend Validation
+
+- All frontend and client-side form validation on web and mobile must use **Valibot**, with schemas that retain Standard Schema compatibility.
+- Keep shared schemas in the feature's `<feature>-validation.ts` module and export them through its public entry point.
+- Do not introduce alternative validation libraries or parallel handwritten rules for the same form.
+
 ## Platform Extensions
 
 Use `.native.ts`, `.web.ts`, and more specific `.ios.ts` or `.android.ts` files only at genuine platform boundaries. Good candidates include storage, connectivity, file systems, notifications, and secure enclaves. Do not fork validation, errors, or other pure logic.

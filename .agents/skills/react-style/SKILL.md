@@ -20,6 +20,11 @@ Apply these rules to React code you create or edit. Do not rewrite unrelated cod
 - Do not use inline anonymous prop types or `React.FC`.
 - Components without props do not need an artificial empty props type.
 
+## Form validation
+
+- All frontend form validation must use **Valibot** schemas with Standard Schema compatibility.
+- Reuse shared schemas from `@signet/core` where available instead of duplicating validation in components.
+
 ## Exports
 
 - Declare exported components as arrow functions assigned to `export const`.

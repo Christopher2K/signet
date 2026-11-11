@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { validateLogin, validateSignup } from "./auth-validation";
+import { loginSchema, validateLogin, validateSignup } from "./auth-validation";
 
 describe("validateLogin", () => {
   it("accepts valid credentials", () => {
@@ -19,6 +19,18 @@ describe("validateLogin", () => {
     expect(
       validateLogin({ email: "not-an-email", password: "secret" }).email,
     ).toBe("Enter a valid email address.");
+  });
+
+  it("supports Standard Schema validation", async () => {
+    const result = await loginSchema["~standard"].validate({
+      email: " name@example.com ",
+      password: "secret",
+    });
+
+    expect(result).toEqual({
+      typed: true,
+      value: { email: "name@example.com", password: "secret" },
+    });
   });
 });
 

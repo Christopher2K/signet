@@ -1,28 +1,32 @@
+import * as v from "valibot";
+
 /** Normalizes a server URL for API client configuration. */
 export const normalizeServerUrl = (value: string): string =>
   value.trim().replace(/\/+$/, "");
 
-/** Validates an absolute HTTP or HTTPS server URL. */
-export const validateServerUrl = (value: string): string | undefined => {
-  const normalized = normalizeServerUrl(value);
-  if (!normalized) {
-    return "Server URL is required.";
-  }
-
+const isValidServerUrl = (value: string): boolean => {
   try {
-    const url = new URL(normalized);
-    if (
-      (url.protocol !== "http:" && url.protocol !== "https:") ||
-      url.username ||
-      url.password ||
-      url.search ||
-      url.hash
-    ) {
-      return "Enter a valid HTTP or HTTPS server URL.";
-    }
+    const url = new URL(value);
+    return (
+      (url.protocol === "http:" || url.protocol === "https:") &&
+      !url.username &&
+      !url.password &&
+      !url.search &&
+      !url.hash
+    );
   } catch {
-    return "Enter a valid HTTP or HTTPS server URL.";
+    return false;
   }
-
-  return undefined;
 };
+
+/** Standard Schema for an absolute HTTP(S) server URL. */
+export const serverUrlSchema = v.pipe(
+  v.string(),
+  v.transform(normalizeServerUrl),
+  v.nonEmpty("Server URL is required."),
+  v.check(isValidServerUrl, "Enter a valid HTTP or HTTPS server URL."),
+);
+
+/** Validates an absolute HTTP or HTTPS server URL. */
+export const validateServerUrl = (value: string): string | undefined =>
+  v.safeParse(serverUrlSchema, value).issues?.[0]?.message;

@@ -10,8 +10,8 @@ This reference records the architecture established for shared authentication. R
 - `libs/core/src/features/auth/auth-api.ts` — generated-client adapter with injected base URL, token callback, and optional fetch.
 - `libs/core/src/features/auth/auth-errors.ts` — stable API/network error categories and messages.
 - `libs/core/src/features/auth/auth-types.ts` — shared API, credential, session-state, and context contracts.
-- `libs/core/src/features/auth/auth-validation.ts` — common email, name, and password rules.
-- `libs/core/src/features/auth/auth-server-url.ts` — pure HTTP/HTTPS URL normalization and validation.
+- `libs/core/src/features/auth/auth-validation.ts` — Valibot-backed Standard Schemas and common email, name, and password rules.
+- `libs/core/src/features/auth/auth-server-url.ts` — Valibot-backed HTTP/HTTPS URL normalization and validation.
 - `libs/core/src/features/auth/auth-provider.tsx` — API/storage configuration and provider composition.
 - `libs/core/src/features/auth/auth-session-provider.tsx` — shared React Query session lifecycle and operation ordering.
 - `libs/core/src/features/auth/auth-queries.ts` — shared login, signup, logout, and current-user hooks.

@@ -8,6 +8,7 @@ export {
 } from "./auth-errors";
 export {
   normalizeServerUrl,
+  serverUrlSchema,
   validateServerUrl,
 } from "./auth-server-url";
 export type {
@@ -21,6 +22,8 @@ export type {
 } from "./auth-types";
 export {
   type FormFieldErrors,
+  loginSchema,
+  signupSchema,
   validateLogin,
   validateSignup,
 } from "./auth-validation";

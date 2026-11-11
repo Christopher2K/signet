@@ -28,6 +28,12 @@ Apply these rules to code you create or edit. Do not rewrite unrelated code, gen
 - Explain semantics; do not merely repeat the identifier.
 - Avoid long descriptions, tutorials, and obvious commentary.
 
+## Frontend validation
+
+- All frontend and client-side form validation must use **Valibot**.
+- Define reusable Valibot schemas with Standard Schema compatibility; do not introduce Zod or parallel handwritten validation rules.
+- Reuse schemas from `@signet/core` when validation is shared between web and mobile.
+
 ## Example
 
 ```ts

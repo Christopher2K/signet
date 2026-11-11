@@ -450,6 +450,9 @@ importers:
       '@signet/api':
         specifier: workspace:*
         version: link:../api
+      valibot:
+        specifier: ~1.5.0
+        version: 1.5.0(typescript@6.0.3)
     devDependencies:
       '@react-native-async-storage/async-storage':
         specifier: 2.2.0
