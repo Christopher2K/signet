@@ -64,7 +64,7 @@ export const findDuplicateBookmarks = async (
   client: ApiClient,
   url: string,
 ): Promise<Bookmark[]> => {
-  const response = await queryClient.fetchQuery({
+  const response = await queryClient.query({
     ...listBookmarksOptions({ client, query: { url } }),
     retry: false,
   });
