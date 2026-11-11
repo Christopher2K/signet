@@ -9,7 +9,10 @@ const config: ExpoConfig = {
   scheme: "signet",
   userInterfaceStyle: "automatic",
   ios: {
-    icon: "./assets/expo.icon",
+    icon: {
+      light: "./assets/images/icon.png",
+      dark: "./assets/images/icon-dark.png",
+    },
     bundleIdentifier: "co.signetapp.app",
     infoPlist: {
       CFBundleLocalizations: ["en", "fr"],
@@ -18,7 +21,7 @@ const config: ExpoConfig = {
   android: {
     package: "co.signetapp.app",
     adaptiveIcon: {
-      backgroundColor: "#E6F4FE",
+      backgroundColor: "#FBFFF1",
       foregroundImage: "./assets/images/android-icon-foreground.png",
       backgroundImage: "./assets/images/android-icon-background.png",
       monochromeImage: "./assets/images/android-icon-monochrome.png",
