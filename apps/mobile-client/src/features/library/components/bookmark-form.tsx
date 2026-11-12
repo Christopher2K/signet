@@ -27,7 +27,7 @@ type BookmarkFormProps = {
   deleteError?: string;
   deletePending?: boolean;
   initialValues?: BookmarkFormValues;
-  onCancel: () => void;
+  onCancel?: () => void;
   onDelete?: () => void;
   onSubmit: (request: CreateBookmarkRequest) => Promise<void>;
   pendingLabel?: string;
@@ -231,15 +231,17 @@ export const BookmarkForm = ({
         >
           {pending ? (pendingLabel ?? t("actions.saving")) : submitLabel}
         </Button>
-        <Button
-          disabled={busy}
-          onClick={onCancel}
-          size="lg"
-          style={styles.action}
-          variant="secondary"
-        >
-          {t("actions.cancel")}
-        </Button>
+        {onCancel ? (
+          <Button
+            disabled={busy}
+            onClick={onCancel}
+            size="lg"
+            style={styles.action}
+            variant="secondary"
+          >
+            {t("actions.cancel")}
+          </Button>
+        ) : null}
         {onDelete ? (
           <Button
             disabled={busy}

@@ -65096,7 +65096,7 @@
           "fill": "#6B6578",
           "textGrowth": "fixed-width",
           "width": "fill_container",
-          "content": "Native iOS + Android · 390 × 844 · Light / Dark · Current web-client bookmark parity · Safe-area-aware modal forms · 48px controls · IBM Plex Mono canvas · Navigation titles: Space Mono 700 on iOS and Android",
+          "content": "Native iOS + Android · 390 × 844 · Light / Dark · Current web-client bookmark parity · Safe-area-aware modal forms · 48px controls · IBM Plex Mono canvas · Navigation titles: Space Mono 700 on iOS and Android · iOS Cancel: Space Mono 400",
           "fontFamily": "IBM Plex Mono",
           "fontSize": 12,
           "fontWeight": "normal"
@@ -66979,33 +66979,6 @@
                                   "fontWeight": "700"
                                 }
                               ]
-                            },
-                            {
-                              "type": "frame",
-                              "id": "Vd5qp",
-                              "name": "Button-Cancel",
-                              "width": "fill_container",
-                              "height": 48,
-                              "fill": "#B4C5E4",
-                              "cornerRadius": 8,
-                              "padding": [
-                                0,
-                                12
-                              ],
-                              "justifyContent": "center",
-                              "alignItems": "center",
-                              "children": [
-                                {
-                                  "type": "text",
-                                  "id": "kSRn2",
-                                  "name": "Label",
-                                  "fill": "#3C3744",
-                                  "content": "Cancel",
-                                  "fontFamily": "IBM Plex Mono",
-                                  "fontSize": 15,
-                                  "fontWeight": "700"
-                                }
-                              ]
                             }
                           ]
                         },
@@ -67443,33 +67416,6 @@
                                   "fontWeight": "700"
                                 }
                               ]
-                            },
-                            {
-                              "type": "frame",
-                              "id": "nuGkr",
-                              "name": "Button-Cancel",
-                              "width": "fill_container",
-                              "height": 48,
-                              "fill": "#B4C5E4",
-                              "cornerRadius": 8,
-                              "padding": [
-                                0,
-                                12
-                              ],
-                              "justifyContent": "center",
-                              "alignItems": "center",
-                              "children": [
-                                {
-                                  "type": "text",
-                                  "id": "C51b3v",
-                                  "name": "Label",
-                                  "fill": "#3C3744",
-                                  "content": "Cancel",
-                                  "fontFamily": "IBM Plex Mono",
-                                  "fontSize": 15,
-                                  "fontWeight": "700"
-                                }
-                              ]
                             }
                           ]
                         },
@@ -67492,6 +67438,142 @@
                               "cornerRadius": 4
                             }
                           ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "E8LZr",
+              "name": "AndroidLeadingCancel",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "NJzQu",
+                  "name": "StateLabel",
+                  "fill": "#3066BE",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Android · native leading Cancel · Phosphor X · accessibility label Cancel · Light / Dark",
+                  "fontFamily": "IBM Plex Mono",
+                  "fontSize": 12,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "frame",
+                  "id": "cQZEp",
+                  "name": "NativeThemePair",
+                  "width": "fill_container",
+                  "gap": 24,
+                  "justifyContent": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "Q23Lo5",
+                      "name": "NavigationBar-Android-Light",
+                      "width": "fill_container",
+                      "height": 56,
+                      "fill": "#FFFFFF",
+                      "stroke": "#8FA3C6",
+                      "strokeWidth": 1,
+                      "padding": [
+                        0,
+                        16
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "path",
+                          "id": "wDdmd",
+                          "name": "Phosphor-Regular-X",
+                          "geometry": "M205.66 194.34a8 8 0 0 1-11.32 11.32l-66.34-66.35-66.34 66.35a8 8 0 0 1-11.32-11.32l66.35-66.34-66.35-66.34a8 8 0 0 1 11.32-11.32l66.34 66.35 66.34-66.35a8 8 0 0 1 11.32 11.32l-66.35 66.34z",
+                          "viewBox": [
+                            0,
+                            0,
+                            256,
+                            256
+                          ],
+                          "fill": "#3066BE",
+                          "width": 24,
+                          "height": 24
+                        },
+                        {
+                          "type": "text",
+                          "id": "JEiYv",
+                          "name": "NavigationTitle",
+                          "fill": "#3C3744",
+                          "content": "New Bookmark",
+                          "fontFamily": "IBM Plex Mono",
+                          "fontSize": 15,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "GKd9K",
+                          "name": "TrailingSpace",
+                          "fill": "#3C3744",
+                          "fontFamily": "IBM Plex Mono",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "tskMK",
+                      "name": "NavigationBar-Android-Dark",
+                      "width": "fill_container",
+                      "height": 56,
+                      "fill": "#2F2B3A",
+                      "stroke": "#4F4A62",
+                      "strokeWidth": 1,
+                      "padding": [
+                        0,
+                        16
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "path",
+                          "id": "O0SaU",
+                          "name": "Phosphor-Regular-X",
+                          "geometry": "M205.66 194.34a8 8 0 0 1-11.32 11.32l-66.34-66.35-66.34 66.35a8 8 0 0 1-11.32-11.32l66.35-66.34-66.35-66.34a8 8 0 0 1 11.32-11.32l66.34 66.35 66.34-66.35a8 8 0 0 1 11.32 11.32l-66.35 66.34z",
+                          "viewBox": [
+                            0,
+                            0,
+                            256,
+                            256
+                          ],
+                          "fill": "#B4C5E4",
+                          "width": 24,
+                          "height": 24
+                        },
+                        {
+                          "type": "text",
+                          "id": "ANlXc",
+                          "name": "NavigationTitle",
+                          "fill": "#FBFFF1",
+                          "content": "New Bookmark",
+                          "fontFamily": "IBM Plex Mono",
+                          "fontSize": 15,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "wfjgp",
+                          "name": "TrailingSpace",
+                          "fill": "#FBFFF1",
+                          "fontFamily": "IBM Plex Mono",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
                         }
                       ]
                     }
@@ -69868,7 +69950,7 @@
           "fill": "#6B6578",
           "textGrowth": "fixed-width",
           "width": "fill_container",
-          "content": "Library places New Bookmark in the native navigation bar as a trailing platform toolbar action. iOS uses a prominent plus SF Symbol with system Liquid Glass on iOS 26+ and the standard native fallback earlier; Android uses a native 24dp Compose icon button tinted azure or azure-400. System touch targets, pressed states, contrast and reduce-transparency behavior are preserved. The collection header and empty state have no duplicate create button. The action remains available in loading, empty, error and populated states. Canvas chrome is a schematic of the native rendering. Successful mutations update cached data before returning to Library.",
+          "content": "Library places New Bookmark in the native navigation bar as a trailing platform toolbar action. Create places Cancel in the leading native navigation bar on iOS and Android, with no duplicate Cancel in the form. iOS uses native Cancel text in Space Mono 400; Android uses a native Phosphor X vector-icon button with Cancel as its accessibility label. The Android asset is an XML vector drawable derived from the official Phosphor SVG. iOS uses a prominent plus SF Symbol with system Liquid Glass on iOS 26+ and the standard native fallback earlier; Android uses native Compose toolbar buttons. System touch targets, pressed states, contrast and reduce-transparency behavior are preserved. The collection header and empty state have no duplicate create button. The action remains available in loading, empty, error and populated states. Canvas chrome is a schematic of the native rendering. Successful mutations update cached data before returning to Library.",
           "fontFamily": "IBM Plex Mono",
           "fontSize": 12,
           "fontWeight": "normal"
@@ -69879,7 +69961,7 @@
       "type": "frame",
       "id": "sPOxK",
       "x": 0,
-      "y": 132320,
+      "y": 132440,
       "name": "§42 Native Animated Splash — Stack settles",
       "clip": true,
       "width": 1200,

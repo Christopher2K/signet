@@ -10,13 +10,20 @@ import {
   useBookmarkClient,
 } from "@signet/core/bookmarks/react";
 import { Typography } from "@signet/design-system";
+import { nativeFontFamily } from "@signet/design-system/native-theme";
 import { useTranslation } from "@signet/locale/react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useRouter } from "expo-router";
+import { Stack, useRouter } from "expo-router";
 import { useEffect, useRef, useState } from "react";
+import { Platform } from "react-native";
 import { BookmarkForm } from "../../../features/library/components/bookmark-form";
 import { BookmarkScreenLayout } from "../../../features/library/components/bookmark-screen-layout";
 import { DuplicateBookmarkWarning } from "../../../features/library/components/duplicate-bookmark-warning";
+
+const cancelIcon = Platform.select({
+  ios: undefined,
+  default: require("../../../../assets/images/close.xml"),
+});
 
 type DuplicateWarning = {
   bookmarks: Bookmark[];
@@ -112,37 +119,48 @@ const CreateBookmarkScreen = () => {
     : undefined;
 
   return (
-    <BookmarkScreenLayout>
-      {warning ? (
-        <DuplicateBookmarkWarning
-          checkFailed={warning.checkFailed}
-          error={warningError}
-          existing={warning.bookmarks[0]}
-          onBack={() => setWarning(undefined)}
-          onOpenExisting={(id) =>
-            router.replace({ pathname: "/bookmark/[id]", params: { id } })
-          }
-          onSaveAnyway={() => void handleSaveAnyway()}
-          pending={savingAnyway}
-          url={pendingRequest?.url ?? ""}
-        />
-      ) : (
-        <>
-          <Typography tone="secondary" variant="caption">
-            {t("library.createDescription")}
-          </Typography>
-          <BookmarkForm
-            initialValues={initialValues}
-            onCancel={() => router.back()}
-            onSubmit={handleSubmit}
-            pendingLabel={
-              checking ? t("actions.checking") : t("actions.saving")
+    <>
+      <Stack.Toolbar placement="left">
+        <Stack.Toolbar.Button
+          accessibilityLabel={t("actions.cancel")}
+          icon={cancelIcon}
+          onPress={() => router.back()}
+          style={{ fontFamily: nativeFontFamily }}
+        >
+          {t("actions.cancel")}
+        </Stack.Toolbar.Button>
+      </Stack.Toolbar>
+      <BookmarkScreenLayout>
+        {warning ? (
+          <DuplicateBookmarkWarning
+            checkFailed={warning.checkFailed}
+            error={warningError}
+            existing={warning.bookmarks[0]}
+            onBack={() => setWarning(undefined)}
+            onOpenExisting={(id) =>
+              router.replace({ pathname: "/bookmark/[id]", params: { id } })
             }
-            submitLabel={t("actions.save")}
+            onSaveAnyway={() => void handleSaveAnyway()}
+            pending={savingAnyway}
+            url={pendingRequest?.url ?? ""}
           />
-        </>
-      )}
-    </BookmarkScreenLayout>
+        ) : (
+          <>
+            <Typography tone="secondary" variant="caption">
+              {t("library.createDescription")}
+            </Typography>
+            <BookmarkForm
+              initialValues={initialValues}
+              onSubmit={handleSubmit}
+              pendingLabel={
+                checking ? t("actions.checking") : t("actions.saving")
+              }
+              submitLabel={t("actions.save")}
+            />
+          </>
+        )}
+      </BookmarkScreenLayout>
+    </>
   );
 };
 
