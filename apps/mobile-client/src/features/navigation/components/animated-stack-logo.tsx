@@ -13,8 +13,7 @@ import Animated, {
 } from "react-native-reanimated";
 import Svg, { Path } from "react-native-svg";
 
-const TAB_PATH =
-  "M0 5q0-.995 .381-1.913 .38-.919 1.083-1.623 .704-.703 1.623-1.083 .918-.381 1.913-.381h10q.995 0 1.913 .381 .919 .38 1.623 1.083 .703 .704 1.083 1.623 .381 .918 .381 1.913v25l-10-7-10 7z";
+const TAB_PATH = "M0 5a5 5 0 0 1 5-5h10a5 5 0 0 1 5 5v25l-10-7-10 7z";
 const SPRING_CONFIG = { damping: 18, mass: 0.7, stiffness: 180 } as const;
 
 /** Animated Stack logo properties. */
@@ -115,23 +114,35 @@ export const AnimatedStackLogo = ({
           </Svg>
         </Animated.View>
         <Animated.View style={[styles.tab, middleStyle]}>
-          <Svg height={60} viewBox="0 0 20 30" width={40}>
+          <Svg
+            height={72}
+            style={styles.outlinedTab}
+            viewBox="-2 -2 24 36"
+            width={48}
+          >
             <Path
               d={TAB_PATH}
-              fill={theme.primary}
+              fill="none"
               stroke={theme.background}
-              strokeWidth={2}
+              strokeWidth={4}
             />
+            <Path d={TAB_PATH} fill={theme.primary} />
           </Svg>
         </Animated.View>
         <Animated.View style={[styles.tab, styles.frontTab]}>
-          <Svg height={60} viewBox="0 0 20 30" width={40}>
+          <Svg
+            height={72}
+            style={styles.outlinedTab}
+            viewBox="-2 -2 24 36"
+            width={48}
+          >
             <Path
               d={TAB_PATH}
-              fill={theme.accent}
+              fill="none"
               stroke={theme.background}
-              strokeWidth={2}
+              strokeWidth={4}
             />
+            <Path d={TAB_PATH} fill={theme.accent} />
           </Svg>
         </Animated.View>
       </Animated.View>
@@ -155,6 +166,11 @@ const styles = StyleSheet.create({
   logo: {
     height: 96,
     width: 96,
+  },
+  outlinedTab: {
+    left: -4,
+    position: "absolute",
+    top: -4,
   },
   tab: {
     height: 60,
