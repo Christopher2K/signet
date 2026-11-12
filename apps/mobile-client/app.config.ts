@@ -16,6 +16,7 @@ const config: ExpoConfig = {
     bundleIdentifier: "co.signetapp.app",
     infoPlist: {
       CFBundleLocalizations: ["en", "fr"],
+      ITSAppUsesNonExemptEncryption: false,
     },
   },
   android: {
