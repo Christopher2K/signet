@@ -41,6 +41,11 @@ export default defineConfig({
       resolve: { extensions: allExtensions },
     },
   },
+  server: {
+    proxy: {
+      "/api": "http://localhost:4000",
+    },
+  },
   test: {
     environment: "node",
     include: ["src/**/*.test.ts", "src/**/*.test.tsx"],

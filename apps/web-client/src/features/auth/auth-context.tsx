@@ -12,13 +12,10 @@ export type AuthProviderProps = {
   api?: AuthApi;
 };
 
-const getConfiguredApiUrl = (): string => {
-  const apiUrl = import.meta.env.API_URL?.trim();
-  if (!apiUrl) {
-    throw new Error("API_URL must be configured for the web application.");
-  }
-  return apiUrl;
-};
+export const getApiUrl = (
+  configuredApiUrl: string | undefined = import.meta.env.API_URL,
+  origin = window.location.origin,
+): string => configuredApiUrl?.trim() || origin;
 
 export const AuthProvider = ({ api, children }: AuthProviderProps) => {
   if (api) {
@@ -26,7 +23,7 @@ export const AuthProvider = ({ api, children }: AuthProviderProps) => {
   }
 
   return (
-    <CoreAuthProvider defaultServerUrl={getConfiguredApiUrl()}>
+    <CoreAuthProvider defaultServerUrl={getApiUrl()}>
       {children}
     </CoreAuthProvider>
   );

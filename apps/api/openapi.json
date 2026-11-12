@@ -1,0 +1,907 @@
+{
+  "components": {
+    "responses": {},
+    "schemas": {
+      "Bookmark": {
+        "additionalProperties": false,
+        "description": "A URL saved by a user",
+        "example": {
+          "createdAt": "2026-01-02T03:04:05Z",
+          "id": "01942f8e-7f6a-7c3d-8f00-c93d26f52c48",
+          "image": null,
+          "notes": "Read the documentation",
+          "ownerId": "01942f8e-80a1-7b32-b1a2-c4a52f3d1f80",
+          "tags": ["elixir", "reading"],
+          "title": "Elixir",
+          "updatedAt": "2026-01-02T03:04:05Z",
+          "url": "https://elixir-lang.org/"
+        },
+        "properties": {
+          "createdAt": {
+            "description": "Creation timestamp",
+            "format": "date-time",
+            "type": "string"
+          },
+          "id": {
+            "description": "Bookmark ID",
+            "format": "uuid",
+            "type": "string"
+          },
+          "image": {
+            "description": "Optional HTTP(S) image URL",
+            "format": "uri",
+            "nullable": true,
+            "type": "string"
+          },
+          "notes": {
+            "description": "Optional notes",
+            "maxLength": 2000,
+            "nullable": true,
+            "type": "string"
+          },
+          "ownerId": {
+            "description": "Owner account ID",
+            "format": "uuid",
+            "type": "string"
+          },
+          "tags": {
+            "description": "Normalized tags",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "title": {
+            "description": "Bookmark title",
+            "minLength": 1,
+            "type": "string"
+          },
+          "updatedAt": {
+            "description": "Last update timestamp",
+            "format": "date-time",
+            "type": "string"
+          },
+          "url": {
+            "description": "Canonical HTTP(S) URL",
+            "format": "uri",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "ownerId",
+          "title",
+          "url",
+          "image",
+          "notes",
+          "tags",
+          "createdAt",
+          "updatedAt"
+        ],
+        "title": "Bookmark",
+        "type": "object"
+      },
+      "BookmarkListResponse": {
+        "additionalProperties": false,
+        "description": "Bookmark list response",
+        "properties": {
+          "data": {
+            "items": {
+              "$ref": "#/components/schemas/Bookmark"
+            },
+            "type": "array"
+          }
+        },
+        "required": ["data"],
+        "title": "BookmarkListResponse",
+        "type": "object"
+      },
+      "BookmarkResponse": {
+        "additionalProperties": false,
+        "description": "Single bookmark response",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/Bookmark"
+          }
+        },
+        "required": ["data"],
+        "title": "BookmarkResponse",
+        "type": "object"
+      },
+      "CreateBookmarkRequest": {
+        "additionalProperties": false,
+        "description": "New bookmark fields",
+        "example": {
+          "image": null,
+          "notes": "Read the documentation",
+          "tags": ["elixir", "reading"],
+          "title": "Elixir",
+          "url": "https://elixir-lang.org/"
+        },
+        "properties": {
+          "image": {
+            "description": "Optional absolute HTTP(S) image URL",
+            "format": "uri",
+            "nullable": true,
+            "type": "string"
+          },
+          "notes": {
+            "description": "Optional notes",
+            "maxLength": 2000,
+            "nullable": true,
+            "type": "string"
+          },
+          "tags": {
+            "description": "Bookmark tags",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "title": {
+            "description": "Bookmark title",
+            "minLength": 1,
+            "type": "string"
+          },
+          "url": {
+            "description": "Absolute HTTP(S) URL",
+            "format": "uri",
+            "type": "string"
+          }
+        },
+        "required": ["title", "url"],
+        "title": "CreateBookmarkRequest",
+        "type": "object"
+      },
+      "ErrorResponse": {
+        "additionalProperties": false,
+        "description": "API error response",
+        "example": {
+          "error": {
+            "code": "invalid_credentials",
+            "message": "Invalid credentials"
+          }
+        },
+        "properties": {
+          "error": {
+            "additionalProperties": false,
+            "properties": {
+              "code": {
+                "description": "Machine-readable error code",
+                "type": "string"
+              },
+              "details": {
+                "additionalProperties": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "description": "Field-specific validation messages",
+                "type": "object"
+              },
+              "message": {
+                "description": "Human-readable error summary",
+                "type": "string"
+              }
+            },
+            "required": ["code", "message"],
+            "type": "object"
+          }
+        },
+        "required": ["error"],
+        "title": "ErrorResponse",
+        "type": "object"
+      },
+      "HealthResponse": {
+        "additionalProperties": false,
+        "description": "Service readiness status",
+        "example": {
+          "status": "ok"
+        },
+        "properties": {
+          "status": {
+            "description": "Database readiness status",
+            "type": "string"
+          }
+        },
+        "required": ["status"],
+        "title": "HealthResponse",
+        "type": "object"
+      },
+      "LoginRequest": {
+        "additionalProperties": false,
+        "description": "Account login credentials",
+        "example": {
+          "email": "jane@example.com",
+          "password": "a secure password"
+        },
+        "properties": {
+          "email": {
+            "format": "email",
+            "maxLength": 254,
+            "type": "string"
+          },
+          "password": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string",
+            "writeOnly": true
+          }
+        },
+        "required": ["email", "password"],
+        "title": "LoginRequest",
+        "type": "object"
+      },
+      "SessionResponse": {
+        "additionalProperties": false,
+        "description": "Authenticated session response",
+        "properties": {
+          "data": {
+            "additionalProperties": false,
+            "properties": {
+              "token": {
+                "description": "Bearer session token",
+                "minLength": 1,
+                "type": "string"
+              },
+              "user": {
+                "$ref": "#/components/schemas/User"
+              }
+            },
+            "required": ["user", "token"],
+            "type": "object"
+          }
+        },
+        "required": ["data"],
+        "title": "SessionResponse",
+        "type": "object"
+      },
+      "SignupRequest": {
+        "additionalProperties": false,
+        "description": "New account credentials",
+        "example": {
+          "email": "jane@example.com",
+          "name": "Jane Doe",
+          "password": "a secure password"
+        },
+        "properties": {
+          "email": {
+            "format": "email",
+            "maxLength": 254,
+            "type": "string"
+          },
+          "name": {
+            "maxLength": 100,
+            "minLength": 1,
+            "type": "string"
+          },
+          "password": {
+            "maxLength": 128,
+            "minLength": 12,
+            "type": "string",
+            "writeOnly": true
+          }
+        },
+        "required": ["name", "email", "password"],
+        "title": "SignupRequest",
+        "type": "object"
+      },
+      "UpdateBookmarkRequest": {
+        "additionalProperties": false,
+        "description": "Optional bookmark fields to update",
+        "example": {
+          "tags": ["reading"],
+          "title": "Updated title"
+        },
+        "properties": {
+          "image": {
+            "description": "Optional absolute HTTP(S) image URL",
+            "format": "uri",
+            "nullable": true,
+            "type": "string"
+          },
+          "notes": {
+            "description": "Optional notes",
+            "maxLength": 2000,
+            "nullable": true,
+            "type": "string"
+          },
+          "tags": {
+            "description": "Bookmark tags",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "title": {
+            "description": "Bookmark title",
+            "minLength": 1,
+            "type": "string"
+          },
+          "url": {
+            "description": "Absolute HTTP(S) URL",
+            "format": "uri",
+            "type": "string"
+          }
+        },
+        "title": "UpdateBookmarkRequest",
+        "type": "object"
+      },
+      "User": {
+        "additionalProperties": false,
+        "description": "A registered Signet account",
+        "example": {
+          "email": "jane@example.com",
+          "id": "01942f8e-7f6a-7c3d-8f00-c93d26f52c48",
+          "name": "Jane Doe"
+        },
+        "properties": {
+          "email": {
+            "description": "Email address",
+            "format": "email",
+            "maxLength": 254,
+            "type": "string"
+          },
+          "id": {
+            "description": "Account ID",
+            "format": "uuid",
+            "type": "string"
+          },
+          "name": {
+            "description": "Display name",
+            "maxLength": 100,
+            "type": "string"
+          }
+        },
+        "required": ["id", "name", "email"],
+        "title": "User",
+        "type": "object"
+      },
+      "UserResponse": {
+        "additionalProperties": false,
+        "description": "Current account response",
+        "example": {
+          "data": {
+            "email": "jane@example.com",
+            "id": "01942f8e-7f6a-7c3d-8f00-c93d26f52c48",
+            "name": "Jane Doe"
+          }
+        },
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/User"
+          }
+        },
+        "required": ["data"],
+        "title": "UserResponse",
+        "type": "object"
+      }
+    },
+    "securitySchemes": {
+      "bearer_auth": {
+        "scheme": "bearer",
+        "type": "http"
+      }
+    }
+  },
+  "info": {
+    "title": "Signet API",
+    "version": "1.0"
+  },
+  "openapi": "3.0.0",
+  "paths": {
+    "/api/v1/auth/login": {
+      "post": {
+        "callbacks": {},
+        "operationId": "login",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequest"
+              }
+            }
+          },
+          "description": "Login credentials",
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SessionResponse"
+                }
+              }
+            },
+            "description": "Account and session"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Invalid credentials"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Validation failed"
+          }
+        },
+        "summary": "Create a session",
+        "tags": ["Authentication"]
+      }
+    },
+    "/api/v1/auth/logout": {
+      "post": {
+        "callbacks": {},
+        "operationId": "logout",
+        "parameters": [],
+        "responses": {
+          "204": {
+            "description": "Session revoked"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Authentication required"
+          }
+        },
+        "security": [
+          {
+            "bearer_auth": []
+          }
+        ],
+        "summary": "Revoke the current session",
+        "tags": ["Authentication"]
+      }
+    },
+    "/api/v1/auth/signup": {
+      "post": {
+        "callbacks": {},
+        "operationId": "signup",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SignupRequest"
+              }
+            }
+          },
+          "description": "Account credentials",
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SessionResponse"
+                }
+              }
+            },
+            "description": "Account and session"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Validation failed"
+          }
+        },
+        "summary": "Create an account",
+        "tags": ["Authentication"]
+      }
+    },
+    "/api/v1/bookmarks": {
+      "get": {
+        "callbacks": {},
+        "operationId": "list_bookmarks",
+        "parameters": [
+          {
+            "description": "Absolute URL for canonical duplicate lookup",
+            "in": "query",
+            "name": "url",
+            "required": false,
+            "schema": {
+              "format": "uri",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BookmarkListResponse"
+                }
+              }
+            },
+            "description": "Bookmark list"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Authentication required"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Validation failed"
+          }
+        },
+        "security": [
+          {
+            "bearer_auth": []
+          }
+        ],
+        "summary": "List bookmarks or find saved URLs",
+        "tags": ["Bookmarks"]
+      },
+      "post": {
+        "callbacks": {},
+        "operationId": "create_bookmark",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateBookmarkRequest"
+              }
+            }
+          },
+          "description": "Bookmark fields",
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BookmarkResponse"
+                }
+              }
+            },
+            "description": "Created bookmark"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Authentication required"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Validation failed"
+          }
+        },
+        "security": [
+          {
+            "bearer_auth": []
+          }
+        ],
+        "summary": "Create a bookmark",
+        "tags": ["Bookmarks"]
+      }
+    },
+    "/api/v1/bookmarks/{id}": {
+      "delete": {
+        "callbacks": {},
+        "operationId": "delete_bookmark",
+        "parameters": [
+          {
+            "description": "Bookmark ID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Bookmark deleted"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Authentication required"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Bookmark not found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Validation failed"
+          }
+        },
+        "security": [
+          {
+            "bearer_auth": []
+          }
+        ],
+        "summary": "Delete a bookmark",
+        "tags": ["Bookmarks"]
+      },
+      "get": {
+        "callbacks": {},
+        "operationId": "get_bookmark",
+        "parameters": [
+          {
+            "description": "Bookmark ID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BookmarkResponse"
+                }
+              }
+            },
+            "description": "Bookmark"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Authentication required"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Bookmark not found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Validation failed"
+          }
+        },
+        "security": [
+          {
+            "bearer_auth": []
+          }
+        ],
+        "summary": "Get a bookmark",
+        "tags": ["Bookmarks"]
+      },
+      "patch": {
+        "callbacks": {},
+        "operationId": "update_bookmark",
+        "parameters": [
+          {
+            "description": "Bookmark ID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateBookmarkRequest"
+              }
+            }
+          },
+          "description": "Editable bookmark fields",
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BookmarkResponse"
+                }
+              }
+            },
+            "description": "Updated bookmark"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Authentication required"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Bookmark not found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Validation failed"
+          }
+        },
+        "security": [
+          {
+            "bearer_auth": []
+          }
+        ],
+        "summary": "Update a bookmark",
+        "tags": ["Bookmarks"]
+      }
+    },
+    "/api/v1/me": {
+      "get": {
+        "callbacks": {},
+        "operationId": "current_user",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserResponse"
+                }
+              }
+            },
+            "description": "Current account"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Authentication required"
+          }
+        },
+        "security": [
+          {
+            "bearer_auth": []
+          }
+        ],
+        "summary": "Get the current account",
+        "tags": ["Accounts"]
+      }
+    },
+    "/healthz": {
+      "get": {
+        "callbacks": {},
+        "operationId": "health_check",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthResponse"
+                }
+              }
+            },
+            "description": "Service ready"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthResponse"
+                }
+              }
+            },
+            "description": "Database unavailable"
+          }
+        },
+        "summary": "Check API and database readiness",
+        "tags": ["System"]
+      }
+    }
+  },
+  "security": [],
+  "servers": [
+    {
+      "description": "Current Signet server",
+      "url": "/",
+      "variables": {}
+    }
+  ],
+  "tags": []
+}

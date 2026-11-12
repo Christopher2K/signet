@@ -119,6 +119,18 @@ export type ErrorResponse = {
 };
 
 /**
+ * HealthResponse
+ *
+ * Service readiness status
+ */
+export type HealthResponse = {
+  /**
+   * Database readiness status
+   */
+  status: string;
+};
+
+/**
  * LoginRequest
  *
  * Account login credentials
@@ -531,3 +543,29 @@ export type CurrentUserResponses = {
 
 export type CurrentUserResponse =
   CurrentUserResponses[keyof CurrentUserResponses];
+
+export type HealthCheckData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/healthz";
+};
+
+export type HealthCheckErrors = {
+  /**
+   * Database unavailable
+   */
+  503: HealthResponse;
+};
+
+export type HealthCheckError = HealthCheckErrors[keyof HealthCheckErrors];
+
+export type HealthCheckResponses = {
+  /**
+   * Service ready
+   */
+  200: HealthResponse;
+};
+
+export type HealthCheckResponse =
+  HealthCheckResponses[keyof HealthCheckResponses];

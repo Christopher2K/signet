@@ -1,0 +1,12 @@
+services:
+  web:
+    image: signet-web:local
+    build:
+      context: .
+      dockerfile: apps/web-client/Dockerfile
+
+  api:
+    image: signet-api:local
+    build:
+      context: .
+      dockerfile: apps/api/Dockerfile

@@ -1,0 +1,75 @@
+services:
+  web:
+    image: ghcr.io/christopher2k/signet-web:${SIGNET_VERSION:-latest}
+    depends_on:
+      api:
+        condition: service_healthy
+    ports:
+      - "${WEB_BIND_ADDRESS:-127.0.0.1}:${WEB_PORT:-8080}:80"
+    restart: unless-stopped
+    read_only: true
+    tmpfs:
+      - /tmp:size=64m,mode=1777
+    cap_drop:
+      - ALL
+    cap_add:
+      - NET_BIND_SERVICE
+    security_opt:
+      - no-new-privileges:true
+    volumes:
+      - caddy_data:/data
+      - caddy_config:/config
+
+  api:
+    image: ghcr.io/christopher2k/signet-api:${SIGNET_VERSION:-latest}
+    command:
+      - /bin/sh
+      - -c
+      - /app/bin/signet eval 'Signet.Release.migrate()' && exec /app/bin/signet start
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: "ecto://${POSTGRES_USER:-signet}:${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}@db:5432/${POSTGRES_DB:-signet}"
+      PHX_HOST: "${PHX_HOST:?Set PHX_HOST in .env}"
+      PHX_SERVER: "true"
+      PORT: "4000"
+      SECRET_KEY_BASE: "${SECRET_KEY_BASE:?Set SECRET_KEY_BASE in .env}"
+    expose:
+      - "4000"
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "--silent", "--show-error", "http://localhost:4000/healthz"]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+      start_period: 10s
+    init: true
+    restart: unless-stopped
+    stop_grace_period: 30s
+    read_only: true
+    tmpfs:
+      - /tmp:size=64m,mode=1777
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+
+  db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: "${POSTGRES_DB:-signet}"
+      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}"
+      POSTGRES_USER: "${POSTGRES_USER:-signet}"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+    restart: unless-stopped
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+volumes:
+  db_data:
+  caddy_data:
+  caddy_config:
