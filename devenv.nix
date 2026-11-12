@@ -38,7 +38,6 @@ in
   languages.ruby.enable = true;
 
   env = {
-    API_URL = "http://localhost:4000";
     SIGNET_API_DB_HOSTNAME = apiDatabase.hostname;
     SIGNET_API_DB_PASSWORD = apiDatabase.password;
     SIGNET_API_DB_PORT = toString apiDatabase.port;
