@@ -21,6 +21,9 @@ import type {
   GetBookmarkData,
   GetBookmarkErrors,
   GetBookmarkResponses,
+  HealthCheckData,
+  HealthCheckErrors,
+  HealthCheckResponses,
   ListBookmarksData,
   ListBookmarksErrors,
   ListBookmarksResponses,
@@ -203,3 +206,15 @@ export const currentUser = <ThrowOnError extends boolean = false>(
     url: "/api/v1/me",
     ...options,
   });
+
+/**
+ * Check API and database readiness
+ */
+export const healthCheck = <ThrowOnError extends boolean = false>(
+  options?: Options<HealthCheckData, ThrowOnError>,
+): RequestResult<HealthCheckResponses, HealthCheckErrors, ThrowOnError> =>
+  (options?.client ?? client).get<
+    HealthCheckResponses,
+    HealthCheckErrors,
+    ThrowOnError
+  >({ url: "/healthz", ...options });
