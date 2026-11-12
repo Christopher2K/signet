@@ -10,7 +10,9 @@ RUN apt-get update \
     && apt-get install --yes --no-install-recommends build-essential git \
     && rm -rf /var/lib/apt/lists/*
 
-ENV MIX_ENV=prod
+# Avoid JIT W^X mapping failures when Buildx emulates a foreign architecture.
+ENV MIX_ENV=prod \
+    ERL_FLAGS="+JMsingle true"
 WORKDIR /app
 
 RUN mix local.hex --force && mix local.rebar --force

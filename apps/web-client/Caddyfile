@@ -1,23 +1,25 @@
 {
-	auto_https off
+	admin off
 }
 
-:80 {
+{$SIGNET_DOMAIN::80} {
 	encode zstd gzip
 
 	handle /api/* {
 		reverse_proxy api:4000 {
-			header_up Host {host}
+			header_up Host {$SIGNET_FORWARDED_HOST}
 			header_up X-Real-IP {remote_host}
-			header_up X-Forwarded-Port {port}
+			header_up X-Forwarded-Port {$SIGNET_FORWARDED_PORT}
+			header_up X-Forwarded-Proto {$SIGNET_FORWARDED_PROTO}
 		}
 	}
 
 	handle /healthz {
 		reverse_proxy api:4000 {
-			header_up Host {host}
+			header_up Host {$SIGNET_FORWARDED_HOST}
 			header_up X-Real-IP {remote_host}
-			header_up X-Forwarded-Port {port}
+			header_up X-Forwarded-Port {$SIGNET_FORWARDED_PORT}
+			header_up X-Forwarded-Proto {$SIGNET_FORWARDED_PROTO}
 		}
 	}
 

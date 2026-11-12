@@ -1,0 +1,11 @@
+services:
+  web:
+    environment:
+      SIGNET_DOMAIN: "${SIGNET_DOMAIN:?Set SIGNET_DOMAIN to the public DNS name in .env}"
+    ports: !override
+      - "${PUBLIC_BIND_ADDRESS:-0.0.0.0}:80:80"
+      - "${PUBLIC_BIND_ADDRESS:-0.0.0.0}:443:443"
+
+  api:
+    environment:
+      PHX_HOST: "${SIGNET_DOMAIN:?Set SIGNET_DOMAIN to the public DNS name in .env}"

@@ -23,7 +23,17 @@ RUN env -u API_URL pnpm --filter @signet/web-client build
 
 FROM caddy:2.10.2-alpine AS runtime
 
+RUN addgroup -S signet \
+    && adduser -S -D -H -G signet signet \
+    && mkdir -p /data/caddy /config/caddy \
+    && chown -R signet:signet /data /config
+
+ENV SIGNET_FORWARDED_HOST="{host}" \
+    SIGNET_FORWARDED_PORT="{port}" \
+    SIGNET_FORWARDED_PROTO="{scheme}"
+
 COPY apps/web-client/Caddyfile /etc/caddy/Caddyfile
 COPY --from=build /app/apps/web-client/dist /srv
 
-EXPOSE 80
+USER signet:signet
+EXPOSE 80 443
