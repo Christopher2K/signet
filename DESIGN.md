@@ -13,7 +13,7 @@
 |---|---|---|
 | **Website** | P0 — defines v1 | This file for system + [design/web/web-pages-map.md](design/web/web-pages-map.md) for pages |
 | Browser extension | P0 | TBD |
-| Mobile (iOS/Android) | P0 | `design/client-designs.pen` §37–§41 (auth, library, bookmark CRUD, session feedback) |
+| Mobile (iOS/Android) | P0 | `design/client-designs.pen` §37–§42 (auth, library, bookmark CRUD, session feedback, animated launch) |
 
 Website is the primary manager: responsive (desktop + 390px), no install, email/password against a self-hosted server URL. If a feature works anywhere, it works on web first.
 
@@ -189,6 +189,17 @@ Native L1 and the server-unavailable state live in `design/client-designs.pen` �
 
 Native create and edit use full-screen modal forms with 48px controls, keyboard-avoiding scroll content, and safe-area-aware actions. Create checks the canonical URL before saving and presents **Already saved** with **Open existing** / **Save anyway**; a failed duplicate check still permits a deliberate save. Edit includes notes, tags, image override, timestamps, and a platform confirmation before permanent deletion. Successful mutations update the visible collection without a manual refresh. Do not add search, folders, offline queues, or other future controls to these parity screens until those flows exist in the client. Logout uses the existing disabled button tokens while pending; session restoration remains covered by the native splash.
 
+### 3.7 Native launch motion — Stack settles
+
+The animated native launch design lives in `design/client-designs.pen` §42, with the full behavior and QA contract in [`design/native-animated-splash-proposal.md`](design/native-animated-splash-proposal.md). It uses a static native launch screen followed by a matching React Native Reanimated overlay; iOS and Android native launch assets remain static.
+
+- **Concept:** the existing Stack gathers once, settles, and reveals the Space Mono Bold `Signet` wordmark. Motion represents collecting a bookmark and must not become a looping loading indicator.
+- **Canvas and mark:** light uses `paper #FBFFF1` with the standard Stack; dark uses `ink #3C3744` with the existing dark Stack. Render the 48px optical master at 96 × 96. Replace the current off-palette chevron asset during implementation.
+- **Timing:** gather 0–180ms, settle and identify 180–620ms, then a 240ms exit only after fonts load, session restoration finishes, and the destination mounts. Slow initialization holds the settled frame without replaying the intro.
+- **Reduce Motion:** skip gather, stagger, and translation; retain the static identity and use a 120ms crossfade as soon as the destination is ready.
+- **Lifecycle:** run once per cold JavaScript root mount, never on foreground resume or retry. Restore failure exits to Native §40. The splash has no spinner, status copy, haptics, or sound; its decorative content is hidden from accessibility services and the overlay unmounts after exit.
+- **Implementation direction:** use the installed `expo-splash-screen`, Reanimated, and React Native SVG packages. Do not add Lottie solely for these three vector paths. Validate standalone release builds in light/dark and with reduced motion.
+
 ---
 
 ## 4. How to use this doc
@@ -206,5 +217,6 @@ SPECIFICATION.md          product scope (source)
 DESIGN.md                 this file — design system
 design/client-designs.pen  all clients — tokens, type, spacing, screens (iterative)
 design/logo.pen            logo guidelines — The Stack (§3.4): masters, colour, scaling, lockups, icons
+design/native-animated-splash-proposal.md  native launch motion proposal and QA contract (§3.7)
 design/web/web-pages-map.md  web pages, dialogs, states, sitemap
 ```

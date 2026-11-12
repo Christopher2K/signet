@@ -33,6 +33,7 @@ export type NativeTheme = {
   primary: string;
   onPrimary: string;
   accent: string;
+  logoBack: string;
   danger: string;
 };
 
@@ -47,6 +48,7 @@ const lightTheme: NativeTheme = {
   primary: "#3066BE",
   onPrimary: "#FBFFF1",
   accent: "#090C9B",
+  logoBack: "#B4C5E4",
   danger: "#A4252C",
 };
 
@@ -61,6 +63,7 @@ const darkTheme: NativeTheme = {
   primary: "#5C84C6",
   onPrimary: "#131220",
   accent: "#B4C5E4",
+  logoBack: "#4F4A62",
   danger: "#FFB4AB",
 };
 

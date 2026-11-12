@@ -33,9 +33,13 @@ const config: ExpoConfig = {
     [
       "expo-splash-screen",
       {
-        backgroundColor: "#208AEF",
-        image: "./assets/images/splash-icon.png",
-        imageWidth: 76,
+        backgroundColor: "#FBFFF1",
+        image: "./assets/images/signet-logo-light.png",
+        imageWidth: 96,
+        dark: {
+          backgroundColor: "#3C3744",
+          image: "./assets/images/signet-logo-dark.png",
+        },
       },
     ],
     "@react-native-community/datetimepicker",
