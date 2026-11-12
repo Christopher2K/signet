@@ -11,6 +11,10 @@ defmodule SignetWeb.Router do
     plug SignetWeb.Plugs.RequireAuthenticatedUser
   end
 
+  scope "/", SignetWeb do
+    get "/healthz", HealthController, :show
+  end
+
   scope "/api/v1", SignetWeb.API.V1 do
     pipe_through :api
 

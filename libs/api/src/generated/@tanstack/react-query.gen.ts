@@ -8,6 +8,7 @@ import {
   currentUser,
   deleteBookmark,
   getBookmark,
+  healthCheck,
   listBookmarks,
   login,
   logout,
@@ -28,6 +29,9 @@ import type {
   GetBookmarkData,
   GetBookmarkError,
   GetBookmarkResponse,
+  HealthCheckData,
+  HealthCheckError,
+  HealthCheckResponse,
   ListBookmarksData,
   ListBookmarksError,
   ListBookmarksResponse,
@@ -308,4 +312,29 @@ export const currentUserOptions = (options?: Options<CurrentUserData>) =>
       return data;
     },
     queryKey: currentUserQueryKey(options),
+  });
+
+export const healthCheckQueryKey = (options?: Options<HealthCheckData>) =>
+  createQueryKey("healthCheck", options);
+
+/**
+ * Check API and database readiness
+ */
+export const healthCheckOptions = (options?: Options<HealthCheckData>) =>
+  queryOptions<
+    HealthCheckResponse,
+    HealthCheckError,
+    HealthCheckResponse,
+    ReturnType<typeof healthCheckQueryKey>
+  >({
+    queryFn: async ({ queryKey, signal }) => {
+      const { data } = await healthCheck({
+        ...options,
+        ...queryKey[0],
+        signal,
+        throwOnError: true,
+      });
+      return data;
+    },
+    queryKey: healthCheckQueryKey(options),
   });

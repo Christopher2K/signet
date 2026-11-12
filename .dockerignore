@@ -1,0 +1,40 @@
+# Version control and agent metadata
+**/.git
+**/.gitignore
+**/.github
+**/.agents
+**/.opencode
+
+# Local environments and secrets
+**/.env
+**/.env.*
+!.env.example
+**/.devenv
+**/.direnv
+devenv.local.*
+
+# Dependencies and generated build output
+**/node_modules
+**/.pnpm-store
+**/_build
+**/deps
+**/dist
+**/build
+**/coverage
+**/cover
+**/doc
+**/.expo
+**/.turbo
+**/.cache
+
+# Logs, crash dumps, and operating-system files
+**/*.log
+**/erl_crash.dump
+**/.DS_Store
+
+# Worktrees and content not needed by either image
+.worktrees
+worktrees
+artifacts
+design
+apps/mobile-client
