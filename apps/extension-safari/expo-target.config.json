@@ -1,0 +1,5 @@
+{
+  "type": "safari",
+  "bundleIdentifier": ".safari",
+  "icon": "../mobile-client/assets/images/icon.png"
+}

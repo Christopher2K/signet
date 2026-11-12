@@ -14,6 +14,7 @@ const config: ExpoConfig = {
       dark: "./assets/images/icon-dark.png",
     },
     bundleIdentifier: "co.signetapp.app",
+    appleTeamId: "2YELN5S6P5",
     infoPlist: {
       CFBundleLocalizations: ["en", "fr"],
       ITSAppUsesNonExemptEncryption: false,
@@ -44,6 +45,13 @@ const config: ExpoConfig = {
       },
     ],
     "@react-native-community/datetimepicker",
+    [
+      "@bacons/apple-targets",
+      {
+        root: "..",
+        match: "extension-safari",
+      },
+    ],
     [
       "expo-localization",
       {

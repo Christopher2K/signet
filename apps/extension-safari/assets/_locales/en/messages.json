@@ -1,0 +1,18 @@
+{
+  "extension_name": {
+    "message": "Signet",
+    "description": "The display name for the extension."
+  },
+  "extension_description": {
+    "message": "Save and browse your Signet bookmarks in Safari.",
+    "description": "Description of what the extension does."
+  },
+  "popup_title": {
+    "message": "Signet",
+    "description": "Title displayed in the extension popup."
+  },
+  "popup_message": {
+    "message": "Your Safari extension is ready.",
+    "description": "Confirmation displayed in the extension popup."
+  }
+}

@@ -1,0 +1,18 @@
+:root {
+  color-scheme: light dark;
+}
+
+body {
+  width: 220px;
+  margin: 0;
+  font-family: system-ui;
+}
+
+main {
+  padding: 20px;
+  text-align: center;
+}
+
+p {
+  margin-bottom: 0;
+}

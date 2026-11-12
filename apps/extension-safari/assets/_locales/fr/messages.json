@@ -1,0 +1,18 @@
+{
+  "extension_name": {
+    "message": "Signet",
+    "description": "Nom affiché de l’extension."
+  },
+  "extension_description": {
+    "message": "Enregistrez et consultez vos favoris Signet dans Safari.",
+    "description": "Description de l’extension."
+  },
+  "popup_title": {
+    "message": "Signet",
+    "description": "Titre affiché dans la fenêtre de l’extension."
+  },
+  "popup_message": {
+    "message": "Votre extension Safari est prête.",
+    "description": "Confirmation affichée dans la fenêtre de l’extension."
+  }
+}
