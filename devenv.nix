@@ -28,7 +28,8 @@ in
     pkgs.erlang_28
     pkgs.git
     pkgs.jdk
-  ] ++ pkgs.lib.optionals isDarwin [
+  ]
+  ++ pkgs.lib.optionals isDarwin [
     pkgs.cocoapods
     pkgs.xcodes
   ];
@@ -90,6 +91,10 @@ in
     expo.exec = ''
       exec pnpm --filter @signet/mobile-client start
     '';
+
+    website.exec = ''
+      exec pnpm --filter @signet/website dev
+    '';
   };
 
   scripts = {
@@ -147,9 +152,10 @@ in
 
       exec pnpm --filter @signet/mobile-client android "$@"
     '';
-  } // pkgs.lib.optionalAttrs isDarwin {
+  }
+  // pkgs.lib.optionalAttrs isDarwin {
     ios.exec = ''
-      ${isolateMobileToolchain}
+        ${isolateMobileToolchain}
 
       export DEVELOPER_DIR="/Applications/Xcode-27.1.0.app/Contents/Developer"
       exec pnpm --filter @signet/mobile-client ios "$@"
