@@ -11,8 +11,6 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import { css, html } from "react-strict-dom";
 
-const actionDockHeight = 80;
-
 /** Native bookmark editor screen properties. */
 type BookmarkScreenLayoutProps = {
   children: ReactNode;
@@ -31,9 +29,6 @@ export const BookmarkScreenLayout = ({
       style={[styles.safeArea, { backgroundColor: theme.surface }]}
     >
       <KeyboardAwareScrollView
-        bottomOffset={
-          dockedAction ? actionDockHeight + nativeSpacing[4] : nativeSpacing[4]
-        }
         contentContainerStyle={styles.content}
         keyboardDismissMode="interactive"
         keyboardShouldPersistTaps="handled"
@@ -66,7 +61,6 @@ const styles = StyleSheet.create({
   },
   actionDock: {
     borderTopWidth: 1,
-    height: actionDockHeight,
     padding: nativeSpacing[4],
     width: "100%",
   },
