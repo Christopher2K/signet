@@ -1,6 +1,9 @@
 { pkgs, ... }:
 
 let
+  isDarwin = pkgs.stdenv.isDarwin;
+  androidSdkHome = if isDarwin then "$HOME/Library/Android/sdk" else "$HOME/Android/Sdk";
+
   apiDatabase = {
     hostname = "localhost";
     password = "postgres";
@@ -9,7 +12,7 @@ let
   };
 
   isolateMobileToolchain = ''
-    # Prefer Apple's tools over Nix wrappers for native mobile builds.
+    # Prefer system tools over Nix wrappers for native mobile builds.
     export PATH="/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
 
     # Prevent Nix compiler flags and SDKs from leaking into Gradle/Xcode.
@@ -20,12 +23,13 @@ let
 in
 {
   packages = [
-    pkgs.cocoapods
     pkgs.eas-cli
     pkgs.elixir_1_18
     pkgs.erlang_28
     pkgs.git
     pkgs.jdk
+  ] ++ pkgs.lib.optionals isDarwin [
+    pkgs.cocoapods
     pkgs.xcodes
   ];
 
@@ -35,7 +39,7 @@ in
     pnpm.enable = true;
   };
 
-  languages.ruby.enable = true;
+  languages.ruby.enable = isDarwin;
 
   env = {
     SIGNET_API_DB_HOSTNAME = apiDatabase.hostname;
@@ -133,22 +137,22 @@ in
       exec eas build --profile production --platform all "$@"
     '';
 
+    android.exec = ''
+      ${isolateMobileToolchain}
+
+      export JAVA_HOME="''${JAVA_HOME:-${pkgs.jdk}}"
+      export ANDROID_HOME="''${ANDROID_HOME:-${androidSdkHome}}"
+      export ANDROID_SDK_ROOT="$ANDROID_HOME"
+      export PATH="$JAVA_HOME/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator:$PATH"
+
+      exec pnpm --filter @signet/mobile-client android "$@"
+    '';
+  } // pkgs.lib.optionalAttrs isDarwin {
     ios.exec = ''
       ${isolateMobileToolchain}
 
       export DEVELOPER_DIR="/Applications/Xcode-27.1.0.app/Contents/Developer"
       exec pnpm --filter @signet/mobile-client ios "$@"
-    '';
-
-    android.exec = ''
-      ${isolateMobileToolchain}
-
-      export JAVA_HOME="''${JAVA_HOME:-${pkgs.jdk}}"
-      export ANDROID_HOME="''${ANDROID_HOME:-$HOME/Library/Android/sdk}"
-      export ANDROID_SDK_ROOT="$ANDROID_HOME"
-      export PATH="$JAVA_HOME/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator:$PATH"
-
-      exec pnpm --filter @signet/mobile-client android "$@"
     '';
   };
 }
