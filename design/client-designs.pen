@@ -65096,7 +65096,7 @@
           "fill": "#6B6578",
           "textGrowth": "fixed-width",
           "width": "fill_container",
-          "content": "Native iOS + Android · 390 × 844 · Light / Dark · Current web-client bookmark parity · Safe-area-aware modal forms · 48px controls · IBM Plex Mono canvas · Navigation titles: Space Mono 700 on iOS and Android · iOS Cancel: Space Mono 400",
+          "content": "Native iOS + Android · 390 × 844 · Light / Dark · Current web-client bookmark parity · Safe-area-aware modal forms · 48px controls · IBM Plex Mono canvas · Navigation titles: Space Mono 700 on iOS and Android · iOS Cancel: Space Mono 400 · Dismissal: danger",
           "fontFamily": "IBM Plex Mono",
           "fontSize": 12,
           "fontWeight": "normal"
@@ -66655,7 +66655,7 @@
                               "type": "text",
                               "id": "l1CY59",
                               "name": "Cancel",
-                              "fill": "#3066BE",
+                              "fill": "#A4252C",
                               "content": "Cancel",
                               "fontFamily": "IBM Plex Mono",
                               "fontSize": 12,
@@ -67092,7 +67092,7 @@
                               "type": "text",
                               "id": "bZWSi",
                               "name": "Cancel",
-                              "fill": "#B4C5E4",
+                              "fill": "#FFB4AB",
                               "content": "Cancel",
                               "fontFamily": "IBM Plex Mono",
                               "fontSize": 12,
@@ -67500,7 +67500,7 @@
                             256,
                             256
                           ],
-                          "fill": "#3066BE",
+                          "fill": "#A4252C",
                           "width": 24,
                           "height": 24
                         },
@@ -67552,7 +67552,7 @@
                             256,
                             256
                           ],
-                          "fill": "#B4C5E4",
+                          "fill": "#FFB4AB",
                           "width": 24,
                           "height": 24
                         },
@@ -67697,7 +67697,7 @@
                               "type": "text",
                               "id": "BCqdT",
                               "name": "Cancel",
-                              "fill": "#3066BE",
+                              "fill": "#A4252C",
                               "content": "Cancel",
                               "fontFamily": "IBM Plex Mono",
                               "fontSize": 12,
@@ -68026,7 +68026,7 @@
                               "type": "text",
                               "id": "sK7O6",
                               "name": "Cancel",
-                              "fill": "#B4C5E4",
+                              "fill": "#FFB4AB",
                               "content": "Cancel",
                               "fontFamily": "IBM Plex Mono",
                               "fontSize": 12,
@@ -68288,7 +68288,7 @@
               "fill": "#090C9B",
               "textGrowth": "fixed-width",
               "width": "fill_container",
-              "content": "B2 · Edit · created / updated timestamps · save or delete",
+              "content": "B2 · Edit · native leading Cancel on iOS + Android · no in-form Cancel · save or delete",
               "fontFamily": "IBM Plex Mono",
               "fontSize": 12,
               "fontWeight": "700"
@@ -68387,7 +68387,7 @@
                               "type": "text",
                               "id": "ytY9I",
                               "name": "Cancel",
-                              "fill": "#3066BE",
+                              "fill": "#A4252C",
                               "content": "Cancel",
                               "fontFamily": "IBM Plex Mono",
                               "fontSize": 12,
@@ -68726,33 +68726,6 @@
                             },
                             {
                               "type": "frame",
-                              "id": "tBYPb",
-                              "name": "Button-Cancel",
-                              "width": "fill_container",
-                              "height": 48,
-                              "fill": "#B4C5E4",
-                              "cornerRadius": 8,
-                              "padding": [
-                                0,
-                                12
-                              ],
-                              "justifyContent": "center",
-                              "alignItems": "center",
-                              "children": [
-                                {
-                                  "type": "text",
-                                  "id": "X5Zthy",
-                                  "name": "Label",
-                                  "fill": "#3C3744",
-                                  "content": "Cancel",
-                                  "fontFamily": "IBM Plex Mono",
-                                  "fontSize": 15,
-                                  "fontWeight": "700"
-                                }
-                              ]
-                            },
-                            {
-                              "type": "frame",
                               "id": "M3jEl",
                               "name": "Button-Delete",
                               "width": "fill_container",
@@ -68890,7 +68863,7 @@
                               "type": "text",
                               "id": "sXg1t",
                               "name": "Cancel",
-                              "fill": "#B4C5E4",
+                              "fill": "#FFB4AB",
                               "content": "Cancel",
                               "fontFamily": "IBM Plex Mono",
                               "fontSize": 12,
@@ -69229,33 +69202,6 @@
                             },
                             {
                               "type": "frame",
-                              "id": "IGz6p",
-                              "name": "Button-Cancel",
-                              "width": "fill_container",
-                              "height": 48,
-                              "fill": "#B4C5E4",
-                              "cornerRadius": 8,
-                              "padding": [
-                                0,
-                                12
-                              ],
-                              "justifyContent": "center",
-                              "alignItems": "center",
-                              "children": [
-                                {
-                                  "type": "text",
-                                  "id": "XPJ8X",
-                                  "name": "Label",
-                                  "fill": "#3C3744",
-                                  "content": "Cancel",
-                                  "fontFamily": "IBM Plex Mono",
-                                  "fontSize": 15,
-                                  "fontWeight": "700"
-                                }
-                              ]
-                            },
-                            {
-                              "type": "frame",
                               "id": "p1Mrw",
                               "name": "Button-Delete",
                               "width": "fill_container",
@@ -69425,7 +69371,7 @@
                               "type": "text",
                               "id": "NeEuU",
                               "name": "Cancel",
-                              "fill": "#3066BE",
+                              "fill": "#A4252C",
                               "content": "Cancel",
                               "fontFamily": "IBM Plex Mono",
                               "fontSize": 12,
@@ -69725,7 +69671,7 @@
                               "type": "text",
                               "id": "ctzgZ",
                               "name": "Cancel",
-                              "fill": "#B4C5E4",
+                              "fill": "#FFB4AB",
                               "content": "Cancel",
                               "fontFamily": "IBM Plex Mono",
                               "fontSize": 12,
@@ -69950,7 +69896,7 @@
           "fill": "#6B6578",
           "textGrowth": "fixed-width",
           "width": "fill_container",
-          "content": "Library places New Bookmark in the native navigation bar as a trailing platform toolbar action. Create places Cancel in the leading native navigation bar on iOS and Android, with no duplicate Cancel in the form. iOS uses native Cancel text in Space Mono 400; Android uses a native Phosphor X vector-icon button with Cancel as its accessibility label. The Android asset is an XML vector drawable derived from the official Phosphor SVG. iOS uses a prominent plus SF Symbol with system Liquid Glass on iOS 26+ and the standard native fallback earlier; Android uses native Compose toolbar buttons. System touch targets, pressed states, contrast and reduce-transparency behavior are preserved. The collection header and empty state have no duplicate create button. The action remains available in loading, empty, error and populated states. Canvas chrome is a schematic of the native rendering. Successful mutations update cached data before returning to Library.",
+          "content": "Library places New Bookmark in the native navigation bar as a trailing platform toolbar action. Create and Edit place Cancel in the leading native navigation bar on iOS and Android, with no duplicate Cancel in either form. iOS uses native Cancel text in Space Mono 400; Android uses a native Phosphor X vector-icon button with Cancel as its accessibility label. Both dismissal controls use the theme danger color to signal a destructive action. The Android asset is an XML vector drawable derived from the official Phosphor SVG. iOS uses a prominent plus SF Symbol with system Liquid Glass on iOS 26+ and the standard native fallback earlier; Android uses native Compose toolbar buttons. System touch targets, pressed states, contrast and reduce-transparency behavior are preserved. The collection header and empty state have no duplicate create button. The action remains available in loading, empty, error and populated states. Canvas chrome is a schematic of the native rendering. Successful mutations update cached data before returning to Library.",
           "fontFamily": "IBM Plex Mono",
           "fontSize": 12,
           "fontWeight": "normal"

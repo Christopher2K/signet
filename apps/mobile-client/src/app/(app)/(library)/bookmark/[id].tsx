@@ -16,6 +16,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useEffect, useRef, useState } from "react";
 import { Alert } from "react-native";
+import { BookmarkCancelToolbar } from "../../../../features/library/components/bookmark-cancel-toolbar";
 import { BookmarkForm } from "../../../../features/library/components/bookmark-form";
 import { BookmarkScreenLayout } from "../../../../features/library/components/bookmark-screen-layout";
 
@@ -95,48 +96,50 @@ const EditBookmarkScreen = () => {
   }, []);
 
   return (
-    <BookmarkScreenLayout>
-      {bookmarkQuery.isPending ? (
-        <Typography role="status" tone="secondary">
-          {t("library.loadingBookmark")}
-        </Typography>
-      ) : bookmarkQuery.isError ? (
-        <>
-          <Typography role="alert" tone="danger">
-            {t(getBookmarkError(bookmarkQuery.error).message)}
+    <>
+      <BookmarkCancelToolbar />
+      <BookmarkScreenLayout>
+        {bookmarkQuery.isPending ? (
+          <Typography role="status" tone="secondary">
+            {t("library.loadingBookmark")}
           </Typography>
-          <Button onClick={() => void bookmarkQuery.refetch()}>
-            {t("actions.tryAgain")}
-          </Button>
-        </>
-      ) : bookmark ? (
-        <>
-          <Typography tone="secondary" variant="caption">
-            {t("library.createdOn", {
-              date:
-                formatTimestamp(bookmark.createdAt, locale) ??
-                t("library.timestampUnavailable"),
-            })}{" "}
-            ·{" "}
-            {t("library.updatedOn", {
-              date:
-                formatTimestamp(bookmark.updatedAt, locale) ??
-                t("library.timestampUnavailable"),
-            })}
-          </Typography>
-          <BookmarkForm
-            deleteError={deleteError}
-            deletePending={deleteMutation.isPending}
-            initialValues={bookmarkToFormValues(bookmark)}
-            key={bookmark.updatedAt}
-            onCancel={() => router.back()}
-            onDelete={confirmDelete}
-            onSubmit={handleSubmit}
-            submitLabel={t("actions.saveChanges")}
-          />
-        </>
-      ) : null}
-    </BookmarkScreenLayout>
+        ) : bookmarkQuery.isError ? (
+          <>
+            <Typography role="alert" tone="danger">
+              {t(getBookmarkError(bookmarkQuery.error).message)}
+            </Typography>
+            <Button onClick={() => void bookmarkQuery.refetch()}>
+              {t("actions.tryAgain")}
+            </Button>
+          </>
+        ) : bookmark ? (
+          <>
+            <Typography tone="secondary" variant="caption">
+              {t("library.createdOn", {
+                date:
+                  formatTimestamp(bookmark.createdAt, locale) ??
+                  t("library.timestampUnavailable"),
+              })}{" "}
+              ·{" "}
+              {t("library.updatedOn", {
+                date:
+                  formatTimestamp(bookmark.updatedAt, locale) ??
+                  t("library.timestampUnavailable"),
+              })}
+            </Typography>
+            <BookmarkForm
+              deleteError={deleteError}
+              deletePending={deleteMutation.isPending}
+              initialValues={bookmarkToFormValues(bookmark)}
+              key={bookmark.updatedAt}
+              onDelete={confirmDelete}
+              onSubmit={handleSubmit}
+              submitLabel={t("actions.saveChanges")}
+            />
+          </>
+        ) : null}
+      </BookmarkScreenLayout>
+    </>
   );
 };
 

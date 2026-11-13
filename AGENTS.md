@@ -19,6 +19,10 @@ Everything user-facing must be translated into English (`en`) and French (`fr`).
 - Use the `client-internationalization` skill for mobile, web, and shared client messages, locale detection and formatting, and API language propagation.
 - Use the `api-internationalization` skill for Phoenix messages, Gettext catalogs, and request locale negotiation.
 
+## Native UI
+
+Native navigation and toolbar elements must use Expo Router's native APIs, such as `Stack.Toolbar` and `Stack.Toolbar.Button`, instead of custom React Native substitutes. Do not recreate native chrome with custom views; preserve platform-native behavior, accessibility, touch targets, pressed states, and theming.
+
 ## API client generation
 
 Whenever you add, change, or remove an API endpoint or its request/response schemas, regenerate the OpenAPI document and shared TypeScript client before finishing:

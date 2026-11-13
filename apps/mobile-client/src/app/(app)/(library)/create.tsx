@@ -10,20 +10,14 @@ import {
   useBookmarkClient,
 } from "@signet/core/bookmarks/react";
 import { Typography } from "@signet/design-system";
-import { nativeFontFamily } from "@signet/design-system/native-theme";
 import { useTranslation } from "@signet/locale/react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { Stack, useRouter } from "expo-router";
+import { useRouter } from "expo-router";
 import { useEffect, useRef, useState } from "react";
-import { Platform } from "react-native";
+import { BookmarkCancelToolbar } from "../../../features/library/components/bookmark-cancel-toolbar";
 import { BookmarkForm } from "../../../features/library/components/bookmark-form";
 import { BookmarkScreenLayout } from "../../../features/library/components/bookmark-screen-layout";
 import { DuplicateBookmarkWarning } from "../../../features/library/components/duplicate-bookmark-warning";
-
-const cancelIcon = Platform.select({
-  ios: undefined,
-  default: require("../../../../assets/images/close.xml"),
-});
 
 type DuplicateWarning = {
   bookmarks: Bookmark[];
@@ -120,16 +114,7 @@ const CreateBookmarkScreen = () => {
 
   return (
     <>
-      <Stack.Toolbar placement="left">
-        <Stack.Toolbar.Button
-          accessibilityLabel={t("actions.cancel")}
-          icon={cancelIcon}
-          onPress={() => router.back()}
-          style={{ fontFamily: nativeFontFamily }}
-        >
-          {t("actions.cancel")}
-        </Stack.Toolbar.Button>
-      </Stack.Toolbar>
+      <BookmarkCancelToolbar />
       <BookmarkScreenLayout>
         {warning ? (
           <DuplicateBookmarkWarning
