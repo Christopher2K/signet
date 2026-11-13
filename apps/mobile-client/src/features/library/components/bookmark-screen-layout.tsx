@@ -8,7 +8,10 @@ import {
   KeyboardAwareScrollView,
   KeyboardStickyView,
 } from "react-native-keyboard-controller";
-import { SafeAreaView } from "react-native-safe-area-context";
+import {
+  SafeAreaView,
+  useSafeAreaInsets,
+} from "react-native-safe-area-context";
 import { css, html } from "react-strict-dom";
 
 /** Native bookmark editor screen properties. */
@@ -22,12 +25,10 @@ export const BookmarkScreenLayout = ({
   dockedAction,
 }: BookmarkScreenLayoutProps) => {
   const theme = useNativeTheme();
+  const { bottom } = useSafeAreaInsets();
 
   return (
-    <SafeAreaView
-      edges={["bottom"]}
-      style={[styles.safeArea, { backgroundColor: theme.surface }]}
-    >
+    <>
       <KeyboardAwareScrollView
         contentContainerStyle={styles.content}
         keyboardDismissMode="interactive"
@@ -42,13 +43,14 @@ export const BookmarkScreenLayout = ({
         <KeyboardStickyView
           style={[
             styles.actionDock,
+            { paddingBottom: bottom + nativeSpacing[4] },
             { backgroundColor: theme.surface, borderColor: theme.border },
           ]}
         >
           {dockedAction}
         </KeyboardStickyView>
       ) : null}
-    </SafeAreaView>
+    </>
   );
 };
 
