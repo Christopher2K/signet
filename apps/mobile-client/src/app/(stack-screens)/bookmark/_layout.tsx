@@ -4,7 +4,6 @@ import {
 } from "@signet/design-system/native-theme";
 import { useTranslation } from "@signet/locale/react";
 import { Stack } from "expo-router";
-import { Platform } from "react-native";
 
 const LibraryLayout = () => {
   const theme = useNativeTheme();
@@ -21,26 +20,11 @@ const LibraryLayout = () => {
     >
       <Stack.Screen
         name="create"
-        options={{
-          presentation: "modal",
-          title: t("navigation.newBookmark"),
-          animation: Platform.select({
-            android: "fade_from_bottom",
-            default: undefined,
-          }),
-        }}
+        options={{ title: t("navigation.newBookmark") }}
       />
       <Stack.Screen
         name="[id]"
-        options={{
-          presentation: "modal",
-          title: t("navigation.editBookmark"),
-
-          animation: Platform.select({
-            android: "fade_from_bottom",
-            default: undefined,
-          }),
-        }}
+        options={{ title: t("navigation.editBookmark") }}
       />
     </Stack>
   );

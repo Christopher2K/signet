@@ -3,7 +3,7 @@ import { useNativeTheme } from "@signet/design-system/native-theme";
 import { Redirect, Stack, usePathname } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useCallback, useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { Platform, StyleSheet, View } from "react-native";
 import { SessionFeedback } from "../auth/components/session-feedback";
 import { AnimatedSplashOverlay } from "./components/animated-splash-overlay";
 
@@ -51,6 +51,16 @@ export const RootNavigator = ({ fontsLoaded }: RootNavigatorProps) => {
             >
               <Stack.Protected guard={state.status === "authenticated"}>
                 <Stack.Screen name="(bar-screens)" />
+                <Stack.Screen
+                  name="(stack-screens)/bookmark"
+                  options={{
+                    presentation: "modal",
+                    animation: Platform.select({
+                      android: "fade_from_bottom",
+                      default: undefined,
+                    }),
+                  }}
+                />
               </Stack.Protected>
               <Stack.Protected guard={state.status === "unauthenticated"}>
                 <Stack.Screen name="(auth)" />
