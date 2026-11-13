@@ -15,13 +15,14 @@
 
 | Cluster | Pages | Dialogs / Overlays | Notes |
 |---|---|---|---|
+| **M. Marketing** (public) | 1 | 0 | Signed-out promotional entry; product overview and self-hosting |
 | **A. Auth** (unauthenticated) | 2 | 0 | Deployment-configured backend; email/password auth (§3.2) |
 | **B. App Library** (authenticated) | 4 core + 2 filtered views | 7 | Browse, search, CRUD, sync, offline |
 | **C. Settings & Data** | 3 sections (1 shell) | 2 | Import/Export (F09), Public links mgmt (F10), Session |
 | **D. Public / Sharing** | 3 | 0 | Anonymous, read-only, no login prompt (§F10) |
 | **E. System** | 2 | 0 | 404, error/offline states |
 
-**Total to design: 9 full pages + 7 dialogs + 10+ states.** Design order in §7.
+**Total to design: 10 full pages + 7 dialogs + 10+ states.** Design order in §7.
 
 ---
 
@@ -29,6 +30,7 @@
 
 ```
 PUBLIC (no auth)
+├── /welcome                  → M1 Marketing Landing (proposed public route)
 ├── /login                    → A1 Login
 ├── /signup                   → A2 Signup
 ├── /s/:token                 → P1 Public Bookmark (single)
@@ -64,6 +66,18 @@ AUTHENTICATED (app shell: topbar + folder tree + main)
 ---
 
 ## 3. Page & Dialog inventory — traceable
+
+### M. Marketing — public promotional
+
+| ID | Name | Route | Source refs | Purpose | Key zones & actions |
+|---|---|---|---|---|---|
+| **M1 Marketing Landing** | Your bookmarks. Everywhere. Yours. | `/welcome` (proposed) | SPEC §1–§3, F02–F10; `docs/self-hosting-quickstart.md` | Public product introduction with self-hosting as the only current onboarding path | Marketing nav (Features / How it works + [Self-host]), editorial hero ([Self-host with Docker] + [View GitHub]), library mockup, platform strip, real-time/offline/organization/public-link features, three-step capture/organize/access story, Docker quickstart commands and privacy facts, final [Read quickstart] CTA, and a GitHub / Self-host footer. Conversion actions target only the self-hosting quickstart and `https://github.com/Christopher2K/signet`; M1 has no hosted signup or login links. |
+
+**Route relationship:** M1 is a public promotional entry at the proposed `/welcome` route. Self-hosting is currently the only onboarding path: visitors run their own Docker instance rather than joining a default Signet cloud. M1 does not replace authenticated `/` (L1 Library Home), change the existing signed-out first-load/login behavior, or add prompts to anonymous `/s/:token` pages. It uses no authenticated app shell and makes no central-cloud, customer-proof, or licensing claims. A1/A2 remain unchanged because each self-hosted deployment still authenticates its own users.
+
+**Responsive behavior:** Desktop is a 1440px editorial grid with split hero, sidebar-plus-list library mockup, 2×2 feature cards, three columns of steps, and a two-column self-hosting panel. At 390px the navigation and actions stack, the mockup removes the sidebar in favor of compact filters and stacked cards, all feature/step/self-hosting columns become one column, and primary actions become full width. Canonical design: `design/client-designs.pen` §43.
+
+---
 
 ### A. Auth — unauthenticated
 
@@ -161,8 +175,8 @@ All under `/s/:token`. No signup/login prompt (F10). Internal same-server sharin
 
 ## 5. Responsive & layout notes (from spec)
 
-- **Desktop ≥1024px:** 3-zone app shell (sidebar tree + main). Grid/list toggle in L1/L2.
-- **Mobile 390px (W-09):** Sidebar → drawer (hamburger), list stays usable with touch, dialogs → bottom sheets, B1/B2 full-screen sheets.
+- **Desktop ≥1024px:** 3-zone app shell (sidebar tree + main). Grid/list toggle in L1/L2. M1 instead uses a public 1440px editorial marketing grid without the authenticated app shell.
+- **Mobile 390px (W-09):** Sidebar → drawer (hamburger), list stays usable with touch, dialogs → bottom sheets, B1/B2 full-screen sheets. M1 reflows to one column with stacked navigation/actions, full-width CTAs, and a sidebar-free product mockup.
 - **Public pages (P1/P2):** Single column, max-width, OG image hero, tag chips, no app shell.
 - **Auth (A1/A2):** Centered card using the deployment-configured backend; no server URL field.
 

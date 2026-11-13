@@ -25,7 +25,8 @@ Website is the primary manager: responsive (desktop + 390px), no install, email/
 
 Summary only:
 
-- **9 full pages + 7 dialogs + 10+ states** — do not duplicate the table here.
+- **10 full pages + 7 dialogs + 10+ states** — do not duplicate the table here.
+- **M1 Marketing Landing:** `design/client-designs.pen` §43 is the public promotional entry, with 1440px desktop and 390px mobile designs. Self-hosting is currently the only onboarding path; M1 links to the Docker quickstart and GitHub, not a hosted signup/login. Authenticated `/` remains L1, standalone A1/A2 auth remains available on each self-hosted deployment, and anonymous public-link behavior is unchanged.
 - **App shell:** topbar (search, New Bookmark, sync status) + folder tree → drawer on mobile (W-09) + main list.
 - **Cross-cutting to visualise:** real-time push <5s (F06), offline queue + pending badges (F07), OG auto-fill (F08).
 
@@ -215,7 +216,7 @@ The animated native launch design lives in `design/client-designs.pen` §42, wit
 ```
 SPECIFICATION.md          product scope (source)
 DESIGN.md                 this file — design system
-design/client-designs.pen  all clients — tokens, type, spacing, screens (iterative)
+design/client-designs.pen  all clients — tokens, type, spacing, M1 marketing, screens (iterative)
 design/logo.pen            logo guidelines — The Stack (§3.4): masters, colour, scaling, lockups, icons
 design/native-animated-splash-proposal.md  native launch motion proposal and QA contract (§3.7)
 design/web/web-pages-map.md  web pages, dialogs, states, sitemap
