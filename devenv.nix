@@ -98,6 +98,11 @@ in
   };
 
   scripts = {
+    database-migrate.exec = ''
+      cd "$DEVENV_ROOT/apps/api"
+      mix ecto.migrate
+    '';
+
     generate-openapi.exec = ''
       export MIX_HOME="$DEVENV_ROOT/.devenv/mix"
       export HEX_HOME="$DEVENV_ROOT/.devenv/hex"
