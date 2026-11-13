@@ -65096,7 +65096,7 @@
           "fill": "#6B6578",
           "textGrowth": "fixed-width",
           "width": "fill_container",
-          "content": "Native iOS + Android · 390 × 844 · Light / Dark · Current web-client bookmark parity · Safe-area-aware modal forms · 48px controls · IBM Plex Mono canvas · Navigation titles: Space Mono 700 on iOS and Android · iOS Cancel: Space Mono 400 · Dismissal: danger",
+          "content": "Native iOS + Android · 390 × 844 · Light / Dark · Current web-client bookmark parity · Safe-area-aware modal forms · 48px controls · IBM Plex Mono canvas · Navigation titles: Space Mono 700 on iOS and Android · iOS Cancel: Space Mono 400 · Dismissal: danger · Save: docked outside scroll",
           "fontFamily": "IBM Plex Mono",
           "fontSize": 12,
           "fontWeight": "normal"
@@ -66685,7 +66685,8 @@
                         {
                           "type": "frame",
                           "id": "mIcrd",
-                          "name": "CreateContent",
+                          "name": "CreateScrollContent",
+                          "clip": true,
                           "width": "fill_container",
                           "height": "fill_container",
                           "layout": "vertical",
@@ -66952,53 +66953,76 @@
                               "fontFamily": "IBM Plex Mono",
                               "fontSize": 12,
                               "fontWeight": "normal"
-                            },
-                            {
-                              "type": "frame",
-                              "id": "N90xl",
-                              "name": "Button-Save",
-                              "width": "fill_container",
-                              "height": 48,
-                              "fill": "#3066BE",
-                              "cornerRadius": 8,
-                              "padding": [
-                                0,
-                                12
-                              ],
-                              "justifyContent": "center",
-                              "alignItems": "center",
-                              "children": [
-                                {
-                                  "type": "text",
-                                  "id": "SN0mV",
-                                  "name": "Label",
-                                  "fill": "#FBFFF1",
-                                  "content": "Save",
-                                  "fontFamily": "IBM Plex Mono",
-                                  "fontSize": 15,
-                                  "fontWeight": "700"
-                                }
-                              ]
                             }
                           ]
                         },
                         {
                           "type": "frame",
-                          "id": "zpdqD",
-                          "name": "HomeIndicator-SafeArea",
+                          "id": "z7BOQ",
+                          "name": "DockedSaveAction",
                           "width": "fill_container",
-                          "height": 24,
-                          "justifyContent": "center",
-                          "alignItems": "center",
+                          "fill": "#FFFFFF",
+                          "stroke": "#8FA3C6",
+                          "strokeWidth": 1,
+                          "layout": "vertical",
                           "children": [
                             {
                               "type": "frame",
-                              "id": "J7ReSd",
-                              "name": "HomeIndicator",
-                              "width": 128,
-                              "height": 4,
-                              "fill": "#6B6578",
-                              "cornerRadius": 4
+                              "id": "hypOB",
+                              "name": "SaveActionContainer",
+                              "width": "fill_container",
+                              "height": 80,
+                              "layout": "vertical",
+                              "padding": 16,
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "N90xl",
+                                  "name": "Button-Save",
+                                  "width": "fill_container",
+                                  "height": 48,
+                                  "fill": "#3066BE",
+                                  "cornerRadius": 8,
+                                  "padding": [
+                                    0,
+                                    12
+                                  ],
+                                  "justifyContent": "center",
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "SN0mV",
+                                      "name": "Label",
+                                      "fill": "#FBFFF1",
+                                      "content": "Save",
+                                      "fontFamily": "IBM Plex Mono",
+                                      "fontSize": 15,
+                                      "fontWeight": "700"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "zpdqD",
+                              "name": "HomeIndicator-SafeArea",
+                              "width": "fill_container",
+                              "height": 24,
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "J7ReSd",
+                                  "name": "HomeIndicator",
+                                  "width": 128,
+                                  "height": 4,
+                                  "fill": "#6B6578",
+                                  "cornerRadius": 4
+                                }
+                              ]
                             }
                           ]
                         }
@@ -67122,7 +67146,8 @@
                         {
                           "type": "frame",
                           "id": "xLoxd",
-                          "name": "CreateContent",
+                          "name": "CreateScrollContent",
+                          "clip": true,
                           "width": "fill_container",
                           "height": "fill_container",
                           "layout": "vertical",
@@ -67389,53 +67414,76 @@
                               "fontFamily": "IBM Plex Mono",
                               "fontSize": 12,
                               "fontWeight": "normal"
-                            },
-                            {
-                              "type": "frame",
-                              "id": "g0o72",
-                              "name": "Button-Save",
-                              "width": "fill_container",
-                              "height": 48,
-                              "fill": "#5C84C6",
-                              "cornerRadius": 8,
-                              "padding": [
-                                0,
-                                12
-                              ],
-                              "justifyContent": "center",
-                              "alignItems": "center",
-                              "children": [
-                                {
-                                  "type": "text",
-                                  "id": "k4iufv",
-                                  "name": "Label",
-                                  "fill": "#131220",
-                                  "content": "Save",
-                                  "fontFamily": "IBM Plex Mono",
-                                  "fontSize": 15,
-                                  "fontWeight": "700"
-                                }
-                              ]
                             }
                           ]
                         },
                         {
                           "type": "frame",
-                          "id": "sVXXD",
-                          "name": "HomeIndicator-SafeArea",
+                          "id": "ftBq0",
+                          "name": "DockedSaveAction",
                           "width": "fill_container",
-                          "height": 24,
-                          "justifyContent": "center",
-                          "alignItems": "center",
+                          "fill": "#2F2B3A",
+                          "stroke": "#4F4A62",
+                          "strokeWidth": 1,
+                          "layout": "vertical",
                           "children": [
                             {
                               "type": "frame",
-                              "id": "DW72m",
-                              "name": "HomeIndicator",
-                              "width": 128,
-                              "height": 4,
-                              "fill": "#B4C5E4",
-                              "cornerRadius": 4
+                              "id": "MgNVo",
+                              "name": "SaveActionContainer",
+                              "width": "fill_container",
+                              "height": 80,
+                              "layout": "vertical",
+                              "padding": 16,
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "g0o72",
+                                  "name": "Button-Save",
+                                  "width": "fill_container",
+                                  "height": 48,
+                                  "fill": "#5C84C6",
+                                  "cornerRadius": 8,
+                                  "padding": [
+                                    0,
+                                    12
+                                  ],
+                                  "justifyContent": "center",
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "k4iufv",
+                                      "name": "Label",
+                                      "fill": "#131220",
+                                      "content": "Save",
+                                      "fontFamily": "IBM Plex Mono",
+                                      "fontSize": 15,
+                                      "fontWeight": "700"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "sVXXD",
+                              "name": "HomeIndicator-SafeArea",
+                              "width": "fill_container",
+                              "height": 24,
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "DW72m",
+                                  "name": "HomeIndicator",
+                                  "width": 128,
+                                  "height": 4,
+                                  "fill": "#B4C5E4",
+                                  "cornerRadius": 4
+                                }
+                              ]
                             }
                           ]
                         }
@@ -68417,7 +68465,8 @@
                         {
                           "type": "frame",
                           "id": "jikbY",
-                          "name": "EditContent",
+                          "name": "EditScrollContent",
+                          "clip": true,
                           "width": "fill_container",
                           "height": "fill_container",
                           "layout": "vertical",
@@ -68699,33 +68748,6 @@
                             },
                             {
                               "type": "frame",
-                              "id": "FezhU",
-                              "name": "Button-Save changes",
-                              "width": "fill_container",
-                              "height": 48,
-                              "fill": "#3066BE",
-                              "cornerRadius": 8,
-                              "padding": [
-                                0,
-                                12
-                              ],
-                              "justifyContent": "center",
-                              "alignItems": "center",
-                              "children": [
-                                {
-                                  "type": "text",
-                                  "id": "kGoJ5",
-                                  "name": "Label",
-                                  "fill": "#FBFFF1",
-                                  "content": "Save changes",
-                                  "fontFamily": "IBM Plex Mono",
-                                  "fontSize": 15,
-                                  "fontWeight": "700"
-                                }
-                              ]
-                            },
-                            {
-                              "type": "frame",
                               "id": "M3jEl",
                               "name": "Button-Delete",
                               "width": "fill_container",
@@ -68755,21 +68777,71 @@
                         },
                         {
                           "type": "frame",
-                          "id": "I4qwMb",
-                          "name": "HomeIndicator-SafeArea",
+                          "id": "Dzbn7",
+                          "name": "DockedSaveAction",
                           "width": "fill_container",
-                          "height": 24,
-                          "justifyContent": "center",
-                          "alignItems": "center",
+                          "fill": "#FFFFFF",
+                          "stroke": "#8FA3C6",
+                          "strokeWidth": 1,
+                          "layout": "vertical",
                           "children": [
                             {
                               "type": "frame",
-                              "id": "uoNz3",
-                              "name": "HomeIndicator",
-                              "width": 128,
-                              "height": 4,
-                              "fill": "#6B6578",
-                              "cornerRadius": 4
+                              "id": "s3qYP",
+                              "name": "SaveActionContainer",
+                              "width": "fill_container",
+                              "height": 80,
+                              "layout": "vertical",
+                              "padding": 16,
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "FezhU",
+                                  "name": "Button-Save changes",
+                                  "width": "fill_container",
+                                  "height": 48,
+                                  "fill": "#3066BE",
+                                  "cornerRadius": 8,
+                                  "padding": [
+                                    0,
+                                    12
+                                  ],
+                                  "justifyContent": "center",
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "kGoJ5",
+                                      "name": "Label",
+                                      "fill": "#FBFFF1",
+                                      "content": "Save changes",
+                                      "fontFamily": "IBM Plex Mono",
+                                      "fontSize": 15,
+                                      "fontWeight": "700"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "I4qwMb",
+                              "name": "HomeIndicator-SafeArea",
+                              "width": "fill_container",
+                              "height": 24,
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "uoNz3",
+                                  "name": "HomeIndicator",
+                                  "width": 128,
+                                  "height": 4,
+                                  "fill": "#6B6578",
+                                  "cornerRadius": 4
+                                }
+                              ]
                             }
                           ]
                         }
@@ -68893,7 +68965,8 @@
                         {
                           "type": "frame",
                           "id": "t6zVpM",
-                          "name": "EditContent",
+                          "name": "EditScrollContent",
+                          "clip": true,
                           "width": "fill_container",
                           "height": "fill_container",
                           "layout": "vertical",
@@ -69175,33 +69248,6 @@
                             },
                             {
                               "type": "frame",
-                              "id": "F2Aw8s",
-                              "name": "Button-Save changes",
-                              "width": "fill_container",
-                              "height": 48,
-                              "fill": "#5C84C6",
-                              "cornerRadius": 8,
-                              "padding": [
-                                0,
-                                12
-                              ],
-                              "justifyContent": "center",
-                              "alignItems": "center",
-                              "children": [
-                                {
-                                  "type": "text",
-                                  "id": "aSAmz",
-                                  "name": "Label",
-                                  "fill": "#131220",
-                                  "content": "Save changes",
-                                  "fontFamily": "IBM Plex Mono",
-                                  "fontSize": 15,
-                                  "fontWeight": "700"
-                                }
-                              ]
-                            },
-                            {
-                              "type": "frame",
                               "id": "p1Mrw",
                               "name": "Button-Delete",
                               "width": "fill_container",
@@ -69231,21 +69277,71 @@
                         },
                         {
                           "type": "frame",
-                          "id": "D0popV",
-                          "name": "HomeIndicator-SafeArea",
+                          "id": "OjznY",
+                          "name": "DockedSaveAction",
                           "width": "fill_container",
-                          "height": 24,
-                          "justifyContent": "center",
-                          "alignItems": "center",
+                          "fill": "#2F2B3A",
+                          "stroke": "#4F4A62",
+                          "strokeWidth": 1,
+                          "layout": "vertical",
                           "children": [
                             {
                               "type": "frame",
-                              "id": "Hrqr9",
-                              "name": "HomeIndicator",
-                              "width": 128,
-                              "height": 4,
-                              "fill": "#B4C5E4",
-                              "cornerRadius": 4
+                              "id": "Pq1cN",
+                              "name": "SaveActionContainer",
+                              "width": "fill_container",
+                              "height": 80,
+                              "layout": "vertical",
+                              "padding": 16,
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "F2Aw8s",
+                                  "name": "Button-Save changes",
+                                  "width": "fill_container",
+                                  "height": 48,
+                                  "fill": "#5C84C6",
+                                  "cornerRadius": 8,
+                                  "padding": [
+                                    0,
+                                    12
+                                  ],
+                                  "justifyContent": "center",
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "aSAmz",
+                                      "name": "Label",
+                                      "fill": "#131220",
+                                      "content": "Save changes",
+                                      "fontFamily": "IBM Plex Mono",
+                                      "fontSize": 15,
+                                      "fontWeight": "700"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "D0popV",
+                              "name": "HomeIndicator-SafeArea",
+                              "width": "fill_container",
+                              "height": 24,
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "Hrqr9",
+                                  "name": "HomeIndicator",
+                                  "width": 128,
+                                  "height": 4,
+                                  "fill": "#B4C5E4",
+                                  "cornerRadius": 4
+                                }
+                              ]
                             }
                           ]
                         }
@@ -69896,7 +69992,7 @@
           "fill": "#6B6578",
           "textGrowth": "fixed-width",
           "width": "fill_container",
-          "content": "Library places New Bookmark in the native navigation bar as a trailing platform toolbar action. Create and Edit place Cancel in the leading native navigation bar on iOS and Android, with no duplicate Cancel in either form. iOS uses native Cancel text in Space Mono 400; Android uses a native Phosphor X vector-icon button with Cancel as its accessibility label. Both dismissal controls use the theme danger color to signal a destructive action. The Android asset is an XML vector drawable derived from the official Phosphor SVG. iOS uses a prominent plus SF Symbol with system Liquid Glass on iOS 26+ and the standard native fallback earlier; Android uses native Compose toolbar buttons. System touch targets, pressed states, contrast and reduce-transparency behavior are preserved. The collection header and empty state have no duplicate create button. The action remains available in loading, empty, error and populated states. Canvas chrome is a schematic of the native rendering. Successful mutations update cached data before returning to Library.",
+          "content": "Library places New Bookmark in the native navigation bar as a trailing platform toolbar action. Create and Edit place Cancel in the leading native navigation bar on iOS and Android, with no duplicate Cancel in either form. iOS uses native Cancel text in Space Mono 400; Android uses a native Phosphor X vector-icon button with Cancel as its accessibility label. Both dismissal controls use the theme danger color to signal a destructive action. Create and Edit dock their primary Save action above the home-indicator safe area in an 80px surface dock with 16px padding. Only fields and secondary actions scroll; Save stays outside the scroll view and remains visible while scrolling, with keyboard avoidance keeping it reachable. Edit keeps Delete in the scrollable content. The Android asset is an XML vector drawable derived from the official Phosphor SVG. iOS uses a prominent plus SF Symbol with system Liquid Glass on iOS 26+ and the standard native fallback earlier; Android uses native Compose toolbar buttons. System touch targets, pressed states, contrast and reduce-transparency behavior are preserved. The collection header and empty state have no duplicate create button. The action remains available in loading, empty, error and populated states. Canvas chrome is a schematic of the native rendering. Successful mutations update cached data before returning to Library.",
           "fontFamily": "IBM Plex Mono",
           "fontSize": 12,
           "fontWeight": "normal"
@@ -69907,7 +70003,7 @@
       "type": "frame",
       "id": "sPOxK",
       "x": 0,
-      "y": 132440,
+      "y": 132472,
       "name": "§42 Native Animated Splash — Stack settles",
       "clip": true,
       "width": 1200,

@@ -115,8 +115,8 @@ const CreateBookmarkScreen = () => {
   return (
     <>
       <BookmarkCancelToolbar />
-      <BookmarkScreenLayout>
-        {warning ? (
+      {warning ? (
+        <BookmarkScreenLayout>
           <DuplicateBookmarkWarning
             checkFailed={warning.checkFailed}
             error={warningError}
@@ -129,22 +129,19 @@ const CreateBookmarkScreen = () => {
             pending={savingAnyway}
             url={pendingRequest?.url ?? ""}
           />
-        ) : (
-          <>
-            <Typography tone="secondary" variant="caption">
-              {t("library.createDescription")}
-            </Typography>
-            <BookmarkForm
-              initialValues={initialValues}
-              onSubmit={handleSubmit}
-              pendingLabel={
-                checking ? t("actions.checking") : t("actions.saving")
-              }
-              submitLabel={t("actions.save")}
-            />
-          </>
-        )}
-      </BookmarkScreenLayout>
+        </BookmarkScreenLayout>
+      ) : (
+        <BookmarkForm
+          initialValues={initialValues}
+          onSubmit={handleSubmit}
+          pendingLabel={checking ? t("actions.checking") : t("actions.saving")}
+          submitLabel={t("actions.save")}
+        >
+          <Typography tone="secondary" variant="caption">
+            {t("library.createDescription")}
+          </Typography>
+        </BookmarkForm>
+      )}
     </>
   );
 };

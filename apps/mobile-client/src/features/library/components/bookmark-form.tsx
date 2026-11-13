@@ -18,12 +18,14 @@ import {
 } from "@signet/design-system";
 import { useTranslation } from "@signet/locale/react";
 import { Image } from "expo-image";
-import { useEffect, useState } from "react";
+import { type ReactNode, useEffect, useState } from "react";
 import { Keyboard, StyleSheet } from "react-native";
 import { css, html } from "react-strict-dom";
+import { BookmarkScreenLayout } from "./bookmark-screen-layout";
 
 /** Native bookmark editor properties. */
 type BookmarkFormProps = {
+  children?: ReactNode;
   deleteError?: string;
   deletePending?: boolean;
   initialValues?: BookmarkFormValues;
@@ -35,6 +37,7 @@ type BookmarkFormProps = {
 };
 
 export const BookmarkForm = ({
+  children,
   deleteError,
   deletePending = false,
   initialValues = emptyBookmarkValues,
@@ -101,128 +104,8 @@ export const BookmarkForm = ({
   }, [values.image]);
 
   return (
-    <html.div
-      aria-busy={busy}
-      data-layoutconformance="strict"
-      style={styles.form}
-    >
-      <TextField
-        autoCapitalize="none"
-        autoComplete="url"
-        autoFocus
-        disabled={busy}
-        error={fieldErrors.url ? t(fieldErrors.url) : undefined}
-        id="native-bookmark-url"
-        label={t("form.link")}
-        onValueChange={(value) => updateValue("url", value)}
-        placeholder="https://example.com/article"
-        required
-        style={styles.input}
-        type="url"
-        value={values.url}
-      />
-      <TextField
-        disabled={busy}
-        error={fieldErrors.title ? t(fieldErrors.title) : undefined}
-        id="native-bookmark-title"
-        label={t("form.title")}
-        maxLength={200}
-        onValueChange={(value) => updateValue("title", value)}
-        placeholder={t("form.titlePlaceholder")}
-        required
-        style={styles.input}
-        value={values.title}
-      />
-      <TextField
-        autoCapitalize="none"
-        autoComplete="off"
-        disabled={busy}
-        error={fieldErrors.image ? t(fieldErrors.image) : undefined}
-        id="native-bookmark-image"
-        label={t("form.imageUrlOptional")}
-        onValueChange={(value) => updateValue("image", value)}
-        placeholder="https://example.com/image.jpg"
-        style={styles.input}
-        type="url"
-        value={values.image}
-      />
-      {values.image.trim() && !fieldErrors.image ? (
-        <html.div style={styles.preview}>
-          {previewFailed ? (
-            <Typography tone="secondary" variant="caption">
-              {t("form.imagePreviewUnavailable")}
-            </Typography>
-          ) : (
-            <Image
-              accessibilityLabel={t("form.artworkPreview")}
-              contentFit="cover"
-              onError={() => setPreviewFailed(true)}
-              source={{ uri: values.image.trim() }}
-              style={nativeStyles.previewImage}
-            />
-          )}
-        </html.div>
-      ) : null}
-      <html.div style={styles.notesField}>
-        <Typography
-          as="label"
-          for="native-bookmark-notes"
-          style={styles.label}
-          tone="accent"
-          variant="caption"
-        >
-          {t("form.notesOptional")}
-        </Typography>
-        <html.textarea
-          aria-describedby={
-            fieldErrors.notes ? "native-bookmark-notes-error" : undefined
-          }
-          aria-invalid={fieldErrors.notes ? true : undefined}
-          disabled={busy}
-          id="native-bookmark-notes"
-          maxLength={2000}
-          onChange={handleNotesChange}
-          placeholder={t("form.notesPlaceholder")}
-          rows={4}
-          style={[
-            styles.input,
-            styles.notes,
-            Boolean(fieldErrors.notes) && styles.inputError,
-          ]}
-          value={values.notes}
-        />
-        {fieldErrors.notes ? (
-          <Typography
-            id="native-bookmark-notes-error"
-            role="alert"
-            tone="danger"
-            variant="caption"
-          >
-            {t(fieldErrors.notes)}
-          </Typography>
-        ) : null}
-      </html.div>
-      <TextField
-        autoCapitalize="none"
-        autoComplete="off"
-        disabled={busy}
-        error={fieldErrors.tags ? t(fieldErrors.tags) : undefined}
-        id="native-bookmark-tags"
-        label={t("form.tagsOptional")}
-        onValueChange={(value) => updateValue("tags", value)}
-        placeholder={t("form.tagsPlaceholder")}
-        style={styles.input}
-        value={values.tags}
-      />
-      <Typography tone="secondary" variant="caption">
-        {t("form.tagsHint")}
-      </Typography>
-      {formError || deleteError ? (
-        <Typography role="alert" style={styles.error} tone="danger">
-          {t(formError ?? deleteError ?? "")}
-        </Typography>
-      ) : null}
-      <html.div style={styles.actions}>
+    <BookmarkScreenLayout
+      dockedAction={
         <Button
           disabled={busy}
           onClick={() => void handleSubmit()}
@@ -231,29 +114,157 @@ export const BookmarkForm = ({
         >
           {pending ? (pendingLabel ?? t("actions.saving")) : submitLabel}
         </Button>
-        {onCancel ? (
-          <Button
-            disabled={busy}
-            onClick={onCancel}
-            size="lg"
-            style={styles.action}
-            variant="secondary"
-          >
-            {t("actions.cancel")}
-          </Button>
+      }
+    >
+      {children}
+      <html.div
+        aria-busy={busy}
+        data-layoutconformance="strict"
+        style={styles.form}
+      >
+        <TextField
+          autoCapitalize="none"
+          autoComplete="url"
+          autoFocus
+          disabled={busy}
+          error={fieldErrors.url ? t(fieldErrors.url) : undefined}
+          id="native-bookmark-url"
+          label={t("form.link")}
+          onValueChange={(value) => updateValue("url", value)}
+          placeholder="https://example.com/article"
+          required
+          style={styles.input}
+          type="url"
+          value={values.url}
+        />
+        <TextField
+          disabled={busy}
+          error={fieldErrors.title ? t(fieldErrors.title) : undefined}
+          id="native-bookmark-title"
+          label={t("form.title")}
+          maxLength={200}
+          onValueChange={(value) => updateValue("title", value)}
+          placeholder={t("form.titlePlaceholder")}
+          required
+          style={styles.input}
+          value={values.title}
+        />
+        <TextField
+          autoCapitalize="none"
+          autoComplete="off"
+          disabled={busy}
+          error={fieldErrors.image ? t(fieldErrors.image) : undefined}
+          id="native-bookmark-image"
+          label={t("form.imageUrlOptional")}
+          onValueChange={(value) => updateValue("image", value)}
+          placeholder="https://example.com/image.jpg"
+          style={styles.input}
+          type="url"
+          value={values.image}
+        />
+        {values.image.trim() && !fieldErrors.image ? (
+          <html.div style={styles.preview}>
+            {previewFailed ? (
+              <Typography tone="secondary" variant="caption">
+                {t("form.imagePreviewUnavailable")}
+              </Typography>
+            ) : (
+              <Image
+                accessibilityLabel={t("form.artworkPreview")}
+                contentFit="cover"
+                onError={() => setPreviewFailed(true)}
+                source={{ uri: values.image.trim() }}
+                style={nativeStyles.previewImage}
+              />
+            )}
+          </html.div>
         ) : null}
-        {onDelete ? (
-          <Button
-            disabled={busy}
-            onClick={onDelete}
-            size="lg"
-            style={[styles.action, styles.delete]}
+        <html.div style={styles.notesField}>
+          <Typography
+            as="label"
+            for="native-bookmark-notes"
+            style={styles.label}
+            tone="accent"
+            variant="caption"
           >
-            {deletePending ? t("actions.deleting") : t("actions.delete")}
-          </Button>
+            {t("form.notesOptional")}
+          </Typography>
+          <html.textarea
+            aria-describedby={
+              fieldErrors.notes ? "native-bookmark-notes-error" : undefined
+            }
+            aria-invalid={fieldErrors.notes ? true : undefined}
+            disabled={busy}
+            id="native-bookmark-notes"
+            maxLength={2000}
+            onChange={handleNotesChange}
+            placeholder={t("form.notesPlaceholder")}
+            rows={4}
+            style={[
+              styles.input,
+              styles.notes,
+              Boolean(fieldErrors.notes) && styles.inputError,
+            ]}
+            value={values.notes}
+          />
+          {fieldErrors.notes ? (
+            <Typography
+              id="native-bookmark-notes-error"
+              role="alert"
+              tone="danger"
+              variant="caption"
+            >
+              {t(fieldErrors.notes)}
+            </Typography>
+          ) : null}
+        </html.div>
+        <TextField
+          autoCapitalize="none"
+          autoComplete="off"
+          disabled={busy}
+          error={fieldErrors.tags ? t(fieldErrors.tags) : undefined}
+          id="native-bookmark-tags"
+          label={t("form.tagsOptional")}
+          onValueChange={(value) => updateValue("tags", value)}
+          placeholder={t("form.tagsPlaceholder")}
+          style={styles.input}
+          value={values.tags}
+        />
+        <Typography tone="secondary" variant="caption">
+          {t("form.tagsHint")}
+        </Typography>
+        {formError || deleteError ? (
+          <Typography role="alert" style={styles.error} tone="danger">
+            {t(formError ?? deleteError ?? "")}
+          </Typography>
+        ) : null}
+        {onCancel || onDelete ? (
+          <html.div style={styles.actions}>
+            {onCancel ? (
+              <Button
+                disabled={busy}
+                onClick={onCancel}
+                size="lg"
+                style={styles.action}
+                variant="secondary"
+              >
+                {t("actions.cancel")}
+              </Button>
+            ) : null}
+            {onDelete ? (
+              <Button
+                disabled={busy}
+                onClick={onDelete}
+                size="lg"
+                style={[styles.action, styles.delete]}
+              >
+                {deletePending ? t("actions.deleting") : t("actions.delete")}
+              </Button>
+            ) : null}
+          </html.div>
         ) : null}
       </html.div>
-    </html.div>
+    </BookmarkScreenLayout>
   );
 };
 

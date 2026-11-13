@@ -98,47 +98,48 @@ const EditBookmarkScreen = () => {
   return (
     <>
       <BookmarkCancelToolbar />
-      <BookmarkScreenLayout>
-        {bookmarkQuery.isPending ? (
-          <Typography role="status" tone="secondary">
-            {t("library.loadingBookmark")}
+      {bookmarkQuery.isPending || bookmarkQuery.isError || !bookmark ? (
+        <BookmarkScreenLayout>
+          {bookmarkQuery.isPending ? (
+            <Typography role="status" tone="secondary">
+              {t("library.loadingBookmark")}
+            </Typography>
+          ) : bookmarkQuery.isError ? (
+            <>
+              <Typography role="alert" tone="danger">
+                {t(getBookmarkError(bookmarkQuery.error).message)}
+              </Typography>
+              <Button onClick={() => void bookmarkQuery.refetch()}>
+                {t("actions.tryAgain")}
+              </Button>
+            </>
+          ) : null}
+        </BookmarkScreenLayout>
+      ) : (
+        <BookmarkForm
+          deleteError={deleteError}
+          deletePending={deleteMutation.isPending}
+          initialValues={bookmarkToFormValues(bookmark)}
+          key={bookmark.updatedAt}
+          onDelete={confirmDelete}
+          onSubmit={handleSubmit}
+          submitLabel={t("actions.saveChanges")}
+        >
+          <Typography tone="secondary" variant="caption">
+            {t("library.createdOn", {
+              date:
+                formatTimestamp(bookmark.createdAt, locale) ??
+                t("library.timestampUnavailable"),
+            })}{" "}
+            ·{" "}
+            {t("library.updatedOn", {
+              date:
+                formatTimestamp(bookmark.updatedAt, locale) ??
+                t("library.timestampUnavailable"),
+            })}
           </Typography>
-        ) : bookmarkQuery.isError ? (
-          <>
-            <Typography role="alert" tone="danger">
-              {t(getBookmarkError(bookmarkQuery.error).message)}
-            </Typography>
-            <Button onClick={() => void bookmarkQuery.refetch()}>
-              {t("actions.tryAgain")}
-            </Button>
-          </>
-        ) : bookmark ? (
-          <>
-            <Typography tone="secondary" variant="caption">
-              {t("library.createdOn", {
-                date:
-                  formatTimestamp(bookmark.createdAt, locale) ??
-                  t("library.timestampUnavailable"),
-              })}{" "}
-              ·{" "}
-              {t("library.updatedOn", {
-                date:
-                  formatTimestamp(bookmark.updatedAt, locale) ??
-                  t("library.timestampUnavailable"),
-              })}
-            </Typography>
-            <BookmarkForm
-              deleteError={deleteError}
-              deletePending={deleteMutation.isPending}
-              initialValues={bookmarkToFormValues(bookmark)}
-              key={bookmark.updatedAt}
-              onDelete={confirmDelete}
-              onSubmit={handleSubmit}
-              submitLabel={t("actions.saveChanges")}
-            />
-          </>
-        ) : null}
-      </BookmarkScreenLayout>
+        </BookmarkForm>
+      )}
     </>
   );
 };
