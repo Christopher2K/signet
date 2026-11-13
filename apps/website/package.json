@@ -13,19 +13,24 @@
   },
   "dependencies": {
     "@phosphor-icons/react": "~2.1.10",
+    "@signet/design-system": "workspace:*",
     "@signet/locale": "workspace:*",
     "@tanstack/react-router": "catalog:",
     "@tanstack/react-start": "1.169.5",
     "react": "catalog:",
     "react-dom": "catalog:",
-    "react-i18next": "catalog:"
+    "react-i18next": "catalog:",
+    "react-strict-dom": "catalog:"
   },
   "devDependencies": {
+    "@babel/core": "catalog:",
     "@types/node": "catalog:",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
     "@vitejs/plugin-react": "catalog:",
+    "autoprefixer": "catalog:",
     "typescript": "catalog:",
-    "vite": "catalog:"
+    "vite": "catalog:",
+    "vite-plugin-babel": "catalog:"
   }
 }

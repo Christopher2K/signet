@@ -185,6 +185,9 @@ catalogs:
     '@vitejs/plugin-react':
       specifier: ^6.0.1
       version: 6.2.1
+    autoprefixer:
+      specifier: ~10.6.2
+      version: 10.6.2
     react:
       specifier: 19.3.0
       version: 19.3.0
@@ -209,6 +212,9 @@ catalogs:
     vite:
       specifier: ^8.0.0
       version: 8.3.6
+    vite-plugin-babel:
+      specifier: ~1.7.3
+      version: 1.7.3
     vitest:
       specifier: latest
       version: 5.1.0
@@ -451,7 +457,7 @@ importers:
         specifier: latest
         version: 5.1.0(@vitest/browser@5.1.0)(vitest@5.1.0)
       autoprefixer:
-        specifier: ~10.6.2
+        specifier: 'catalog:'
         version: 10.6.2(postcss@8.5.32)
       jsdom:
         specifier: latest
@@ -466,7 +472,7 @@ importers:
         specifier: 'catalog:'
         version: 8.3.6(@types/node@22.20.5)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(yaml@2.9.1)
       vite-plugin-babel:
-        specifier: ~1.7.3
+        specifier: 'catalog:'
         version: 1.7.3(@babel/core@7.29.13(supports-color@8.1.1))(vite@8.3.6(@types/node@22.20.5)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(yaml@2.9.1))
       vitest:
         specifier: 'catalog:'
@@ -477,6 +483,9 @@ importers:
       '@phosphor-icons/react':
         specifier: ~2.1.10
         version: 2.1.10(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      '@signet/design-system':
+        specifier: workspace:*
+        version: link:../../libs/design-system
       '@signet/locale':
         specifier: workspace:*
         version: link:../../libs/locale
@@ -495,7 +504,13 @@ importers:
       react-i18next:
         specifier: 'catalog:'
         version: 18.0.1(@types/react@19.3.0)(i18next@27.1.0(typescript@6.0.3))(react@19.3.0)(typescript@6.0.3)
+      react-strict-dom:
+        specifier: 'catalog:'
+        version: 0.0.55(postcss@8.5.32)(react-dom@19.3.0(react@19.3.0))(react-native@0.88.1(@babel/core@7.29.13(supports-color@8.1.1))(@react-native/metro-config@0.88.1(@babel/core@7.29.13(supports-color@8.1.1))(supports-color@8.1.1))(@types/react@19.3.0)(react@19.3.0)(supports-color@8.1.1))(react@19.3.0)(supports-color@8.1.1)
     devDependencies:
+      '@babel/core':
+        specifier: 'catalog:'
+        version: 7.29.13(supports-color@8.1.1)
       '@types/node':
         specifier: 'catalog:'
         version: 22.20.5
@@ -508,12 +523,18 @@ importers:
       '@vitejs/plugin-react':
         specifier: 'catalog:'
         version: 6.2.1(babel-plugin-react-compiler@1.0.0)(vite@8.3.6(@types/node@22.20.5)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(yaml@2.9.1))
+      autoprefixer:
+        specifier: 'catalog:'
+        version: 10.6.2(postcss@8.5.32)
       typescript:
         specifier: 'catalog:'
         version: 6.0.3
       vite:
         specifier: 'catalog:'
         version: 8.3.6(@types/node@22.20.5)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(yaml@2.9.1)
+      vite-plugin-babel:
+        specifier: 'catalog:'
+        version: 1.7.3(@babel/core@7.29.13(supports-color@8.1.1))(vite@8.3.6(@types/node@22.20.5)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(yaml@2.9.1))
 
   libs/api:
     devDependencies:

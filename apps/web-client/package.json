@@ -45,9 +45,9 @@
     "@tanstack/router-plugin": "1.169.0",
     "vitest": "catalog:",
     "@vitest/coverage-v8": "latest",
-    "autoprefixer": "~10.6.2",
+    "autoprefixer": "catalog:",
     "jsdom": "latest",
-    "vite-plugin-babel": "~1.7.3"
+    "vite-plugin-babel": "catalog:"
   },
   "pnpm": {
     "onlyBuiltDependencies": [

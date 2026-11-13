@@ -13,6 +13,7 @@ catalog:
   "@types/react": ~19.3.0
   "@types/react-dom": ^19.2.0
   "@vitejs/plugin-react": ^6.0.1
+  autoprefixer: ~10.6.2
   react: 19.3.0
   react-dom: 19.3.0
   react-i18next: ~18.0.1
@@ -21,6 +22,7 @@ catalog:
   storybook: ^10.6.6
   typescript: ~6.0.3
   vite: ^8.0.0
+  vite-plugin-babel: ~1.7.3
   vitest: latest
 minimumReleaseAgeExclude:
   - "@tanstack/react-start-client@1.168.45"

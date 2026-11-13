@@ -1,10 +1,29 @@
 import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 import viteReact from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
+import viteBabel from "vite-plugin-babel";
+
+const webOnlyExtensions = [".web.js", ".web.jsx", ".web.ts", ".web.tsx"];
+const allExtensions = [
+  ...webOnlyExtensions,
+  ".mjs",
+  ".js",
+  ".mts",
+  ".ts",
+  ".jsx",
+  ".tsx",
+  ".json",
+];
+const babelInclude = [
+  /[\\/]src[\\/]/,
+  /[\\/]libs[\\/]design-system[\\/]/,
+  /[\\/]react-strict-dom[\\/]/,
+];
 
 export default defineConfig({
   resolve: {
     tsconfigPaths: true,
+    extensions: allExtensions,
   },
   server: {
     port: 3001,
@@ -20,5 +39,17 @@ export default defineConfig({
       },
     }),
     viteReact(),
+    viteBabel({
+      include: babelInclude,
+      filter: /\.[cm]?[jt]sx?$/,
+    }),
   ],
+  optimizeDeps: {
+    rolldownOptions: {
+      resolve: { extensions: allExtensions },
+    },
+  },
+  ssr: {
+    noExternal: ["@signet/design-system", "react-strict-dom"],
+  },
 });

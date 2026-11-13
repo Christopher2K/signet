@@ -1,31 +1,61 @@
+import { Typography } from "@signet/design-system";
+import { colors, spacing } from "@signet/design-system/tokens.css";
 import { useTranslation } from "@signet/locale/react";
+import { css, html } from "react-strict-dom";
+import stackUrl from "#/assets/stack.svg";
+
+/** Logo properties. */
+type LogoProps = {
+  /** Uses the smaller product-preview lockup. */
+  compact?: boolean;
+};
 
 /** Signet Stack mark and wordmark. */
-export const Logo = () => {
+export const Logo = ({ compact = false }: LogoProps) => {
   const { t } = useTranslation("common");
 
   return (
-    <span className="logo">
-      <svg
-        aria-hidden="true"
-        className="logo-mark"
-        viewBox="0 0 32 32"
-        fill="none"
+    <html.span style={styles.logo}>
+      <html.img
+        alt=""
+        aria-hidden={true}
+        src={stackUrl}
+        style={[styles.mark, compact ? styles.compactMark : null]}
+      />
+      <Typography
+        variant={compact ? "body" : "title"}
+        style={[styles.wordmark, compact ? styles.compactWordmark : null]}
       >
-        <path
-          d="M4 5.5A2.5 2.5 0 0 1 6.5 3H16v22l-6-3.6L4 25V5.5Z"
-          fill="var(--mist)"
-        />
-        <path
-          d="M9 7.5A2.5 2.5 0 0 1 11.5 5H21v22l-6-3.6L9 27v-19.5Z"
-          fill="var(--azure)"
-        />
-        <path
-          d="M14 9.5A2.5 2.5 0 0 1 16.5 7H26v22l-6-3.6L14 29V9.5Z"
-          fill="var(--cobalt)"
-        />
-      </svg>
-      <span>{t("appName")}</span>
-    </span>
+        {t("appName")}
+      </Typography>
+    </html.span>
   );
 };
+
+const styles = css.create({
+  logo: {
+    display: "inline-flex",
+    alignItems: "center",
+    gap: spacing[3],
+    color: colors.accent,
+    lineHeight: 1,
+  },
+  mark: {
+    width: 28,
+    height: 28,
+    flexShrink: 0,
+  },
+  compactMark: {
+    width: 24,
+    height: 24,
+  },
+  wordmark: {
+    fontWeight: "700",
+  },
+  compactWordmark: {
+    display: "inline",
+    "@media (max-width: 480px)": {
+      display: "none",
+    },
+  },
+});

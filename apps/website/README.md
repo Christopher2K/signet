@@ -1,6 +1,6 @@
 # Signet website
 
-The public marketing site, built with TanStack Start, React, and Vite.
+The public marketing site, built with TanStack Start, React Strict DOM, the shared Signet design system, and Vite.
 
 ## Develop
 
