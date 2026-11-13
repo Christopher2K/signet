@@ -33,7 +33,7 @@ const LibraryScreen = () => {
   const bookmarksQuery = useBookmarks();
   const bookmarks = bookmarksQuery.data?.data ?? [];
 
-  const handleCreate = () => router.push("/create");
+  const handleCreate = () => router.push("/(stack-screens)/bookmark/create");
   const handleRetry = () => void bookmarksQuery.refetch();
   const handleOpen = async (url: string) => {
     try {

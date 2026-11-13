@@ -50,7 +50,7 @@ export const RootNavigator = ({ fontsLoaded }: RootNavigatorProps) => {
               }}
             >
               <Stack.Protected guard={state.status === "authenticated"}>
-                <Stack.Screen name="(app)" />
+                <Stack.Screen name="(bar-screens)" />
               </Stack.Protected>
               <Stack.Protected guard={state.status === "unauthenticated"}>
                 <Stack.Screen name="(auth)" />

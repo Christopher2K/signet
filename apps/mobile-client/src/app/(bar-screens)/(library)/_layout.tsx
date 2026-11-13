@@ -19,20 +19,6 @@ const LibraryLayout = () => {
       }}
     >
       <Stack.Screen name="index" options={{ title: t("navigation.library") }} />
-      <Stack.Screen
-        name="create"
-        options={{
-          presentation: "modal",
-          title: t("navigation.newBookmark"),
-        }}
-      />
-      <Stack.Screen
-        name="bookmark/[id]"
-        options={{
-          presentation: "modal",
-          title: t("navigation.editBookmark"),
-        }}
-      />
     </Stack>
   );
 };
