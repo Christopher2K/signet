@@ -35,6 +35,8 @@ export default defineConfig({
         autoStaticPathsDiscovery: true,
         autoSubfolderIndex: true,
         crawlLinks: true,
+        retryCount: 3,
+        retryDelay: 500,
         failOnError: true,
       },
     }),
