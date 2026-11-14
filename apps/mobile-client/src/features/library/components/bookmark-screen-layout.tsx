@@ -8,10 +8,7 @@ import {
   KeyboardAwareScrollView,
   KeyboardStickyView,
 } from "react-native-keyboard-controller";
-import {
-  SafeAreaView,
-  useSafeAreaInsets,
-} from "react-native-safe-area-context";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { css, html } from "react-strict-dom";
 
 /** Native bookmark editor screen properties. */
@@ -55,9 +52,6 @@ export const BookmarkScreenLayout = ({
 };
 
 const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-  },
   scrollView: {
     flex: 1,
   },
