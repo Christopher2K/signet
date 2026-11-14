@@ -29,6 +29,7 @@ export type NativeTheme = {
   surfaceAlt: string;
   text: string;
   textSecondary: string;
+  textMuted: string;
   border: string;
   primary: string;
   onPrimary: string;
@@ -44,27 +45,29 @@ const lightTheme: NativeTheme = {
   surfaceAlt: "#EEF3FB",
   text: "#3C3744",
   textSecondary: "#6B6578",
+  textMuted: "#8A8499",
   border: "#8FA3C6",
   primary: "#3066BE",
   onPrimary: "#FBFFF1",
   accent: "#090C9B",
   logoBack: "#B4C5E4",
-  danger: "#A4252C",
+  danger: "#B42318",
 };
 
 const darkTheme: NativeTheme = {
   dark: true,
   background: "#3C3744",
   surface: "#2F2B3A",
-  surfaceAlt: "#2F2B3A",
+  surfaceAlt: "#3C3744",
   text: "#FBFFF1",
   textSecondary: "#B4C5E4",
+  textMuted: "#ABA3B8",
   border: "#4F4A62",
   primary: "#5C84C6",
   onPrimary: "#131220",
   accent: "#B4C5E4",
   logoBack: "#4F4A62",
-  danger: "#FFB4AB",
+  danger: "#F97066",
 };
 
 /** Returns Signet tokens for native-only chrome and layout. */

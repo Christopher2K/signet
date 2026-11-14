@@ -7,23 +7,18 @@ import {
   useNativeTheme,
 } from "@signet/design-system/native-theme";
 import { useLocale, useTranslation } from "@signet/locale/react";
-import { Stack, useRouter } from "expo-router";
+import { useRouter } from "expo-router";
 import * as WebBrowser from "expo-web-browser";
-import {
-  Alert,
-  FlatList,
-  Platform,
-  RefreshControl,
-  StyleSheet,
-} from "react-native";
+import { PlusIcon } from "phosphor-react-native/src/icons/Plus";
+import { Alert, RefreshControl, StyleSheet } from "react-native";
+import Animated, {
+  useAnimatedScrollHandler,
+  useSharedValue,
+} from "react-native-reanimated";
 import { css, html } from "react-strict-dom";
 import { BookmarkCard } from "../../../features/library/components/bookmark-card";
 import { LibraryState } from "../../../features/library/components/library-state";
-
-const newBookmarkIcon = Platform.select({
-  ios: "plus" as const,
-  default: require("../../../../assets/images/plus.png"),
-});
+import { TopNavigationBar } from "../../../features/navigation/components/top-navigation-bar";
 
 const LibraryScreen = () => {
   const router = useRouter();
@@ -31,8 +26,14 @@ const LibraryScreen = () => {
   const { locale } = useLocale();
   const { t } = useTranslation("mobile");
   const bookmarksQuery = useBookmarks();
+  const scrollY = useSharedValue(0);
   const bookmarks = bookmarksQuery.data?.data ?? [];
 
+  const handleScroll = useAnimatedScrollHandler({
+    onScroll: (event) => {
+      scrollY.value = event.contentOffset.y;
+    },
+  });
   const handleCreate = () => router.push("/(stack-screens)/bookmark/create");
   const handleRetry = () => void bookmarksQuery.refetch();
   const handleOpen = async (url: string) => {
@@ -60,23 +61,29 @@ const LibraryScreen = () => {
 
   return (
     <>
-      <Stack.Toolbar placement="right">
-        <Stack.Toolbar.Button
-          accessibilityHint={t("navigation.createBookmarkHint")}
-          accessibilityLabel={t("navigation.newBookmark")}
-          icon={newBookmarkIcon}
-          onPress={handleCreate}
-          tintColor={theme.primary}
-          variant="prominent"
-        />
-      </Stack.Toolbar>
-      <FlatList
+      <TopNavigationBar
+        largeTitle
+        scrollY={scrollY}
+        title={t("navigation.library")}
+        trailingActions={[
+          {
+            accessibilityHint: t("navigation.createBookmarkHint"),
+            accessibilityLabel: t("navigation.newBookmark"),
+            icon: PlusIcon,
+            onPress: handleCreate,
+            prominent: true,
+          },
+        ]}
+      />
+      <Animated.FlatList
         contentContainerStyle={[
           styles.content,
           bookmarks.length === 0 && styles.emptyContent,
         ]}
         data={bookmarks}
         keyExtractor={(bookmark) => bookmark.id}
+        onScroll={handleScroll}
+        scrollEventThrottle={16}
         ListEmptyComponent={
           <LibraryState
             error={

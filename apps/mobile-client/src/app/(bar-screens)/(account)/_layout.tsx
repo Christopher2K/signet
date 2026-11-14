@@ -1,7 +1,4 @@
-import {
-  nativeNavigationTitleStyle,
-  useNativeTheme,
-} from "@signet/design-system/native-theme";
+import { useNativeTheme } from "@signet/design-system/native-theme";
 import { useTranslation } from "@signet/locale/react";
 import { Stack } from "expo-router";
 
@@ -13,9 +10,7 @@ const AccountLayout = () => {
     <Stack
       screenOptions={{
         contentStyle: { backgroundColor: theme.background },
-        headerStyle: { backgroundColor: theme.surface },
-        headerTintColor: theme.text,
-        headerTitleStyle: nativeNavigationTitleStyle,
+        headerShown: false,
       }}
     >
       <Stack.Screen
