@@ -8,7 +8,7 @@ COPY . .
 RUN pnpm install --frozen-lockfile
 RUN pnpm --filter @signet/website build
 
-FROM ghcr.io/caddyserver/caddy:2-alpine
+FROM caddy:2-alpine
 WORKDIR /srv
 
 COPY --from=builder /app/apps/website/dist/client/ ./
