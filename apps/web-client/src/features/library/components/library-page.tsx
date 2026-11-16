@@ -1,20 +1,27 @@
 import type { Bookmark } from "@signet/api";
-import { getBookmarkError } from "@signet/core/bookmarks";
+import {
+  formatBookmarkDate,
+  getBookmarkCardModel,
+  getBookmarkError,
+} from "@signet/core/bookmarks";
 import { useBookmarks } from "@signet/core/bookmarks/react";
-import { Button, Typography } from "@signet/design-system";
+import { BookmarkCard, Button, Typography } from "@signet/design-system";
 import { colors, radii, spacing } from "@signet/design-system/tokens.css";
-import { useTranslation } from "@signet/locale/react";
+import { useLocale, useTranslation } from "@signet/locale/react";
 import { useState } from "react";
 import { css, html } from "react-strict-dom";
-import { BookmarkCard, type BookmarkView } from "./bookmark-card";
 import { CreateBookmarkDialog } from "./create-bookmark-dialog";
 import { DeleteBookmarkDialog } from "./delete-bookmark-dialog";
 import { EditBookmarkDialog } from "./edit-bookmark-dialog";
 import { Icon } from "./icon";
 import { LibraryHeader } from "./library-header";
 
+/** Library presentation mode. */
+export type BookmarkView = "grid" | "list";
+
 export const LibraryPage = () => {
   const { t } = useTranslation("web");
+  const { locale } = useLocale();
   const bookmarksQuery = useBookmarks();
   const [view, setView] = useState<BookmarkView>("list");
   const [creating, setCreating] = useState(false);
@@ -42,54 +49,58 @@ export const LibraryPage = () => {
   return (
     <html.div style={styles.shell}>
       <LibraryHeader onNewBookmark={() => setCreating(true)} />
+      {bookmarks.length > 0 ? (
+        <html.div style={styles.toolbar}>
+          <html.div style={styles.toolbarInner}>
+            <html.div
+              aria-label={t("library.view.layout")}
+              role="group"
+              style={styles.viewToggle}
+            >
+              <html.button
+                aria-label={t("library.view.listView")}
+                aria-pressed={view === "list"}
+                onClick={() => setView("list")}
+                style={[
+                  styles.viewButton,
+                  view === "list" && styles.viewSelected,
+                ]}
+                type="button"
+              >
+                <Icon name="list" />
+                <Typography variant="caption">
+                  {t("library.view.list")}
+                </Typography>
+              </html.button>
+              <html.button
+                aria-label={t("library.view.gridView")}
+                aria-pressed={view === "grid"}
+                onClick={() => setView("grid")}
+                style={[
+                  styles.viewButton,
+                  view === "grid" && styles.viewSelected,
+                ]}
+                type="button"
+              >
+                <Icon name="grid" />
+                <Typography variant="caption">
+                  {t("library.view.grid")}
+                </Typography>
+              </html.button>
+            </html.div>
+          </html.div>
+        </html.div>
+      ) : null}
       <html.main style={styles.main}>
-        <html.div style={styles.headingRow}>
-          <html.div style={styles.heading}>
-            <Typography as="h1" variant="headline">
-              {t("library.allBookmarks")}
-            </Typography>
-            <Typography as="p" tone="secondary" variant="caption">
-              {bookmarksQuery.isPending
-                ? t("library.loadingLibrary")
-                : `${t("common:bookmarkCount", { count: bookmarks.length })} · ${t("library.newestFirst")}`}
-            </Typography>
-          </html.div>
-          <html.div
-            aria-label={t("library.view.layout")}
-            role="group"
-            style={styles.viewToggle}
-          >
-            <html.button
-              aria-label={t("library.view.listView")}
-              aria-pressed={view === "list"}
-              onClick={() => setView("list")}
-              style={[
-                styles.viewButton,
-                view === "list" && styles.viewSelected,
-              ]}
-              type="button"
-            >
-              <Icon name="list" />
-              <Typography variant="caption">
-                {t("library.view.list")}
-              </Typography>
-            </html.button>
-            <html.button
-              aria-label={t("library.view.gridView")}
-              aria-pressed={view === "grid"}
-              onClick={() => setView("grid")}
-              style={[
-                styles.viewButton,
-                view === "grid" && styles.viewSelected,
-              ]}
-              type="button"
-            >
-              <Icon name="grid" />
-              <Typography variant="caption">
-                {t("library.view.grid")}
-              </Typography>
-            </html.button>
-          </html.div>
+        <html.div style={styles.heading}>
+          <Typography as="h1" variant="headline">
+            {t("library.allBookmarks")}
+          </Typography>
+          <Typography as="p" tone="secondary" variant="caption">
+            {bookmarksQuery.isPending
+              ? t("library.loadingLibrary")
+              : `${t("common:bookmarkCount", { count: bookmarks.length })} · ${t("library.newestFirst")}`}
+          </Typography>
         </html.div>
 
         {bookmarksQuery.isPending ? (
@@ -140,14 +151,40 @@ export const LibraryPage = () => {
             aria-label={t("library.savedBookmarks")}
             style={[styles.list, view === "grid" && styles.grid]}
           >
-            {bookmarks.map((bookmark) => (
-              <BookmarkCard
-                bookmark={bookmark}
-                key={bookmark.id}
-                onEdit={setEditId}
-                view={view}
-              />
-            ))}
+            {bookmarks.map((bookmark) => {
+              const card = getBookmarkCardModel(bookmark);
+              const formatDate = (value: string) =>
+                formatBookmarkDate(value, locale) ??
+                t("library.item.dateUnavailable");
+
+              return (
+                <BookmarkCard
+                  bookmark={card}
+                  density={view === "grid" ? "big" : "medium"}
+                  key={bookmark.id}
+                  onEdit={setEditId}
+                  strings={{
+                    artwork: t("library.item.artwork", {
+                      hostname: card.hostname,
+                    }),
+                    edit: t("library.item.edit", { title: card.title }),
+                    editItem: t("library.item.edit", { title: card.title }),
+                    open: t("library.item.open", { title: card.title }),
+                    openItem: t("library.item.open", { title: card.title }),
+                    savedOn: t("library.item.saved", {
+                      date: formatDate(card.createdAt),
+                    }),
+                    tags: t("library.item.tags"),
+                    updatedOn:
+                      card.updatedAt === card.createdAt
+                        ? undefined
+                        : t("library.item.updated", {
+                            date: formatDate(card.updatedAt),
+                          }),
+                  }}
+                />
+              );
+            })}
           </html.section>
         )}
       </html.main>
@@ -193,12 +230,26 @@ const styles = css.create({
     },
     width: "100%",
   },
-  headingRow: {
-    alignItems: "center",
+  toolbar: {
+    backgroundColor: colors.background,
+    borderBottomColor: colors.border,
+    borderBottomStyle: "solid",
+    borderBottomWidth: 1,
+    position: "sticky",
+    top: 0,
+    zIndex: 1,
+  },
+  toolbarInner: {
     display: "flex",
-    flexWrap: "wrap",
-    gap: spacing[4],
-    justifyContent: "space-between",
+    justifyContent: "flex-end",
+    marginInline: "auto",
+    maxWidth: 1280,
+    paddingBlock: spacing[2],
+    paddingInline: {
+      default: spacing[8],
+      "@media (max-width: 600px)": spacing[4],
+    },
+    width: "100%",
   },
   heading: {
     display: "flex",

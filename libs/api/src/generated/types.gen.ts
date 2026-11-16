@@ -15,11 +15,15 @@ export type Bookmark = {
    */
   createdAt: string;
   /**
+   * Resolved HTTP(S) site icon URL
+   */
+  icon: string | null;
+  /**
    * Bookmark ID
    */
   id: string;
   /**
-   * Optional HTTP(S) image URL
+   * Optional HTTP(S) preview image URL
    */
   image: string | null;
   /**

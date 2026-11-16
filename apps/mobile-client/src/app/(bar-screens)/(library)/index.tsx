@@ -1,7 +1,11 @@
 import type { Bookmark } from "@signet/api";
-import { getBookmarkError } from "@signet/core/bookmarks";
-import { useBookmarks } from "@signet/core/bookmarks/react";
-import { spacing, Typography } from "@signet/design-system";
+import {
+  formatBookmarkDate,
+  getBookmarkCardModel,
+  getBookmarkError,
+} from "@signet/core/bookmarks";
+import { useBookmarkDensity, useBookmarks } from "@signet/core/bookmarks/react";
+import { BookmarkCard, spacing, Typography } from "@signet/design-system";
 import {
   nativeSpacing,
   useNativeTheme,
@@ -10,13 +14,13 @@ import { useLocale, useTranslation } from "@signet/locale/react";
 import { useRouter } from "expo-router";
 import * as WebBrowser from "expo-web-browser";
 import { PlusIcon } from "phosphor-react-native/src/icons/Plus";
-import { Alert, RefreshControl, StyleSheet } from "react-native";
+import { Alert, RefreshControl, StyleSheet, View } from "react-native";
 import Animated, {
   useAnimatedScrollHandler,
   useSharedValue,
 } from "react-native-reanimated";
 import { css, html } from "react-strict-dom";
-import { BookmarkCard } from "../../../features/library/components/bookmark-card";
+import { DensityToggle } from "../../../features/library/components/density-toggle";
 import { LibraryState } from "../../../features/library/components/library-state";
 import { TopNavigationBar } from "../../../features/navigation/components/top-navigation-bar";
 
@@ -26,6 +30,7 @@ const LibraryScreen = () => {
   const { locale } = useLocale();
   const { t } = useTranslation("mobile");
   const bookmarksQuery = useBookmarks();
+  const { density, setDensity } = useBookmarkDensity();
   const scrollY = useSharedValue(0);
   const bookmarks = bookmarksQuery.data?.data ?? [];
 
@@ -44,15 +49,33 @@ const LibraryScreen = () => {
     }
   };
 
-  const renderBookmark = ({ item }: { item: Bookmark }) => (
-    <BookmarkCard
-      bookmark={item}
-      onEdit={(id) =>
-        router.push({ pathname: "/bookmark/[id]", params: { id } })
-      }
-      onOpen={(url) => void handleOpen(url)}
-    />
-  );
+  const renderBookmark = ({ item }: { item: Bookmark }) => {
+    const bookmark = getBookmarkCardModel(item);
+
+    return (
+      <BookmarkCard
+        bookmark={bookmark}
+        density={density}
+        onEdit={(id) =>
+          router.push({ pathname: "/bookmark/[id]", params: { id } })
+        }
+        onOpen={(url) => void handleOpen(url)}
+        strings={{
+          artwork: t("library.artwork", { hostname: bookmark.hostname }),
+          edit: t("actions.edit"),
+          editItem: t("library.itemEdit", { title: bookmark.title }),
+          open: t("actions.open"),
+          openItem: t("library.itemOpen", { title: bookmark.title }),
+          savedOn: t("library.savedOn", {
+            date:
+              formatBookmarkDate(bookmark.createdAt, locale) ??
+              t("library.dateUnavailable"),
+          }),
+          tags: t("library.tags"),
+        }}
+      />
+    );
+  };
 
   const bookmarkCount = t("library.bookmarkCount", {
     count: bookmarks.length,
@@ -75,12 +98,27 @@ const LibraryScreen = () => {
           },
         ]}
       />
+      {bookmarks.length > 0 ? (
+        <View
+          style={[
+            styles.toolbar,
+            {
+              backgroundColor: theme.background,
+              borderBottomColor: theme.border,
+            },
+          ]}
+        >
+          <DensityToggle density={density} onChange={setDensity} />
+        </View>
+      ) : null}
       <Animated.FlatList
         contentContainerStyle={[
           styles.content,
+          density === "compact" && styles.compactContent,
           bookmarks.length === 0 && styles.emptyContent,
         ]}
         data={bookmarks}
+        extraData={density}
         keyExtractor={(bookmark) => bookmark.id}
         onScroll={handleScroll}
         scrollEventThrottle={16}
@@ -131,11 +169,20 @@ const styles = StyleSheet.create({
     gap: nativeSpacing[4],
     padding: nativeSpacing[4],
   },
+  compactContent: {
+    gap: nativeSpacing[2],
+  },
   emptyContent: {
     flexGrow: 1,
   },
   header: {
     marginBottom: nativeSpacing[2],
+  },
+  toolbar: {
+    alignItems: "flex-end",
+    borderBottomWidth: 1,
+    paddingHorizontal: nativeSpacing[4],
+    paddingVertical: nativeSpacing[2],
   },
 });
 

@@ -28,6 +28,8 @@ config :signet, SignetWeb.RateLimit,
   period: 60_000,
   limit: 1_000
 
+config :signet, bookmark_metadata_fetcher: Signet.Bookmarks.MetadataStub
+
 config :argon2_elixir,
   t_cost: 1,
   m_cost: 8

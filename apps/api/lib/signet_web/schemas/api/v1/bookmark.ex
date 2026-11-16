@@ -18,7 +18,13 @@ defmodule SignetWeb.Schemas.API.V1.Bookmark do
         type: :string,
         format: :uri,
         nullable: true,
-        description: "Optional HTTP(S) image URL"
+        description: "Optional HTTP(S) preview image URL"
+      },
+      icon: %Schema{
+        type: :string,
+        format: :uri,
+        nullable: true,
+        description: "Resolved HTTP(S) site icon URL"
       },
       notes: %Schema{
         type: :string,
@@ -34,7 +40,7 @@ defmodule SignetWeb.Schemas.API.V1.Bookmark do
         description: "Last update timestamp"
       }
     },
-    required: [:id, :ownerId, :title, :url, :image, :notes, :tags, :createdAt, :updatedAt],
+    required: [:id, :ownerId, :title, :url, :image, :icon, :notes, :tags, :createdAt, :updatedAt],
     additionalProperties: false,
     example: %{
       "id" => "01942f8e-7f6a-7c3d-8f00-c93d26f52c48",
@@ -42,6 +48,7 @@ defmodule SignetWeb.Schemas.API.V1.Bookmark do
       "title" => "Elixir",
       "url" => "https://elixir-lang.org/",
       "image" => nil,
+      "icon" => "https://elixir-lang.org/images/icon.png",
       "notes" => "Read the documentation",
       "tags" => ["elixir", "reading"],
       "createdAt" => "2026-01-02T03:04:05Z",

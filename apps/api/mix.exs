@@ -45,6 +45,7 @@ defmodule Signet.MixProject do
       {:postgrex, ">= 0.0.0"},
       {:swoosh, "~> 1.16"},
       {:req, "~> 0.5"},
+      {:floki, "~> 0.37"},
       {:argon2_elixir, "~> 4.1"},
       {:uuid_v7, "~> 0.6.0"},
       {:cors_plug, "~> 3.0"},

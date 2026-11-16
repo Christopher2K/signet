@@ -56,7 +56,7 @@ defmodule SignetWeb.API.V1.BookmarkControllerTest do
   end
 
   describe "create" do
-    test "creates and normalizes a bookmark with nullable optional fields", %{
+    test "creates and normalizes a bookmark with resolved artwork", %{
       conn: conn,
       user: user,
       token: token
@@ -76,7 +76,8 @@ defmodule SignetWeb.API.V1.BookmarkControllerTest do
                  "ownerId" => owner_id,
                  "title" => "Elixir",
                  "url" => "https://example.com/path",
-                 "image" => nil,
+                 "image" => "https://example.com/preview.png",
+                 "icon" => "https://example.com/apple-touch-icon.png",
                  "notes" => nil,
                  "tags" => ["elixir", "reading"],
                  "createdAt" => created_at,
@@ -140,6 +141,7 @@ defmodule SignetWeb.API.V1.BookmarkControllerTest do
       assert data["id"] == bookmark.id
       assert data["ownerId"] == user.id
       assert data["image"] == bookmark.image
+      assert data["icon"] == bookmark.icon
       assert data["notes"] == bookmark.notes
       assert data["tags"] == bookmark.tags
     end
@@ -164,6 +166,7 @@ defmodule SignetWeb.API.V1.BookmarkControllerTest do
       assert data["tags"] == ["new"]
       assert data["url"] == bookmark.url
       assert data["image"] == bookmark.image
+      assert data["icon"] == bookmark.icon
       assert data["ownerId"] == user.id
     end
 

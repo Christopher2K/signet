@@ -122,3 +122,29 @@ export const getBookmarkHostname = (value: string): string => {
     return value;
   }
 };
+
+/** Returns the site icon URLs in preference order: resolved icon, then common paths. */
+export const getBookmarkIconSources = (
+  url: string,
+  icon: string | null,
+): string[] => {
+  const sources = new Set<string>();
+  const resolvedIcon = icon?.trim();
+  if (resolvedIcon) {
+    sources.add(resolvedIcon);
+  }
+  try {
+    const { origin } = new URL(url);
+    sources.add(`${origin}/apple-touch-icon.png`);
+    sources.add(`${origin}/favicon.ico`);
+  } catch {
+    // Malformed cached URLs fall back to the icon placeholder.
+  }
+  return [...sources];
+};
+
+/** Returns the stored preview image in preference order. */
+export const getBookmarkPreviewSources = (image: string | null): string[] => {
+  const resolvedImage = image?.trim();
+  return resolvedImage ? [resolvedImage] : [];
+};

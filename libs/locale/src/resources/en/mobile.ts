@@ -65,10 +65,18 @@ export const mobile = {
     deleteMessage:
       "Permanently remove “{{title}}” from your library? This cannot be undone.",
     deleteTitle: "Delete Bookmark",
+    density: {
+      big: "Large cards",
+      compact: "Compact rows",
+      label: "Card size",
+      medium: "Medium cards",
+    },
     emptyMessage:
       "Add your first bookmark by link. Your notes and tags will live here too.",
     emptyTitle: "No bookmarks yet",
     errorTitle: "Couldn't load your bookmarks",
+    itemEdit: "Edit {{title}}",
+    itemOpen: "Open {{title}}",
     loadingBookmark: "Loading bookmark…",
     loadingBookmarks: "Loading bookmarks…",
     loadingLibrary: "Loading your library",

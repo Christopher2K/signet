@@ -18,6 +18,7 @@ const user = {
 
 const makeBookmark = (overrides: Partial<Bookmark> = {}): Bookmark => ({
   createdAt: "2026-11-09T12:00:00.000Z",
+  icon: null,
   id: "bookmark-1",
   image: null,
   notes: "Original notes",

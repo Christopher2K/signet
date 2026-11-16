@@ -11,6 +11,7 @@ defmodule Signet.Bookmarks.Bookmark do
     field :title, :string
     field :url, :string
     field :image, :string
+    field :icon, :string
     field :notes, :string
     field :tags, {:array, :string}, default: []
 
@@ -24,6 +25,7 @@ defmodule Signet.Bookmarks.Bookmark do
           title: String.t() | nil,
           url: String.t() | nil,
           image: String.t() | nil,
+          icon: String.t() | nil,
           notes: String.t() | nil,
           tags: [String.t()],
           user_id: Ecto.UUID.t() | nil,
@@ -44,6 +46,7 @@ defmodule Signet.Bookmarks.Bookmark do
     |> validate_required([:user_id, :title, :url])
     |> validate_change(:url, &validate_http_url/2)
     |> validate_change(:image, &validate_http_url/2)
+    |> validate_change(:icon, &validate_http_url/2)
     |> validate_length(:notes, max: 2000)
     |> foreign_key_constraint(:user_id)
   end
@@ -98,6 +101,8 @@ defmodule Signet.Bookmarks.Bookmark do
   defp normalize_tag_list(tags), do: normalize_tags(tags)
 
   @spec validate_http_url(atom(), String.t()) :: keyword()
+  defp validate_http_url(_field, nil), do: []
+
   defp validate_http_url(field, url) do
     case parse_http_url(url) do
       {:ok, _uri} -> []

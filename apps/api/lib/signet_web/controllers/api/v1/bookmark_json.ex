@@ -20,6 +20,7 @@ defmodule SignetWeb.API.V1.BookmarkJSON do
       title: bookmark.title,
       url: bookmark.url,
       image: bookmark.image,
+      icon: bookmark.icon,
       notes: bookmark.notes,
       tags: bookmark.tags,
       createdAt: bookmark.inserted_at,

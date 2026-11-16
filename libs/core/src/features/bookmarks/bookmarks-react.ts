@@ -1,3 +1,4 @@
+export { useBookmarkDensity } from "./bookmarks-density-react";
 export {
   bookmarkDetailKey,
   bookmarkListKey,

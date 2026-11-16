@@ -1,41 +1,30 @@
-import type { Bookmark } from "@signet/api";
-import { getBookmarkHostname } from "@signet/core/bookmarks";
-import { Typography } from "@signet/design-system";
-import { colors, radii, spacing } from "@signet/design-system/tokens.css";
-import { useLocale, useTranslation } from "@signet/locale/react";
 import { css, html } from "react-strict-dom";
+import { colors, radii, spacing } from "../tokens.css";
 import { BookmarkArtwork } from "./bookmark-artwork";
+import type { BookmarkCardProps } from "./bookmark-card.types";
 import { Icon } from "./icon";
+import { Typography } from "./typography";
 
-/** Library presentation mode. */
-export type BookmarkView = "grid" | "list";
-
-/** Bookmark card properties. */
-export type BookmarkCardProps = {
-  bookmark: Bookmark;
-  onEdit: (id: string) => void;
-  view: BookmarkView;
-};
-
-const formatDate = (
-  value: string,
-  locale: string,
-  unavailable: string,
-): string => {
-  const date = new Date(value);
-  return Number.isNaN(date.getTime())
-    ? unavailable
-    : new Intl.DateTimeFormat(locale, { dateStyle: "medium" }).format(date);
-};
-
-export const BookmarkCard = ({ bookmark, onEdit, view }: BookmarkCardProps) => {
-  const { locale } = useLocale();
-  const { t } = useTranslation("web");
-  const edited = bookmark.updatedAt !== bookmark.createdAt;
+export const BookmarkCard = ({
+  bookmark,
+  density = "medium",
+  onEdit,
+  strings,
+}: BookmarkCardProps) => {
+  const compact = density === "compact";
+  const grid = density === "big";
 
   return (
-    <html.article style={[styles.card, view === "grid" && styles.gridCard]}>
-      <BookmarkArtwork bookmark={bookmark} expanded={view === "grid"} />
+    <html.article
+      style={[styles.card, grid && styles.gridCard, compact && styles.compact]}
+    >
+      <BookmarkArtwork
+        compact={compact}
+        iconSources={bookmark.iconSources}
+        label={strings.artwork}
+        previewSources={grid ? bookmark.previewSources : []}
+        variant={grid ? "banner" : "tile"}
+      />
       <html.div style={styles.content}>
         <html.div style={styles.titleRow}>
           <html.a
@@ -50,7 +39,7 @@ export const BookmarkCard = ({ bookmark, onEdit, view }: BookmarkCardProps) => {
           </html.a>
           <html.div style={styles.actions}>
             <html.button
-              aria-label={t("library.item.edit", { title: bookmark.title })}
+              aria-label={strings.editItem}
               onClick={() => onEdit(bookmark.id)}
               style={styles.iconButton}
               type="button"
@@ -58,7 +47,7 @@ export const BookmarkCard = ({ bookmark, onEdit, view }: BookmarkCardProps) => {
               <Icon name="pencil" />
             </html.button>
             <html.a
-              aria-label={t("library.item.open", { title: bookmark.title })}
+              aria-label={strings.openItem}
               href={bookmark.url}
               rel="noreferrer"
               style={styles.iconButton}
@@ -74,15 +63,15 @@ export const BookmarkCard = ({ bookmark, onEdit, view }: BookmarkCardProps) => {
           tone="secondary"
           variant="caption"
         >
-          {getBookmarkHostname(bookmark.url)}
+          {bookmark.hostname}
         </Typography>
-        {bookmark.notes ? (
+        {!compact && bookmark.notes ? (
           <Typography as="p" style={styles.notes}>
             {bookmark.notes}
           </Typography>
         ) : null}
-        {bookmark.tags.length > 0 ? (
-          <html.div aria-label={t("library.item.tags")} style={styles.tags}>
+        {!compact && bookmark.tags.length > 0 ? (
+          <html.div aria-label={strings.tags} style={styles.tags}>
             {bookmark.tags.map((tag) => (
               <Typography key={tag} style={styles.tag} variant="caption">
                 {tag}
@@ -90,24 +79,13 @@ export const BookmarkCard = ({ bookmark, onEdit, view }: BookmarkCardProps) => {
             ))}
           </html.div>
         ) : null}
-        <Typography as="p" tone="secondary" variant="caption">
-          {t("library.item.saved", {
-            date: formatDate(
-              bookmark.createdAt,
-              locale,
-              t("library.item.dateUnavailable"),
-            ),
-          })}
-          {edited
-            ? ` · ${t("library.item.updated", {
-                date: formatDate(
-                  bookmark.updatedAt,
-                  locale,
-                  t("library.item.dateUnavailable"),
-                ),
-              })}`
-            : ""}
-        </Typography>
+        {compact ? null : (
+          <Typography as="p" tone="secondary" variant="caption">
+            {strings.updatedOn
+              ? `${strings.savedOn} · ${strings.updatedOn}`
+              : strings.savedOn}
+          </Typography>
+        )}
       </html.div>
     </html.article>
   );
@@ -139,6 +117,12 @@ const styles = css.create({
       "@media (max-width: 900px)": "47%",
       "@media (max-width: 600px)": "100%",
     },
+  },
+  compact: {
+    alignItems: "center",
+    flexDirection: "row",
+    gap: spacing[3],
+    padding: spacing[3],
   },
   content: {
     display: "flex",

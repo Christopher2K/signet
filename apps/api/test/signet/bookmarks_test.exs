@@ -42,9 +42,35 @@ defmodule Signet.BookmarksTest do
                })
 
       assert bookmark.user_id == user.id
-      assert bookmark.image == nil
       assert bookmark.notes == nil
       assert bookmark.tags == []
+    end
+
+    test "resolves the page preview and icon when the client sends no artwork" do
+      user = user_fixture()
+
+      assert {:ok, bookmark} =
+               Bookmarks.create_bookmark(user, %{
+                 "title" => "Example",
+                 "url" => "https://example.com"
+               })
+
+      assert bookmark.image == "https://example.com/preview.png"
+      assert bookmark.icon == "https://example.com/apple-touch-icon.png"
+    end
+
+    test "keeps a client-supplied image and still resolves the icon" do
+      user = user_fixture()
+
+      assert {:ok, bookmark} =
+               Bookmarks.create_bookmark(user, %{
+                 "title" => "Example",
+                 "url" => "https://example.com",
+                 "image" => " HTTP://EXAMPLE.COM:80/custom.png "
+               })
+
+      assert bookmark.image == "http://example.com/custom.png"
+      assert bookmark.icon == "https://example.com/apple-touch-icon.png"
     end
 
     test "validates title, URL, image URL, and notes length" do
@@ -71,7 +97,7 @@ defmodule Signet.BookmarksTest do
       end
     end
 
-    test "allows blank optional image URLs" do
+    test "treats a blank optional image URL as missing and resolves the page preview" do
       user = user_fixture()
 
       assert {:ok, bookmark} =
@@ -81,7 +107,7 @@ defmodule Signet.BookmarksTest do
                  "image" => "  "
                })
 
-      assert bookmark.image == nil
+      assert bookmark.image == "https://example.com/preview.png"
     end
   end
 
@@ -132,6 +158,32 @@ defmodule Signet.BookmarksTest do
       assert updated_bookmark.url == "http://example.com/updated"
       assert updated_bookmark.tags == ["new", "tags"]
       assert updated_bookmark.user_id == user.id
+    end
+
+    test "refreshes resolved artwork when the URL changes" do
+      user = user_fixture()
+      bookmark = bookmark_fixture(user, %{"image" => nil})
+
+      assert {:ok, updated_bookmark} =
+               Bookmarks.update_bookmark(user, bookmark.id, %{
+                 "url" => "https://news.example.org/story"
+               })
+
+      assert updated_bookmark.icon == "https://news.example.org/apple-touch-icon.png"
+      assert updated_bookmark.image == "https://news.example.org/preview.png"
+    end
+
+    test "keeps stored artwork when the URL is unchanged" do
+      user = user_fixture()
+      bookmark = bookmark_fixture(user)
+      stored_image = bookmark.image
+      stored_icon = bookmark.icon
+
+      assert {:ok, updated_bookmark} =
+               Bookmarks.update_bookmark(user, bookmark.id, %{"title" => "Renamed"})
+
+      assert updated_bookmark.image == stored_image
+      assert updated_bookmark.icon == stored_icon
     end
 
     test "returns validation errors without changing the bookmark" do

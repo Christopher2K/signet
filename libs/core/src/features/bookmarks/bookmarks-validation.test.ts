@@ -3,6 +3,8 @@ import {
   bookmarkToFormValues,
   emptyBookmarkValues,
   getBookmarkHostname,
+  getBookmarkIconSources,
+  getBookmarkPreviewSources,
   toBookmarkRequest,
   validateBookmark,
 } from "./bookmarks-validation";
@@ -56,6 +58,7 @@ describe("bookmark validation", () => {
     expect(
       bookmarkToFormValues({
         createdAt: "2026-11-10T12:00:00Z",
+        icon: null,
         id: "bookmark-id",
         image: null,
         notes: null,
@@ -75,5 +78,35 @@ describe("bookmark validation", () => {
     expect(getBookmarkHostname("https://www.example.com/article")).toBe(
       "example.com",
     );
+  });
+
+  it("orders icon sources from the resolved icon to the site paths", () => {
+    expect(
+      getBookmarkIconSources(
+        "https://www.example.com/article",
+        "https://cdn.example.net/icon.png",
+      ),
+    ).toEqual([
+      "https://cdn.example.net/icon.png",
+      "https://www.example.com/apple-touch-icon.png",
+      "https://www.example.com/favicon.ico",
+    ]);
+    expect(getBookmarkIconSources("not a url", null)).toEqual([]);
+    expect(
+      getBookmarkIconSources(
+        "https://www.example.com",
+        "https://www.example.com/apple-touch-icon.png",
+      ),
+    ).toEqual([
+      "https://www.example.com/apple-touch-icon.png",
+      "https://www.example.com/favicon.ico",
+    ]);
+  });
+
+  it("returns only stored preview images", () => {
+    expect(
+      getBookmarkPreviewSources(" https://cdn.example.net/cover.png "),
+    ).toEqual(["https://cdn.example.net/cover.png"]);
+    expect(getBookmarkPreviewSources(null)).toEqual([]);
   });
 });

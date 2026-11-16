@@ -7,6 +7,7 @@
         "description": "A URL saved by a user",
         "example": {
           "createdAt": "2026-01-02T03:04:05Z",
+          "icon": "https://elixir-lang.org/images/icon.png",
           "id": "01942f8e-7f6a-7c3d-8f00-c93d26f52c48",
           "image": null,
           "notes": "Read the documentation",
@@ -22,13 +23,19 @@
             "format": "date-time",
             "type": "string"
           },
+          "icon": {
+            "description": "Resolved HTTP(S) site icon URL",
+            "format": "uri",
+            "nullable": true,
+            "type": "string"
+          },
           "id": {
             "description": "Bookmark ID",
             "format": "uuid",
             "type": "string"
           },
           "image": {
-            "description": "Optional HTTP(S) image URL",
+            "description": "Optional HTTP(S) preview image URL",
             "format": "uri",
             "nullable": true,
             "type": "string"
@@ -73,6 +80,7 @@
           "title",
           "url",
           "image",
+          "icon",
           "notes",
           "tags",
           "createdAt",

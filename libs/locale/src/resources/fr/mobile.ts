@@ -67,10 +67,18 @@ export const mobile = {
     deleteMessage:
       "Supprimer définitivement « {{title}} » de votre bibliothèque ? Cette action est irréversible.",
     deleteTitle: "Supprimer le favori",
+    density: {
+      big: "Grandes cartes",
+      compact: "Lignes compactes",
+      label: "Taille des cartes",
+      medium: "Cartes moyennes",
+    },
     emptyMessage:
       "Ajoutez votre premier favori à partir d’un lien. Vos notes et vos étiquettes seront également conservées ici.",
     emptyTitle: "Aucun favori pour le moment",
     errorTitle: "Impossible de charger vos favoris",
+    itemEdit: "Modifier {{title}}",
+    itemOpen: "Ouvrir {{title}}",
     loadingBookmark: "Chargement du favori…",
     loadingBookmarks: "Chargement des favoris…",
     loadingLibrary: "Chargement de votre bibliothèque",
