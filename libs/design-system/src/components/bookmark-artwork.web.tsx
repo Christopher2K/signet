@@ -65,7 +65,9 @@ const styles = css.create({
     width: 88,
   },
   banner: {
-    height: 160,
+    /* 1200 × 630 Open Graph ratio, so OG images fill the banner uncropped. */
+    aspectRatio: 1.9047619047619047,
+    height: "auto",
     width: "100%",
   },
   compact: {

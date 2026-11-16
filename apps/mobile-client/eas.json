@@ -23,5 +23,13 @@
       "autoIncrement": true,
       "environment": "production"
     }
+  },
+  "submit": {
+    "production": {
+      "ios": {
+        "ascAppId": "6833743359",
+        "appleTeamId": "2YELN5S6P5"
+      }
+    }
   }
 }
