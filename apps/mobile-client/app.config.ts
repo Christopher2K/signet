@@ -15,6 +15,9 @@ const config: ExpoConfig = {
     },
     bundleIdentifier: "co.signetapp.app",
     appleTeamId: "2YELN5S6P5",
+    entitlements: {
+      "keychain-access-groups": ["2YELN5S6P5.co.signetapp.app.shared"],
+    },
     infoPlist: {
       CFBundleLocalizations: ["en", "fr"],
       ITSAppUsesNonExemptEncryption: false,
@@ -32,6 +35,13 @@ const config: ExpoConfig = {
   },
   plugins: [
     "expo-router",
+    [
+      "expo-secure-store",
+      {
+        configureAndroidBackup: false,
+        faceIDPermission: false,
+      },
+    ],
     [
       "expo-splash-screen",
       {

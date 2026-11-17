@@ -12,7 +12,7 @@
 | Client | Priority | Design doc |
 |---|---|---|
 | **Website** | P0 — defines v1 | This file for system + [design/web/web-pages-map.md](design/web/web-pages-map.md) for pages |
-| Browser extension | P0 | TBD |
+| **Browser extension** | P0 | Safari iOS quick save: this file §3.9 + `design/client-designs.pen` §45 |
 | Mobile (iOS/Android) | P0 | `design/client-designs.pen` §37–§44 (auth, library, bookmark CRUD, session feedback, animated launch, custom top navigation bar) |
 
 Website is the primary manager: responsive (desktop + 390px), no install, email/password against a self-hosted server URL. If a feature works anywhere, it works on web first.
@@ -213,6 +213,15 @@ The reusable native top bar lives in `design/client-designs.pen` §44 (anatomy, 
 - **Slots:** leading = navigation `CaretLeft` (chevron-left idiom) or a `Cancel` text action (15/400 `--error`, modal forms only — never both); Android renders that slot as a Phosphor `X` target labelled Cancel. Trailing = one to two icon actions tinted `--primary`; the primary create action may take the tinted target (`azure-50` light / `ink` dark). Pressed feedback uses a `surface-alt` fill on standard targets and deepens prominent targets from `surface-alt` to `logoBack`, always at `r-8`; text-action feedback adds 8px horizontal padding around the label. Never use a scale, opacity, or colour-shift animation. Disabled actions use `--text-muted`.
 - **Large title (iOS only):** 32/700 on Library-style screens; scrolling collapses to the 44 compact bar by height only, and Reduce Motion keeps that change instant. Android always uses the compact bar.
 - **Icons and copy:** Phosphor `CaretLeft`, `Plus`, `Check`, `DotsThree`, `X`; the canvas embeds the official SVG path data. Every target carries an `accessibilityLabel` and hides the decorative glyph from accessibility. Strings stay in `@signet/locale` (en/fr) — `navigation.*` and `actions.cancel`/`actions.save`. RTL mirrors the slot row and swaps `CaretLeft` for `CaretRight`.
+
+### 3.9 Safari iOS quick save
+
+Safari iOS quick save lives in `design/client-designs.pen` §45. The extension popup is a 360px desktop-sized surface that expands to the full-width Safari sheet on iPhone. It uses the existing Paper & Cobalt tokens, bundled Space Mono Regular/Bold, 4pt spacing, and 12px control radii; light and dark appearances follow the semantic tokens in §3.1.
+
+- **Ready:** a compact Signet identity header, editable **Title**, visible read-only **URL**, inline status region, and one full-width 48px **Save** action. The title uses the shared required/non-empty rule; only HTTP(S) tab URLs can be saved. No notes, tags, folder picker, artwork editor, browsing, or Safari bookmark controls appear.
+- **Feedback:** loading, empty-title, unsupported-page, offline, generic failure, signed-out, expired-session, already-saved, and saved states use the same surface and live status region. Retryable failures keep Save enabled. Saved and duplicate states disable it; duplicate handling never replaces the existing bookmark title.
+- **Authentication:** signed-out and expired-session states replace the bookmark fields with one full-width 48px **Open Signet** action that launches the containing app to sign in. There is no extension login form and no token visible in the popup.
+- **Responsive/localization:** long URLs wrap anywhere and long English/French copy grows vertically without covering Save. The design includes light/dark ready, saved, already-saved, and signed-out examples.
 
 ---
 

@@ -1,5 +1,8 @@
 {
   "type": "safari",
   "bundleIdentifier": ".safari",
-  "icon": "../mobile-client/assets/images/icon.png"
+  "icon": "../mobile-client/assets/images/icon.png",
+  "entitlements": {
+    "keychain-access-groups": ["2YELN5S6P5.co.signetapp.app.shared"]
+  }
 }

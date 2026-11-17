@@ -1,0 +1,27 @@
+export const safari = {
+  extension_name: "Signet",
+  extension_description: "Save the current page to your Signet library.",
+  popup_title: "Signet",
+  popup_subtitle: "Review the title, then save this page.",
+  title_label: "Title",
+  url_label: "URL",
+  save: "Save",
+  saving: "Saving…",
+  open_app: "Open Signet",
+  loading: "Loading the current page…",
+  title_required: "Enter a title.",
+  unsupported_page: "Signet can only save HTTP or HTTPS pages.",
+  signed_out_title: "Sign in with the Signet app",
+  signed_out_message:
+    "Open Signet on this iPhone and sign in to save pages from Safari.",
+  session_expired_title: "Session expired",
+  session_expired_message:
+    "Open Signet and sign in again before saving this page.",
+  already_saved_title: "Already saved",
+  already_saved_message: "This link is already in your Signet library.",
+  saved_title: "Saved",
+  saved_message: "This page is now in your Signet library.",
+  offline_message: "You’re offline. Reconnect and try again.",
+  save_failed: "Couldn’t save this page. Try again.",
+  load_failed: "Couldn’t read the current tab. Reopen the popup and try again.",
+} as const;

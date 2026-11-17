@@ -4,15 +4,91 @@
     "description": "The display name for the extension."
   },
   "extension_description": {
-    "message": "Save and browse your Signet bookmarks in Safari.",
+    "message": "Save the current page to your Signet library.",
     "description": "Description of what the extension does."
   },
   "popup_title": {
     "message": "Signet",
     "description": "Title displayed in the extension popup."
   },
-  "popup_message": {
-    "message": "Your Safari extension is ready.",
-    "description": "Confirmation displayed in the extension popup."
+  "popup_subtitle": {
+    "message": "Review the title, then save this page.",
+    "description": "Instructions below the popup title."
+  },
+  "title_label": {
+    "message": "Title",
+    "description": "Label for the editable bookmark title."
+  },
+  "url_label": {
+    "message": "URL",
+    "description": "Label for the current page URL."
+  },
+  "save": {
+    "message": "Save",
+    "description": "Save bookmark button."
+  },
+  "saving": {
+    "message": "Saving…",
+    "description": "Save button while a request is pending."
+  },
+  "open_app": {
+    "message": "Open Signet",
+    "description": "Call to action that opens the Signet app from the signed-out popup."
+  },
+  "loading": {
+    "message": "Loading the current page…",
+    "description": "Initial popup loading state."
+  },
+  "title_required": {
+    "message": "Enter a title.",
+    "description": "Validation error for an empty title."
+  },
+  "unsupported_page": {
+    "message": "Signet can only save HTTP or HTTPS pages.",
+    "description": "Error for a tab URL that cannot be saved."
+  },
+  "signed_out_title": {
+    "message": "Sign in with the Signet app",
+    "description": "Title shown when no app session is available."
+  },
+  "signed_out_message": {
+    "message": "Open Signet on this iPhone and sign in to save pages from Safari.",
+    "description": "Instructions for authenticating in the containing app."
+  },
+  "session_expired_title": {
+    "message": "Session expired",
+    "description": "Title shown when the saved session is rejected."
+  },
+  "session_expired_message": {
+    "message": "Open Signet and sign in again before saving this page.",
+    "description": "Instructions for renewing an expired app session."
+  },
+  "already_saved_title": {
+    "message": "Already saved",
+    "description": "Title shown when the exact URL already exists."
+  },
+  "already_saved_message": {
+    "message": "This link is already in your Signet library.",
+    "description": "Duplicate bookmark explanation."
+  },
+  "saved_title": {
+    "message": "Saved",
+    "description": "Title shown after creating a bookmark."
+  },
+  "saved_message": {
+    "message": "This page is now in your Signet library.",
+    "description": "Successful save confirmation."
+  },
+  "offline_message": {
+    "message": "You’re offline. Reconnect and try again.",
+    "description": "Network unavailable error."
+  },
+  "save_failed": {
+    "message": "Couldn’t save this page. Try again.",
+    "description": "Generic save or duplicate-check failure."
+  },
+  "load_failed": {
+    "message": "Couldn’t read the current tab. Reopen the popup and try again.",
+    "description": "Popup initialization failure."
   }
 }

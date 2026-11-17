@@ -4,15 +4,91 @@
     "description": "Nom affiché de l’extension."
   },
   "extension_description": {
-    "message": "Enregistrez et consultez vos favoris Signet dans Safari.",
+    "message": "Enregistrez la page actuelle dans votre bibliothèque Signet.",
     "description": "Description de l’extension."
   },
   "popup_title": {
     "message": "Signet",
     "description": "Titre affiché dans la fenêtre de l’extension."
   },
-  "popup_message": {
-    "message": "Votre extension Safari est prête.",
-    "description": "Confirmation affichée dans la fenêtre de l’extension."
+  "popup_subtitle": {
+    "message": "Vérifiez le titre, puis enregistrez cette page.",
+    "description": "Instructions sous le titre de la fenêtre."
+  },
+  "title_label": {
+    "message": "Titre",
+    "description": "Libellé du titre modifiable du favori."
+  },
+  "url_label": {
+    "message": "URL",
+    "description": "Libellé de l’URL de la page actuelle."
+  },
+  "save": {
+    "message": "Enregistrer",
+    "description": "Bouton d’enregistrement du favori."
+  },
+  "saving": {
+    "message": "Enregistrement…",
+    "description": "Bouton pendant l’enregistrement."
+  },
+  "open_app": {
+    "message": "Ouvrir Signet",
+    "description": "Appel à l’action qui ouvre l’app Signet depuis la fenêtre déconnectée."
+  },
+  "loading": {
+    "message": "Chargement de la page actuelle…",
+    "description": "État initial de chargement."
+  },
+  "title_required": {
+    "message": "Saisissez un titre.",
+    "description": "Erreur de validation pour un titre vide."
+  },
+  "unsupported_page": {
+    "message": "Signet peut uniquement enregistrer des pages HTTP ou HTTPS.",
+    "description": "Erreur pour une URL d’onglet non prise en charge."
+  },
+  "signed_out_title": {
+    "message": "Connectez-vous avec l’app Signet",
+    "description": "Titre affiché lorsqu’aucune session de l’app n’est disponible."
+  },
+  "signed_out_message": {
+    "message": "Ouvrez Signet sur cet iPhone et connectez-vous pour enregistrer des pages depuis Safari.",
+    "description": "Instructions de connexion dans l’app hôte."
+  },
+  "session_expired_title": {
+    "message": "Session expirée",
+    "description": "Titre affiché lorsque la session enregistrée est refusée."
+  },
+  "session_expired_message": {
+    "message": "Ouvrez Signet et reconnectez-vous avant d’enregistrer cette page.",
+    "description": "Instructions pour renouveler une session expirée."
+  },
+  "already_saved_title": {
+    "message": "Déjà enregistré",
+    "description": "Titre affiché lorsque l’URL exacte existe déjà."
+  },
+  "already_saved_message": {
+    "message": "Ce lien se trouve déjà dans votre bibliothèque Signet.",
+    "description": "Explication d’un favori en double."
+  },
+  "saved_title": {
+    "message": "Enregistré",
+    "description": "Titre affiché après la création d’un favori."
+  },
+  "saved_message": {
+    "message": "Cette page se trouve maintenant dans votre bibliothèque Signet.",
+    "description": "Confirmation d’enregistrement réussi."
+  },
+  "offline_message": {
+    "message": "Vous êtes hors ligne. Reconnectez-vous et réessayez.",
+    "description": "Erreur de réseau indisponible."
+  },
+  "save_failed": {
+    "message": "Impossible d’enregistrer cette page. Réessayez.",
+    "description": "Échec générique de l’enregistrement ou de la vérification des doublons."
+  },
+  "load_failed": {
+    "message": "Impossible de lire l’onglet actuel. Rouvrez la fenêtre et réessayez.",
+    "description": "Échec de l’initialisation de la fenêtre."
   }
 }

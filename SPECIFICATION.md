@@ -11,7 +11,7 @@
 Signet is a self-hostable, multi-user bookmark sync system with three clients that share one server:
 
 - **Website** — the primary, full-featured manager (v1 focus)
-- **Browser extensions** — Firefox, Safari, and Chromium-based (Chrome, Edge, Brave) for saving and 2-way sync with native bookmarks
+- **Browser extensions** — Firefox, Safari, and Chromium-based (Chrome, Edge, Brave) for saving and 2-way sync with native bookmarks on supported browsers; Safari on iOS saves directly to Signet without native bookmark mirroring
 - **Mobile apps** — React Native for iOS and Android, with Share Sheet integration
 
 Every client connects to a self-hosted Signet server via a user-entered server URL. The server is the source of truth and pushes changes in real time to all logged-in clients.
@@ -26,7 +26,7 @@ Every client connects to a self-hosted Signet server via a user-entered server U
 ### Non-goals for v1
 
 - Email verification, password reset, OIDC/OAuth, or admin invites
-- Two-way sync of full native browser history (only bookmark bar mirroring)
+- Two-way sync of full native browser history (only bookmark bar mirroring on supported desktop browsers; never Safari on iOS)
 - Native browser bookmark file (Netscape HTML) import/export
 - See [Out of Scope](#9-out-of-scope-for-v1) for full list
 
@@ -37,10 +37,10 @@ Every client connects to a self-hosted Signet server via a user-entered server U
 | Client | Platforms | Role in v1 | Priority |
 |---|---|---|---|
 | **Website** | Any modern browser, responsive | Full bookmark manager, search, import/export, public links management | **P0 — defines v1** |
-| **Browser extension** | Firefox, Safari (macOS/iOS), Chromium (MV3) | Save current tab + 2-way sync with native bookmark bar | **P0** |
+| **Browser extension** | Firefox, Safari (macOS/iOS), Chromium (MV3) | Save current tab; native bookmark bar sync only where supported. Safari iOS starts with title/URL quick save through the app session. | **P0** |
 | **Mobile app** | iOS + Android (React Native) | Manager + Share Sheet save, offline edit queue | **P0** |
 
-All three clients authenticate with the same email/password against the same server URL.
+All three clients authenticate with the same email/password against the same server URL. The Safari iOS extension reuses the containing Signet app's authenticated session instead of adding a separate login.
 
 ---
 
@@ -288,7 +288,7 @@ Covered in §3.2.
 
 ### 6.2 Browser Extension
 
-**Purpose:** Capture from the browser and keep Signet in sync with the native bookmark bar. It is a power-user companion, not a full manager replacement.
+**Purpose:** Capture from the browser and, on supported desktop browsers, keep Signet in sync with the native bookmark bar. It is a power-user companion, not a full manager replacement. Safari on iOS synchronizes only with the Signet server because Safari exposes no public WebExtensions bookmark API.
 
 **Platforms:**
 - **Firefox** — WebExtensions (Manifest V2/V3 compatible)
@@ -323,17 +323,34 @@ Covered in §3.2.
 
 | ID | Criterion |
 |---|---|
-| E-01 | On Chromium, Firefox, and Safari: toolbar button on any http(s) page shows title + URL + favicon/OG preview within 1s. Save completes and bookmark appears on website within 5s. |
+| E-01 | On Chromium and Firefox: toolbar button on any http(s) page shows title + URL + favicon/OG preview within 1s. Save completes and bookmark appears on website within 5s. Safari iOS quick save is covered by ES-01–ES-05 below. |
 | E-02 | Right-click “Save to Signet” saves page to default folder with auto title/image; toast confirms. |
 | E-03 | User can set `notes`, `tags`, and `folder` in popup before saving; saved values match selection. |
-| E-04 | **Native → Signet:** Add a bookmark to native bookmark bar → it appears in the chosen Signet folder on website within 10s. |
-| E-05 | **Signet → Native:** Create bookmark in mirrored folder on website → it appears in native bookmark bar within 10s. |
-| E-06 | Delete in native bar removes from Signet mirrored folder; delete in Signet mirrored folder removes from native bar. No resurrection after sync. |
+| E-04 | **Supported desktop browsers — Native → Signet:** Add a bookmark to native bookmark bar → it appears in the chosen Signet folder on website within 10s. Not applicable to Safari iOS. |
+| E-05 | **Supported desktop browsers — Signet → Native:** Create bookmark in mirrored folder on website → it appears in native bookmark bar within 10s. Not applicable to Safari iOS. |
+| E-06 | On supported desktop browsers, delete in native bar removes from Signet mirrored folder; delete in Signet mirrored folder removes from native bar. No resurrection after sync. Not applicable to Safari iOS. |
 | E-07 | Logout clears token and stops native sync. Native bookmarks remain untouched. |
-| E-08 | On unsupported pages (`about:`, `chrome://`, PDF viewer), popup shows “Cannot save this page” instead of blank. |
+| E-08 | On unsupported pages (`about:`, `chrome://`, PDF viewer), popup shows “Cannot save this page” instead of blank. Safari iOS accepts ordinary HTTP(S) URLs, including a PDF URL, and rejects non-HTTP(S) schemes. |
+
+**Safari iOS — initial quick-save milestone:**
+
+- The extension ships inside the Signet iOS app and uses `activeTab` plus Safari native messaging. The popup reviews only an editable title and the visible current-tab URL.
+- The containing app mirrors its bearer token and selected server URL into a shared Keychain access group. The Swift handler reads them directly; popup JavaScript never receives the token. Logout removes the shared token and retains the server URL.
+- Swift performs the exact-URL duplicate lookup and create request. An existing canonical URL returns **Already saved** without creating or overwriting a bookmark.
+- Notes, tags, folders, artwork selection, browsing/search, native Safari bookmark sync, realtime background sync, and manual import/export are deferred. Organization happens later in Signet.
+- English and French cover all labels and states. Signed-out and expired-session states offer a localized **Open Signet** action that launches the containing app; offline and other retryable failures remain actionable.
+
+| ID | Criterion |
+|---|---|
+| ES-01 | On an HTTP(S) tab, the popup displays an editable title and visible URL; Save creates a title/URL-only bookmark that appears in the Signet library within 5s. |
+| ES-02 | A user signed in to the containing app saves without entering credentials again. The bearer token is never exposed to popup JavaScript. |
+| ES-03 | Saving an exact URL already in the library shows **Already saved**, creates no duplicate, and does not replace the existing title. |
+| ES-04 | Signed-out, expired-session, offline, unsupported-page, validation, and server-failure states show localized feedback; failures that can be retried keep Save available. Signed-out and expired-session states also offer **Open Signet** to launch the containing app. |
+| ES-05 | Empty titles and non-HTTP(S) URLs are rejected before any create request. Logout in the app prevents subsequent extension saves. |
 
 **Risks / Notes:**
 - Safari iOS extension has stricter review; test TestFlight early.
+- Safari iOS has no public native bookmark synchronization API; do not promise E-04–E-06 on that platform.
 - Chromium MV3 service worker must survive popup close for sync; use `alarms` heartbeat if needed.
 - Native→Signet sync must debounce native `onChanged` events to avoid loops.
 
