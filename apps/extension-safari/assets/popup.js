@@ -140,7 +140,7 @@ form.addEventListener("submit", async (event) => {
         break;
       case "duplicate":
         canSave = false;
-        showStatus("info", "already_saved_title", "already_saved_message");
+        showStatus("duplicate", "already_saved_title", "already_saved_message");
         break;
       case "signedOut":
         canSave = false;

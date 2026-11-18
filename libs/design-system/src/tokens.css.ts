@@ -2,79 +2,108 @@ import { css } from "react-strict-dom";
 
 const darkMode = "@media (prefers-color-scheme: dark)";
 
-/** Semantic colors from the Signet Paper & Cobalt palette. */
+/** Semantic colors from the Signet Ink & Amber palette. */
 export const colors = css.defineVars({
   background: {
-    default: "#FBFFF1",
-    [darkMode]: "#3C3744",
+    default: "#FDF6EE",
+    [darkMode]: "#2E2620",
   },
   surface: {
     default: "#FFFFFF",
-    [darkMode]: "#2F2B3A",
+    [darkMode]: "#241E19",
   },
   surfaceAlt: {
-    default: "#EEF3FB",
-    [darkMode]: "#2F2B3A",
+    default: "#FBEEE1",
+    [darkMode]: "#241E19",
   },
   text: {
-    default: "#3C3744",
-    [darkMode]: "#FBFFF1",
+    default: "#2E2620",
+    [darkMode]: "#FDF6EE",
   },
   textSecondary: {
-    default: "#6B6578",
-    [darkMode]: "#B4C5E4",
+    default: "#6E5F53",
+    [darkMode]: "#F2C9A4",
+  },
+  textMuted: {
+    default: "#9A8A7C",
+    [darkMode]: "#A89484",
   },
   border: {
-    default: "#8FA3C6",
-    [darkMode]: "#4F4A62",
+    default: "#B08350",
+    [darkMode]: "#57493C",
   },
   primary: {
-    default: "#3066BE",
-    [darkMode]: "#5C84C6",
+    default: "#C2410C",
+    [darkMode]: "#F97316",
   },
   primaryHover: {
-    default: "#2752A6",
-    [darkMode]: "#8CA7D8",
+    default: "#9A3412",
+    [darkMode]: "#E9A677",
   },
   primaryActive: {
-    default: "#090C9B",
-    [darkMode]: "#B4C5E4",
+    default: "#7C2D12",
+    [darkMode]: "#F2C9A4",
   },
   onPrimary: {
-    default: "#FBFFF1",
-    [darkMode]: "#131220",
+    default: "#FDF6EE",
+    [darkMode]: "#1C1510",
   },
   selection: {
-    default: "#B4C5E4",
-    [darkMode]: "#090C9B",
+    default: "#F2C9A4",
+    [darkMode]: "#7C2D12",
   },
   onSelection: {
-    default: "#3C3744",
-    [darkMode]: "#FBFFF1",
+    default: "#2E2620",
+    [darkMode]: "#FDF6EE",
+  },
+  secondaryHover: {
+    default: "#FBEEE1",
+    [darkMode]: "#FAE3CC",
   },
   tag: {
-    default: "#B4C5E4",
-    [darkMode]: "#B4C5E4",
+    default: "#F2C9A4",
+    [darkMode]: "#F2C9A4",
   },
   onTag: {
-    default: "#3C3744",
-    [darkMode]: "#3C3744",
+    default: "#2E2620",
+    [darkMode]: "#2E2620",
+  },
+  disabled: {
+    default: "#FAE3CC",
+    [darkMode]: "#FAE3CC",
+  },
+  onDisabled: {
+    default: "#2E2620",
+    [darkMode]: "#2E2620",
   },
   accent: {
-    default: "#090C9B",
-    [darkMode]: "#B4C5E4",
+    default: "#7C2D12",
+    [darkMode]: "#F2C9A4",
+  },
+  focusRing: {
+    default: "#7C2D12",
+    [darkMode]: "#7C2D12",
+  },
+  focusHalo: {
+    default: "#F2C9A4",
+    [darkMode]: "#F2C9A4",
+  },
+  success: {
+    default: "#2E7D52",
+    [darkMode]: "#75D6A0",
   },
   danger: {
-    default: "#A4252C",
-    [darkMode]: "#FFB4AB",
+    default: "#B42318",
+    [darkMode]: "#F97066",
   },
+  // Filled badges retain the light warning fill with paper text in both themes.
   warning: {
     default: "#9A6A00",
     [darkMode]: "#9A6A00",
   },
   onWarning: {
-    default: "#FBFFF1",
-    [darkMode]: "#FBFFF1",
+    default: "#FDF6EE",
+    [darkMode]: "#FDF6EE",
   },
 });
 

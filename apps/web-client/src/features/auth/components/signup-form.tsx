@@ -127,7 +127,7 @@ export const SignupForm = () => {
           {t(formError)}
         </Typography>
       ) : null}
-      <Button disabled={pending} size="lg" style={styles.submit} type="submit">
+      <Button disabled={pending} style={styles.submit} type="submit">
         {pending ? t("auth.signup.pending") : t("auth.signup.title")}
       </Button>
     </html.form>
@@ -145,7 +145,7 @@ const styles = css.create({
     lineHeight: 1.5,
   },
   submit: {
-    alignSelf: "stretch",
+    alignSelf: "flex-start",
     marginTop: spacing[2],
   },
 });

@@ -23,8 +23,8 @@
 }
 
 :root {
-  color: #3c3744;
-  background: #fbfff1;
+  color: #2e2620;
+  background: #fdf6ee;
   color-scheme: light;
   font-family: "Space Mono", monospace;
   font-synthesis: none;
@@ -39,7 +39,7 @@ html {
 body {
   margin: 0;
   min-width: 320px;
-  background: #fbfff1;
+  background: #fdf6ee;
 }
 
 button,
@@ -52,13 +52,19 @@ button {
 }
 
 ::selection {
-  color: #3c3744;
-  background: #b4c5e4;
+  color: #2e2620;
+  background: #f2c9a4;
+}
+
+[data-theme="dark"] ::selection {
+  color: #fdf6ee;
+  background: #7c2d12;
 }
 
 :focus-visible {
-  outline: 2px solid #090c9b;
-  outline-offset: 4px;
+  outline: 2px solid #7c2d12;
+  outline-offset: 0;
+  box-shadow: 0 0 0 4px #f2c9a4;
 }
 
 @media (prefers-reduced-motion: reduce) {

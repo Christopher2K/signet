@@ -127,7 +127,10 @@ export const LibraryPage = () => {
             <Typography as="p" style={styles.stateMessage} tone="secondary">
               {t(getBookmarkError(bookmarksQuery.error).message)}
             </Typography>
-            <Button onClick={() => void bookmarksQuery.refetch()}>
+            <Button
+              onClick={() => void bookmarksQuery.refetch()}
+              style={styles.stateAction}
+            >
               {t("actions.tryAgain")}
             </Button>
           </html.section>
@@ -142,7 +145,10 @@ export const LibraryPage = () => {
             <Typography as="p" style={styles.stateMessage} tone="secondary">
               {t("library.empty.description")}
             </Typography>
-            <Button onClick={() => setCreating(true)} size="lg">
+            <Button
+              onClick={() => setCreating(true)}
+              style={styles.stateAction}
+            >
               {t("actions.newBookmark")}
             </Button>
           </html.section>
@@ -275,6 +281,19 @@ const styles = css.create({
     display: "flex",
     gap: spacing[2],
     minHeight: 36,
+    "@media (pointer: fine)": {
+      boxShadow: {
+        default: "none",
+        ":focus-visible": `0 0 0 4px ${colors.focusHalo}`,
+      },
+      outlineColor: colors.focusRing,
+      outlineOffset: 0,
+      outlineStyle: "solid",
+      outlineWidth: {
+        default: 0,
+        ":focus-visible": 2,
+      },
+    },
     paddingBlock: spacing[2],
     paddingInline: spacing[3],
   },
@@ -362,5 +381,8 @@ const styles = css.create({
   stateMessage: {
     lineHeight: 1.5,
     maxWidth: 520,
+  },
+  stateAction: {
+    alignSelf: "center",
   },
 });

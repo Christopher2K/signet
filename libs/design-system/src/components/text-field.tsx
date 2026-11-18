@@ -36,7 +36,7 @@ export const TextField = ({
   };
 
   return (
-    <html.div style={[styles.field, disabled && styles.disabled]}>
+    <html.div style={styles.field}>
       <Typography
         as="label"
         for={id}
@@ -53,7 +53,12 @@ export const TextField = ({
         disabled={disabled}
         id={id}
         onChange={handleChange}
-        style={[styles.input, Boolean(error) && styles.inputError, style]}
+        style={[
+          styles.input,
+          Boolean(error) && styles.inputError,
+          style,
+          disabled && styles.inputDisabled,
+        ]}
       />
       {error ? (
         <Typography id={errorId} role="alert" tone="danger" variant="caption">
@@ -86,8 +91,12 @@ const styles = css.create({
     fontSize: typography.bodySize,
     minHeight: 44,
     "@media (pointer: fine)": {
-      outlineColor: colors.accent,
-      outlineOffset: 2,
+      boxShadow: {
+        default: "none",
+        ":focus-visible": `0 0 0 4px ${colors.focusHalo}`,
+      },
+      outlineColor: colors.focusRing,
+      outlineOffset: 0,
       outlineStyle: "solid",
       outlineWidth: {
         default: 0,
@@ -96,12 +105,16 @@ const styles = css.create({
     },
     paddingBlock: spacing[3],
     paddingInline: spacing[3],
+    "::placeholder": {
+      color: colors.textMuted,
+    },
     width: "100%",
   },
   inputError: {
     borderColor: colors.danger,
   },
-  disabled: {
-    opacity: 0.6,
+  inputDisabled: {
+    backgroundColor: colors.disabled,
+    color: colors.onDisabled,
   },
 });

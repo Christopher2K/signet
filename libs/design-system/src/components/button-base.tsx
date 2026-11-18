@@ -36,12 +36,18 @@ export const ButtonBase = ({
         styles.base,
         variantStyles[variant],
         sizeStyles[size],
-        disabled && styles.disabled,
         style,
+        disabled && styles.disabled,
       ]}
       type={type}
     >
-      <Typography style={[styles.label, labelVariantStyles[variant]]}>
+      <Typography
+        style={[
+          styles.label,
+          labelVariantStyles[variant],
+          disabled && styles.disabledLabel,
+        ]}
+      >
         {children}
       </Typography>
     </html.button>
@@ -59,8 +65,12 @@ const styles = css.create({
     display: "flex",
     justifyContent: "center",
     "@media (pointer: fine)": {
-      outlineColor: colors.accent,
-      outlineOffset: 2,
+      boxShadow: {
+        default: "none",
+        ":focus-visible": `0 0 0 4px ${colors.focusHalo}`,
+      },
+      outlineColor: colors.focusRing,
+      outlineOffset: 0,
       outlineStyle: "solid",
       outlineWidth: {
         default: 0,
@@ -69,11 +79,16 @@ const styles = css.create({
     },
   },
   label: {
-    fontWeight: "600",
+    fontWeight: "700",
     textAlign: "center",
   },
   disabled: {
-    opacity: 0.5,
+    backgroundColor: colors.disabled,
+    borderColor: colors.disabled,
+    pointerEvents: "none",
+  },
+  disabledLabel: {
+    color: colors.onDisabled,
   },
 });
 
@@ -92,9 +107,9 @@ const variantStyles = css.create({
   },
   secondary: {
     backgroundColor: {
-      default: colors.selection,
-      ":hover": colors.surfaceAlt,
-      ":active": colors.selection,
+      default: colors.tag,
+      ":hover": colors.secondaryHover,
+      ":active": colors.tag,
     },
     borderColor: colors.border,
   },
@@ -105,7 +120,7 @@ const labelVariantStyles = css.create({
     color: colors.onPrimary,
   },
   secondary: {
-    color: colors.onSelection,
+    color: colors.onTag,
   },
 });
 

@@ -3,6 +3,7 @@ import { colors, radii, spacing } from "@signet/design-system/tokens.css";
 import { Link } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 import { css, html } from "react-strict-dom";
+import { Logo } from "#/components/logo";
 
 /** Shared centered auth-screen properties. */
 export type AuthLayoutProps = {
@@ -22,29 +23,27 @@ export const AuthLayout = ({
 }: AuthLayoutProps) => {
   return (
     <html.main style={styles.page}>
+      <html.div style={styles.brand}>
+        <Logo size={32} />
+        <Typography style={styles.wordmark} variant="title">
+          Signet
+        </Typography>
+      </html.div>
       <html.section style={styles.card}>
-        <html.div style={styles.heading}>
-          <Typography style={styles.brand} variant="caption">
-            SIGNET
-          </Typography>
-          <Typography as="h1" style={styles.title} variant="headline">
-            {title}
-          </Typography>
-        </html.div>
+        <Typography as="h1" style={styles.title} variant="headline">
+          {title}
+        </Typography>
         {children}
-        <Typography
-          as="p"
-          style={styles.footer}
-          tone="secondary"
-          variant="caption"
-        >
-          {footerQuestion}{" "}
+        <html.div style={styles.footer}>
+          <Typography as="p" tone="secondary" variant="caption">
+            {footerQuestion}
+          </Typography>
           <Link className="auth-link" to={footerLinkTo}>
             <Typography style={styles.footerLink} variant="caption">
               {footerLinkText}
             </Typography>
           </Link>
-        </Typography>
+        </html.div>
       </html.section>
     </html.main>
   );
@@ -55,9 +54,25 @@ const styles = css.create({
     alignItems: "center",
     backgroundColor: colors.background,
     display: "flex",
+    flexDirection: "column",
+    gap: spacing[6],
     justifyContent: "center",
     minHeight: "100vh",
-    padding: spacing[6],
+    padding: {
+      default: spacing[6],
+      "@media (max-width: 480px)": spacing[4],
+    },
+  },
+  brand: {
+    alignItems: "center",
+    display: "flex",
+    flexDirection: "column",
+    gap: spacing[2],
+  },
+  wordmark: {
+    color: colors.text,
+    fontWeight: "700",
+    lineHeight: 1.2,
   },
   card: {
     backgroundColor: colors.surface,
@@ -69,25 +84,22 @@ const styles = css.create({
     flexDirection: "column",
     gap: spacing[6],
     maxWidth: 400,
-    padding: spacing[8],
+    padding: {
+      default: spacing[8],
+      "@media (max-width: 480px)": spacing[6],
+    },
     width: "100%",
-  },
-  heading: {
-    display: "flex",
-    flexDirection: "column",
-    gap: spacing[3],
-  },
-  brand: {
-    color: colors.primary,
-    fontWeight: "700",
-    letterSpacing: 2,
   },
   title: {
     lineHeight: 1.2,
   },
   footer: {
+    alignItems: "flex-start",
+    display: "flex",
+    flexDirection: "column",
+    gap: spacing[1],
     lineHeight: 1.5,
-    textAlign: "center",
+    width: "100%",
   },
   footerLink: {
     color: "inherit",

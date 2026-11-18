@@ -26,12 +26,7 @@ export const SiteHeader = () => {
           </Typography>
         </html.a>
       </html.nav>
-      <ActionLink
-        href="#self-host"
-        size="sm"
-        variant="outline"
-        style={styles.action}
-      >
+      <ActionLink href="#self-host" size="sm" style={styles.action}>
         {t("marketing.nav.selfHost")}
       </ActionLink>
     </html.header>
@@ -45,7 +40,7 @@ const styles = css.create({
     gridTemplateColumns: "1fr auto 1fr",
     alignItems: "center",
     gap: spacing[8],
-    borderBottomColor: colors.selection,
+    borderBottomColor: colors.border,
     borderBottomStyle: "solid",
     borderBottomWidth: 1,
     "@media (max-width: 760px)": {

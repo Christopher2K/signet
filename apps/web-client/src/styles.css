@@ -24,34 +24,66 @@
 }
 
 body {
+  background: #fdf6ee;
+  color: #2e2620;
   margin: 0;
   min-width: 320px;
 }
 
 button,
-input {
+input,
+textarea {
   font: inherit;
 }
 
+::selection {
+  background: #f2c9a4;
+  color: #2e2620;
+}
+
+:where(a, button, input, textarea):focus-visible {
+  border-radius: 4px;
+  box-shadow: 0 0 0 4px #f2c9a4;
+  outline: 2px solid #7c2d12;
+  outline-offset: 0;
+}
+
 .auth-link {
-  color: #3066be;
+  color: #c2410c;
   font-weight: 700;
   text-underline-offset: 3px;
 }
 
 .auth-link:focus-visible {
   border-radius: 2px;
-  outline: 2px solid #3066be;
-  outline-offset: 3px;
+  box-shadow: 0 0 0 4px #f2c9a4;
+  outline: 2px solid #7c2d12;
+  outline-offset: 0;
 }
 
 @media (prefers-color-scheme: dark) {
+  body {
+    background: #2e2620;
+    color: #fdf6ee;
+  }
+
+  ::selection {
+    background: #7c2d12;
+    color: #fdf6ee;
+  }
+
+  :where(a, button, input, textarea):focus-visible {
+    box-shadow: 0 0 0 4px #f2c9a4;
+    outline-color: #7c2d12;
+  }
+
   .auth-link {
-    color: #b4c5e4;
+    color: #f2c9a4;
   }
 
   .auth-link:focus-visible {
-    outline-color: #b4c5e4;
+    box-shadow: 0 0 0 4px #f2c9a4;
+    outline-color: #7c2d12;
   }
 }
 

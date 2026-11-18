@@ -104,7 +104,7 @@ export const LoginForm = () => {
           {t(formError)}
         </Typography>
       ) : null}
-      <Button disabled={pending} size="lg" style={styles.submit} type="submit">
+      <Button disabled={pending} style={styles.submit} type="submit">
         {pending ? t("auth.login.pending") : t("auth.login.title")}
       </Button>
     </html.form>
@@ -122,7 +122,7 @@ const styles = css.create({
     lineHeight: 1.5,
   },
   submit: {
-    alignSelf: "stretch",
+    alignSelf: "flex-start",
     marginTop: spacing[2],
   },
 });

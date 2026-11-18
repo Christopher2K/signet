@@ -67,7 +67,7 @@ const variantStyles = css.create({
   },
   title: {
     fontSize: typography.titleSize,
-    fontWeight: "600",
+    fontWeight: "700",
   },
   body: {
     fontSize: typography.bodySize,

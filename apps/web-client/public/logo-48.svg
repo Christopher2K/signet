@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+  <style>
+    .back { fill: #F2C9A4; }
+    .middle { fill: #C2410C; }
+    .front { fill: #7C2D12; }
+    @media (prefers-color-scheme: dark) {
+      .back { fill: #57493C; }
+      .middle { fill: #F97316; }
+      .front { fill: #F2C9A4; }
+    }
+  </style>
+  <defs>
+    <mask id="back-cutout" maskUnits="userSpaceOnUse" x="0" y="0" width="48" height="48">
+      <rect width="48" height="48" fill="white"/>
+      <path d="M13.5 11.25A3.75 3.75 0 0 1 17.25 7.5h14.25v33l-9-5.4-9 5.4v-29.25Z" fill="black" stroke="black" stroke-width="2.6667" stroke-linejoin="round"/>
+    </mask>
+    <mask id="middle-cutout" maskUnits="userSpaceOnUse" x="0" y="0" width="48" height="48">
+      <rect width="48" height="48" fill="white"/>
+      <path d="M21 14.25A3.75 3.75 0 0 1 24.75 10.5H39v33l-9-5.4-9 5.4V14.25Z" fill="black" stroke="black" stroke-width="2.6667" stroke-linejoin="round"/>
+    </mask>
+  </defs>
+  <path class="back" mask="url(#back-cutout)" d="M6 8.25A3.75 3.75 0 0 1 9.75 4.5H24v33l-9-5.4-9 5.4V8.25Z"/>
+  <path class="middle" mask="url(#middle-cutout)" d="M13.5 11.25A3.75 3.75 0 0 1 17.25 7.5h14.25v33l-9-5.4-9 5.4v-29.25Z"/>
+  <path class="front" d="M21 14.25A3.75 3.75 0 0 1 24.75 10.5H39v33l-9-5.4-9 5.4V14.25Z"/>
+</svg>

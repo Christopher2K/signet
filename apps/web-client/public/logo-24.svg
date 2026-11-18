@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <style>
+    .back { fill: #C2410C; }
+    .front { fill: #7C2D12; }
+    @media (prefers-color-scheme: dark) {
+      .back { fill: #F97316; }
+      .front { fill: #F2C9A4; }
+    }
+  </style>
+  <defs>
+    <mask id="back-cutout" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+      <rect width="24" height="24" fill="white"/>
+      <path d="M10.5 7.125A1.875 1.875 0 0 1 12.375 5.25h7.125v16.5l-4.5-2.7-4.5 2.7V7.125Z" fill="black" stroke="black" stroke-width="4" stroke-linejoin="round"/>
+    </mask>
+  </defs>
+  <path class="back" mask="url(#back-cutout)" d="M3 4.125A1.875 1.875 0 0 1 4.875 2.25H12v16.5l-4.5-2.7-4.5 2.7V4.125Z"/>
+  <path class="front" d="M10.5 7.125A1.875 1.875 0 0 1 12.375 5.25h7.125v16.5l-4.5-2.7-4.5 2.7V7.125Z"/>
+</svg>

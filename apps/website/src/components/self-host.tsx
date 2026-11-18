@@ -32,6 +32,7 @@ export const SelfHost = () => {
   return (
     <html.section
       id="self-host"
+      data-theme="dark"
       style={[
         selfHostTheme as unknown as typeof styles.selfHost,
         landingStyles.pageShell,

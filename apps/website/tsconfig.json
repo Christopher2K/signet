@@ -5,6 +5,10 @@
     "../../libs/design-system/src/**/*.ts",
     "../../libs/design-system/src/**/*.tsx"
   ],
+  "exclude": [
+    "../../libs/design-system/src/**/*.native.ts",
+    "../../libs/design-system/src/**/*.native.tsx"
+  ],
   "compilerOptions": {
     "target": "ES2022",
     "jsx": "react-jsx",

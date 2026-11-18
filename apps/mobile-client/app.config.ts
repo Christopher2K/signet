@@ -26,7 +26,7 @@ const config: ExpoConfig = {
   android: {
     package: "co.signetapp.app",
     adaptiveIcon: {
-      backgroundColor: "#FBFFF1",
+      backgroundColor: "#FDF6EE",
       foregroundImage: "./assets/images/android-icon-foreground.png",
       backgroundImage: "./assets/images/android-icon-background.png",
       monochromeImage: "./assets/images/android-icon-monochrome.png",
@@ -45,11 +45,11 @@ const config: ExpoConfig = {
     [
       "expo-splash-screen",
       {
-        backgroundColor: "#FBFFF1",
+        backgroundColor: "#FDF6EE",
         image: "./assets/images/signet-logo-light.png",
         imageWidth: 96,
         dark: {
-          backgroundColor: "#3C3744",
+          backgroundColor: "#2E2620",
           image: "./assets/images/signet-logo-dark.png",
         },
       },

@@ -1,3 +1,4 @@
+import { colors } from "@signet/design-system/tokens.css";
 import type { QueryClient } from "@tanstack/react-query";
 import { createRootRouteWithContext, Outlet } from "@tanstack/react-router";
 import { css, html } from "react-strict-dom";
@@ -24,6 +25,8 @@ const Root = () => {
 
 const styles = css.create({
   app: {
+    backgroundColor: colors.background,
+    color: colors.text,
     minHeight: "100vh",
   },
 });

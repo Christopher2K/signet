@@ -1,9 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" fill="none" role="img" aria-labelledby="title description">
   <title id="title">Signet — Your bookmarks. Everywhere. Yours.</title>
-  <desc id="description">Signet's stacked bookmark logo and a library of saved links, presented in the Paper and Cobalt brand colors.</desc>
+  <desc id="description">Signet's stacked bookmark logo and a library of saved links, presented in the Ink and Amber brand colors.</desc>
   <defs>
     <pattern id="dot-grid" width="24" height="24" patternUnits="userSpaceOnUse">
-      <circle cx="1.5" cy="1.5" r="1.5" fill="#B4C5E4" fill-opacity="0.42"/>
+      <circle cx="1.5" cy="1.5" r="1.5" fill="#F2C9A4" fill-opacity="0.42"/>
     </pattern>
     <clipPath id="canvas-clip">
       <rect width="1200" height="630" rx="0"/>
@@ -27,109 +27,109 @@
   </defs>
 
   <g clip-path="url(#canvas-clip)">
-    <rect width="1200" height="630" fill="#FBFFF1"/>
+    <rect width="1200" height="630" fill="#FDF6EE"/>
     <rect width="1200" height="630" fill="url(#dot-grid)"/>
-    <path d="M0 0H1200V630H0Z" fill="#FBFFF1" fill-opacity="0.18"/>
+    <path d="M0 0H1200V630H0Z" fill="#FDF6EE" fill-opacity="0.18"/>
 
-    <circle cx="958" cy="302" r="240" fill="#EEF3FB"/>
-    <circle cx="958" cy="302" r="240" stroke="#B4C5E4" stroke-width="2" stroke-dasharray="3 12"/>
-    <path d="M1125 34V82M1101 58H1149" stroke="#3066BE" stroke-width="4"/>
-    <path d="M687 120V148M673 134H701" stroke="#090C9B" stroke-width="3"/>
-    <rect x="1154" y="484" width="70" height="70" rx="16" fill="#B4C5E4" transform="rotate(14 1154 484)"/>
+    <circle cx="958" cy="302" r="240" fill="#FBEEE1"/>
+    <circle cx="958" cy="302" r="240" stroke="#F2C9A4" stroke-width="2" stroke-dasharray="3 12"/>
+    <path d="M1125 34V82M1101 58H1149" stroke="#C2410C" stroke-width="4"/>
+    <path d="M687 120V148M673 134H701" stroke="#7C2D12" stroke-width="3"/>
+    <rect x="1154" y="484" width="70" height="70" rx="16" fill="#F2C9A4" transform="rotate(14 1154 484)"/>
 
     <!-- Signet lockup -->
     <g transform="translate(64 43) scale(1.5)">
-      <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H16V25L10 21.4L4 25V5.5Z" fill="#B4C5E4"/>
-      <path d="M9 7.5A2.5 2.5 0 0 1 11.5 5H21V27L15 23.4L9 27V7.5Z" fill="#3066BE"/>
-      <path d="M14 9.5A2.5 2.5 0 0 1 16.5 7H26V29L20 25.4L14 29V9.5Z" fill="#090C9B"/>
+      <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H16V25L10 21.4L4 25V5.5Z" fill="#F2C9A4"/>
+      <path d="M9 7.5A2.5 2.5 0 0 1 11.5 5H21V27L15 23.4L9 27V7.5Z" fill="#C2410C"/>
+      <path d="M14 9.5A2.5 2.5 0 0 1 16.5 7H26V29L20 25.4L14 29V9.5Z" fill="#7C2D12"/>
     </g>
-    <text x="132" y="82" fill="#090C9B" font-size="31" class="bold" letter-spacing="-1.4">Signet</text>
+    <text x="132" y="82" fill="#7C2D12" font-size="31" class="bold" letter-spacing="-1.4">Signet</text>
 
     <!-- Hero copy -->
-    <rect x="64" y="135" width="34" height="3" rx="1.5" fill="#090C9B"/>
-    <text x="110" y="141" fill="#090C9B" font-size="13" class="bold" letter-spacing="1.6">SELF-HOSTED BOOKMARK SYNC</text>
-    <text x="62" y="235" fill="#3C3744" font-size="60" class="bold" letter-spacing="-3">Your bookmarks.</text>
-    <text x="62" y="309" fill="#090C9B" font-size="60" class="bold" letter-spacing="-3">Everywhere. Yours.</text>
-    <text x="64" y="367" fill="#6B6578" font-size="18">One collection across web, browser and phone.</text>
-    <text x="64" y="398" fill="#6B6578" font-size="18">Capture quickly. Organize deeply. Own your data.</text>
+    <rect x="64" y="135" width="34" height="3" rx="1.5" fill="#7C2D12"/>
+    <text x="110" y="141" fill="#7C2D12" font-size="13" class="bold" letter-spacing="1.6">SELF-HOSTED BOOKMARK SYNC</text>
+    <text x="62" y="235" fill="#2E2620" font-size="60" class="bold" letter-spacing="-3">Your bookmarks.</text>
+    <text x="62" y="309" fill="#7C2D12" font-size="60" class="bold" letter-spacing="-3">Everywhere. Yours.</text>
+    <text x="64" y="367" fill="#6E5F53" font-size="18">One collection across web, browser and phone.</text>
+    <text x="64" y="398" fill="#6E5F53" font-size="18">Capture quickly. Organize deeply. Own your data.</text>
 
     <!-- Platform chips -->
     <g transform="translate(64 442)">
-      <rect width="90" height="38" rx="19" fill="#B4C5E4"/>
-      <text x="45" y="25" text-anchor="middle" fill="#3C3744" font-size="13" class="bold">WEB</text>
-      <rect x="102" width="132" height="38" rx="19" fill="#B4C5E4"/>
-      <text x="168" y="25" text-anchor="middle" fill="#3C3744" font-size="13" class="bold">BROWSER</text>
-      <rect x="246" width="108" height="38" rx="19" fill="#B4C5E4"/>
-      <text x="300" y="25" text-anchor="middle" fill="#3C3744" font-size="13" class="bold">PHONE</text>
+      <rect width="90" height="38" rx="19" fill="#F2C9A4"/>
+      <text x="45" y="25" text-anchor="middle" fill="#2E2620" font-size="13" class="bold">WEB</text>
+      <rect x="102" width="132" height="38" rx="19" fill="#F2C9A4"/>
+      <text x="168" y="25" text-anchor="middle" fill="#2E2620" font-size="13" class="bold">BROWSER</text>
+      <rect x="246" width="108" height="38" rx="19" fill="#F2C9A4"/>
+      <text x="300" y="25" text-anchor="middle" fill="#2E2620" font-size="13" class="bold">PHONE</text>
     </g>
-    <text x="64" y="518" fill="#3066BE" font-size="14" class="bold">YOUR SERVER. YOUR RULES. ↗</text>
+    <text x="64" y="518" fill="#C2410C" font-size="14" class="bold">YOUR SERVER. YOUR RULES. ↗</text>
 
     <!-- Layered library illustration -->
     <g transform="rotate(7 944 316)">
-      <rect x="784" y="91" width="350" height="450" rx="20" fill="#090C9B"/>
-      <rect x="784" y="91" width="350" height="450" rx="20" stroke="#3C3744" stroke-width="2"/>
-      <circle cx="814" cy="122" r="5" fill="#B4C5E4"/>
-      <circle cx="832" cy="122" r="5" fill="#3066BE"/>
-      <circle cx="850" cy="122" r="5" fill="#FBFFF1"/>
+      <rect x="784" y="91" width="350" height="450" rx="20" fill="#7C2D12"/>
+      <rect x="784" y="91" width="350" height="450" rx="20" stroke="#2E2620" stroke-width="2"/>
+      <circle cx="814" cy="122" r="5" fill="#F2C9A4"/>
+      <circle cx="832" cy="122" r="5" fill="#C2410C"/>
+      <circle cx="850" cy="122" r="5" fill="#FDF6EE"/>
     </g>
     <g transform="rotate(-4 928 320)">
-      <rect x="754" y="108" width="370" height="450" rx="18" fill="#3066BE" stroke="#3C3744" stroke-width="2"/>
-      <rect x="740" y="92" width="370" height="450" rx="18" fill="#FFFFFF" stroke="#3C3744" stroke-width="2"/>
-      <path d="M740 110C740 100.059 748.059 92 758 92H1092C1101.94 92 1110 100.059 1110 110V157H740V110Z" fill="#EEF3FB"/>
-      <path d="M740 157H1110" stroke="#8FA3C6" stroke-width="1.5"/>
+      <rect x="754" y="108" width="370" height="450" rx="18" fill="#C2410C" stroke="#2E2620" stroke-width="2"/>
+      <rect x="740" y="92" width="370" height="450" rx="18" fill="#FFFFFF" stroke="#2E2620" stroke-width="2"/>
+      <path d="M740 110C740 100.059 748.059 92 758 92H1092C1101.94 92 1110 100.059 1110 110V157H740V110Z" fill="#FBEEE1"/>
+      <path d="M740 157H1110" stroke="#B08350" stroke-width="1.5"/>
 
       <!-- Mini Stack -->
       <g transform="translate(762 109) scale(0.92)">
-        <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H16V25L10 21.4L4 25V5.5Z" fill="#B4C5E4"/>
-        <path d="M9 7.5A2.5 2.5 0 0 1 11.5 5H21V27L15 23.4L9 27V7.5Z" fill="#3066BE"/>
-        <path d="M14 9.5A2.5 2.5 0 0 1 16.5 7H26V29L20 25.4L14 29V9.5Z" fill="#090C9B"/>
+        <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H16V25L10 21.4L4 25V5.5Z" fill="#F2C9A4"/>
+        <path d="M9 7.5A2.5 2.5 0 0 1 11.5 5H21V27L15 23.4L9 27V7.5Z" fill="#C2410C"/>
+        <path d="M14 9.5A2.5 2.5 0 0 1 16.5 7H26V29L20 25.4L14 29V9.5Z" fill="#7C2D12"/>
       </g>
-      <text x="800" y="133" fill="#090C9B" font-size="17" class="bold">Signet</text>
-      <rect x="1014" y="110" width="72" height="30" rx="8" fill="#3066BE"/>
-      <text x="1050" y="130" text-anchor="middle" fill="#FBFFF1" font-size="12" class="bold">+ NEW</text>
+      <text x="800" y="133" fill="#7C2D12" font-size="17" class="bold">Signet</text>
+      <rect x="1014" y="110" width="72" height="30" rx="8" fill="#C2410C"/>
+      <text x="1050" y="130" text-anchor="middle" fill="#FDF6EE" font-size="12" class="bold">+ NEW</text>
 
       <!-- Search -->
-      <rect x="762" y="177" width="326" height="38" rx="8" fill="#FFFFFF" stroke="#8FA3C6" stroke-width="1.5"/>
-      <circle cx="781" cy="195" r="6" stroke="#6B6578" stroke-width="1.8"/>
-      <path d="M785.5 199.5L790 204" stroke="#6B6578" stroke-width="1.8" stroke-linecap="round"/>
-      <text x="800" y="201" fill="#6B6578" font-size="11">Search your library</text>
+      <rect x="762" y="177" width="326" height="38" rx="8" fill="#FFFFFF" stroke="#B08350" stroke-width="1.5"/>
+      <circle cx="781" cy="195" r="6" stroke="#6E5F53" stroke-width="1.8"/>
+      <path d="M785.5 199.5L790 204" stroke="#6E5F53" stroke-width="1.8" stroke-linecap="round"/>
+      <text x="800" y="201" fill="#6E5F53" font-size="11">Search your library</text>
 
-      <text x="762" y="250" fill="#3C3744" font-size="18" class="bold">All bookmarks</text>
-      <text x="1088" y="249" text-anchor="end" fill="#6B6578" font-size="11">12 SAVED</text>
+      <text x="762" y="250" fill="#2E2620" font-size="18" class="bold">All bookmarks</text>
+      <text x="1088" y="249" text-anchor="end" fill="#6E5F53" font-size="11">12 SAVED</text>
 
       <!-- First bookmark -->
-      <rect x="762" y="269" width="326" height="91" rx="12" fill="#FFFFFF" stroke="#8FA3C6" stroke-width="1.5"/>
-      <rect x="776" y="283" width="58" height="58" rx="8" fill="#EEF3FB"/>
+      <rect x="762" y="269" width="326" height="91" rx="12" fill="#FFFFFF" stroke="#B08350" stroke-width="1.5"/>
+      <rect x="776" y="283" width="58" height="58" rx="8" fill="#FBEEE1"/>
       <g transform="translate(789 294) scale(1.1)">
-        <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H16V25L10 21.4L4 25V5.5Z" fill="#B4C5E4"/>
-        <path d="M9 7.5A2.5 2.5 0 0 1 11.5 5H21V27L15 23.4L9 27V7.5Z" fill="#3066BE"/>
-        <path d="M14 9.5A2.5 2.5 0 0 1 16.5 7H26V29L20 25.4L14 29V9.5Z" fill="#090C9B"/>
+        <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H16V25L10 21.4L4 25V5.5Z" fill="#F2C9A4"/>
+        <path d="M9 7.5A2.5 2.5 0 0 1 11.5 5H21V27L15 23.4L9 27V7.5Z" fill="#C2410C"/>
+        <path d="M14 9.5A2.5 2.5 0 0 1 16.5 7H26V29L20 25.4L14 29V9.5Z" fill="#7C2D12"/>
       </g>
-      <text x="849" y="295" fill="#3C3744" font-size="12" class="bold">Signet — self-hosted</text>
-      <text x="849" y="315" fill="#3066BE" font-size="10">github.com/Christopher2K/signet</text>
-      <rect x="849" y="328" width="43" height="18" rx="9" fill="#B4C5E4"/>
-      <text x="870.5" y="341" text-anchor="middle" fill="#3C3744" font-size="8">WORK</text>
-      <rect x="898" y="328" width="60" height="18" rx="9" fill="#B4C5E4"/>
-      <text x="928" y="341" text-anchor="middle" fill="#3C3744" font-size="8">READING</text>
+      <text x="849" y="295" fill="#2E2620" font-size="12" class="bold">Signet — self-hosted</text>
+      <text x="849" y="315" fill="#C2410C" font-size="10">github.com/Christopher2K/signet</text>
+      <rect x="849" y="328" width="43" height="18" rx="9" fill="#F2C9A4"/>
+      <text x="870.5" y="341" text-anchor="middle" fill="#2E2620" font-size="8">WORK</text>
+      <rect x="898" y="328" width="60" height="18" rx="9" fill="#F2C9A4"/>
+      <text x="928" y="341" text-anchor="middle" fill="#2E2620" font-size="8">READING</text>
 
       <!-- Second bookmark -->
-      <rect x="762" y="373" width="326" height="91" rx="12" fill="#FFFFFF" stroke="#8FA3C6" stroke-width="1.5"/>
-      <rect x="776" y="387" width="58" height="58" rx="8" fill="#090C9B"/>
-      <path d="M796 401H814V431L805 425.5L796 431V401Z" fill="#B4C5E4"/>
-      <text x="849" y="400" fill="#3C3744" font-size="12" class="bold">Docker Compose</text>
-      <text x="849" y="420" fill="#3066BE" font-size="10">docs.docker.com/compose</text>
-      <rect x="849" y="432" width="77" height="18" rx="9" fill="#B4C5E4"/>
-      <text x="887.5" y="445" text-anchor="middle" fill="#3C3744" font-size="8">SELF-HOSTING</text>
+      <rect x="762" y="373" width="326" height="91" rx="12" fill="#FFFFFF" stroke="#B08350" stroke-width="1.5"/>
+      <rect x="776" y="387" width="58" height="58" rx="8" fill="#7C2D12"/>
+      <path d="M796 401H814V431L805 425.5L796 431V401Z" fill="#F2C9A4"/>
+      <text x="849" y="400" fill="#2E2620" font-size="12" class="bold">Docker Compose</text>
+      <text x="849" y="420" fill="#C2410C" font-size="10">docs.docker.com/compose</text>
+      <rect x="849" y="432" width="77" height="18" rx="9" fill="#F2C9A4"/>
+      <text x="887.5" y="445" text-anchor="middle" fill="#2E2620" font-size="8">SELF-HOSTING</text>
 
       <!-- Sync state -->
       <circle cx="770" cy="498" r="5" fill="#2E7D52"/>
-      <text x="783" y="502" fill="#3C3744" font-size="10" class="bold">SYNCED JUST NOW</text>
-      <text x="1088" y="502" text-anchor="end" fill="#6B6578" font-size="9">OFFLINE READY</text>
+      <text x="783" y="502" fill="#2E2620" font-size="10" class="bold">SYNCED JUST NOW</text>
+      <text x="1088" y="502" text-anchor="end" fill="#6E5F53" font-size="9">OFFLINE READY</text>
     </g>
 
     <!-- Footer -->
-    <path d="M64 560H1136" stroke="#8FA3C6" stroke-width="1.5"/>
-    <text x="64" y="595" fill="#3C3744" font-size="12" class="bold" letter-spacing="1.2">KEEP WHAT MATTERS. FIND IT ANYWHERE.</text>
-    <text x="1136" y="595" text-anchor="end" fill="#090C9B" font-size="12" class="bold">SIGNET / YOUR LIBRARY, CONNECTED</text>
+    <path d="M64 560H1136" stroke="#B08350" stroke-width="1.5"/>
+    <text x="64" y="595" fill="#2E2620" font-size="12" class="bold" letter-spacing="1.2">KEEP WHAT MATTERS. FIND IT ANYWHERE.</text>
+    <text x="1136" y="595" text-anchor="end" fill="#7C2D12" font-size="12" class="bold">SIGNET / YOUR LIBRARY, CONNECTED</text>
   </g>
 </svg>

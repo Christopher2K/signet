@@ -56,7 +56,7 @@ const styles = css.create({
     justifyContent: "space-between",
     gap: spacing[8],
     paddingBottom: spacing[8],
-    borderBottomColor: colors.selection,
+    borderBottomColor: colors.border,
     borderBottomStyle: "solid",
     borderBottomWidth: 1,
     "@media (max-width: 760px)": {

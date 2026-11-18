@@ -14,15 +14,20 @@
 
 :root {
   color-scheme: light dark;
-  --background: #fbfff1;
+  --background: #fdf6ee;
   --surface: #ffffff;
-  --text: #3c3744;
-  --text-secondary: #6b6578;
-  --border: #8fa3c6;
-  --primary: #3066be;
-  --on-primary: #fbfff1;
-  --accent: #090c9b;
-  --status-surface: #eef3fb;
+  --text: #2e2620;
+  --text-secondary: #6e5f53;
+  --border: #b08350;
+  --primary: #c2410c;
+  --primary-hover: #9a3412;
+  --primary-active: #7c2d12;
+  --on-primary: #fdf6ee;
+  --accent: #7c2d12;
+  --status-surface: #fbeee1;
+  --focus-halo: #f2c9a4;
+  --selection: #f2c9a4;
+  --on-selection: #2e2620;
   --error: #b42318;
   --success: #2e7d52;
   font-family: "Space Mono", ui-monospace, monospace;
@@ -30,15 +35,20 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #3c3744;
-    --surface: #2f2b3a;
-    --text: #fbfff1;
-    --text-secondary: #b4c5e4;
-    --border: #4f4a62;
-    --primary: #5c84c6;
-    --on-primary: #131220;
-    --accent: #b4c5e4;
-    --status-surface: #3c3744;
+    --background: #2e2620;
+    --surface: #241e19;
+    --text: #fdf6ee;
+    --text-secondary: #f2c9a4;
+    --border: #57493c;
+    --primary: #f97316;
+    --primary-hover: #e9a677;
+    --primary-active: #f2c9a4;
+    --on-primary: #1c1510;
+    --accent: #f2c9a4;
+    --status-surface: #2e2620;
+    --focus-halo: #f97316;
+    --selection: #7c2d12;
+    --on-selection: #fdf6ee;
     --error: #f97066;
     --success: #75d6a0;
   }
@@ -46,6 +56,11 @@
 
 * {
   box-sizing: border-box;
+}
+
+::selection {
+  background: var(--selection);
+  color: var(--on-selection);
 }
 
 body {
@@ -148,8 +163,8 @@ input {
 input:focus {
   border-color: var(--accent);
   box-shadow:
-    0 0 0 2px var(--status-surface),
-    0 0 0 4px var(--accent);
+    0 0 0 2px var(--accent),
+    0 0 0 4px var(--focus-halo);
 }
 
 input[aria-invalid="true"] {
@@ -205,6 +220,10 @@ input:disabled {
   color: var(--success);
 }
 
+.status[data-state="duplicate"] strong {
+  color: var(--accent);
+}
+
 .field-error {
   color: var(--error);
   font-size: 12px;
@@ -223,13 +242,20 @@ button {
   cursor: pointer;
 }
 
+@media (hover: hover) {
+  button:hover:not(:disabled) {
+    background: var(--primary-hover);
+  }
+}
+
 button:active:not(:disabled) {
-  background: var(--accent);
+  background: var(--primary-active);
 }
 
 button:focus-visible {
   outline: 2px solid var(--accent);
-  outline-offset: 3px;
+  outline-offset: 0;
+  box-shadow: 0 0 0 4px var(--focus-halo);
 }
 
 button:disabled {

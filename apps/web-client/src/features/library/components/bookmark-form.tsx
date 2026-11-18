@@ -259,7 +259,19 @@ const styles = css.create({
     fontSize: 15,
     lineHeight: 1.5,
     minHeight: 104,
-    outlineColor: colors.accent,
+    "@media (pointer: fine)": {
+      boxShadow: {
+        default: "none",
+        ":focus-visible": `0 0 0 4px ${colors.focusHalo}`,
+      },
+      outlineColor: colors.focusRing,
+      outlineOffset: 0,
+      outlineStyle: "solid",
+      outlineWidth: {
+        default: 0,
+        ":focus-visible": 2,
+      },
+    },
     padding: spacing[3],
     resize: "vertical",
     width: "100%",
@@ -305,6 +317,7 @@ const styles = css.create({
     },
     gap: spacing[3],
     justifyContent: "flex-end",
+    marginInlineStart: "auto",
     width: {
       default: "auto",
       "@media (max-width: 600px)": "100%",

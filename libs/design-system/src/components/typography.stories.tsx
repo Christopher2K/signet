@@ -51,7 +51,7 @@ export const AllVariants: Story = {
         Headline 32/700
       </Typography>
       <Typography as="h3" variant="title">
-        Title 20/600
+        Title 20/700
       </Typography>
       <Typography as="p" variant="body">
         Body 15/400 — Notes, titles, and folder names.

@@ -24,7 +24,6 @@ export const FinalCta = () => {
           href={quickstartUrl}
           target="_blank"
           rel="noreferrer"
-          variant="accent"
           fullWidthOnMobile
           style={styles.action}
         >

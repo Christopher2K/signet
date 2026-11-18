@@ -1,8 +1,9 @@
 import { Button, Typography } from "@signet/design-system";
-import { colors, spacing } from "@signet/design-system/tokens.css";
+import { colors, radii, spacing } from "@signet/design-system/tokens.css";
 import { useTranslation } from "@signet/locale/react";
 import { useState } from "react";
 import { css, html } from "react-strict-dom";
+import { Logo } from "#/components/logo";
 import { useAuth } from "#/features/auth";
 import { Icon } from "./icon";
 
@@ -25,9 +26,7 @@ export const LibraryHeader = ({ onNewBookmark }: LibraryHeaderProps) => {
   return (
     <html.header style={styles.header}>
       <html.div style={styles.brandGroup}>
-        <html.div style={styles.brandMark}>
-          <Icon name="bookmark" size={20} />
-        </html.div>
+        <Logo size={24} />
         <Typography style={styles.brand} variant="title">
           Signet
         </Typography>
@@ -97,11 +96,8 @@ const styles = css.create({
     display: "flex",
     gap: spacing[2],
   },
-  brandMark: {
-    color: colors.primaryActive,
-  },
   brand: {
-    color: colors.accent,
+    color: colors.text,
     fontWeight: "700",
   },
   libraryLabel: {
@@ -151,9 +147,13 @@ const styles = css.create({
   },
   logout: {
     alignItems: "center",
-    backgroundColor: "transparent",
+    backgroundColor: {
+      default: "transparent",
+      ":hover": colors.surfaceAlt,
+      ":active": colors.selection,
+    },
     borderColor: colors.border,
-    borderRadius: 8,
+    borderRadius: radii.md,
     borderStyle: "solid",
     borderWidth: 1,
     color: colors.text,
@@ -161,6 +161,19 @@ const styles = css.create({
     display: "flex",
     gap: spacing[2],
     minHeight: 36,
+    "@media (pointer: fine)": {
+      boxShadow: {
+        default: "none",
+        ":focus-visible": `0 0 0 4px ${colors.focusHalo}`,
+      },
+      outlineColor: colors.focusRing,
+      outlineOffset: 0,
+      outlineStyle: "solid",
+      outlineWidth: {
+        default: 0,
+        ":focus-visible": 2,
+      },
+    },
     paddingBlock: spacing[2],
     paddingInline: spacing[3],
   },

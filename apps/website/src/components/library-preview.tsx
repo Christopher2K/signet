@@ -217,7 +217,7 @@ const styles = css.create({
     alignItems: "center",
     gap: spacing[6],
     padding: "20px 24px",
-    borderBottomColor: colors.selection,
+    borderBottomColor: colors.border,
     borderBottomStyle: "solid",
     borderBottomWidth: 1,
     "@media (min-width: 761px) and (max-width: 1024px)": {
@@ -312,7 +312,7 @@ const styles = css.create({
     borderRadius: radii.md,
   },
   folderRowActive: {
-    backgroundColor: colors.tag,
+    backgroundColor: colors.selection,
   },
   newFolder: {
     display: "flex",
@@ -320,7 +320,7 @@ const styles = css.create({
     gap: spacing[2],
     marginTop: spacing[4],
     padding: "16px 12px 0",
-    borderTopColor: colors.selection,
+    borderTopColor: colors.border,
     borderTopStyle: "solid",
     borderTopWidth: 1,
     color: colors.primary,

@@ -52,7 +52,7 @@ export const ActionLink = ({
 const styles = css.create({
   base: {
     display: "flex",
-    minHeight: 48,
+    minHeight: 36,
     alignItems: "center",
     justifyContent: "center",
     borderStyle: "solid",
@@ -69,6 +69,7 @@ const styles = css.create({
   },
   label: {
     fontWeight: "700",
+    lineHeight: 1.25,
     textAlign: "center",
   },
   fullWidthOnMobile: {
@@ -123,12 +124,13 @@ const labelVariantStyles = css.create({
 
 const sizeStyles = css.create({
   sm: {
-    minHeight: 40,
+    minHeight: 36,
     paddingBlock: spacing[2],
     paddingInline: spacing[4],
   },
   lg: {
-    paddingBlock: spacing[3],
-    paddingInline: spacing[6],
+    minHeight: 36,
+    paddingBlock: spacing[2],
+    paddingInline: spacing[4],
   },
 });

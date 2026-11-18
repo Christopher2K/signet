@@ -100,7 +100,7 @@ const styles = css.create({
       default: "center",
       "@media (max-width: 600px)": "flex-end",
     },
-    backgroundColor: "rgba(60, 55, 68, 0.6)",
+    backgroundColor: "rgba(46, 38, 32, 0.64)",
     bottom: 0,
     display: "flex",
     justifyContent: "center",
@@ -149,7 +149,11 @@ const styles = css.create({
   close: {
     alignItems: "center",
     alignSelf: "flex-start",
-    backgroundColor: "transparent",
+    backgroundColor: {
+      default: "transparent",
+      ":hover": colors.surfaceAlt,
+      ":active": colors.selection,
+    },
     borderColor: "transparent",
     borderRadius: radii.md,
     color: colors.text,
@@ -157,6 +161,19 @@ const styles = css.create({
     display: "flex",
     height: 36,
     justifyContent: "center",
+    "@media (pointer: fine)": {
+      boxShadow: {
+        default: "none",
+        ":focus-visible": `0 0 0 4px ${colors.focusHalo}`,
+      },
+      outlineColor: colors.focusRing,
+      outlineOffset: 0,
+      outlineStyle: "solid",
+      outlineWidth: {
+        default: 0,
+        ":focus-visible": 2,
+      },
+    },
     padding: 0,
     width: 36,
   },

@@ -56,6 +56,13 @@ export const Disabled: Story = {
   },
 };
 
+export const SecondaryDisabled: Story = {
+  args: {
+    disabled: true,
+    variant: "secondary",
+  },
+};
+
 const styles = css.create({
   canvas: {
     alignItems: "flex-start",
