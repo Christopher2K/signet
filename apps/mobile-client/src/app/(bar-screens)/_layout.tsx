@@ -14,6 +14,8 @@ const AppLayout = () => {
       backgroundColor={theme.surface}
       blurEffect="systemDefault"
       iconColor={{ default: theme.textSecondary, selected: theme.primary }}
+      indicatorColor={theme.selection}
+      badgeBackgroundColor="#FFFFFF"
       labelStyle={{
         default: {
           color: theme.textSecondary,
@@ -28,6 +30,7 @@ const AppLayout = () => {
         },
       }}
       minimizeBehavior="never"
+      rippleColor={theme.selection}
       tintColor={theme.primary}
     >
       <NativeTabs.Trigger name="(library)">
