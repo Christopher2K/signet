@@ -1,0 +1,106 @@
+diff --git a/build/community/menu/MenuView.android.js b/build/community/menu/MenuView.android.js
+index 56dc3a9358bbfbcef354dc6e84b2ceeeac2315a6..aec06e4e309f69393072bfc05e34d16ca1b420f3 100644
+--- a/build/community/menu/MenuView.android.js
++++ b/build/community/menu/MenuView.android.js
+@@ -234,7 +234,7 @@ function MenuActionItem({ action, shape, onPressAction, dismissAll, destructiveC
+  * a leading icon. `MenuView.title` is also unused on Android since Material
+  * `DropdownMenu` has no title slot.
+  */ export function MenuView(props) {
+-    const { ref, actions, colorScheme, onPressAction, onOpenMenu, onCloseMenu, shouldOpenOnLongPress, style, children, testID } = props;
++    const { ref, actions, colorScheme, seedColor, colorOverrides, onPressAction, onOpenMenu, onCloseMenu, shouldOpenOnLongPress, style, children, testID } = props;
+     const [expanded, setExpanded] = React.useState(false);
+     // Mirror `expanded` into a ref and flip it eagerly inside the callbacks so a
+     // second call within the same React tick is a no-op (the state update is
+@@ -267,6 +267,8 @@ function MenuActionItem({ action, shape, onPressAction, dismissAll, destructiveC
+         testID: testID,
+         children: /*#__PURE__*/ _jsx(Host, {
+             colorScheme: colorScheme,
++            seedColor: seedColor,
++            colorOverrides: colorOverrides,
+             matchContents: true,
+             children: /*#__PURE__*/ _jsxs(Box, {
+                 children: [
+diff --git a/build/community/menu/types.d.ts b/build/community/menu/types.d.ts
+index 4112bad27a3137f0112a42fcfd367c7a6f5b94b4..473decd11dd13812738fc5032be2a2b1354f5ae6 100644
+--- a/build/community/menu/types.d.ts
++++ b/build/community/menu/types.d.ts
+@@ -1,6 +1,7 @@
+ import type { ReactNode } from 'react';
+ import type { ColorSchemeName, ColorValue, ImageSourcePropType, StyleProp, ViewStyle } from 'react-native';
+ import type { SFSymbol } from 'sf-symbols-typescript';
++import type { MaterialColors } from '../../jetpack-compose/colors';
+ /**
+  * Visual and behavioral attributes of a menu action.
+  * Compatible with `@react-native-menu/menu`.
+@@ -118,6 +119,16 @@ export interface MenuComponentProps {
+      * @platform android
+      */
+     colorScheme?: ColorSchemeName;
++    /**
++     * Seed color used to generate the menu's Material 3 palette.
++     * @platform android
++     */
++    seedColor?: ColorValue;
++    /**
++     * Material 3 color roles that replace the matching roles of the menu palette.
++     * @platform android
++     */
++    colorOverrides?: Partial<MaterialColors>;
+     /**
+      * Menu title shown at the top of the menu.
+      * @platform ios
+diff --git a/src/community/menu/MenuView.android.tsx b/src/community/menu/MenuView.android.tsx
+index 8f84ffc5251f3bd5ea4b0667e156d73e98d31cde..a250902cbac30e56f52dbb9e34a171760de252aa 100644
+--- a/src/community/menu/MenuView.android.tsx
++++ b/src/community/menu/MenuView.android.tsx
+@@ -252,6 +252,8 @@ export function MenuView(props: MenuComponentProps & { ref?: React.Ref<MenuCompo
+     ref,
+     actions,
+     colorScheme,
++    seedColor,
++    colorOverrides,
+     onPressAction,
+     onOpenMenu,
+     onCloseMenu,
+@@ -286,7 +288,11 @@ export function MenuView(props: MenuComponentProps & { ref?: React.Ref<MenuCompo
+ 
+   return (
+     <View style={style} testID={testID}>
+-      <Host colorScheme={colorScheme} matchContents>
++      <Host
++        colorScheme={colorScheme}
++        seedColor={seedColor}
++        colorOverrides={colorOverrides}
++        matchContents>
+         <Box>
+           <RNHostView matchContents>
+             <Pressable
+diff --git a/src/community/menu/types.tsx b/src/community/menu/types.tsx
+index 067ffe5dfd32086013b5dd56b5316ecbf4522fd0..7286d74a5f5f8093d1e284912c747927a6e4357c 100644
+--- a/src/community/menu/types.tsx
++++ b/src/community/menu/types.tsx
+@@ -7,6 +7,7 @@ import type {
+   ViewStyle,
+ } from 'react-native';
+ import type { SFSymbol } from 'sf-symbols-typescript';
++import type { MaterialColors } from '../../jetpack-compose/colors';
+ 
+ /**
+  * Visual and behavioral attributes of a menu action.
+@@ -130,6 +131,16 @@ export interface MenuComponentProps {
+    * @platform android
+    */
+   colorScheme?: ColorSchemeName;
++  /**
++   * Seed color used to generate the menu's Material 3 palette.
++   * @platform android
++   */
++  seedColor?: ColorValue;
++  /**
++   * Material 3 color roles that replace the matching roles of the menu palette.
++   * @platform android
++   */
++  colorOverrides?: Partial<MaterialColors>;
+   /**
+    * Menu title shown at the top of the menu.
+    * @platform ios

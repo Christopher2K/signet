@@ -21,21 +21,26 @@ export const nativeNavigationTitleStyle = {
   fontWeight: "700",
 } as const satisfies TextStyle;
 
+/** Hex color accepted by native styling APIs. */
+type NativeColor = `#${string}`;
+
 /** Semantic native colors resolved from the active color scheme. */
 export type NativeTheme = {
   dark: boolean;
-  background: string;
-  surface: string;
-  surfaceAlt: string;
-  text: string;
-  textSecondary: string;
-  textMuted: string;
-  border: string;
-  primary: string;
-  onPrimary: string;
-  accent: string;
-  logoBack: string;
-  danger: string;
+  background: NativeColor;
+  surface: NativeColor;
+  surfaceAlt: NativeColor;
+  text: NativeColor;
+  textSecondary: NativeColor;
+  textMuted: NativeColor;
+  border: NativeColor;
+  primary: NativeColor;
+  onPrimary: NativeColor;
+  selection: NativeColor;
+  onSelection: NativeColor;
+  accent: NativeColor;
+  logoBack: NativeColor;
+  danger: NativeColor;
 };
 
 const lightTheme: NativeTheme = {
@@ -49,6 +54,8 @@ const lightTheme: NativeTheme = {
   border: "#B08350",
   primary: "#C2410C",
   onPrimary: "#FDF6EE",
+  selection: "#F2C9A4",
+  onSelection: "#2E2620",
   accent: "#7C2D12",
   logoBack: "#F2C9A4",
   danger: "#B42318",
@@ -65,6 +72,8 @@ const darkTheme: NativeTheme = {
   border: "#57493C",
   primary: "#F97316",
   onPrimary: "#1C1510",
+  selection: "#7C2D12",
+  onSelection: "#FDF6EE",
   accent: "#F2C9A4",
   logoBack: "#57493C",
   danger: "#F97066",

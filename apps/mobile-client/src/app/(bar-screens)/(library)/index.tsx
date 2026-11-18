@@ -1,8 +1,11 @@
+import type { MenuAction } from "@expo/ui/community/menu";
 import type { Bookmark } from "@signet/api";
 import {
+  bookmarkDensities,
   formatBookmarkDate,
   getBookmarkCardModel,
   getBookmarkError,
+  isBookmarkDensity,
 } from "@signet/core/bookmarks";
 import { useBookmarkDensity, useBookmarks } from "@signet/core/bookmarks/react";
 import { BookmarkCard, spacing, Typography } from "@signet/design-system";
@@ -13,16 +16,17 @@ import {
 import { useLocale, useTranslation } from "@signet/locale/react";
 import { useRouter } from "expo-router";
 import * as WebBrowser from "expo-web-browser";
+import { DotsThreeIcon } from "phosphor-react-native/src/icons/DotsThree";
 import { PlusIcon } from "phosphor-react-native/src/icons/Plus";
-import { Alert, RefreshControl, StyleSheet, View } from "react-native";
+import { Alert, RefreshControl, StyleSheet } from "react-native";
 import Animated, {
   useAnimatedScrollHandler,
   useSharedValue,
 } from "react-native-reanimated";
 import { css, html } from "react-strict-dom";
-import { DensityToggle } from "../../../features/library/components/density-toggle";
 import { LibraryState } from "../../../features/library/components/library-state";
 import { TopNavigationBar } from "../../../features/navigation/components/top-navigation-bar";
+import type { TopNavigationBarAction } from "../../../features/navigation/components/top-navigation-bar-action";
 
 const LibraryScreen = () => {
   const router = useRouter();
@@ -82,35 +86,50 @@ const LibraryScreen = () => {
     formattedCount: new Intl.NumberFormat(locale).format(bookmarks.length),
   });
 
+  const densityActions = bookmarkDensities.map(
+    (option): MenuAction => ({
+      id: option,
+      state: option === density ? "on" : "off",
+      title: t(`library.density.${option}`),
+      titleColor: theme.accent,
+    }),
+  );
+
+  const newBookmarkAction: TopNavigationBarAction = {
+    accessibilityHint: t("navigation.createBookmarkHint"),
+    accessibilityLabel: t("navigation.newBookmark"),
+    icon: PlusIcon,
+    onPress: handleCreate,
+    prominent: true,
+  };
+
+  const densityAction: TopNavigationBarAction = {
+    accessibilityLabel: t("library.density.label"),
+    icon: DotsThreeIcon,
+    menu: {
+      actions: densityActions,
+      onPressAction: ({ nativeEvent }) => {
+        if (isBookmarkDensity(nativeEvent.event)) {
+          setDensity(nativeEvent.event);
+        }
+      },
+      title: t("library.density.label"),
+    },
+  };
+
+  const trailingActions: TopNavigationBarAction[] =
+    bookmarks.length > 0
+      ? [densityAction, newBookmarkAction]
+      : [newBookmarkAction];
+
   return (
     <>
       <TopNavigationBar
         largeTitle
         scrollY={scrollY}
         title={t("navigation.library")}
-        trailingActions={[
-          {
-            accessibilityHint: t("navigation.createBookmarkHint"),
-            accessibilityLabel: t("navigation.newBookmark"),
-            icon: PlusIcon,
-            onPress: handleCreate,
-            prominent: true,
-          },
-        ]}
+        trailingActions={trailingActions}
       />
-      {bookmarks.length > 0 ? (
-        <View
-          style={[
-            styles.toolbar,
-            {
-              backgroundColor: theme.background,
-              borderBottomColor: theme.border,
-            },
-          ]}
-        >
-          <DensityToggle density={density} onChange={setDensity} />
-        </View>
-      ) : null}
       <Animated.FlatList
         contentContainerStyle={[
           styles.content,
@@ -177,12 +196,6 @@ const styles = StyleSheet.create({
   },
   header: {
     marginBottom: nativeSpacing[2],
-  },
-  toolbar: {
-    alignItems: "flex-end",
-    borderBottomWidth: 1,
-    paddingHorizontal: nativeSpacing[4],
-    paddingVertical: nativeSpacing[2],
   },
 });
 

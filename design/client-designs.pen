@@ -16360,7 +16360,7 @@
                                   "fill": "#6E5F53",
                                   "textGrowth": "fixed-width",
                                   "width": "fill_container",
-                                  "content": "1–2 slots · icon tint --primary · prominent tinted fill is inset 4 within the full target (#FBEEE1 light / ink dark).",
+                                  "content": "1–2 slots · icon tint --primary · a slot may open a native popup menu with native typography, checkmark selection, and dismissal · prominent tinted fill is inset 4 within the full target (#FBEEE1 light / ink dark).",
                                   "fontFamily": "IBM Plex Mono",
                                   "fontSize": 12,
                                   "fontWeight": "normal"
@@ -17839,7 +17839,7 @@
                           "id": "fuzAH",
                           "name": "VariantLabel",
                           "fill": "#7C2D12",
-                          "content": "V6 · Two trailing actions — second slot reserved",
+                          "content": "V6 · DotsThree menu + primary action — Library",
                           "fontFamily": "IBM Plex Mono",
                           "fontSize": 12,
                           "fontWeight": "700"
@@ -17911,24 +17911,7 @@
                                           "cornerRadius": 8,
                                           "layout": "vertical",
                                           "justifyContent": "center",
-                                          "alignItems": "center",
-                                          "children": [
-                                            {
-                                              "type": "path",
-                                              "id": "LwLc9",
-                                              "name": "Phosphor-Regular-CaretLeft",
-                                              "geometry": "M165.66 202.34a8 8 0 0 1-11.32 11.32l-80-80a8 8 0 0 1 0-11.32l80-80a8 8 0 0 1 11.32 11.32l-74.35 74.34z",
-                                              "viewBox": [
-                                                0,
-                                                0,
-                                                256,
-                                                256
-                                              ],
-                                              "fill": "#C2410C",
-                                              "width": 24,
-                                              "height": 24
-                                            }
-                                          ]
+                                          "alignItems": "center"
                                         },
                                         {
                                           "type": "frame",
@@ -17946,40 +17929,12 @@
                                               "fill": "#2E2620",
                                               "textGrowth": "fixed-width",
                                               "width": "fill_container",
-                                              "content": "Edit bookmark",
+                                              "content": "Library",
                                               "lineHeight": 1.3,
                                               "textAlign": "center",
                                               "fontFamily": "IBM Plex Mono",
                                               "fontSize": 20,
                                               "fontWeight": "700"
-                                            }
-                                          ]
-                                        },
-                                        {
-                                          "type": "frame",
-                                          "id": "x4TPT5",
-                                          "name": "TrailSlot",
-                                          "width": 44,
-                                          "height": 44,
-                                          "cornerRadius": 8,
-                                          "layout": "vertical",
-                                          "justifyContent": "center",
-                                          "alignItems": "center",
-                                          "children": [
-                                            {
-                                              "type": "path",
-                                              "id": "VEqy1",
-                                              "name": "Phosphor-Regular-Check",
-                                              "geometry": "M229.66 77.66l-128 128a8 8 0 0 1-11.32 0l-56-56a8 8 0 0 1 11.32-11.32l50.34 50.35 122.34-122.35a8 8 0 0 1 11.32 11.32z",
-                                              "viewBox": [
-                                                0,
-                                                0,
-                                                256,
-                                                256
-                                              ],
-                                              "fill": "#C2410C",
-                                              "width": 24,
-                                              "height": 24
                                             }
                                           ]
                                         },
@@ -18010,6 +17965,30 @@
                                               "height": 24
                                             }
                                           ]
+                                        },
+                                        {
+                                          "id": "u3n6M7",
+                                          "type": "ref",
+                                          "ref": "I9EG0X",
+                                          "name": "NewBookmarkAction",
+                                          "width": 44,
+                                          "height": 44,
+                                          "fill": "#FFFFFF",
+                                          "stroke": "#B08350",
+                                          "cornerRadius": 8,
+                                          "strokeWidth": 0,
+                                          "descendants": {
+                                            "SK5h9": {
+                                              "fill": "#FBEEE1"
+                                            },
+                                            "xXO6g": {
+                                              "x": 6,
+                                              "y": 6,
+                                              "width": 24,
+                                              "height": 24,
+                                              "fill": "#C2410C"
+                                            }
+                                          }
                                         }
                                       ]
                                     }
@@ -18077,24 +18056,7 @@
                                           "cornerRadius": 8,
                                           "layout": "vertical",
                                           "justifyContent": "center",
-                                          "alignItems": "center",
-                                          "children": [
-                                            {
-                                              "type": "path",
-                                              "id": "HUSpq",
-                                              "name": "Phosphor-Regular-CaretLeft",
-                                              "geometry": "M165.66 202.34a8 8 0 0 1-11.32 11.32l-80-80a8 8 0 0 1 0-11.32l80-80a8 8 0 0 1 11.32 11.32l-74.35 74.34z",
-                                              "viewBox": [
-                                                0,
-                                                0,
-                                                256,
-                                                256
-                                              ],
-                                              "fill": "#F97316",
-                                              "width": 24,
-                                              "height": 24
-                                            }
-                                          ]
+                                          "alignItems": "center"
                                         },
                                         {
                                           "type": "frame",
@@ -18112,40 +18074,12 @@
                                               "fill": "#FDF6EE",
                                               "textGrowth": "fixed-width",
                                               "width": "fill_container",
-                                              "content": "Edit bookmark",
+                                              "content": "Library",
                                               "lineHeight": 1.3,
                                               "textAlign": "center",
                                               "fontFamily": "IBM Plex Mono",
                                               "fontSize": 20,
                                               "fontWeight": "700"
-                                            }
-                                          ]
-                                        },
-                                        {
-                                          "type": "frame",
-                                          "id": "NTQdm",
-                                          "name": "TrailSlot",
-                                          "width": 44,
-                                          "height": 44,
-                                          "cornerRadius": 8,
-                                          "layout": "vertical",
-                                          "justifyContent": "center",
-                                          "alignItems": "center",
-                                          "children": [
-                                            {
-                                              "type": "path",
-                                              "id": "ydhUA",
-                                              "name": "Phosphor-Regular-Check",
-                                              "geometry": "M229.66 77.66l-128 128a8 8 0 0 1-11.32 0l-56-56a8 8 0 0 1 11.32-11.32l50.34 50.35 122.34-122.35a8 8 0 0 1 11.32 11.32z",
-                                              "viewBox": [
-                                                0,
-                                                0,
-                                                256,
-                                                256
-                                              ],
-                                              "fill": "#F97316",
-                                              "width": 24,
-                                              "height": 24
                                             }
                                           ]
                                         },
@@ -18176,6 +18110,30 @@
                                               "height": 24
                                             }
                                           ]
+                                        },
+                                        {
+                                          "id": "tFeHk",
+                                          "type": "ref",
+                                          "ref": "I9EG0X",
+                                          "name": "NewBookmarkAction",
+                                          "width": 44,
+                                          "height": 44,
+                                          "fill": "#241E19",
+                                          "stroke": "#57493C",
+                                          "cornerRadius": 8,
+                                          "strokeWidth": 0,
+                                          "descendants": {
+                                            "SK5h9": {
+                                              "fill": "#2E2620"
+                                            },
+                                            "xXO6g": {
+                                              "x": 6,
+                                              "y": 6,
+                                              "width": 24,
+                                              "height": 24,
+                                              "fill": "#F97316"
+                                            }
+                                          }
                                         }
                                       ]
                                     }
@@ -20345,7 +20303,7 @@
                       "fill": "#6E5F53",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
-                      "content": "Behavior — The bar is one safe-area-aware surface: the surface extends behind the status bar, slots sit inside the bar, and the divider is the only separation from content. The title is a single line with an ellipsis; it never wraps and never pushes the slots. Navigation uses CaretLeft (chevron-left idiom) with the accessibility label Back; modal forms replace it with a leading Cancel text action so dismissal reads differently from navigation. Visible feedback fills are inset 4 inside unchanged accessibility targets. Pressed feedback uses surface-alt on standard targets and deepens prominent targets from surface-alt to logoBack, always with r-8; text-action feedback adds 8 horizontal padding around the label. Never use a scale, opacity, or colour-shift animation. RTL mirrors the slot row and swaps CaretLeft for CaretRight. Reduce Motion: the large title changes height only, with no fade or slide.",
+                      "content": "Behavior — The bar is one safe-area-aware surface: the surface extends behind the status bar, slots sit inside the bar, and the divider is the only separation from content. The title is a single line with an ellipsis; it never wraps and never pushes the slots. Navigation uses CaretLeft (chevron-left idiom) with the accessibility label Back; modal forms replace it with a leading Cancel text action so dismissal reads differently from navigation. Visible feedback fills are inset 4 inside unchanged accessibility targets. Pressed feedback uses surface-alt on standard targets and deepens prominent targets from surface-alt to logoBack, always with r-8; text-action feedback adds 8 horizontal padding around the label. A trailing action may open a platform-native popup menu: on iOS the SwiftUI menu uses Card size as its heading, while Android uses the Compose dropdown menu; the active density is checkmarked and menu typography and dismissal stay native. Never use a scale, opacity, or colour-shift animation. RTL mirrors the slot row and swaps CaretLeft for CaretRight. Reduce Motion: the large title changes height only, with no fade or slide.",
                       "fontFamily": "IBM Plex Mono",
                       "fontSize": 12,
                       "fontWeight": "normal"
@@ -20357,7 +20315,7 @@
                       "fill": "#6E5F53",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
-                      "content": "Platform — iOS: 44pt compact bar, 60pt modal-form bar, or 92pt expanded large title; centred title, 44pt targets with 36pt visible fills, and a 16pt modal horizontal inset aligned with the form content. Android: 56dp bar, 48dp targets with 40dp visible fills, leading title at x=60 with a leading action or x=16 without one; status inset comes from the window insets and there is no large title. Modal dismissal is Cancel text on iOS and a Phosphor X icon target labelled Cancel on Android. On both platforms keep headerShown false in Expo Router and render this bar once per stack screen so the surface never double-pads the safe area.",
+                      "content": "Platform — iOS: 44pt compact bar, 60pt modal-form bar, or 92pt expanded large title; centred title, 44pt targets with 36pt visible fills, and a 16pt modal horizontal inset aligned with the form content. Android: 56dp bar, 48dp targets with 40dp visible fills, leading title at x=60 with a leading action or x=16 without one; status inset comes from the window insets and there is no large title. Modal dismissal is Cancel text on iOS and a Phosphor X icon target labelled Cancel on Android. Density uses the platform-native popup menu from a DotsThree trailing action rather than custom popup chrome. On both platforms keep headerShown false in Expo Router and render this bar once per stack screen so the surface never double-pads the safe area.",
                       "fontFamily": "IBM Plex Mono",
                       "fontSize": 12,
                       "fontWeight": "normal"
@@ -20369,7 +20327,7 @@
                       "fill": "#6E5F53",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
-                      "content": "Copy — all strings are localized (en / fr) through @signet/locale; samples use navigation.library, navigation.account, navigation.newBookmark, navigation.editBookmark, actions.cancel, actions.save. Icons are decorative duplicates of the label: give every target an accessibilityLabel and mark the icon hidden from accessibility.",
+                      "content": "Copy — all strings are localized (en / fr) through @signet/locale; samples use navigation.library, navigation.account, navigation.newBookmark, navigation.editBookmark, library.density.*, actions.cancel, actions.save. Icons are decorative duplicates of the label: give every target an accessibilityLabel and mark the icon hidden from accessibility.",
                       "fontFamily": "IBM Plex Mono",
                       "fontSize": 12,
                       "fontWeight": "normal"
@@ -85819,7 +85777,7 @@
                       "fill": "#6E5F53",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
-                      "content": "Native iOS + Android · 390 × 844 · Light / Dark · §3.8 custom topbar: 92 px expanded large title on Library, 60 px modal bar on the forms · iOS Cancel 15/400 in danger, Android 48 px Phosphor X target labelled Cancel · Save stays in the bottom dock, never the bar · 48 px controls · Library cards offer three densities from the header segmented control (Image / Cards / ListBullets, medium default, persisted per client): Big 132 px og:image banner, Medium 40 px icon tile, Compact 24 px row with 40 px icon actions · artwork resolves the stored icon, then apple-touch-icon.png, then favicon.ico, so a 16 px favicon is never blown up · Big and Medium pair the saved date with 36 px Open / Edit · IBM Plex Mono canvas · Space Mono 700 titles in production",
+                      "content": "Native iOS + Android · 390 × 844 · Light / Dark · §3.8 custom topbar: 92 px expanded large title on Library, 60 px modal bar on the forms · iOS Cancel 15/400 in danger, Android 48 px Phosphor X target labelled Cancel · Save stays in the bottom dock, never the bar · 48 px controls · Library cards offer three densities from a native topbar popup menu (DotsThree -> Large cards / Medium cards / Compact rows, medium default, persisted per client): Big 132 px og:image banner, Medium 40 px icon tile, Compact 24 px row with 40 px icon actions · artwork resolves the stored icon, then apple-touch-icon.png, then favicon.ico, so a 16 px favicon is never blown up · Big and Medium pair the saved date with 36 px Open / Edit · IBM Plex Mono canvas · Space Mono 700 titles in production",
                       "fontFamily": "IBM Plex Mono",
                       "fontSize": 12,
                       "fontWeight": "normal"
@@ -85979,6 +85937,34 @@
                                               ]
                                             },
                                             {
+                                              "type": "frame",
+                                              "id": "PODqB",
+                                              "name": "DensityMenuAction",
+                                              "width": 44,
+                                              "height": 44,
+                                              "cornerRadius": 8,
+                                              "layout": "vertical",
+                                              "justifyContent": "center",
+                                              "alignItems": "center",
+                                              "children": [
+                                                {
+                                                  "type": "path",
+                                                  "id": "oELMn",
+                                                  "name": "Phosphor-Regular-DotsThree",
+                                                  "geometry": "M140 128a12 12 0 1 1-12-12 12 12 0 0 1 12 12z m56-12a12 12 0 1 0 12 12 12 12 0 0 0-12-12z m-136 0a12 12 0 1 0 12 12 12 12 0 0 0-12-12z",
+                                                  "viewBox": [
+                                                    0,
+                                                    0,
+                                                    256,
+                                                    256
+                                                  ],
+                                                  "fill": "#C2410C",
+                                                  "width": 24,
+                                                  "height": 24
+                                                }
+                                              ]
+                                            },
+                                            {
                                               "id": "rOAl3",
                                               "type": "ref",
                                               "ref": "I9EG0X",
@@ -86026,123 +86012,6 @@
                                               "fontFamily": "IBM Plex Mono",
                                               "fontSize": 32,
                                               "fontWeight": "700"
-                                            }
-                                          ]
-                                        }
-                                      ]
-                                    },
-                                    {
-                                      "type": "frame",
-                                      "id": "CgsTJ",
-                                      "name": "DisplayBar",
-                                      "width": "fill_container",
-                                      "height": 56,
-                                      "fill": "#FDF6EE",
-                                      "stroke": "#B08350",
-                                      "strokeWidth": {
-                                        "bottom": 1
-                                      },
-                                      "padding": [
-                                        8,
-                                        16
-                                      ],
-                                      "justifyContent": "end",
-                                      "alignItems": "center",
-                                      "children": [
-                                        {
-                                          "type": "frame",
-                                          "id": "HZO51",
-                                          "name": "DensityToggle",
-                                          "width": 112,
-                                          "height": 40,
-                                          "cornerRadius": 8,
-                                          "stroke": "#B08350",
-                                          "strokeWidth": 1,
-                                          "gap": 4,
-                                          "padding": 4,
-                                          "alignItems": "center",
-                                          "children": [
-                                            {
-                                              "type": "frame",
-                                              "id": "JkdRB",
-                                              "name": "Option-Big",
-                                              "width": 32,
-                                              "height": 32,
-                                              "cornerRadius": 4,
-                                              "justifyContent": "center",
-                                              "alignItems": "center",
-                                              "children": [
-                                                {
-                                                  "type": "path",
-                                                  "id": "cQjVV",
-                                                  "name": "Phosphor-Regular-Big",
-                                                  "geometry": "M216 40h-176a16 16 0 0 0-16 16v144a16 16 0 0 0 16 16h176a16 16 0 0 0 16-16v-144a16 16 0 0 0-16-16m0 16v102.75l-26.07-26.06a16 16 0 0 0-22.63 0l-20 20-44-44a16 16 0 0 0-22.62 0l-40.68 40.68v-93.37z m-176 116l52-52 80 80h-132z m176 28h-21.37l-36-36 20-20 37.37 37.38z m-72-100a12 12 0 1 1 12 12 12 12 0 0 1-12-12",
-                                                  "viewBox": [
-                                                    0,
-                                                    0,
-                                                    256,
-                                                    256
-                                                  ],
-                                                  "fill": "#6E5F53",
-                                                  "width": 18,
-                                                  "height": 18
-                                                }
-                                              ]
-                                            },
-                                            {
-                                              "type": "frame",
-                                              "id": "Q6vB2V",
-                                              "name": "Option-Medium",
-                                              "width": 32,
-                                              "height": 32,
-                                              "fill": "#FBEEE1",
-                                              "cornerRadius": 4,
-                                              "justifyContent": "center",
-                                              "alignItems": "center",
-                                              "children": [
-                                                {
-                                                  "type": "path",
-                                                  "id": "O9maCw",
-                                                  "name": "Phosphor-Regular-Medium",
-                                                  "geometry": "M184 72h-144a16 16 0 0 0-16 16v112a16 16 0 0 0 16 16h144a16 16 0 0 0 16-16v-112a16 16 0 0 0-16-16m0 128h-144v-112h144z m48-144v120a8 8 0 0 1-16 0v-120h-152a8 8 0 0 1 0-16h152a16 16 0 0 1 16 16",
-                                                  "viewBox": [
-                                                    0,
-                                                    0,
-                                                    256,
-                                                    256
-                                                  ],
-                                                  "fill": "#C2410C",
-                                                  "width": 18,
-                                                  "height": 18
-                                                }
-                                              ]
-                                            },
-                                            {
-                                              "type": "frame",
-                                              "id": "zgpuT",
-                                              "name": "Option-Compact",
-                                              "width": 32,
-                                              "height": 32,
-                                              "cornerRadius": 4,
-                                              "justifyContent": "center",
-                                              "alignItems": "center",
-                                              "children": [
-                                                {
-                                                  "type": "path",
-                                                  "id": "t3M37",
-                                                  "name": "Phosphor-Regular-Compact",
-                                                  "geometry": "M80 64a8 8 0 0 1 8-8h128a8 8 0 0 1 0 16h-128a8 8 0 0 1-8-8m136 56h-128a8 8 0 0 0 0 16h128a8 8 0 0 0 0-16m0 64h-128a8 8 0 0 0 0 16h128a8 8 0 0 0 0-16m-172-132a12 12 0 1 0 12 12 12 12 0 0 0-12-12m0 64a12 12 0 1 0 12 12 12 12 0 0 0-12-12m0 64a12 12 0 1 0 12 12 12 12 0 0 0-12-12",
-                                                  "viewBox": [
-                                                    0,
-                                                    0,
-                                                    256,
-                                                    256
-                                                  ],
-                                                  "fill": "#6E5F53",
-                                                  "width": 18,
-                                                  "height": 18
-                                                }
-                                              ]
                                             }
                                           ]
                                         }
@@ -87026,6 +86895,34 @@
                                               ]
                                             },
                                             {
+                                              "type": "frame",
+                                              "id": "w5O9K",
+                                              "name": "DensityMenuAction",
+                                              "width": 44,
+                                              "height": 44,
+                                              "cornerRadius": 8,
+                                              "layout": "vertical",
+                                              "justifyContent": "center",
+                                              "alignItems": "center",
+                                              "children": [
+                                                {
+                                                  "type": "path",
+                                                  "id": "T9952P",
+                                                  "name": "Phosphor-Regular-DotsThree",
+                                                  "geometry": "M140 128a12 12 0 1 1-12-12 12 12 0 0 1 12 12z m56-12a12 12 0 1 0 12 12 12 12 0 0 0-12-12z m-136 0a12 12 0 1 0 12 12 12 12 0 0 0-12-12z",
+                                                  "viewBox": [
+                                                    0,
+                                                    0,
+                                                    256,
+                                                    256
+                                                  ],
+                                                  "fill": "#F97316",
+                                                  "width": 24,
+                                                  "height": 24
+                                                }
+                                              ]
+                                            },
+                                            {
                                               "id": "iEG5z",
                                               "type": "ref",
                                               "ref": "I9EG0X",
@@ -87073,123 +86970,6 @@
                                               "fontFamily": "IBM Plex Mono",
                                               "fontSize": 32,
                                               "fontWeight": "700"
-                                            }
-                                          ]
-                                        }
-                                      ]
-                                    },
-                                    {
-                                      "type": "frame",
-                                      "id": "J96kzw",
-                                      "name": "DisplayBar",
-                                      "width": "fill_container",
-                                      "height": 56,
-                                      "fill": "#1C1510",
-                                      "stroke": "#57493C",
-                                      "strokeWidth": {
-                                        "bottom": 1
-                                      },
-                                      "padding": [
-                                        8,
-                                        16
-                                      ],
-                                      "justifyContent": "end",
-                                      "alignItems": "center",
-                                      "children": [
-                                        {
-                                          "type": "frame",
-                                          "id": "orBiw",
-                                          "name": "DensityToggle",
-                                          "width": 112,
-                                          "height": 40,
-                                          "cornerRadius": 8,
-                                          "stroke": "#57493C",
-                                          "strokeWidth": 1,
-                                          "gap": 4,
-                                          "padding": 4,
-                                          "alignItems": "center",
-                                          "children": [
-                                            {
-                                              "type": "frame",
-                                              "id": "Q73JRv",
-                                              "name": "Option-Big",
-                                              "width": 32,
-                                              "height": 32,
-                                              "cornerRadius": 4,
-                                              "justifyContent": "center",
-                                              "alignItems": "center",
-                                              "children": [
-                                                {
-                                                  "type": "path",
-                                                  "id": "GoqRB",
-                                                  "name": "Phosphor-Regular-Big",
-                                                  "geometry": "M216 40h-176a16 16 0 0 0-16 16v144a16 16 0 0 0 16 16h176a16 16 0 0 0 16-16v-144a16 16 0 0 0-16-16m0 16v102.75l-26.07-26.06a16 16 0 0 0-22.63 0l-20 20-44-44a16 16 0 0 0-22.62 0l-40.68 40.68v-93.37z m-176 116l52-52 80 80h-132z m176 28h-21.37l-36-36 20-20 37.37 37.38z m-72-100a12 12 0 1 1 12 12 12 12 0 0 1-12-12",
-                                                  "viewBox": [
-                                                    0,
-                                                    0,
-                                                    256,
-                                                    256
-                                                  ],
-                                                  "fill": "#F2C9A4",
-                                                  "width": 18,
-                                                  "height": 18
-                                                }
-                                              ]
-                                            },
-                                            {
-                                              "type": "frame",
-                                              "id": "BWcoy",
-                                              "name": "Option-Medium",
-                                              "width": 32,
-                                              "height": 32,
-                                              "fill": "#241E19",
-                                              "cornerRadius": 4,
-                                              "justifyContent": "center",
-                                              "alignItems": "center",
-                                              "children": [
-                                                {
-                                                  "type": "path",
-                                                  "id": "L535j",
-                                                  "name": "Phosphor-Regular-Medium",
-                                                  "geometry": "M184 72h-144a16 16 0 0 0-16 16v112a16 16 0 0 0 16 16h144a16 16 0 0 0 16-16v-112a16 16 0 0 0-16-16m0 128h-144v-112h144z m48-144v120a8 8 0 0 1-16 0v-120h-152a8 8 0 0 1 0-16h152a16 16 0 0 1 16 16",
-                                                  "viewBox": [
-                                                    0,
-                                                    0,
-                                                    256,
-                                                    256
-                                                  ],
-                                                  "fill": "#F97316",
-                                                  "width": 18,
-                                                  "height": 18
-                                                }
-                                              ]
-                                            },
-                                            {
-                                              "type": "frame",
-                                              "id": "xHbo8",
-                                              "name": "Option-Compact",
-                                              "width": 32,
-                                              "height": 32,
-                                              "cornerRadius": 4,
-                                              "justifyContent": "center",
-                                              "alignItems": "center",
-                                              "children": [
-                                                {
-                                                  "type": "path",
-                                                  "id": "T8XiYG",
-                                                  "name": "Phosphor-Regular-Compact",
-                                                  "geometry": "M80 64a8 8 0 0 1 8-8h128a8 8 0 0 1 0 16h-128a8 8 0 0 1-8-8m136 56h-128a8 8 0 0 0 0 16h128a8 8 0 0 0 0-16m0 64h-128a8 8 0 0 0 0 16h128a8 8 0 0 0 0-16m-172-132a12 12 0 1 0 12 12 12 12 0 0 0-12-12m0 64a12 12 0 1 0 12 12 12 12 0 0 0-12-12m0 64a12 12 0 1 0 12 12 12 12 0 0 0-12-12",
-                                                  "viewBox": [
-                                                    0,
-                                                    0,
-                                                    256,
-                                                    256
-                                                  ],
-                                                  "fill": "#F2C9A4",
-                                                  "width": 18,
-                                                  "height": 18
-                                                }
-                                              ]
                                             }
                                           ]
                                         }
