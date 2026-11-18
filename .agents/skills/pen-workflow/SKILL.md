@@ -69,13 +69,13 @@ The document root holds **two top-level zone frames** and nothing else. Each zon
 - Both zones are at `x=0`; Zone 01 `y=0`, Zone 02 `y = Zone 01 height + 48`. Recompute Zone 02's `y` after any edit that changes Zone 01's height.
 - Zones use `layout:"vertical"`, `gap:48`, `padding:48`, `cornerRadius:16`, `stroke #B08350 1px`. `Introduction` and `Artboard grid` are `width:"fill_container"`.
 - Grid = horizontal frame, `gap:48`; columns are `1536` wide, `layout:"vertical"`, `gap:48` (the widest artboard, §43, is 1536). Each column starts with a labelled header bar, then its artboards in § order.
-- Column assignment is **height-balanced in § order**: minimax linear partition over resolved heights plus 48px gutters, so no column towers over the others. Zone 01 uses three fixed groups (§0–§5 / §36 / §44); Zone 02 uses eight computed columns. Every column header and index heading carries its § range and sheet count.
+- Column assignment is **height-balanced in § order**: minimax linear partition over resolved heights plus 48px gutters, so no column towers over the others. Zone 01 uses three fixed groups (§0–§5 + §46–§48 / §36 + §49–§51 / §44 + §52–§54); Zone 02 uses eight computed columns. Every column header and index heading carries its § range and sheet count.
 - Add a new sheet to the zone it belongs to and to the column whose § range covers it; rebalance the columns afterwards. Never put an artboard directly under `document`.
 - Flexbox handles stacking, so do not hand-set `y` on artboards. After edits re-read `ctx.bounds` to confirm columns fit their zone, Zone 02 clears Zone 01, and `c.problems` is clean inside the new/changed nodes.
 
-### Current inventory (§0–§45 — ids are pen-generated, re-lookup with `Get`)
+### Current inventory (§0–§54 — ids are pen-generated, re-lookup with `Get`)
 
-All 46 artboards are nested in the two zones above. Re-read bounds after every edit; heights drift as content changes.
+All 55 artboards are nested in the two zones above. Re-read bounds after every edit; heights drift as content changes.
 
 | Frame | id | Notes |
 |---|---|---|
@@ -96,6 +96,7 @@ All 46 artboards are nested in the two zones above. Re-read bounds after every e
 | §43 M1 Marketing Landing | `YROcC` | Width exception (`1536`); public promotional page, desktop + mobile |
 | §44 Native Custom Topbar — Anatomy, variants, states | `qcZbe` | Reusable native topbar anatomy; lives in ZONE 01 |
 | §45 Safari iOS Quick Save | `FHJnp` | Extension quick-save flow |
+| §46–§54 Logo — The Stack | ZONE 01 | Nine logo-guideline sheets imported from `design/logo.pen`, recoloured to Ink & Amber: §46 cover, §47 optical masters, §48 colour, §49 scaling, §50 lockups, §51 clear space, §52 app icons, §53 misuse, §54 in use |
 
 ## 4. Always refer to `DESIGN.md` — never deviate silently
 

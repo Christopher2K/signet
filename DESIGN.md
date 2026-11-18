@@ -159,8 +159,9 @@ Base unit 4px in `design/client-designs.pen` §4. The canvas uses literal 4pt va
 
 ### 3.4 Logo — The Stack
 
-**Source of truth:** [`design/logo.pen`](design/logo.pen) — full guidelines (construction, colour, scaling, lockups, clear space, app icons, misuse, in-use references). This section is the summary; the `.pen` file decides details.
+**Source of truth:** `design/client-designs.pen` §46–§54 — full guidelines imported from `design/logo.pen` (construction, colour, scaling, lockups, clear space, app icons, misuse, in-use references), recoloured to Ink & Amber. This section is the summary; the canonical sheets decide details. `design/logo.pen` remains a standalone, equally recoloured mirror.
 
+- **Canvas sheets:** §46 cover · §47 optical masters · §48 colour · §49 scaling · §50 lockups · §51 clear space & minimum size · §52 app icons & favicons · §53 misuse · §54 in use (ZONE 01, three height-balanced columns).
 - **Mark:** three bookmark tabs stepped down and across, `peach #F2C9A4 → ember #C2410C → rust #7C2D12` back to front (one collection, every client; the deepest tone is the one you touch). Front tab is always the deepest colour at every size.
 - **Optical masters — pick by rendered size (CSS px), never scale across ranges:**
 
@@ -239,7 +240,7 @@ Safari iOS quick save lives in `design/client-designs.pen` §45. The extension p
 SPECIFICATION.md          product scope (source)
 DESIGN.md                 this file — design system
 design/client-designs.pen  all clients — tokens, type, spacing, M1 marketing, screens (iterative)
-design/logo.pen            logo guidelines — The Stack (§3.4): masters, colour, scaling, lockups, icons
+design/logo.pen            standalone mirror of the logo guidelines — The Stack (§3.4); canonical in client-designs.pen §46–§54
 design/native-animated-splash-proposal.md  native launch motion proposal and QA contract (§3.7)
 design/web/web-pages-map.md  web pages, dialogs, states, sitemap
 ```
