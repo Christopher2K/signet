@@ -90,7 +90,6 @@ export const mobile = {
   },
   navigation: {
     account: "Account",
-    createBookmarkHint: "Create a bookmark",
     editBookmark: "Edit Bookmark",
     library: "Library",
     newBookmark: "New Bookmark",

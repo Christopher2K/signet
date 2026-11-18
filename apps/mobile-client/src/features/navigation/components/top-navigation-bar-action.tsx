@@ -3,15 +3,25 @@ import {
   MenuView,
   type NativeActionEvent,
 } from "@expo/ui/community/menu";
+import { colors, Typography } from "@signet/design-system";
 import {
-  nativeFontFamily,
-  nativeSpacing,
+  type NativeTheme,
   useNativeTheme,
 } from "@signet/design-system/native-theme";
 import type { Icon } from "phosphor-react-native";
 import { CaretLeftIcon } from "phosphor-react-native/src/icons/CaretLeft";
 import { CaretRightIcon } from "phosphor-react-native/src/icons/CaretRight";
-import { I18nManager, Pressable, StyleSheet, Text, View } from "react-native";
+import { type ReactNode, useEffect } from "react";
+import { I18nManager, Pressable, StyleSheet } from "react-native";
+import Animated, {
+  Easing,
+  interpolateColor,
+  useAnimatedStyle,
+  useReducedMotion,
+  useSharedValue,
+  withTiming,
+} from "react-native-reanimated";
+import { css, html } from "react-strict-dom";
 
 /** Native menu presented from a top navigation bar icon action. */
 export type TopNavigationBarMenuAction = {
@@ -26,8 +36,6 @@ export type TopNavigationBarMenuAction = {
 type TopNavigationBarActionChrome = {
   /** Translated accessible action name. */
   accessibilityLabel: string;
-  /** Translated accessible result description. */
-  accessibilityHint?: string;
   /** Semantic action color. */
   tone?: "primary" | "danger";
 };
@@ -83,6 +91,85 @@ export const createBackNavigationAction = ({
   onPress,
 });
 
+type ActionTone = "primary" | "danger" | "disabled";
+
+const resolveActionTone = (action: TopNavigationBarAction): ActionTone => {
+  if (action.disabled) {
+    return "disabled";
+  }
+
+  if (action.tone === "danger") {
+    return "danger";
+  }
+
+  return "primary";
+};
+
+const resolveActionColor = (tone: ActionTone, theme: NativeTheme) => {
+  if (tone === "disabled") {
+    return theme.textMuted;
+  }
+
+  if (tone === "danger") {
+    return theme.danger;
+  }
+
+  return theme.primary;
+};
+
+const feedbackTiming = {
+  duration: 150,
+  easing: Easing.out(Easing.cubic),
+};
+
+type TopNavigationBarFeedbackProps = {
+  children: ReactNode;
+  pressed: boolean;
+  prominent: boolean;
+  size: number;
+};
+
+const TopNavigationBarFeedback = ({
+  children,
+  pressed,
+  prominent,
+  size,
+}: TopNavigationBarFeedbackProps) => {
+  const theme = useNativeTheme();
+  const reduceMotion = useReducedMotion();
+  const progress = useSharedValue(0);
+  const restColor = prominent ? theme.surfaceAlt : theme.surface;
+  const pressedColor = prominent ? theme.logoBack : theme.surfaceAlt;
+
+  useEffect(() => {
+    const target = pressed ? 1 : 0;
+    progress.value = reduceMotion ? target : withTiming(target, feedbackTiming);
+  }, [pressed, progress, reduceMotion]);
+
+  const animatedStyle = useAnimatedStyle(
+    () => ({
+      backgroundColor: interpolateColor(
+        progress.value,
+        [0, 1],
+        [restColor, pressedColor],
+      ),
+    }),
+    [pressedColor, restColor],
+  );
+
+  return (
+    <Animated.View
+      style={[
+        nativeStyles.feedback,
+        { height: size - 8, minWidth: size - 8 },
+        animatedStyle,
+      ]}
+    >
+      {children}
+    </Animated.View>
+  );
+};
+
 /** Top navigation bar action button properties. */
 type TopNavigationBarActionButtonProps = {
   action: TopNavigationBarAction;
@@ -94,45 +181,25 @@ export const TopNavigationBarActionButton = ({
   size,
 }: TopNavigationBarActionButtonProps) => {
   const theme = useNativeTheme();
-  const color = action.disabled
-    ? theme.textMuted
-    : action.tone === "danger"
-      ? theme.danger
-      : theme.primary;
+  const tone = resolveActionTone(action);
+  const color = resolveActionColor(tone, theme);
   const IconComponent = action.icon;
   const prominent = action.menu ? false : action.prominent;
-  const visualSize = size - 8;
 
   const renderVisual = (pressed: boolean) => (
-    <View
-      style={[
-        styles.feedbackTarget,
-        { height: visualSize, minWidth: visualSize },
-        IconComponent ? { width: visualSize } : styles.textFeedbackTarget,
-        prominent && {
-          backgroundColor: pressed ? theme.logoBack : theme.surfaceAlt,
-        },
-        pressed && !prominent && { backgroundColor: theme.surfaceAlt },
-      ]}
+    <TopNavigationBarFeedback
+      pressed={pressed}
+      prominent={prominent ?? false}
+      size={size}
     >
       {IconComponent ? (
-        <View
-          accessibilityElementsHidden
-          accessible={false}
-          importantForAccessibility="no-hide-descendants"
-          pointerEvents="none"
-        >
+        <html.div aria-hidden>
           <IconComponent color={color} size={24} weight="regular" />
-        </View>
+        </html.div>
       ) : (
-        <Text
-          numberOfLines={1}
-          style={[styles.label, { color, fontFamily: nativeFontFamily }]}
-        >
-          {action.label}
-        </Text>
+        <Typography style={labelToneStyles[tone]}>{action.label}</Typography>
       )}
-    </View>
+    </TopNavigationBarFeedback>
   );
 
   if (action.menu) {
@@ -144,7 +211,7 @@ export const TopNavigationBarActionButton = ({
           onPrimary: theme.onPrimary,
           onSurface: theme.text,
           onSurfaceVariant: theme.textSecondary,
-          onTertiaryContainer: theme.onSelection,
+          onTertiaryContainer: theme.text,
           primary: theme.primary,
           surface: theme.surface,
           surfaceContainerLow: theme.surface,
@@ -153,31 +220,31 @@ export const TopNavigationBarActionButton = ({
         colorScheme={theme.dark ? "dark" : "light"}
         onPressAction={action.menu.onPressAction}
         seedColor={theme.primary}
-        style={{ height: size, width: size }}
+        style={[{ height: size, width: size }, nativeStyles.target]}
         title={action.menu.title}
       >
-        <View
-          accessibilityHint={action.accessibilityHint}
-          accessibilityLabel={action.accessibilityLabel}
-          accessibilityRole="button"
-          style={[styles.target, { height: size, width: size }]}
-        >
-          {renderVisual(false)}
-        </View>
+        {(pressed) => (
+          <html.div
+            aria-label={action.accessibilityLabel}
+            role="button"
+            style={targetStyles.target(size)}
+          >
+            {renderVisual(pressed)}
+          </html.div>
+        )}
       </MenuView>
     );
   }
 
   return (
     <Pressable
-      accessibilityHint={action.accessibilityHint}
       accessibilityLabel={action.accessibilityLabel}
       accessibilityRole="button"
       accessibilityState={{ disabled: action.disabled ?? false }}
       disabled={action.disabled}
       onPress={action.onPress}
       style={[
-        styles.target,
+        nativeStyles.target,
         { height: size, minWidth: size },
         IconComponent ? { width: size } : null,
       ]}
@@ -187,22 +254,38 @@ export const TopNavigationBarActionButton = ({
   );
 };
 
-const styles = StyleSheet.create({
+const nativeStyles = StyleSheet.create({
   target: {
     alignItems: "center",
     borderRadius: 8,
     justifyContent: "center",
   },
-  feedbackTarget: {
+  feedback: {
     alignItems: "center",
     borderRadius: 8,
     justifyContent: "center",
   },
-  textFeedbackTarget: {
-    paddingHorizontal: nativeSpacing[2],
+});
+
+const targetStyles = css.create({
+  target: (size) => ({
+    display: "flex",
+    alignItems: "center",
+    borderRadius: 8,
+    justifyContent: "center",
+    height: size,
+    width: size,
+  }),
+});
+
+const labelToneStyles = css.create({
+  primary: {
+    color: colors.primary,
   },
-  label: {
-    fontSize: 15,
-    fontWeight: "400",
+  danger: {
+    color: colors.danger,
+  },
+  disabled: {
+    color: colors.textMuted,
   },
 });

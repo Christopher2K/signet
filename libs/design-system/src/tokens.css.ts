@@ -48,6 +48,10 @@ export const colors = css.defineVars({
     default: "#FDF6EE",
     [darkMode]: "#1C1510",
   },
+  logoBack: {
+    default: "#F2C9A4",
+    [darkMode]: "#57493C",
+  },
   selection: {
     default: "#F2C9A4",
     [darkMode]: "#7C2D12",

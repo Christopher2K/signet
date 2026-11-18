@@ -16360,7 +16360,7 @@
                                   "fill": "#6E5F53",
                                   "textGrowth": "fixed-width",
                                   "width": "fill_container",
-                                  "content": "1–2 slots · icon tint --primary · a slot may open a native popup menu with native typography, checkmark selection, and dismissal · prominent tinted fill is inset 4 within the full target (#FBEEE1 light / ink dark).",
+                                  "content": "1–2 slots · popup-menu icons use --text to match the title; other icons use --primary · a slot may open a native popup menu with native typography, checkmark selection, and dismissal · prominent tinted fill is inset 4 within the full target (#FBEEE1 light / ink dark).",
                                   "fontFamily": "IBM Plex Mono",
                                   "fontSize": 12,
                                   "fontWeight": "normal"
@@ -17960,7 +17960,7 @@
                                                 256,
                                                 256
                                               ],
-                                              "fill": "#C2410C",
+                                              "fill": "#2E2620",
                                               "width": 24,
                                               "height": 24
                                             }
@@ -18105,7 +18105,7 @@
                                                 256,
                                                 256
                                               ],
-                                              "fill": "#F97316",
+                                              "fill": "#FDF6EE",
                                               "width": 24,
                                               "height": 24
                                             }
@@ -20303,7 +20303,7 @@
                       "fill": "#6E5F53",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
-                      "content": "Behavior — The bar is one safe-area-aware surface: the surface extends behind the status bar, slots sit inside the bar, and the divider is the only separation from content. The title is a single line with an ellipsis; it never wraps and never pushes the slots. Navigation uses CaretLeft (chevron-left idiom) with the accessibility label Back; modal forms replace it with a leading Cancel text action so dismissal reads differently from navigation. Visible feedback fills are inset 4 inside unchanged accessibility targets. Pressed feedback uses surface-alt on standard targets and deepens prominent targets from surface-alt to logoBack, always with r-8; text-action feedback adds 8 horizontal padding around the label. A trailing action may open a platform-native popup menu: on iOS the SwiftUI menu uses Card size as its heading, while Android uses the Compose dropdown menu; the active density is checkmarked and menu typography and dismissal stay native. Never use a scale, opacity, or colour-shift animation. RTL mirrors the slot row and swaps CaretLeft for CaretRight. Reduce Motion: the large title changes height only, with no fade or slide.",
+                      "content": "Behavior — The bar is one safe-area-aware surface: the surface extends behind the status bar, slots sit inside the bar, and the divider is the only separation from content. The title is a single line with an ellipsis; it never wraps and never pushes the slots. Navigation uses CaretLeft (chevron-left idiom) with the accessibility label Back; modal forms replace it with a leading Cancel text action so dismissal reads differently from navigation. Visible feedback fills are inset 4 inside unchanged accessibility targets. Every top-bar button animates pressed feedback as a background-colour fill with no scale or opacity change: standard targets fade to surface-alt and prominent targets fade from surface-alt to logoBack, always with r-8; text-action feedback adds 8 horizontal padding around the label. Press fades in and release fades back over 150ms ease-out. The iOS popup-menu trigger keeps the native system highlight; Android animates its menu trigger like any other button. A trailing action may open a platform-native popup menu: on iOS the SwiftUI menu uses Card size as its heading, while Android uses the Compose dropdown menu; the active density is checkmarked and menu typography and dismissal stay native. RTL mirrors the slot row and swaps CaretLeft for CaretRight. Reduce Motion: the fill switches instantly and the large title changes height only, with no fade or slide.",
                       "fontFamily": "IBM Plex Mono",
                       "fontSize": 12,
                       "fontWeight": "normal"
@@ -85958,7 +85958,7 @@
                                                     256,
                                                     256
                                                   ],
-                                                  "fill": "#C2410C",
+                                                  "fill": "#2E2620",
                                                   "width": 24,
                                                   "height": 24
                                                 }
@@ -86916,7 +86916,7 @@
                                                     256,
                                                     256
                                                   ],
-                                                  "fill": "#F97316",
+                                                  "fill": "#FDF6EE",
                                                   "width": 24,
                                                   "height": 24
                                                 }

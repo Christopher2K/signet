@@ -1,8 +1,18 @@
 diff --git a/build/community/menu/MenuView.android.js b/build/community/menu/MenuView.android.js
-index 56dc3a9358bbfbcef354dc6e84b2ceeeac2315a6..aec06e4e309f69393072bfc05e34d16ca1b420f3 100644
+index 56dc3a9358bbfbcef354dc6e84b2ceeeac2315a6..cf7e4df7f2201286b370a84bb38afb8aa1d4ca96 100644
 --- a/build/community/menu/MenuView.android.js
 +++ b/build/community/menu/MenuView.android.js
-@@ -234,7 +234,7 @@ function MenuActionItem({ action, shape, onPressAction, dismissAll, destructiveC
+@@ -201,7 +201,8 @@ function MenuActionItem({ action, shape, onPressAction, dismissAll, destructiveC
+                 /*#__PURE__*/ _jsx(SelectableDropdownMenuItem.SelectedLeadingIcon, {
+                     children: /*#__PURE__*/ _jsx(Icon, {
+                         source: CHECK_ICON,
+-                        size: MENU_ITEM_ICON_SIZE
++                        size: MENU_ITEM_ICON_SIZE,
++                        tint: colors?.selectedTextColor
+                     })
+                 })
+             ]
+@@ -234,7 +235,7 @@ function MenuActionItem({ action, shape, onPressAction, dismissAll, destructiveC
   * a leading icon. `MenuView.title` is also unused on Android since Material
   * `DropdownMenu` has no title slot.
   */ export function MenuView(props) {
@@ -11,7 +21,7 @@ index 56dc3a9358bbfbcef354dc6e84b2ceeeac2315a6..aec06e4e309f69393072bfc05e34d16c
      const [expanded, setExpanded] = React.useState(false);
      // Mirror `expanded` into a ref and flip it eagerly inside the callbacks so a
      // second call within the same React tick is a no-op (the state update is
-@@ -267,6 +267,8 @@ function MenuActionItem({ action, shape, onPressAction, dismissAll, destructiveC
+@@ -267,6 +268,8 @@ function MenuActionItem({ action, shape, onPressAction, dismissAll, destructiveC
          testID: testID,
          children: /*#__PURE__*/ _jsx(Host, {
              colorScheme: colorScheme,
@@ -20,8 +30,43 @@ index 56dc3a9358bbfbcef354dc6e84b2ceeeac2315a6..aec06e4e309f69393072bfc05e34d16c
              matchContents: true,
              children: /*#__PURE__*/ _jsxs(Box, {
                  children: [
+@@ -281,7 +284,7 @@ function MenuActionItem({ action, shape, onPressAction, dismissAll, destructiveC
+                             android_disableSound: true,
+                             focusable: false,
+                             accessible: false,
+-                            children: children
++                            children: ({ pressed })=>typeof children === 'function' ? children(pressed) : children
+                         })
+                     }),
+                     /*#__PURE__*/ _jsx(DropdownMenuPopup, {
+diff --git a/build/community/menu/MenuView.ios.js b/build/community/menu/MenuView.ios.js
+index b276fe771fb2bbe18711722855937fbb16679a75..8359ad75b4a5fb6314755f848a40bd89c43cdf12 100644
+--- a/build/community/menu/MenuView.ios.js
++++ b/build/community/menu/MenuView.ios.js
+@@ -102,7 +102,7 @@ let warnedShowNoop = false;
+         matchContents: true,
+         boundedByHost: true,
+         children: /*#__PURE__*/ _jsx(_Fragment, {
+-            children: children
++            children: typeof children === 'function' ? children(false) : children
+         })
+     });
+     // Sized by Yoga like a `View`, so the trigger can fill or wrap in the space it is given.
+diff --git a/build/community/menu/MenuView.js b/build/community/menu/MenuView.js
+index e780351ca88af997de08d79e476588b0c92e146b..82a833d53f02357ee1e4e60a1abd70cf5ac38ecd 100644
+--- a/build/community/menu/MenuView.js
++++ b/build/community/menu/MenuView.js
+@@ -27,7 +27,7 @@ let warned = false;
+     return /*#__PURE__*/ _jsx(View, {
+         style: props.style,
+         testID: props.testID,
+-        children: props.children
++        children: typeof props.children === 'function' ? props.children(false) : props.children
+     });
+ }
+ 
 diff --git a/build/community/menu/types.d.ts b/build/community/menu/types.d.ts
-index 4112bad27a3137f0112a42fcfd367c7a6f5b94b4..473decd11dd13812738fc5032be2a2b1354f5ae6 100644
+index 4112bad27a3137f0112a42fcfd367c7a6f5b94b4..8c99cd25afe0f0e0b1e1d30fb327acb08324b9dc 100644
 --- a/build/community/menu/types.d.ts
 +++ b/build/community/menu/types.d.ts
 @@ -1,6 +1,7 @@
@@ -49,10 +94,29 @@ index 4112bad27a3137f0112a42fcfd367c7a6f5b94b4..473decd11dd13812738fc5032be2a2b1
      /**
       * Menu title shown at the top of the menu.
       * @platform ios
+@@ -165,6 +176,8 @@ export interface MenuComponentProps {
+     testID?: string;
+     /**
+      * Trigger view. Long-pressing or tapping (per `shouldOpenOnLongPress`) opens the menu.
++     * A function receives `pressed`, which is `true` while the trigger is pressed on Android.
++     * On iOS, the function always receives `false` because SwiftUI draws its own press state.
+      */
+-    children?: ReactNode;
++    children?: ReactNode | ((pressed: boolean) => ReactNode);
+ }
 diff --git a/src/community/menu/MenuView.android.tsx b/src/community/menu/MenuView.android.tsx
-index 8f84ffc5251f3bd5ea4b0667e156d73e98d31cde..a250902cbac30e56f52dbb9e34a171760de252aa 100644
+index 8f84ffc5251f3bd5ea4b0667e156d73e98d31cde..58380c9384f28a308ada0aaf10434738aea3ab39 100644
 --- a/src/community/menu/MenuView.android.tsx
 +++ b/src/community/menu/MenuView.android.tsx
+@@ -217,7 +217,7 @@ function MenuActionItem({
+           </SelectableDropdownMenuItem.LeadingIcon>
+         )}
+         <SelectableDropdownMenuItem.SelectedLeadingIcon>
+-          <Icon source={CHECK_ICON} size={MENU_ITEM_ICON_SIZE} />
++          <Icon source={CHECK_ICON} size={MENU_ITEM_ICON_SIZE} tint={colors?.selectedTextColor} />
+         </SelectableDropdownMenuItem.SelectedLeadingIcon>
+       </SelectableDropdownMenuItem>
+     );
 @@ -252,6 +252,8 @@ export function MenuView(props: MenuComponentProps & { ref?: React.Ref<MenuCompo
      ref,
      actions,
@@ -75,8 +139,43 @@ index 8f84ffc5251f3bd5ea4b0667e156d73e98d31cde..a250902cbac30e56f52dbb9e34a17176
          <Box>
            <RNHostView matchContents>
              <Pressable
+@@ -298,7 +304,7 @@ export function MenuView(props: MenuComponentProps & { ref?: React.Ref<MenuCompo
+               android_disableSound
+               focusable={false}
+               accessible={false}>
+-              {children}
++              {({ pressed }) => (typeof children === 'function' ? children(pressed) : children)}
+             </Pressable>
+           </RNHostView>
+           <DropdownMenuPopup
+diff --git a/src/community/menu/MenuView.ios.tsx b/src/community/menu/MenuView.ios.tsx
+index 40f1d5813bdf4829b43cf09d38a56fb50b1192ce..160ccb3410d7362b8b8b913dce0f4a2f7dd848a7 100644
+--- a/src/community/menu/MenuView.ios.tsx
++++ b/src/community/menu/MenuView.ios.tsx
+@@ -128,7 +128,7 @@ export function MenuView(props: MenuComponentProps & { ref?: React.Ref<MenuCompo
+   // can pass any `ReactNode` (string, array, etc.).
+   const trigger = (
+     <RNHostView matchContents boundedByHost>
+-      <>{children}</>
++      <>{typeof children === 'function' ? children(false) : children}</>
+     </RNHostView>
+   );
+ 
+diff --git a/src/community/menu/MenuView.tsx b/src/community/menu/MenuView.tsx
+index 7678559c498bcfe71c4f1b680698a65d8634a6df..6ba952a9730f7f697fd28756689f9116bf9be574 100644
+--- a/src/community/menu/MenuView.tsx
++++ b/src/community/menu/MenuView.tsx
+@@ -30,7 +30,7 @@ export function MenuView(props: MenuComponentProps & { ref?: Ref<MenuComponentRe
+   useImperativeHandle(props.ref, () => ({ show: () => {} }), []);
+   return (
+     <View style={props.style} testID={props.testID}>
+-      {props.children}
++      {typeof props.children === 'function' ? props.children(false) : props.children}
+     </View>
+   );
+ }
 diff --git a/src/community/menu/types.tsx b/src/community/menu/types.tsx
-index 067ffe5dfd32086013b5dd56b5316ecbf4522fd0..7286d74a5f5f8093d1e284912c747927a6e4357c 100644
+index 067ffe5dfd32086013b5dd56b5316ecbf4522fd0..a0e2c38cc1b1a4986091c35688a42f60fd8d01c2 100644
 --- a/src/community/menu/types.tsx
 +++ b/src/community/menu/types.tsx
 @@ -7,6 +7,7 @@ import type {
@@ -104,3 +203,13 @@ index 067ffe5dfd32086013b5dd56b5316ecbf4522fd0..7286d74a5f5f8093d1e284912c747927
    /**
     * Menu title shown at the top of the menu.
     * @platform ios
+@@ -177,6 +188,8 @@ export interface MenuComponentProps {
+   testID?: string;
+   /**
+    * Trigger view. Long-pressing or tapping (per `shouldOpenOnLongPress`) opens the menu.
++   * A function receives `pressed`, which is `true` while the trigger is pressed on Android.
++   * On iOS, the function always receives `false` because SwiftUI draws its own press state.
+    */
+-  children?: ReactNode;
++  children?: ReactNode | ((pressed: boolean) => ReactNode);
+ }

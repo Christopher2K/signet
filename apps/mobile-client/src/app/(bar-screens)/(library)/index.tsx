@@ -96,7 +96,6 @@ const LibraryScreen = () => {
   );
 
   const newBookmarkAction: TopNavigationBarAction = {
-    accessibilityHint: t("navigation.createBookmarkHint"),
     accessibilityLabel: t("navigation.newBookmark"),
     icon: PlusIcon,
     onPress: handleCreate,

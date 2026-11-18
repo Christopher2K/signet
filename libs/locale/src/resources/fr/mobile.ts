@@ -93,7 +93,6 @@ export const mobile = {
   },
   navigation: {
     account: "Compte",
-    createBookmarkHint: "Créer un favori",
     editBookmark: "Modifier le favori",
     library: "Bibliothèque",
     newBookmark: "Nouveau favori",
