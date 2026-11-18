@@ -57,23 +57,29 @@ Export QA images only when a section is complete. `outputPath` for PNG is a **di
 Export(["<frame-id>"], "png", "/tmp")  // → /tmp/<frame-id>.png
 ```
 
-## 3. Artboards: vertically stacked
+## 3. Canvas zones & column grids
 
-All top-level artboard frames live in **one vertical column**, top-to-bottom in section order (§0 → §1 → §2 …), same width, no overlaps.
+The document root holds **two top-level zone frames** and nothing else. Each zone contains an `Introduction` (title band + a grid index that mirrors the columns) and an `Artboard grid`; artboards live in grid columns, never directly under `document`. The canvas is wide and shallow instead of one ~150,000px-tall stack.
 
-- `x = 0` for every frame. Width `1200` unless a section needs otherwise.
-- `y` = previous frame's `y + height + 48` (48px gutter). Recompute after inserts and `Update()` the `y` positions to fix stragglers. **Always re-read bounds** — heights drift a few px between reads due to font metrics, so never trust a memorized height.
-- Do not use 2-column grids, horizontal rows, or free placement that forces scrolling to find a frame. (Side-by-side Light/Dark inside one frame is fine — it's a row inside a sheet, not top-level frames.)
-- If a new section is added, append it below the last frame; do not insert it mid-column without re-stacking the tail.
-- After re-stacking, re-read bounds to confirm no overlap (all `x=0`, strictly increasing `y`).
+| Zone | id | Width | Columns | Contents |
+|---|---|---|---|---|
+| ZONE 01 — Design System & Components | `Yoxji` | `4800` | 3 | §0–§5, §36, §44 |
+| ZONE 02 — Screens & Flows | `GPmHD` | `12720` | 8 | §6–§35, §37–§43, §45 |
 
-### Current inventory (§0–§40 — ids are pen-generated, re-lookup with `Get`)
+- Both zones are at `x=0`; Zone 01 `y=0`, Zone 02 `y = Zone 01 height + 48`. Recompute Zone 02's `y` after any edit that changes Zone 01's height.
+- Zones use `layout:"vertical"`, `gap:48`, `padding:48`, `cornerRadius:16`, `stroke #B08350 1px`. `Introduction` and `Artboard grid` are `width:"fill_container"`.
+- Grid = horizontal frame, `gap:48`; columns are `1536` wide, `layout:"vertical"`, `gap:48` (the widest artboard, §43, is 1536). Each column starts with a labelled header bar, then its artboards in § order.
+- Column assignment is **height-balanced in § order**: minimax linear partition over resolved heights plus 48px gutters, so no column towers over the others. Zone 01 uses three fixed groups (§0–§5 / §36 / §44); Zone 02 uses eight computed columns. Every column header and index heading carries its § range and sheet count.
+- Add a new sheet to the zone it belongs to and to the column whose § range covers it; rebalance the columns afterwards. Never put an artboard directly under `document`.
+- Flexbox handles stacking, so do not hand-set `y` on artboards. After edits re-read `ctx.bounds` to confirm columns fit their zone, Zone 02 clears Zone 01, and `c.problems` is clean inside the new/changed nodes.
 
-All 41 top-level frames are vertically stacked at `x=0` with 48px gutters. Re-read bounds after every edit; heights and y positions drift as content changes.
+### Current inventory (§0–§45 — ids are pen-generated, re-lookup with `Get`)
+
+All 46 artboards are nested in the two zones above. Re-read bounds after every edit; heights drift as content changes.
 
 | Frame | id | Notes |
 |---|---|---|
-| §0 Cover — Signet Paper & Cobalt | `mApjQ` | Width exception (`1277`); don't "fix" to 1200 |
+| §0 Cover — Signet Ink & Amber | `mApjQ` | Width exception (`1277`); don't "fix" to 1200 |
 | §1 Foundations — Color Scales | `G5z73D` | |
 | §2 Variants — Light / Dark Tokens | `mtl7O` | |
 | §3 Typography — Space Mono | `YYynH` | |
@@ -85,6 +91,11 @@ All 41 top-level frames are vertically stacked at `x=0` with 48px gutters. Re-re
 | §38 Native A2 Create account | `s2Tm4J` | Native iOS/Android signup, 390 × 844, light + dark, safe-area-aware cardless form |
 | §39 Native L1 Library Home | `RcLY9` | Current web-client `/` route: native navigation title, empty-library state, and Library/Account bottom tabs; Account owns email and logout |
 | §40 Native Server unavailable | `YV4VF` | Saved-session restore failure with exact web-client message and retry action |
+| §41 Native Bookmark CRUD | `qSiZt` | Native create / edit / delete bookmark states |
+| §42 Native Animated Splash — Stack settles | `sPOxK` | Launch animation frames |
+| §43 M1 Marketing Landing | `YROcC` | Width exception (`1536`); public promotional page, desktop + mobile |
+| §44 Native Custom Topbar — Anatomy, variants, states | `qcZbe` | Reusable native topbar anatomy; lives in ZONE 01 |
+| §45 Safari iOS Quick Save | `FHJnp` | Extension quick-save flow |
 
 ## 4. Always refer to `DESIGN.md` — never deviate silently
 
@@ -174,7 +185,7 @@ Inventory (31 — re-lookup with `Get`, ids are pen-generated):
 
 - No `designs/` (plural) paths — always `design/`.
 - No MIME of `.pen` contents into Read/Grep/Edit shell pipelines.
-- No horizontal grids, no overlapping artboards at `0,0`. One vertical column, `x=0`, 48px gutter (§3).
+- No artboards directly under `document`, no overlapping zones at `0,0`. Artboards live in zone columns; zones stack at `x=0` with a 48px gutter (§3).
 - No `reusable` on section shells, rows, cells, `OG` placeholders, or focus wrappers — only repeatable UI components (§5).
 - No new hex / font / spacing value without a corresponding `DESIGN.md` entry. Disabled, Pending, Focus, Ghost must reuse derived/status tokens (§4).
 - No `$sp-*` / `$radius-*` variable refs until the file migrates to variables as a whole (§4).
@@ -197,7 +208,7 @@ Inventory (31 — re-lookup with `Get`, ids are pen-generated):
 - **Inputs:** a bare `T` value inside an `Input` frame (`padding [12,12]`) clips when the sample is long (e.g. 40-char Title in a 320 card). Wrap the value (`Update(id,{textGrowth:"fixed-width",width:"fill_container"})`) or shorten the sample. Do not leave long sentences in unwrapped inputs.
 - **MetaRow (no `flexWrap` in canvas):** horizontal chip rows have no wrap — `Update` with `flexWrap` fails schema validation (`unexpected property`). Padding/gap trims saved ~32px and still clipped. When `sum(chip widths + gaps) > TextCol width`, set the row `layout vertical` (stack). Stacked pills always fit; do not keep squeezing a horizontal row into a narrow column.
 - **Titles at 32px:** `Headline 32/700` needs `≈19px` per mono char. In a `326` inner (mobile card) only ~17 chars fit on one line — anything longer must wrap or drop to the next line, never stay single-line `T`.
-- **After any fix, re-stack:** wrapping/stacking grows heights. Re-read bounds, recompute `y = prev y + prev height + 48` for the whole tail, `Update` each `y`, re-read again to confirm `x=0` + strictly increasing `y` and `problems` still empty. Stale `y` overlaps are the next bug after a successful wrap.
+- **After any fix, re-check the grid:** wrapping/stacking grows artboard heights, which grows their column and zone. Re-read `ctx.bounds`, recompute Zone 02's `y` from Zone 01's height, and confirm `c.problems` is still empty inside the changed nodes. Stale zone `y` overlaps are the next bug after a successful wrap.
 
 ## 9. Generator + session HOW
 
