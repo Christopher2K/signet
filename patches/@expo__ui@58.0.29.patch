@@ -1,7 +1,33 @@
 diff --git a/build/community/menu/MenuView.android.js b/build/community/menu/MenuView.android.js
-index 56dc3a9358bbfbcef354dc6e84b2ceeeac2315a6..cf7e4df7f2201286b370a84bb38afb8aa1d4ca96 100644
+index 56dc3a9358bbfbcef354dc6e84b2ceeeac2315a6..57a6959ae7d122173ef2ae7cdb2b8136cd35abf2 100644
 --- a/build/community/menu/MenuView.android.js
 +++ b/build/community/menu/MenuView.android.js
+@@ -10,11 +10,13 @@ import { RNHostView } from '../../jetpack-compose/RNHostView';
+ import { Spacer } from '../../jetpack-compose/Spacer';
+ import { Text as ComposeText } from '../../jetpack-compose/Text';
+ import { useMaterialColors } from '../../jetpack-compose/colors';
+-import { height, verticalScroll } from '../../jetpack-compose/modifiers';
++import { height, padding, verticalScroll } from '../../jetpack-compose/modifiers';
+ // Clipped popups drop the status bar offset, so edge-to-edge menus near the bottom detach from the anchor.
+ const POPUP_PROPERTIES = {
+     clippingEnabled: false
+ };
++// Padding after verticalScroll sits inside its clip, leaving room for the group shadow.
++const POPUP_MODIFIERS = [verticalScroll(), padding(0, 8, 0, 8)];
+ const CHECK_ICON = require('../../../assets/check.xml');
+ // Compose's `MenuDefaults.GroupSpacing`.
+ const MENU_GROUP_SPACING = 2;
+@@ -158,9 +160,7 @@ function MenuActionItem({ action, shape, onPressAction, dismissAll, destructiveC
+                     anchorPosition: "end",
+                     properties: POPUP_PROPERTIES,
+                     // Unlike `DropdownMenu`, `DropdownMenuPopup` does not scroll a menu taller than the window.
+-                    modifiers: [
+-                        verticalScroll()
+-                    ],
++                    modifiers: POPUP_MODIFIERS,
+                     children: /*#__PURE__*/ _jsx(MenuGroups, {
+                         actions: subactions,
+                         onPressAction: onPressAction,
 @@ -201,7 +201,8 @@ function MenuActionItem({ action, shape, onPressAction, dismissAll, destructiveC
                  /*#__PURE__*/ _jsx(SelectableDropdownMenuItem.SelectedLeadingIcon, {
                      children: /*#__PURE__*/ _jsx(Icon, {
@@ -39,6 +65,17 @@ index 56dc3a9358bbfbcef354dc6e84b2ceeeac2315a6..cf7e4df7f2201286b370a84bb38afb8a
                          })
                      }),
                      /*#__PURE__*/ _jsx(DropdownMenuPopup, {
+@@ -289,9 +292,7 @@ function MenuActionItem({ action, shape, onPressAction, dismissAll, destructiveC
+                         onDismissRequest: dismissAll,
+                         properties: POPUP_PROPERTIES,
+                         // Unlike `DropdownMenu`, `DropdownMenuPopup` does not scroll a menu taller than the window.
+-                        modifiers: [
+-                            verticalScroll()
+-                        ],
++                        modifiers: POPUP_MODIFIERS,
+                         children: /*#__PURE__*/ _jsx(MenuGroups, {
+                             actions: actions,
+                             onPressAction: onPressAction,
 diff --git a/build/community/menu/MenuView.ios.js b/build/community/menu/MenuView.ios.js
 index b276fe771fb2bbe18711722855937fbb16679a75..8359ad75b4a5fb6314755f848a40bd89c43cdf12 100644
 --- a/build/community/menu/MenuView.ios.js
@@ -105,10 +142,35 @@ index 4112bad27a3137f0112a42fcfd367c7a6f5b94b4..8c99cd25afe0f0e0b1e1d30fb327acb0
 +    children?: ReactNode | ((pressed: boolean) => ReactNode);
  }
 diff --git a/src/community/menu/MenuView.android.tsx b/src/community/menu/MenuView.android.tsx
-index 8f84ffc5251f3bd5ea4b0667e156d73e98d31cde..58380c9384f28a308ada0aaf10434738aea3ab39 100644
+index 8f84ffc5251f3bd5ea4b0667e156d73e98d31cde..36f8a0831e1b301a29c34cc50150b0de01b3681f 100644
 --- a/src/community/menu/MenuView.android.tsx
 +++ b/src/community/menu/MenuView.android.tsx
-@@ -217,7 +217,7 @@ function MenuActionItem({
+@@ -19,12 +19,14 @@ import { RNHostView } from '../../jetpack-compose/RNHostView';
+ import { Spacer } from '../../jetpack-compose/Spacer';
+ import { Text as ComposeText } from '../../jetpack-compose/Text';
+ import { useMaterialColors } from '../../jetpack-compose/colors';
+-import { height, verticalScroll } from '../../jetpack-compose/modifiers';
++import { height, padding, verticalScroll } from '../../jetpack-compose/modifiers';
+ import type { PopupProperties } from '../../types';
+ import type { MenuAction, MenuComponentProps, MenuComponentRef, NativeActionEvent } from './types';
+ 
+ // Clipped popups drop the status bar offset, so edge-to-edge menus near the bottom detach from the anchor.
+ const POPUP_PROPERTIES: PopupProperties = { clippingEnabled: false };
++// Padding after verticalScroll sits inside its clip, leaving room for the group shadow.
++const POPUP_MODIFIERS = [verticalScroll(), padding(0, 8, 0, 8)];
+ 
+ const CHECK_ICON = require('../../../assets/check.xml');
+ 
+@@ -176,7 +178,7 @@ function MenuActionItem({
+           anchorPosition="end"
+           properties={POPUP_PROPERTIES}
+           // Unlike `DropdownMenu`, `DropdownMenuPopup` does not scroll a menu taller than the window.
+-          modifiers={[verticalScroll()]}>
++          modifiers={POPUP_MODIFIERS}>
+           <MenuGroups
+             actions={subactions}
+             onPressAction={onPressAction}
+@@ -217,7 +219,7 @@ function MenuActionItem({
            </SelectableDropdownMenuItem.LeadingIcon>
          )}
          <SelectableDropdownMenuItem.SelectedLeadingIcon>
@@ -117,7 +179,7 @@ index 8f84ffc5251f3bd5ea4b0667e156d73e98d31cde..58380c9384f28a308ada0aaf10434738
          </SelectableDropdownMenuItem.SelectedLeadingIcon>
        </SelectableDropdownMenuItem>
      );
-@@ -252,6 +252,8 @@ export function MenuView(props: MenuComponentProps & { ref?: React.Ref<MenuCompo
+@@ -252,6 +254,8 @@ export function MenuView(props: MenuComponentProps & { ref?: React.Ref<MenuCompo
      ref,
      actions,
      colorScheme,
@@ -126,7 +188,7 @@ index 8f84ffc5251f3bd5ea4b0667e156d73e98d31cde..58380c9384f28a308ada0aaf10434738
      onPressAction,
      onOpenMenu,
      onCloseMenu,
-@@ -286,7 +288,11 @@ export function MenuView(props: MenuComponentProps & { ref?: React.Ref<MenuCompo
+@@ -286,7 +290,11 @@ export function MenuView(props: MenuComponentProps & { ref?: React.Ref<MenuCompo
  
    return (
      <View style={style} testID={testID}>
@@ -139,7 +201,7 @@ index 8f84ffc5251f3bd5ea4b0667e156d73e98d31cde..58380c9384f28a308ada0aaf10434738
          <Box>
            <RNHostView matchContents>
              <Pressable
-@@ -298,7 +304,7 @@ export function MenuView(props: MenuComponentProps & { ref?: React.Ref<MenuCompo
+@@ -298,7 +306,7 @@ export function MenuView(props: MenuComponentProps & { ref?: React.Ref<MenuCompo
                android_disableSound
                focusable={false}
                accessible={false}>
@@ -148,6 +210,15 @@ index 8f84ffc5251f3bd5ea4b0667e156d73e98d31cde..58380c9384f28a308ada0aaf10434738
              </Pressable>
            </RNHostView>
            <DropdownMenuPopup
+@@ -306,7 +314,7 @@ export function MenuView(props: MenuComponentProps & { ref?: React.Ref<MenuCompo
+             onDismissRequest={dismissAll}
+             properties={POPUP_PROPERTIES}
+             // Unlike `DropdownMenu`, `DropdownMenuPopup` does not scroll a menu taller than the window.
+-            modifiers={[verticalScroll()]}>
++            modifiers={POPUP_MODIFIERS}>
+             <MenuGroups
+               actions={actions}
+               onPressAction={onPressAction}
 diff --git a/src/community/menu/MenuView.ios.tsx b/src/community/menu/MenuView.ios.tsx
 index 40f1d5813bdf4829b43cf09d38a56fb50b1192ce..160ccb3410d7362b8b8b913dce0f4a2f7dd848a7 100644
 --- a/src/community/menu/MenuView.ios.tsx

@@ -103,16 +103,21 @@ const LibraryScreen = () => {
   };
 
   const densityAction: TopNavigationBarAction = {
-    accessibilityLabel: t("library.density.label"),
+    accessibilityLabel: t("library.display"),
     icon: DotsThreeIcon,
     menu: {
-      actions: densityActions,
+      actions: [
+        {
+          id: "display",
+          subactions: densityActions,
+          title: t("library.display"),
+        },
+      ],
       onPressAction: ({ nativeEvent }) => {
         if (isBookmarkDensity(nativeEvent.event)) {
           setDensity(nativeEvent.event);
         }
       },
-      title: t("library.density.label"),
     },
   };
 

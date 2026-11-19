@@ -71,6 +71,7 @@ export const mobile = {
       label: "Card size",
       medium: "Medium cards",
     },
+    display: "Display",
     emptyMessage:
       "Add your first bookmark by link. Your notes and tags will live here too.",
     emptyTitle: "No bookmarks yet",

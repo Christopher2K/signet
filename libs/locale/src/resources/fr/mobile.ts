@@ -73,6 +73,7 @@ export const mobile = {
       label: "Taille des cartes",
       medium: "Cartes moyennes",
     },
+    display: "Affichage",
     emptyMessage:
       "Ajoutez votre premier favori à partir d’un lien. Vos notes et vos étiquettes seront également conservées ici.",
     emptyTitle: "Aucun favori pour le moment",
