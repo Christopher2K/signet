@@ -1,6 +1,7 @@
+import { Typography } from "@signet/design-system";
 import { useNativeTheme } from "@signet/design-system/native-theme";
 import { useEffect, useRef } from "react";
-import { StyleSheet, Text } from "react-native";
+import { StyleSheet } from "react-native";
 import Animated, {
   Easing,
   runOnJS,
@@ -12,6 +13,7 @@ import Animated, {
   withTiming,
 } from "react-native-reanimated";
 import Svg, { Path } from "react-native-svg";
+import { css } from "react-strict-dom";
 
 const TAB_PATH = "M0 5a5 5 0 0 1 5-5h10a5 5 0 0 1 5 5v25l-10-7-10 7z";
 const SPRING_CONFIG = { damping: 18, mass: 0.7, stiffness: 180 } as const;
@@ -147,7 +149,9 @@ export const AnimatedStackLogo = ({
         </Animated.View>
       </Animated.View>
       <Animated.View style={[styles.wordmarkContainer, wordmarkStyle]}>
-        <Text style={[styles.wordmark, { color: theme.text }]}>Signet</Text>
+        <Typography style={wordmarkStyles.wordmark} variant="headline">
+          Signet
+        </Typography>
       </Animated.View>
     </Animated.View>
   );
@@ -177,16 +181,16 @@ const styles = StyleSheet.create({
     position: "absolute",
     width: 40,
   },
-  wordmark: {
-    fontFamily: "Space Mono",
-    fontSize: 32,
-    fontWeight: "700",
-    textAlign: "center",
-  },
   wordmarkContainer: {
     left: 0,
     position: "absolute",
     right: 0,
     top: 116,
+  },
+});
+
+const wordmarkStyles = css.create({
+  wordmark: {
+    textAlign: "center",
   },
 });

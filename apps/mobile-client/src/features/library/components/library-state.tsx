@@ -75,6 +75,7 @@ const styles = css.create({
     borderRadius: radii.card,
     borderStyle: "solid",
     borderWidth: 1,
+    boxSizing: "border-box",
     display: "flex",
     flexDirection: "column",
     gap: spacing[3],

@@ -76,6 +76,7 @@ const styles = css.create({
     borderRadius: radii.md,
     borderStyle: "solid",
     borderWidth: 1,
+    boxSizing: "border-box",
     display: "flex",
     flexShrink: 0,
     height: 40,
@@ -96,6 +97,7 @@ const styles = css.create({
   },
   fallback: {
     alignItems: "center",
+    boxSizing: "border-box",
     display: "flex",
     height: "100%",
     justifyContent: "center",

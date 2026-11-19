@@ -1,9 +1,9 @@
+import { spacing, Typography } from "@signet/design-system";
 import {
-  nativeFontFamily,
   nativeSpacing,
   useNativeTheme,
 } from "@signet/design-system/native-theme";
-import { Platform, StyleSheet, Text, View } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 import Animated, {
   Extrapolation,
   interpolate,
@@ -12,6 +12,7 @@ import Animated, {
   useReducedMotion,
 } from "react-native-reanimated";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { css, html } from "react-strict-dom";
 import {
   type TopNavigationBarAction,
   TopNavigationBarActionButton,
@@ -21,7 +22,6 @@ const compactBarHeight = Platform.OS === "ios" ? 44 : 56;
 const expandedBarHeight = 92;
 const actionTargetSize = Platform.OS === "ios" ? 44 : 48;
 const modalBarHeight = 60;
-const slotGap = Platform.OS === "ios" ? nativeSpacing[2] : nativeSpacing[1];
 const collapseDistance = expandedBarHeight - 44;
 const collapseThreshold = collapseDistance / 2;
 
@@ -97,7 +97,7 @@ export const TopNavigationBar = ({
     <SafeAreaView edges={["top"]} style={{ backgroundColor: theme.surface }}>
       <Animated.View
         style={[
-          styles.bar,
+          nativeStyles.bar,
           {
             backgroundColor: theme.surface,
             borderBottomColor: theme.border,
@@ -105,14 +105,13 @@ export const TopNavigationBar = ({
           animatedBarStyle,
         ]}
       >
-        <View
+        <html.div
           style={[
-            styles.compactRow,
-            { height: barHeight },
+            styles.compactRow(barHeight),
             modal && Platform.OS === "ios" && styles.iosModalCompactRow,
           ]}
         >
-          <View
+          <html.div
             style={[
               styles.side,
               styles.leadingSide,
@@ -128,29 +127,21 @@ export const TopNavigationBar = ({
                 size={actionTargetSize}
               />
             ) : null}
-          </View>
+          </html.div>
           <Animated.View
             style={[
-              styles.titleContainer,
+              nativeStyles.titleContainer,
               animatedCompactTitleStyle,
               Platform.OS === "android" &&
                 !leadingAction &&
-                styles.androidTitleWithoutLeadingAction,
+                nativeStyles.androidTitleWithoutLeadingAction,
             ]}
           >
-            <Text
-              accessibilityRole="header"
-              ellipsizeMode="tail"
-              numberOfLines={1}
-              style={[
-                styles.title,
-                { color: theme.text, fontFamily: nativeFontFamily },
-              ]}
-            >
+            <Typography as="h1" style={styles.title} variant="title">
               {title}
-            </Text>
+            </Typography>
           </Animated.View>
-          <View
+          <html.div
             style={[
               styles.side,
               styles.trailingSide,
@@ -164,26 +155,19 @@ export const TopNavigationBar = ({
                 size={actionTargetSize}
               />
             ))}
-          </View>
-        </View>
+          </html.div>
+        </html.div>
         {expandedLargeTitle ? (
           <Animated.View
             accessibilityElementsHidden
             accessible={false}
             importantForAccessibility="no-hide-descendants"
             pointerEvents="none"
-            style={[styles.largeTitleContainer, animatedLargeTitleStyle]}
+            style={[nativeStyles.largeTitleContainer, animatedLargeTitleStyle]}
           >
-            <Text
-              ellipsizeMode="tail"
-              numberOfLines={1}
-              style={[
-                styles.largeTitle,
-                { color: theme.text, fontFamily: nativeFontFamily },
-              ]}
-            >
+            <Typography as="h1" style={styles.largeTitle} variant="headline">
               {title}
-            </Text>
+            </Typography>
           </Animated.View>
         ) : null}
       </Animated.View>
@@ -191,41 +175,10 @@ export const TopNavigationBar = ({
   );
 };
 
-const styles = StyleSheet.create({
+const nativeStyles = StyleSheet.create({
   bar: {
     borderBottomWidth: 1,
     overflow: "hidden",
-  },
-  compactRow: {
-    alignItems: "center",
-    flexDirection: "row",
-    gap: slotGap,
-    left: 0,
-    paddingHorizontal: nativeSpacing[2],
-    position: "absolute",
-    right: 0,
-    top: 0,
-  },
-  iosModalCompactRow: {
-    paddingHorizontal: nativeSpacing[4],
-  },
-  side: {
-    alignItems: "center",
-    flexDirection: "row",
-    gap: slotGap,
-    height: "100%",
-  },
-  flexSide: {
-    flex: 1,
-  },
-  leadingSide: {
-    justifyContent: "flex-start",
-  },
-  androidLeadingSide: {
-    width: actionTargetSize,
-  },
-  trailingSide: {
-    justifyContent: "flex-end",
   },
   titleContainer: Platform.select({
     android: {
@@ -241,20 +194,57 @@ const styles = StyleSheet.create({
   androidTitleWithoutLeadingAction: {
     marginLeft: nativeSpacing[1],
   },
-  title: {
-    fontSize: 20,
-    fontWeight: "700",
-    lineHeight: 26,
-  },
   largeTitleContainer: {
     bottom: nativeSpacing[1],
     left: nativeSpacing[4],
     position: "absolute",
     right: nativeSpacing[4],
   },
+});
+
+const styles = css.create({
+  compactRow: (height) => ({
+    alignItems: "center",
+    boxSizing: "border-box",
+    display: "flex",
+    flexDirection: "row",
+    gap: Platform.OS === "ios" ? spacing[2] : spacing[1],
+    height,
+    left: 0,
+    paddingInline: spacing[2],
+    position: "absolute",
+    right: 0,
+    top: 0,
+  }),
+  iosModalCompactRow: {
+    boxSizing: "border-box",
+    paddingInline: spacing[4],
+  },
+  side: {
+    alignItems: "center",
+    display: "flex",
+    flexDirection: "row",
+    gap: Platform.OS === "ios" ? spacing[2] : spacing[1],
+    height: "100%",
+  },
+  flexSide: {
+    flex: 1,
+  },
+  leadingSide: {
+    justifyContent: "flex-start",
+  },
+  androidLeadingSide: {
+    width: actionTargetSize,
+  },
+  trailingSide: {
+    justifyContent: "flex-end",
+  },
+  title: {
+    lineClamp: 1,
+    lineHeight: 1.3,
+  },
   largeTitle: {
-    fontSize: 32,
-    fontWeight: "700",
-    lineHeight: 41.6,
+    lineClamp: 1,
+    lineHeight: 1.3,
   },
 });

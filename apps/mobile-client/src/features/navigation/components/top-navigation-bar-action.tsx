@@ -3,7 +3,7 @@ import {
   MenuView,
   type NativeActionEvent,
 } from "@expo/ui/community/menu";
-import { colors, Typography } from "@signet/design-system";
+import { colors, radii, Typography } from "@signet/design-system";
 import {
   type NativeTheme,
   useNativeTheme,
@@ -11,16 +11,8 @@ import {
 import type { Icon } from "phosphor-react-native";
 import { CaretLeftIcon } from "phosphor-react-native/src/icons/CaretLeft";
 import { CaretRightIcon } from "phosphor-react-native/src/icons/CaretRight";
-import { type ReactNode, useEffect } from "react";
-import { I18nManager, Pressable, StyleSheet } from "react-native";
-import Animated, {
-  Easing,
-  interpolateColor,
-  useAnimatedStyle,
-  useReducedMotion,
-  useSharedValue,
-  withTiming,
-} from "react-native-reanimated";
+import type { ReactNode } from "react";
+import { I18nManager, StyleSheet } from "react-native";
 import { css, html } from "react-strict-dom";
 
 /** Native menu presented from a top navigation bar icon action. */
@@ -117,11 +109,6 @@ const resolveActionColor = (tone: ActionTone, theme: NativeTheme) => {
   return theme.primary;
 };
 
-const feedbackTiming = {
-  duration: 150,
-  easing: Easing.out(Easing.cubic),
-};
-
 type TopNavigationBarFeedbackProps = {
   children: ReactNode;
   pressed: boolean;
@@ -135,38 +122,21 @@ const TopNavigationBarFeedback = ({
   prominent,
   size,
 }: TopNavigationBarFeedbackProps) => {
-  const theme = useNativeTheme();
-  const reduceMotion = useReducedMotion();
-  const progress = useSharedValue(0);
-  const restColor = prominent ? theme.surfaceAlt : theme.surface;
-  const pressedColor = prominent ? theme.logoBack : theme.surfaceAlt;
-
-  useEffect(() => {
-    const target = pressed ? 1 : 0;
-    progress.value = reduceMotion ? target : withTiming(target, feedbackTiming);
-  }, [pressed, progress, reduceMotion]);
-
-  const animatedStyle = useAnimatedStyle(
-    () => ({
-      backgroundColor: interpolateColor(
-        progress.value,
-        [0, 1],
-        [restColor, pressedColor],
-      ),
-    }),
-    [pressedColor, restColor],
-  );
-
   return (
-    <Animated.View
+    <html.div
       style={[
-        nativeStyles.feedback,
-        { height: size - 8, minWidth: size - 8 },
-        animatedStyle,
+        feedbackStyles.base,
+        prominent ? feedbackStyles.prominent : feedbackStyles.standard,
+        pressed
+          ? prominent
+            ? feedbackStyles.prominentPressed
+            : feedbackStyles.pressed
+          : null,
+        feedbackStyles.size(size),
       ]}
     >
       {children}
-    </Animated.View>
+    </html.div>
   );
 };
 
@@ -186,20 +156,16 @@ export const TopNavigationBarActionButton = ({
   const IconComponent = action.icon;
   const prominent = action.menu ? false : action.prominent;
 
-  const renderVisual = (pressed: boolean) => (
-    <TopNavigationBarFeedback
-      pressed={pressed}
-      prominent={prominent ?? false}
-      size={size}
-    >
+  const content = (
+    <>
       {IconComponent ? (
-        <html.div aria-hidden>
+        <html.div aria-hidden style={styles.icon}>
           <IconComponent color={color} size={24} weight="regular" />
         </html.div>
       ) : (
         <Typography style={labelToneStyles[tone]}>{action.label}</Typography>
       )}
-    </TopNavigationBarFeedback>
+    </>
   );
 
   if (action.menu) {
@@ -227,9 +193,15 @@ export const TopNavigationBarActionButton = ({
           <html.div
             aria-label={action.accessibilityLabel}
             role="button"
-            style={targetStyles.target(size)}
+            style={[styles.target, styles.menuButtonSize(size)]}
           >
-            {renderVisual(pressed)}
+            <TopNavigationBarFeedback
+              pressed={pressed}
+              prominent={prominent ?? false}
+              size={size}
+            >
+              {content}
+            </TopNavigationBarFeedback>
           </html.div>
         )}
       </MenuView>
@@ -237,20 +209,21 @@ export const TopNavigationBarActionButton = ({
   }
 
   return (
-    <Pressable
-      accessibilityLabel={action.accessibilityLabel}
-      accessibilityRole="button"
-      accessibilityState={{ disabled: action.disabled ?? false }}
+    <html.button
+      aria-label={action.accessibilityLabel}
       disabled={action.disabled}
-      onPress={action.onPress}
+      onClick={action.onPress}
       style={[
-        nativeStyles.target,
-        { height: size, minWidth: size },
-        IconComponent ? { width: size } : null,
+        styles.target,
+        styles.action,
+        prominent && styles.prominent,
+        action.disabled && styles.disabled,
+        IconComponent ? styles.iconButtonSize(size) : styles.buttonSize(size),
       ]}
+      type="button"
     >
-      {({ pressed }) => renderVisual(pressed)}
-    </Pressable>
+      {content}
+    </html.button>
   );
 };
 
@@ -260,21 +233,79 @@ const nativeStyles = StyleSheet.create({
     borderRadius: 8,
     justifyContent: "center",
   },
-  feedback: {
-    alignItems: "center",
-    borderRadius: 8,
-    justifyContent: "center",
-  },
 });
 
-const targetStyles = css.create({
-  target: (size) => ({
-    display: "flex",
+const styles = css.create({
+  target: {
     alignItems: "center",
-    borderRadius: 8,
+    borderRadius: radii.md,
+    boxSizing: "border-box",
+    display: "flex",
     justifyContent: "center",
+  },
+  action: {
+    backgroundColor: {
+      default: colors.surface,
+      ":active": colors.surfaceAlt,
+    },
+    borderStyle: "none",
+    cursor: "pointer",
+    padding: 0,
+  },
+  prominent: {
+    backgroundColor: {
+      default: colors.surfaceAlt,
+      ":active": colors.logoBack,
+    },
+  },
+  disabled: {
+    backgroundColor: colors.surface,
+    cursor: "default",
+    opacity: 0.45,
+  },
+  icon: {
+    alignItems: "center",
+    display: "flex",
+    justifyContent: "center",
+  },
+  buttonSize: (size) => ({
+    height: size,
+    minWidth: size,
+  }),
+  iconButtonSize: (size) => ({
+    height: size,
+    minWidth: size,
+    width: size,
+  }),
+  menuButtonSize: (size) => ({
     height: size,
     width: size,
+  }),
+});
+
+const feedbackStyles = css.create({
+  base: {
+    alignItems: "center",
+    borderRadius: radii.md,
+    boxSizing: "border-box",
+    display: "flex",
+    justifyContent: "center",
+  },
+  standard: {
+    backgroundColor: colors.surface,
+  },
+  pressed: {
+    backgroundColor: colors.surfaceAlt,
+  },
+  prominent: {
+    backgroundColor: colors.surfaceAlt,
+  },
+  prominentPressed: {
+    backgroundColor: colors.logoBack,
+  },
+  size: (size) => ({
+    height: size - 8,
+    minWidth: size - 8,
   }),
 });
 

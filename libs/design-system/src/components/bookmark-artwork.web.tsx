@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { css, html } from "react-strict-dom";
-import { colors, radii } from "../tokens.css";
+import { colors, radii, spacing } from "../tokens.css";
 import type { BookmarkArtworkProps } from "./bookmark-artwork.types";
 import { Icon } from "./icon";
 
@@ -59,6 +59,7 @@ const styles = css.create({
     borderRadius: radii.md,
     borderStyle: "solid",
     borderWidth: 1,
+    boxSizing: "border-box",
     flexShrink: 0,
     height: 88,
     overflow: "hidden",
@@ -82,10 +83,12 @@ const styles = css.create({
   },
   fallback: {
     alignItems: "center",
+    boxSizing: "border-box",
     color: colors.primary,
     display: "flex",
     height: "100%",
     justifyContent: "center",
+    padding: spacing[1],
     width: "100%",
   },
 });

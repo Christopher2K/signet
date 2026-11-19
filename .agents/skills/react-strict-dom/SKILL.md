@@ -26,7 +26,13 @@ Use React Strict DOM as a strict, web-aligned API for shared web and React Nativ
 ## Component Rules
 
 - Import `{ css, html }` from `react-strict-dom`; use `style`, not `className`.
+- Use `<html.*>` elements first. Do not use React Native components unless necessary, such as for virtualized lists or animations implemented with Reanimated.
 - Define styles at module scope. Compose them with arrays such as `style={[styles.base, variantStyles[variant], props.style]}`; put caller styles last.
+- Always set `boxSizing: "border-box"` in RSD styles that add borders or padding.
+- Set `display: "flex"` explicitly in RSD layout styles; it is no longer applied by default.
+- Use logical shorthands such as `paddingInline`, `paddingBlock`, `marginInline`, and `insetInline`. React Native shorthands like `paddingHorizontal` type-check but StyleX drops them, so the style silently renders without padding.
+- Use design tokens instead of magic values for colors, spacing, typography, radii, and other themed values.
+- Always render text with `<Typography>` unless a technical or platform constraint prevents it.
 - Use `css.defineVars()` in `*.css.{js,jsx,ts,tsx}` files for tokens and `css.createTheme()` for overrides.
 - Nest pseudo-states and media queries inside properties and include `default`.
 - Keep dynamic style functions to the supported arrow-function/object-literal form.

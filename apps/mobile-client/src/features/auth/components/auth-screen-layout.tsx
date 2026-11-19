@@ -1,4 +1,4 @@
-import { Typography } from "@signet/design-system";
+import { spacing, Typography } from "@signet/design-system";
 import {
   nativeSpacing,
   useNativeTheme,
@@ -68,7 +68,7 @@ const strictStyles = css.create({
   content: {
     display: "flex",
     flexDirection: "column",
-    gap: nativeSpacing[6],
+    gap: spacing[6],
     width: "100%",
   },
   brand: {
@@ -76,7 +76,7 @@ const strictStyles = css.create({
     alignSelf: "center",
     display: "flex",
     flexDirection: "column",
-    gap: nativeSpacing[2],
+    gap: spacing[2],
   },
   brandName: {
     fontWeight: "700",

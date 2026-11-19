@@ -120,6 +120,8 @@ const styles = css.create({
   },
   compact: {
     alignItems: "center",
+    boxSizing: "border-box",
+    display: "flex",
     flexDirection: "row",
     gap: spacing[3],
     padding: spacing[3],
@@ -156,6 +158,7 @@ const styles = css.create({
     backgroundColor: "transparent",
     borderColor: "transparent",
     borderRadius: radii.md,
+    boxSizing: "border-box",
     color: colors.primary,
     cursor: "pointer",
     display: "flex",
@@ -182,6 +185,7 @@ const styles = css.create({
   tag: {
     backgroundColor: colors.tag,
     borderRadius: radii.pill,
+    boxSizing: "border-box",
     color: colors.onTag,
     paddingBlock: spacing[1],
     paddingInline: spacing[3],

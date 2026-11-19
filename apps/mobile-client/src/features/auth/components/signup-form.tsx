@@ -1,11 +1,16 @@
 import { normalizeServerUrl, toAuthError } from "@signet/core/auth";
 import { useAuth } from "@signet/core/auth/react";
-import { Button, TextField, Typography } from "@signet/design-system";
-import { nativeSpacing } from "@signet/design-system/native-theme";
+import {
+  Button,
+  radii,
+  spacing,
+  TextField,
+  Typography,
+} from "@signet/design-system";
 import { useTranslation } from "@signet/locale/react";
 import { useRouter } from "expo-router";
 import { useState } from "react";
-import { Keyboard, Pressable, StyleSheet } from "react-native";
+import { Keyboard } from "react-native";
 import { css, html } from "react-strict-dom";
 import type { SignupValues } from "../types";
 import { type FormFieldErrors, validateSignup } from "../validation";
@@ -154,10 +159,11 @@ export const SignupForm = () => {
           {pending ? t("auth.creatingAccount") : t("auth.createAccount")}
         </Button>
       </html.div>
-      <Pressable
-        accessibilityRole="link"
-        onPress={() => router.push("/login")}
-        style={({ pressed }) => [styles.footer, pressed && styles.pressed]}
+      <html.button
+        onClick={() => router.push("/login")}
+        role="link"
+        style={styles.footer}
+        type="button"
       >
         <Typography tone="secondary">
           {t("auth.alreadyHaveAccount")}{" "}
@@ -165,19 +171,27 @@ export const SignupForm = () => {
             {t("auth.logIn")}
           </Typography>
         </Typography>
-      </Pressable>
+      </html.button>
     </>
   );
 };
 
-const styles = StyleSheet.create({
+const styles = css.create({
   footer: {
     alignItems: "center",
-    minHeight: 44,
+    backgroundColor: "transparent",
+    borderStyle: "none",
+    boxSizing: "border-box",
+    cursor: "pointer",
+    display: "flex",
     justifyContent: "center",
-  },
-  pressed: {
-    opacity: 0.6,
+    minHeight: 44,
+    opacity: {
+      default: 1,
+      ":active": 0.6,
+    },
+    padding: 0,
+    width: "100%",
   },
 });
 
@@ -185,11 +199,11 @@ const strictStyles = css.create({
   form: {
     display: "flex",
     flexDirection: "column",
-    gap: nativeSpacing[4],
+    gap: spacing[4],
     width: "100%",
   },
   input: {
-    borderRadius: 12,
+    borderRadius: radii.lg,
     minHeight: 48,
   },
   error: {
@@ -197,8 +211,8 @@ const strictStyles = css.create({
   },
   submit: {
     alignSelf: "stretch",
-    borderRadius: 12,
-    marginTop: nativeSpacing[2],
+    borderRadius: radii.lg,
+    marginTop: spacing[2],
   },
   link: {
     fontWeight: "700",

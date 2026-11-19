@@ -1,6 +1,5 @@
-import { StyleSheet, Text } from "react-native";
 import { css, html } from "react-strict-dom";
-import { nativeFontFamily, useNativeTheme } from "../native-theme";
+import { useNativeTheme } from "../native-theme";
 import { colors, radii, spacing } from "../tokens.css";
 import { BookmarkArtwork } from "./bookmark-artwork";
 import type { BookmarkCardProps } from "./bookmark-card.types";
@@ -29,14 +28,9 @@ export const BookmarkCard = ({
           label={strings.artwork}
         />
         <html.div style={[styles.heading, styles.compactHeading]}>
-          <Text
-            accessibilityRole="header"
-            ellipsizeMode="tail"
-            numberOfLines={1}
-            style={[nativeStyles.compactTitle, { color: theme.text }]}
-          >
+          <Typography as="h2" style={styles.compactTitle}>
             {bookmark.title}
-          </Text>
+          </Typography>
           <Typography tone="secondary" variant="caption">
             {bookmark.hostname}
           </Typography>
@@ -122,15 +116,6 @@ export const BookmarkCard = ({
   );
 };
 
-const nativeStyles = StyleSheet.create({
-  compactTitle: {
-    fontFamily: nativeFontFamily,
-    fontSize: 15,
-    fontWeight: "700",
-    lineHeight: 20,
-  },
-});
-
 const styles = css.create({
   card: {
     backgroundColor: colors.surface,
@@ -138,6 +123,7 @@ const styles = css.create({
     borderRadius: radii.card,
     borderStyle: "solid",
     borderWidth: 1,
+    boxSizing: "border-box",
     display: "flex",
     flexDirection: "column",
     gap: spacing[2],
@@ -145,10 +131,17 @@ const styles = css.create({
   },
   compactCard: {
     alignItems: "center",
+    boxSizing: "border-box",
+    display: "flex",
     flexDirection: "row",
     gap: spacing[3],
     paddingBlock: spacing[2],
     paddingInline: spacing[3],
+  },
+  compactTitle: {
+    fontWeight: "700",
+    lineClamp: 1,
+    lineHeight: 1.35,
   },
   summary: {
     alignItems: "center",
@@ -182,6 +175,7 @@ const styles = css.create({
   tag: {
     backgroundColor: colors.tag,
     borderRadius: radii.pill,
+    boxSizing: "border-box",
     color: colors.onTag,
     paddingBlock: spacing[1],
     paddingInline: spacing[3],
@@ -216,6 +210,7 @@ const styles = css.create({
     borderRadius: radii.md,
     borderStyle: "solid",
     borderWidth: 1,
+    boxSizing: "border-box",
     display: "flex",
     height: 40,
     justifyContent: "center",

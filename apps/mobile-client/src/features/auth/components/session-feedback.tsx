@@ -1,13 +1,10 @@
 import { useAuth } from "@signet/core/auth/react";
-import { Button, Typography } from "@signet/design-system";
-import {
-  nativeSpacing,
-  useNativeTheme,
-} from "@signet/design-system/native-theme";
+import { Button, spacing, Typography } from "@signet/design-system";
+import { useNativeTheme } from "@signet/design-system/native-theme";
 import { useTranslation } from "@signet/locale/react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { css } from "react-strict-dom";
+import { css, html } from "react-strict-dom";
 
 export const SessionFeedback = () => {
   const { retryRestore, state } = useAuth();
@@ -17,45 +14,48 @@ export const SessionFeedback = () => {
 
   return (
     <SafeAreaView
-      style={[styles.container, { backgroundColor: theme.background }]}
+      style={[nativeStyles.container, { backgroundColor: theme.background }]}
     >
-      <View style={styles.content}>
-        <Typography as="h1" style={strictStyles.centered} variant="headline">
+      <html.div style={styles.content}>
+        <Typography as="h1" style={styles.centered} variant="headline">
           {unavailable
             ? t("session.serverUnavailable")
             : t("session.restoring")}
         </Typography>
-        <Typography style={strictStyles.centered} tone="secondary">
+        <Typography style={styles.centered} tone="secondary">
           {unavailable ? t(state.message) : t("session.checking")}
         </Typography>
         {unavailable ? (
-          <Button onClick={retryRestore} size="lg" style={strictStyles.retry}>
+          <Button onClick={retryRestore} size="lg" style={styles.retry}>
             {t("actions.tryAgain")}
           </Button>
         ) : null}
-      </View>
+      </html.div>
     </SafeAreaView>
   );
 };
 
-const styles = StyleSheet.create({
+const nativeStyles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
   },
-  content: {
-    gap: nativeSpacing[6],
-    padding: nativeSpacing[4],
-  },
 });
 
-const strictStyles = css.create({
+const styles = css.create({
+  content: {
+    boxSizing: "border-box",
+    display: "flex",
+    flexDirection: "column",
+    gap: spacing[6],
+    padding: spacing[4],
+  },
   centered: {
     lineHeight: 1.5,
     textAlign: "center",
   },
   retry: {
     alignSelf: "stretch",
-    marginTop: nativeSpacing[2],
+    marginTop: spacing[2],
   },
 });

@@ -101,6 +101,7 @@ const styles = css.create({
   linkPreview: {
     backgroundColor: colors.surfaceAlt,
     borderRadius: radii.md,
+    boxSizing: "border-box",
     display: "flex",
     padding: spacing[3],
   },

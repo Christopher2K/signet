@@ -1,3 +1,4 @@
+import { spacing } from "@signet/design-system";
 import {
   nativeSpacing,
   useNativeTheme,
@@ -70,7 +71,7 @@ const strictStyles = css.create({
   content: {
     display: "flex",
     flexDirection: "column",
-    gap: nativeSpacing[4],
+    gap: spacing[4],
     width: "100%",
   },
 });
