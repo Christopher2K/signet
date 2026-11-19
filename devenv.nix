@@ -161,8 +161,7 @@ in
   // pkgs.lib.optionalAttrs isDarwin {
     ios.exec = ''
         ${isolateMobileToolchain}
-
-      export DEVELOPER_DIR="/Applications/Xcode-27.1.0.app/Contents/Developer"
+      export DEVELOPER_DIR="$(xcode-select --print-path)"
       exec pnpm --filter @signet/mobile-client ios "$@"
     '';
   };
