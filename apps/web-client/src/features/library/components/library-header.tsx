@@ -81,6 +81,7 @@ const styles = css.create({
     borderBottomColor: colors.border,
     borderBottomStyle: "solid",
     borderBottomWidth: 1,
+    boxSizing: "border-box",
     display: "flex",
     flexWrap: "wrap",
     gap: spacing[3],
@@ -104,6 +105,7 @@ const styles = css.create({
     borderLeftColor: colors.border,
     borderLeftStyle: "solid",
     borderLeftWidth: 1,
+    boxSizing: "border-box",
     display: {
       default: "flex",
       "@media (max-width: 480px)": "none",
@@ -156,6 +158,7 @@ const styles = css.create({
     borderRadius: radii.md,
     borderStyle: "solid",
     borderWidth: 1,
+    boxSizing: "border-box",
     color: colors.text,
     cursor: "pointer",
     display: "flex",

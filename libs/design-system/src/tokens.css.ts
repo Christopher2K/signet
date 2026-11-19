@@ -16,6 +16,10 @@ export const colors = css.defineVars({
     default: "#FBEEE1",
     [darkMode]: "#241E19",
   },
+  scrim: {
+    default: "rgba(46, 38, 32, 0.64)",
+    [darkMode]: "rgba(46, 38, 32, 0.64)",
+  },
   text: {
     default: "#2E2620",
     [darkMode]: "#FDF6EE",

@@ -8,7 +8,12 @@ import {
   validateBookmark,
 } from "@signet/core/bookmarks";
 import { Button, TextField, Typography } from "@signet/design-system";
-import { colors, radii, spacing } from "@signet/design-system/tokens.css";
+import {
+  colors,
+  radii,
+  spacing,
+  typography,
+} from "@signet/design-system/tokens.css";
 import { useTranslation } from "@signet/locale/react";
 import { type FormEvent, useEffect, useState } from "react";
 import { css, html } from "react-strict-dom";
@@ -256,7 +261,7 @@ const styles = css.create({
     boxSizing: "border-box",
     color: colors.text,
     fontFamily: "inherit",
-    fontSize: 15,
+    fontSize: typography.bodySize,
     lineHeight: 1.5,
     minHeight: 104,
     "@media (pointer: fine)": {
@@ -283,6 +288,7 @@ const styles = css.create({
     alignItems: "center",
     backgroundColor: colors.surfaceAlt,
     borderRadius: radii.md,
+    boxSizing: "border-box",
     display: "flex",
     justifyContent: "center",
     minHeight: 96,

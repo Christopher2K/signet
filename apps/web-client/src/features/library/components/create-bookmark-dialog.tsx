@@ -207,6 +207,7 @@ const styles = css.create({
     borderRadius: radii.md,
     borderStyle: "solid",
     borderWidth: 1,
+    boxSizing: "border-box",
     padding: spacing[3],
   },
   link: {

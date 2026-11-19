@@ -72,6 +72,7 @@ const styles = css.create({
   page: {
     alignItems: "center",
     backgroundColor: colors.background,
+    boxSizing: "border-box",
     display: "flex",
     justifyContent: "center",
     minHeight: "100vh",

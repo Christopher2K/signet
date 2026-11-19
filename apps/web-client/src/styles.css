@@ -30,12 +30,6 @@ body {
   min-width: 320px;
 }
 
-button,
-input,
-textarea {
-  font: inherit;
-}
-
 ::selection {
   background: #f2c9a4;
   color: #2e2620;
@@ -43,19 +37,6 @@ textarea {
 
 :where(a, button, input, textarea):focus-visible {
   border-radius: 4px;
-  box-shadow: 0 0 0 4px #f2c9a4;
-  outline: 2px solid #7c2d12;
-  outline-offset: 0;
-}
-
-.auth-link {
-  color: #c2410c;
-  font-weight: 700;
-  text-underline-offset: 3px;
-}
-
-.auth-link:focus-visible {
-  border-radius: 2px;
   box-shadow: 0 0 0 4px #f2c9a4;
   outline: 2px solid #7c2d12;
   outline-offset: 0;
@@ -75,21 +56,5 @@ textarea {
   :where(a, button, input, textarea):focus-visible {
     box-shadow: 0 0 0 4px #f2c9a4;
     outline-color: #7c2d12;
-  }
-
-  .auth-link {
-    color: #f2c9a4;
-  }
-
-  .auth-link:focus-visible {
-    box-shadow: 0 0 0 4px #f2c9a4;
-    outline-color: #7c2d12;
-  }
-}
-
-@media (max-width: 480px) {
-  .auth-link {
-    display: inline-block;
-    padding-block: 4px;
   }
 }
