@@ -5,7 +5,7 @@ import {
 } from "@signet/design-system/native-theme";
 import { useHeaderHeight } from "expo-router/react-navigation";
 import type { ReactNode } from "react";
-import { StyleSheet, View } from "react-native";
+import { Platform, StyleSheet, View } from "react-native";
 import {
   KeyboardAwareScrollView,
   KeyboardStickyView,
@@ -32,7 +32,10 @@ export const BookmarkScreenLayout = ({
       <KeyboardAwareScrollView
         contentContainerStyle={[
           styles.content,
-          { paddingTop: nativeSpacing[4] + height },
+          {
+            paddingTop:
+              nativeSpacing[4] + Platform.select({ ios: height, default: 0 }),
+          },
         ]}
         keyboardDismissMode="interactive"
         keyboardShouldPersistTaps="handled"
