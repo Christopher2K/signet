@@ -128,6 +128,7 @@ const styles = css.create({
     flexDirection: "column",
     gap: spacing[2],
     padding: spacing[3],
+    width: "100%",
   },
   compactCard: {
     alignItems: "center",

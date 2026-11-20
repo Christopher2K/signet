@@ -20,6 +20,7 @@ import {
   Platform,
   RefreshControl,
   StyleSheet,
+  useWindowDimensions,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { css, html } from "react-strict-dom";
@@ -37,6 +38,8 @@ const newBookmarkIcon = Platform.select({
 const LibraryScreen = () => {
   const router = useRouter();
   const insets = useSafeAreaInsets();
+  const { width } = useWindowDimensions();
+  const columns = width >= 600 ? 2 : 1;
   const theme = useNativeTheme();
   const { locale } = useLocale();
   const { t } = useTranslation("mobile");
@@ -57,27 +60,32 @@ const LibraryScreen = () => {
     const bookmark = getBookmarkCardModel(item);
 
     return (
-      <BookmarkCard
-        bookmark={bookmark}
-        density={density}
-        onEdit={(id) =>
-          router.push({ pathname: "/bookmark/[id]", params: { id } })
-        }
-        onOpen={(url) => void handleOpen(url)}
-        strings={{
-          artwork: t("library.artwork", { hostname: bookmark.hostname }),
-          edit: t("actions.edit"),
-          editItem: t("library.itemEdit", { title: bookmark.title }),
-          open: t("actions.open"),
-          openItem: t("library.itemOpen", { title: bookmark.title }),
-          savedOn: t("library.savedOn", {
-            date:
-              formatBookmarkDate(bookmark.createdAt, locale) ??
-              t("library.dateUnavailable"),
-          }),
-          tags: t("library.tags"),
-        }}
-      />
+      <html.div
+        data-layoutconformance="strict"
+        style={strictStyles.bookmarkCell}
+      >
+        <BookmarkCard
+          bookmark={bookmark}
+          density={density}
+          onEdit={(id) =>
+            router.push({ pathname: "/bookmark/[id]", params: { id } })
+          }
+          onOpen={(url) => void handleOpen(url)}
+          strings={{
+            artwork: t("library.artwork", { hostname: bookmark.hostname }),
+            edit: t("actions.edit"),
+            editItem: t("library.itemEdit", { title: bookmark.title }),
+            open: t("actions.open"),
+            openItem: t("library.itemOpen", { title: bookmark.title }),
+            savedOn: t("library.savedOn", {
+              date:
+                formatBookmarkDate(bookmark.createdAt, locale) ??
+                t("library.dateUnavailable"),
+            }),
+            tags: t("library.tags"),
+          }}
+        />
+      </html.div>
     );
   };
 
@@ -117,6 +125,15 @@ const LibraryScreen = () => {
         />
       </Stack.Toolbar>
       <FlatList
+        key={columns}
+        columnWrapperStyle={
+          columns === 2
+            ? [
+                styles.columnWrapper,
+                density === "compact" && styles.compactColumnWrapper,
+              ]
+            : undefined
+        }
         contentContainerStyle={[
           styles.content,
           {
@@ -157,6 +174,7 @@ const LibraryScreen = () => {
           </html.div>
         }
         ListHeaderComponentStyle={styles.header}
+        numColumns={columns}
         refreshControl={
           <RefreshControl
             colors={[theme.primary]}
@@ -173,6 +191,12 @@ const LibraryScreen = () => {
 };
 
 const styles = StyleSheet.create({
+  columnWrapper: {
+    gap: nativeSpacing[4],
+  },
+  compactColumnWrapper: {
+    gap: nativeSpacing[2],
+  },
   content: {
     gap: nativeSpacing[4],
     padding: nativeSpacing[4],
@@ -189,6 +213,20 @@ const styles = StyleSheet.create({
 });
 
 const strictStyles = css.create({
+  bookmarkCell: {
+    alignItems: "stretch",
+    boxSizing: "border-box",
+    display: "flex",
+    maxWidth: {
+      default: "100%",
+      "@media (min-width: 600px)": "50%",
+    },
+    minWidth: 0,
+    width: {
+      default: "100%",
+      "@media (min-width: 600px)": "50%",
+    },
+  },
   heading: {
     display: "flex",
     flexDirection: "column",
