@@ -1,11 +1,9 @@
-import type { MenuAction } from "@expo/ui/community/menu";
 import type { Bookmark } from "@signet/api";
 import {
   bookmarkDensities,
   formatBookmarkDate,
   getBookmarkCardModel,
   getBookmarkError,
-  isBookmarkDensity,
 } from "@signet/core/bookmarks";
 import { useBookmarkDensity, useBookmarks } from "@signet/core/bookmarks/react";
 import { BookmarkCard, spacing, Typography } from "@signet/design-system";
@@ -14,35 +12,37 @@ import {
   useNativeTheme,
 } from "@signet/design-system/native-theme";
 import { useLocale, useTranslation } from "@signet/locale/react";
-import { useRouter } from "expo-router";
+import { Stack, useRouter } from "expo-router";
 import * as WebBrowser from "expo-web-browser";
-import { DotsThreeIcon } from "phosphor-react-native/src/icons/DotsThree";
-import { PlusIcon } from "phosphor-react-native/src/icons/Plus";
-import { Alert, RefreshControl, StyleSheet } from "react-native";
-import Animated, {
-  useAnimatedScrollHandler,
-  useSharedValue,
-} from "react-native-reanimated";
+import {
+  Alert,
+  FlatList,
+  Platform,
+  RefreshControl,
+  StyleSheet,
+} from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { css, html } from "react-strict-dom";
 import { LibraryState } from "../../../features/library/components/library-state";
-import { TopNavigationBar } from "../../../features/navigation/components/top-navigation-bar";
-import type { TopNavigationBarAction } from "../../../features/navigation/components/top-navigation-bar-action";
+
+const displayIcon = Platform.select({
+  ios: "ellipsis" as const,
+  default: require("../../../../assets/images/dots-three.xml"),
+});
+const newBookmarkIcon = Platform.select({
+  ios: "plus" as const,
+  default: require("../../../../assets/images/plus.xml"),
+});
 
 const LibraryScreen = () => {
   const router = useRouter();
+  const insets = useSafeAreaInsets();
   const theme = useNativeTheme();
   const { locale } = useLocale();
   const { t } = useTranslation("mobile");
   const bookmarksQuery = useBookmarks();
   const { density, setDensity } = useBookmarkDensity();
-  const scrollY = useSharedValue(0);
   const bookmarks = bookmarksQuery.data?.data ?? [];
-
-  const handleScroll = useAnimatedScrollHandler({
-    onScroll: (event) => {
-      scrollY.value = event.contentOffset.y;
-    },
-  });
   const handleCreate = () => router.push("/(stack-screens)/bookmark/create");
   const handleRetry = () => void bookmarksQuery.refetch();
   const handleOpen = async (url: string) => {
@@ -86,65 +86,50 @@ const LibraryScreen = () => {
     formattedCount: new Intl.NumberFormat(locale).format(bookmarks.length),
   });
 
-  const densityActions = bookmarkDensities.map(
-    (option): MenuAction => ({
-      id: option,
-      state: option === density ? "on" : "off",
-      title: t(`library.density.${option}`),
-      titleColor: theme.accent,
-    }),
-  );
-
-  const newBookmarkAction: TopNavigationBarAction = {
-    accessibilityLabel: t("navigation.newBookmark"),
-    icon: PlusIcon,
-    onPress: handleCreate,
-    prominent: true,
-  };
-
-  const densityAction: TopNavigationBarAction = {
-    accessibilityLabel: t("library.display"),
-    icon: DotsThreeIcon,
-    menu: {
-      actions: [
-        {
-          id: "display",
-          subactions: densityActions,
-          title: t("library.display"),
-        },
-      ],
-      onPressAction: ({ nativeEvent }) => {
-        if (isBookmarkDensity(nativeEvent.event)) {
-          setDensity(nativeEvent.event);
-        }
-      },
-    },
-  };
-
-  const trailingActions: TopNavigationBarAction[] =
-    bookmarks.length > 0
-      ? [densityAction, newBookmarkAction]
-      : [newBookmarkAction];
-
   return (
     <>
-      <TopNavigationBar
-        largeTitle
-        scrollY={scrollY}
-        title={t("navigation.library")}
-        trailingActions={trailingActions}
-      />
-      <Animated.FlatList
+      <Stack.Toolbar placement="right">
+        <Stack.Toolbar.Menu
+          accessibilityLabel={t("library.display")}
+          hidden={bookmarks.length === 0}
+          icon={displayIcon}
+          tintColor={theme.primary}
+        >
+          <Stack.Toolbar.Menu title={t("library.display")}>
+            {bookmarkDensities.map((option) => (
+              <Stack.Toolbar.MenuAction
+                isOn={option === density}
+                key={option}
+                onPress={() => setDensity(option)}
+              >
+                {t(`library.density.${option}`)}
+              </Stack.Toolbar.MenuAction>
+            ))}
+          </Stack.Toolbar.Menu>
+        </Stack.Toolbar.Menu>
+        <Stack.Toolbar.Button
+          accessibilityHint={t("navigation.createBookmarkHint")}
+          accessibilityLabel={t("navigation.newBookmark")}
+          icon={newBookmarkIcon}
+          onPress={handleCreate}
+          tintColor={theme.primary}
+          variant="prominent"
+        />
+      </Stack.Toolbar>
+      <FlatList
         contentContainerStyle={[
           styles.content,
+          {
+            paddingLeft: nativeSpacing[4] + insets.left,
+            paddingRight: nativeSpacing[4] + insets.right,
+          },
           density === "compact" && styles.compactContent,
           bookmarks.length === 0 && styles.emptyContent,
         ]}
+        contentInsetAdjustmentBehavior="automatic"
         data={bookmarks}
         extraData={density}
         keyExtractor={(bookmark) => bookmark.id}
-        onScroll={handleScroll}
-        scrollEventThrottle={16}
         ListEmptyComponent={
           <LibraryState
             error={

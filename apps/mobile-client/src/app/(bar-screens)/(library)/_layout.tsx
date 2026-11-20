@@ -1,4 +1,7 @@
-import { useNativeTheme } from "@signet/design-system/native-theme";
+import {
+  nativeNavigationTitleStyle,
+  useNativeTheme,
+} from "@signet/design-system/native-theme";
 import { useTranslation } from "@signet/locale/react";
 import { Stack } from "expo-router";
 
@@ -10,10 +13,23 @@ const LibraryLayout = () => {
     <Stack
       screenOptions={{
         contentStyle: { backgroundColor: theme.background },
-        headerShown: false,
+        headerLargeTitleStyle: {
+          ...nativeNavigationTitleStyle,
+          color: theme.text,
+          fontSize: 32,
+        },
+        headerTintColor: theme.text,
+        headerTitleStyle: nativeNavigationTitleStyle,
+        headerUserInterfaceStyle: theme.dark ? "dark" : "light",
       }}
     >
-      <Stack.Screen name="index" options={{ title: t("navigation.library") }} />
+      <Stack.Screen
+        name="index"
+        options={{
+          headerLargeTitleEnabled: true,
+          title: t("navigation.library"),
+        }}
+      />
     </Stack>
   );
 };

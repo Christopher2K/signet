@@ -8,7 +8,6 @@ import { useTranslation } from "@signet/locale/react";
 import { useState } from "react";
 import { ScrollView, StyleSheet } from "react-native";
 import { css, html } from "react-strict-dom";
-import { TopNavigationBar } from "../../../features/navigation/components/top-navigation-bar";
 
 const AccountScreen = () => {
   const { logout, state } = useAuth();
@@ -30,31 +29,28 @@ const AccountScreen = () => {
   }
 
   return (
-    <>
-      <TopNavigationBar title={t("navigation.account")} />
-      <ScrollView
-        contentContainerStyle={styles.content}
-        style={{ backgroundColor: theme.background }}
-      >
-        <html.div data-layoutconformance="strict" style={strictStyles.content}>
-          <html.div style={strictStyles.identity}>
-            <Typography tone="secondary" variant="caption">
-              {t("account.signedInAs")}
-            </Typography>
-            <Typography>{state.user.email}</Typography>
-          </html.div>
-          <Button
-            disabled={pending}
-            onClick={() => void handleLogout()}
-            size="lg"
-            style={strictStyles.logout}
-            variant="secondary"
-          >
-            {pending ? t("account.loggingOut") : t("account.logOut")}
-          </Button>
+    <ScrollView
+      contentContainerStyle={styles.content}
+      style={{ backgroundColor: theme.background }}
+    >
+      <html.div data-layoutconformance="strict" style={strictStyles.content}>
+        <html.div style={strictStyles.identity}>
+          <Typography tone="secondary" variant="caption">
+            {t("account.signedInAs")}
+          </Typography>
+          <Typography>{state.user.email}</Typography>
         </html.div>
-      </ScrollView>
-    </>
+        <Button
+          disabled={pending}
+          onClick={() => void handleLogout()}
+          size="lg"
+          style={strictStyles.logout}
+          variant="secondary"
+        >
+          {pending ? t("account.loggingOut") : t("account.logOut")}
+        </Button>
+      </html.div>
+    </ScrollView>
   );
 };
 
