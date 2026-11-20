@@ -16,9 +16,9 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useEffect, useRef, useState } from "react";
 import { Alert } from "react-native";
+import { BookmarkCancelToolbar } from "../../../features/library/components/bookmark-cancel-toolbar";
 import { BookmarkForm } from "../../../features/library/components/bookmark-form";
 import { BookmarkScreenLayout } from "../../../features/library/components/bookmark-screen-layout";
-import { BookmarkTopNavigationBar } from "../../../features/library/components/bookmark-top-navigation-bar";
 
 const formatTimestamp = (value: string, locale: string): string | undefined => {
   const date = new Date(value);
@@ -97,7 +97,7 @@ const EditBookmarkScreen = () => {
 
   return (
     <>
-      <BookmarkTopNavigationBar title={t("navigation.editBookmark")} />
+      <BookmarkCancelToolbar />
       {bookmarkQuery.isPending || bookmarkQuery.isError || !bookmark ? (
         <BookmarkScreenLayout>
           {bookmarkQuery.isPending ? (

@@ -14,9 +14,9 @@ import { useTranslation } from "@signet/locale/react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "expo-router";
 import { useEffect, useRef, useState } from "react";
+import { BookmarkCancelToolbar } from "../../../features/library/components/bookmark-cancel-toolbar";
 import { BookmarkForm } from "../../../features/library/components/bookmark-form";
 import { BookmarkScreenLayout } from "../../../features/library/components/bookmark-screen-layout";
-import { BookmarkTopNavigationBar } from "../../../features/library/components/bookmark-top-navigation-bar";
 import { DuplicateBookmarkWarning } from "../../../features/library/components/duplicate-bookmark-warning";
 
 type DuplicateWarning = {
@@ -114,7 +114,7 @@ const CreateBookmarkScreen = () => {
 
   return (
     <>
-      <BookmarkTopNavigationBar title={t("navigation.newBookmark")} />
+      <BookmarkCancelToolbar />
       {warning ? (
         <BookmarkScreenLayout>
           <DuplicateBookmarkWarning

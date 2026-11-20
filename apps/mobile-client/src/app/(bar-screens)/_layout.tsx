@@ -35,11 +35,19 @@ const AppLayout = () => {
     >
       <NativeTabs.Trigger name="(library)">
         <NativeTabs.Trigger.Label children={t("navigation.library")} />
-        <NativeTabs.Trigger.Icon sf="square.grid.2x2" md="grid_view" />
+        <NativeTabs.Trigger.Icon
+          renderingMode="template"
+          sf="square.grid.2x2"
+          src={require("../../../assets/images/squares-four.png")}
+        />
       </NativeTabs.Trigger>
       <NativeTabs.Trigger name="(account)">
         <NativeTabs.Trigger.Label children={t("navigation.account")} />
-        <NativeTabs.Trigger.Icon sf="person" md="person" />
+        <NativeTabs.Trigger.Icon
+          renderingMode="template"
+          sf="person"
+          src={require("../../../assets/images/user.png")}
+        />
       </NativeTabs.Trigger>
     </NativeTabs>
   );
