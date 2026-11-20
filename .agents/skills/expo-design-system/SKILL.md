@@ -235,6 +235,26 @@ export const motion = {
 
 Reanimated caveat: don't pass `Color`/`PlatformColor` token values into Reanimated styles - use static colors there (see `expo-native-ui`).
 
+## Screen Safe Areas
+
+Every native screen must keep readable and interactive content inside the safe-area insets from `react-native-safe-area-context`. This includes the **left and right** insets so content stays within the active window boundaries when an iPhone Duo is folded. Apply dynamic horizontal insets in addition to the screen's normal padding; for scrolling screens, put them on the scroll view's `contentContainerStyle` rather than on individual rows.
+
+```tsx
+const insets = useSafeAreaInsets();
+
+<ScrollView
+  contentContainerStyle={[
+    styles.content,
+    {
+      paddingLeft: spacing.md + insets.left,
+      paddingRight: spacing.md + insets.right,
+    },
+  ]}
+/>
+```
+
+Native stack headers and tab bars own their own vertical insets: do not add duplicate status-bar, header, or tab-bar padding. Screens without that native chrome must explicitly handle every relevant edge. Never hardcode hinge or device-specific offsets. Make this part of every new screen by default and verify folded and unfolded poses where foldable behavior changes the window bounds.
+
 ## Reusable Components
 
 The theme controls values; components control structure. Shared primitives live in `src/components/` (see `expo-project-structure`).

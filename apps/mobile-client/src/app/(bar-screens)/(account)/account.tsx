@@ -7,10 +7,12 @@ import {
 import { useTranslation } from "@signet/locale/react";
 import { useState } from "react";
 import { ScrollView, StyleSheet } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { css, html } from "react-strict-dom";
 
 const AccountScreen = () => {
   const { logout, state } = useAuth();
+  const insets = useSafeAreaInsets();
   const theme = useNativeTheme();
   const { t } = useTranslation("mobile");
   const [pending, setPending] = useState(false);
@@ -30,7 +32,13 @@ const AccountScreen = () => {
 
   return (
     <ScrollView
-      contentContainerStyle={styles.content}
+      contentContainerStyle={[
+        styles.content,
+        {
+          paddingLeft: nativeSpacing[4] + insets.left,
+          paddingRight: nativeSpacing[4] + insets.right,
+        },
+      ]}
       style={{ backgroundColor: theme.background }}
     >
       <html.div data-layoutconformance="strict" style={strictStyles.content}>

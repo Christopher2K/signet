@@ -24,6 +24,12 @@ Build navigation chrome with Expo Router's native APIs so platform behavior, acc
 - Use native styling props such as `tintColor` and `hidesSharedBackground` when required by the design instead of drawing a custom background around the button.
 - Translate visible text and accessibility labels in English and French. Load `client-internationalization` when adding or changing messages.
 
+## Screen Content Safe Areas
+
+- Every screen must keep readable and interactive content inside `react-native-safe-area-context` insets by default, including left and right insets at folded iPhone Duo window boundaries.
+- Add dynamic horizontal insets to the normal screen padding, using the scroll view's `contentContainerStyle` for scrolling content. Do not hardcode hinge offsets.
+- Native headers and tab bars continue to own their vertical insets; do not add duplicate top or bottom chrome padding.
+
 ## Verify the Native Result
 
 1. Run Biome and the mobile client's TypeScript check.
