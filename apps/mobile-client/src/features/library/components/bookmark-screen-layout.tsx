@@ -3,8 +3,9 @@ import {
   nativeSpacing,
   useNativeTheme,
 } from "@signet/design-system/native-theme";
+import { useHeaderHeight } from "expo-router/react-navigation";
 import type { ReactNode } from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 import {
   KeyboardAwareScrollView,
   KeyboardStickyView,
@@ -24,11 +25,15 @@ export const BookmarkScreenLayout = ({
 }: BookmarkScreenLayoutProps) => {
   const theme = useNativeTheme();
   const { bottom } = useSafeAreaInsets();
+  const height = useHeaderHeight();
 
   return (
-    <>
+    <View style={styles.root}>
       <KeyboardAwareScrollView
-        contentContainerStyle={styles.content}
+        contentContainerStyle={[
+          styles.content,
+          { paddingTop: nativeSpacing[4] + height },
+        ]}
         keyboardDismissMode="interactive"
         keyboardShouldPersistTaps="handled"
         style={[styles.scrollView, { backgroundColor: theme.background }]}
@@ -48,11 +53,15 @@ export const BookmarkScreenLayout = ({
           {dockedAction}
         </KeyboardStickyView>
       ) : null}
-    </>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
+  root: {
+    flex: 1,
+    width: "100%",
+  },
   scrollView: {
     flex: 1,
   },
