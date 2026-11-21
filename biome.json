@@ -10,7 +10,8 @@
       "apps/**",
       "libs/**",
       "!**/storybook.requires.ts",
-      "!**/routeTree.gen.ts"
+      "!**/routeTree.gen.ts",
+      "!apps/extension-safari/assets"
     ],
     "ignoreUnknown": false
   },
@@ -20,7 +21,12 @@
   },
   "linter": {
     "enabled": true,
-    "includes": ["**", "!**/*.svg", "!libs/api/src/generated/**"],
+    "includes": [
+      "**",
+      "!**/*.svg",
+      "!libs/api/src/generated/**",
+      "!apps/extension-safari/assets/**"
+    ],
     "rules": {
       "preset": "recommended",
       "correctness": {

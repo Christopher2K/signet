@@ -1,0 +1,58 @@
+@font-face {
+  font-family: "Space Mono";
+  font-style: normal;
+  font-weight: 400;
+  src: url("/fonts/SpaceMono-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Space Mono";
+  font-style: normal;
+  font-weight: 700;
+  src: url("/fonts/SpaceMono-Bold.ttf") format("truetype");
+}
+
+:root {
+  color-scheme: light dark;
+  --background: #fdf6ee;
+  --text: #2e2620;
+  --selection: #f2c9a4;
+  --on-selection: #2e2620;
+  font-family: "Space Mono", ui-monospace, monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #2e2620;
+    --text: #fdf6ee;
+    --selection: #7c2d12;
+    --on-selection: #fdf6ee;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::selection {
+  background: var(--selection);
+  color: var(--on-selection);
+}
+
+/* Keep content-sized popovers stable while letting iPhone sheets fill Safari. */
+html,
+body {
+  min-width: 360px;
+}
+
+body {
+  width: 100%;
+  margin: 0;
+  background: var(--background);
+  color: var(--text);
+  font-size: 15px;
+}
+
+[hidden] {
+  display: none;
+}

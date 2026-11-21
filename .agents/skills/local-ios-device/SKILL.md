@@ -11,7 +11,7 @@ Build from `apps/mobile-client` with the full Xcode app, not Command Line Tools 
 
 - Xcode developer directory: `/Applications/Xcode-27.1.0.app/Contents/Developer`
 - Phone: `Christopher Katoyi Kaba’s iPhone`
-- Phone UDID: `00008140-001E34360A01801C`
+- Phone UDID: `00008160-000A153402F0000A`
 - Apple team ID: `2YELN5S6P5`
 - App bundle ID: `co.signetapp.app`
 - Safari extension bundle ID: `co.signetapp.app.safari`
@@ -36,27 +36,21 @@ cd apps/mobile-client
 devenv shell -- pnpm exec expo prebuild -p ios --clean
 ```
 
-Prebuild also installs CocoaPods. Do not use `--clean` for ordinary JavaScript, HTML, CSS, or Swift source edits. The generated `ios/` directory is ignored.
+The generated Safari assets are not committed; the mobile package's `postinstall` creates them during dependency installation before prebuild. Prebuild also installs CocoaPods. Do not use `--clean` for ordinary JavaScript, HTML, CSS, or Swift source edits. The generated `ios/` directory is ignored.
 
 ## 3. Build and install with Xcode
 
-Use this exact environment from `apps/mobile-client`:
+Use the devenv entry point from the repository root:
 
 ```sh
-node_binary="$(devenv shell -- sh -c 'command -v node' | tail -n 1)"
-pnpm_binary="$(devenv shell -- sh -c 'command -v pnpm' | tail -n 1)"
-
-PATH="$(dirname "$node_binary"):/usr/bin:/bin:/usr/sbin:/sbin" \
-DEVELOPER_DIR=/Applications/Xcode-27.1.0.app/Contents/Developer \
-"$pnpm_binary" exec expo run:ios \
-  --device 00008140-001E34360A01801C \
-  --no-bundler \
-  --no-install
+devenv shell -- ios \
+  --device 00008160-000A153402F0000A \
+  --no-bundler
 ```
 
-This builds the development client, automatically signs the app and extension with team `2YELN5S6P5`, and installs them on the phone.
+This regenerates the Safari web assets, builds the development client, automatically signs the app and extension with team `2YELN5S6P5`, and installs them on the phone. The wrapper isolates Xcode from the Nix compiler environment and selects a full Xcode installation when `xcode-select` points to Command Line Tools. It also lets Expo install or synchronize CocoaPods when required; do not add `--no-install` unless the pods are already synchronized.
 
-**Do not run the compile step directly through `devenv shell --`.** Its Nix `SDKROOT`, compiler flags, and libc++ headers conflict with Xcode and cause errors such as missing `FP_NORMAL`, `uint8_t`, and `uint64_t`. Use `devenv` only to locate Node and pnpm, then invoke the build with the sanitized `PATH` and explicit `DEVELOPER_DIR` above. `--no-install` is intentional because prebuild already installed the pods; omit it only when dependency installation is required and the Nix environment has been sanitized.
+**Do not invoke the compile step through an unsanitized devenv shell.** Its Nix `SDKROOT`, compiler flags, and libc++ headers conflict with Xcode and cause errors such as missing `FP_NORMAL`, `uint8_t`, and `uint64_t`. Use the `ios` wrapper above, which performs the required sanitization.
 
 To launch Metro separately for JavaScript development:
 
@@ -69,7 +63,7 @@ devenv shell -- pnpm exec expo start --dev-client
 ```sh
 export DEVELOPER_DIR=/Applications/Xcode-27.1.0.app/Contents/Developer
 xcrun devicectl device info apps \
-  --device 00008140-001E34360A01801C \
+  --device 00008160-000A153402F0000A \
   --bundle-id co.signetapp.app
 ```
 

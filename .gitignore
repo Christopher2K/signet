@@ -1,5 +1,8 @@
 node_modules/
 
+# Generated Safari extension assets
+apps/extension-safari/assets/
+
 # Devenv
 .devenv*
 devenv.local.nix

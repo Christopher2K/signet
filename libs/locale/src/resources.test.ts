@@ -18,7 +18,7 @@ const readSafariCatalog = (locale: "en" | "fr"): SafariCatalog =>
   JSON.parse(
     readFileSync(
       new URL(
-        `../../../apps/extension-safari/assets/_locales/${locale}/messages.json`,
+        `../../../apps/extension/public/_locales/${locale}/messages.json`,
         import.meta.url,
       ),
       "utf8",

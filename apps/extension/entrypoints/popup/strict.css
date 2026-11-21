@@ -1,0 +1,3 @@
+/* Replaced with extracted React Strict DOM styles during builds. */
+/** biome-ignore lint/suspicious/noUnknownAtRules: React Strict DOM replaces this required directive. */
+@react-strict-dom;

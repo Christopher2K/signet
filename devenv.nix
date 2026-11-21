@@ -160,8 +160,23 @@ in
   }
   // pkgs.lib.optionalAttrs isDarwin {
     ios.exec = ''
-        ${isolateMobileToolchain}
-      export DEVELOPER_DIR="$(xcode-select --print-path)"
+      ${isolateMobileToolchain}
+
+      selected_developer_dir="$(/usr/bin/xcode-select --print-path)"
+      case "$selected_developer_dir" in
+        *.app/Contents/Developer)
+          export DEVELOPER_DIR="$selected_developer_dir"
+          ;;
+        *)
+          xcode_app="$(mdfind "kMDItemCFBundleIdentifier == 'com.apple.dt.Xcode'" | head -n 1)"
+          if [ -z "$xcode_app" ]; then
+            echo "No full Xcode installation found. Select one with xcode-select." >&2
+            exit 1
+          fi
+          export DEVELOPER_DIR="$xcode_app/Contents/Developer"
+          ;;
+      esac
+
       exec pnpm --filter @signet/mobile-client ios "$@"
     '';
   };

@@ -10,6 +10,7 @@ This is a multi repo for the Signet application ecosystem.
   - The backend API is built with Elixir and Phoenix.
   - The mobile app is built with React Native and Expo.
   - The web app is built with TanStack Start, React, and Vite.
+  - The browser extension source is built with WXT, React, and React Strict DOM in `apps/extension`; `pnpm --filter @signet/extension build` generates `apps/extension-safari/assets` for the Expo native Safari wrapper. These assets are ignored by Git and regenerated during dependency installation (including EAS) and by the mobile `ios`/`storybook:ios` scripts. Do not edit them manually.
 - `libs` contains all shared libraries that clients can reuse.
 
 ## Internationalization

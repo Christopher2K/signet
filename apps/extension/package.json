@@ -1,0 +1,33 @@
+{
+  "name": "@signet/extension",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "wxt build",
+    "dev": "wxt",
+    "postinstall": "wxt prepare",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@signet/core": "workspace:*",
+    "@signet/design-system": "workspace:*",
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "react-strict-dom": "catalog:"
+  },
+  "devDependencies": {
+    "@babel/core": "catalog:",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "@wxt-dev/module-react": "~1.2.2",
+    "autoprefixer": "catalog:",
+    "jsdom": "latest",
+    "rollup": "~4.68.7",
+    "typescript": "catalog:",
+    "vite-plugin-babel": "catalog:",
+    "vitest": "catalog:",
+    "wxt": "~0.21.5"
+  }
+}

@@ -5,9 +5,11 @@
   "scripts": {
     "start": "expo start",
     "android": "expo run:android",
-    "ios": "expo run:ios",
+    "build:safari-extension": "pnpm --filter @signet/extension build",
+    "ios": "pnpm run build:safari-extension && expo run:ios",
+    "postinstall": "pnpm run build:safari-extension",
     "storybook": "cross-env STORYBOOK_ENABLED=true expo start",
-    "storybook:ios": "cross-env STORYBOOK_ENABLED=true expo run:ios",
+    "storybook:ios": "pnpm run build:safari-extension && cross-env STORYBOOK_ENABLED=true expo run:ios",
     "storybook:android": "cross-env STORYBOOK_ENABLED=true expo run:android"
   },
   "dependencies": {

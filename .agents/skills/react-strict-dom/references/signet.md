@@ -5,7 +5,7 @@ This reference describes the configuration verified in this repository. Re-read 
 ## Architecture
 
 - `libs/design-system` publishes `@signet/design-system` as workspace TypeScript source. There is deliberately no package build step; each consumer's bundler compiles the source.
-- The package currently uses `react-strict-dom` `0.0.55`. Keep the version aligned with both clients.
+- The package currently uses `react-strict-dom` `0.0.55`. Keep the version aligned with every consumer.
 - `src/tokens.css.ts` contains semantic light/dark colors, spacing, radii, and typography using `css.defineVars()`.
 - `src/components/button.tsx` is the initial shared component; `button.stories.tsx` supplies the same stories to web and native.
 - Dimensional token values use pixel strings because the current `css.defineVars()` typings rejected raw numbers. Ordinary RSD styles can still use supported numeric values.
@@ -54,6 +54,16 @@ Both Storybooks use this glob from their respective config directories:
 
 Native Storybook is enabled with `STORYBOOK_ENABLED=true`.
 
+### Safari extension consumer
+
+- `apps/extension/wxt.config.ts` — WXT React module, web platform extensions, and Vite Babel transformation.
+- `apps/extension/vitest.config.ts` — matching web resolution and Babel transformation for popup tests.
+- `apps/extension/babel.config.js` — RSD web Babel preset.
+- `apps/extension/postcss.config.js` — RSD static CSS extraction for the extension and shared design system.
+- `apps/extension/entrypoints/popup/strict.css` — required `@react-strict-dom` directive.
+
+The popup imports shared tokens through `@signet/design-system/tokens.css` so StyleX can resolve their definitions during Babel and PostCSS compilation.
+
 ## Storybook Conventions
 
 Shared stories use `@storybook/react` types and `storybook/test` utilities. Decorators use `<html.div data-layoutconformance="strict">`, not a web-only DOM wrapper.
@@ -69,6 +79,9 @@ devenv shell -- pnpm exec biome check libs/design-system/src
 devenv shell -- pnpm --filter @signet/design-system typecheck
 devenv shell -- pnpm --filter @signet/web-client exec tsc --noEmit
 devenv shell -- pnpm --filter @signet/mobile-client exec tsc --noEmit
+devenv shell -- pnpm --filter @signet/extension typecheck
+devenv shell -- pnpm --filter @signet/extension test
+devenv shell -- pnpm --filter @signet/extension build
 devenv shell -- pnpm --filter @signet/web-client build
 devenv shell -- pnpm --filter @signet/web-client build-storybook
 devenv shell -- pnpm --filter @signet/web-client exec vitest run --project storybook
