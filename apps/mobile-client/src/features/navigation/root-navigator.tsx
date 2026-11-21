@@ -13,10 +13,11 @@ type RootNavigatorProps = {
 };
 
 export const RootNavigator = ({ fontsLoaded }: RootNavigatorProps) => {
-  const { state } = useAuth();
+  const { retrying, state } = useAuth();
   const pathname = usePathname();
   const theme = useNativeTheme();
   const [destinationReady, setDestinationReady] = useState(false);
+  const recoveryVisible = retrying || state.status === "unavailable";
 
   const handleDestinationLayout = useCallback(() => {
     setDestinationReady(true);
@@ -29,9 +30,7 @@ export const RootNavigator = ({ fontsLoaded }: RootNavigatorProps) => {
       : state.status === "authenticated" &&
           (onAuthScreen || pathname === "/unavailable")
         ? "/"
-        : state.status === "unavailable" && pathname !== "/unavailable"
-          ? "/unavailable"
-          : undefined;
+        : undefined;
 
   return (
     <>
@@ -39,7 +38,7 @@ export const RootNavigator = ({ fontsLoaded }: RootNavigatorProps) => {
       {fontsLoaded ? (
         redirect ? (
           <Redirect href={redirect} />
-        ) : state.status === "restoring" ? (
+        ) : state.status === "restoring" || recoveryVisible ? (
           <SessionFeedback />
         ) : (
           <View onLayout={handleDestinationLayout} style={styles.destination}>
@@ -65,7 +64,7 @@ export const RootNavigator = ({ fontsLoaded }: RootNavigatorProps) => {
               <Stack.Protected guard={state.status === "unauthenticated"}>
                 <Stack.Screen name="(auth)" />
               </Stack.Protected>
-              <Stack.Protected guard={state.status === "unavailable"}>
+              <Stack.Protected guard={recoveryVisible}>
                 <Stack.Screen name="unavailable" />
               </Stack.Protected>
             </Stack>
@@ -74,7 +73,11 @@ export const RootNavigator = ({ fontsLoaded }: RootNavigatorProps) => {
       ) : null}
       <AnimatedSplashOverlay
         fontsLoaded={fontsLoaded}
-        ready={destinationReady && !redirect && state.status !== "restoring"}
+        ready={
+          (destinationReady || state.status === "unavailable") &&
+          !redirect &&
+          state.status !== "restoring"
+        }
       />
     </>
   );

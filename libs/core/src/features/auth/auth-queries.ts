@@ -1,6 +1,40 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useAuthApiContext } from "./auth-api-context";
+import { AuthError } from "./auth-errors";
 import type { LoginValues, SignupValues } from "./auth-types";
+
+const restoreTimeoutMs = 5000;
+
+/** Bounds session restoration and aborts its request on timeout. */
+export const withRestoreTimeout = async <T>(
+  operation: (signal: AbortSignal) => Promise<T>,
+  parentSignal: AbortSignal,
+): Promise<T> => {
+  const controller = new AbortController();
+  const abort = () => controller.abort();
+  if (parentSignal.aborted) {
+    abort();
+  } else {
+    parentSignal.addEventListener("abort", abort, { once: true });
+  }
+
+  let timeout: ReturnType<typeof setTimeout> | undefined;
+  const timeoutPromise = new Promise<never>((_, reject) => {
+    timeout = setTimeout(() => {
+      controller.abort();
+      reject(new AuthError("common:errors.unavailable", "unavailable"));
+    }, restoreTimeoutMs);
+  });
+
+  try {
+    return await Promise.race([operation(controller.signal), timeoutPromise]);
+  } finally {
+    if (timeout) {
+      clearTimeout(timeout);
+    }
+    parentSignal.removeEventListener("abort", abort);
+  }
+};
 
 /** Logs in with email and password through TanStack Query. */
 export const useLoginMutation = () => {
@@ -32,7 +66,11 @@ export const useMeQuery = (options: UseMeQueryOptions = {}) => {
 
   return useQuery({
     enabled: options.enabled ?? true,
-    queryFn: () => getApi(serverUrl).currentUser(),
+    queryFn: ({ signal }) =>
+      withRestoreTimeout(
+        (requestSignal) => getApi(serverUrl).currentUser(requestSignal),
+        signal,
+      ),
     queryKey: ["auth", "me", serverUrl],
     refetchOnWindowFocus: false,
     retry: false,

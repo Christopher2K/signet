@@ -33,7 +33,11 @@ const SessionFeedback = () => {
           {unavailable ? t(state.message) : t("auth.session.checking")}
         </Typography>
         {unavailable ? (
-          <Button onClick={retryRestore} style={styles.retry} type="button">
+          <Button
+            onClick={() => retryRestore()}
+            style={styles.retry}
+            type="button"
+          >
             {t("actions.tryAgain")}
           </Button>
         ) : null}

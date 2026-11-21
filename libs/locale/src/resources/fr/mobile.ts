@@ -102,5 +102,7 @@ export const mobile = {
     checking: "Vérification de votre session enregistrée auprès du serveur.",
     restoring: "Restauration de votre session…",
     serverUnavailable: "Serveur indisponible",
+    unavailableMessage:
+      "Impossible de contacter le serveur. Vérifiez votre connexion ou modifiez l’adresse du serveur.",
   },
 } as const;

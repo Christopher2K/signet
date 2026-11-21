@@ -41,6 +41,7 @@ export const AuthSessionProvider = ({
   const [token, setToken] = useState<string | null>(null);
   const [sessionUser, setSessionUser] = useState<User>();
   const [storageRestored, setStorageRestored] = useState(false);
+  const [retrying, setRetrying] = useState(false);
   const { mutateAsync: loginRequest } = useLoginMutation();
   const { mutateAsync: signupRequest } = useSignupMutation();
   const { mutateAsync: logoutRequest } = useLogoutMutation();
@@ -209,9 +210,31 @@ export const AuthSessionProvider = ({
     [clearLocalSession, logoutRequest, queryClient, runSessionOperation],
   );
 
-  const retryRestore = useCallback(() => {
-    void meQuery.refetch();
-  }, [meQuery.refetch]);
+  const retryRestore = useCallback(
+    (nextServerUrl?: string) => {
+      const selectedServerUrl = normalizeServerUrl(nextServerUrl ?? serverUrl);
+      setRetrying(true);
+      serverUrlRef.current = selectedServerUrl;
+      if (selectedServerUrl !== serverUrl) {
+        if (token) {
+          void runStorageOperation(sessionOperation.current, () =>
+            storage.writeStoredSession(token, selectedServerUrl),
+          );
+        }
+        setServerUrl(selectedServerUrl);
+        return;
+      }
+      void meQuery.refetch();
+    },
+    [
+      meQuery.refetch,
+      runStorageOperation,
+      serverUrl,
+      serverUrlRef,
+      storage,
+      token,
+    ],
+  );
 
   useEffect(() => {
     const operation = ++sessionOperation.current;
@@ -252,6 +275,12 @@ export const AuthSessionProvider = ({
     }
   }, [clearLocalSession, restoreUnauthorized]);
 
+  useEffect(() => {
+    if (!meQuery.isFetching) {
+      setRetrying(false);
+    }
+  }, [meQuery.isFetching]);
+
   const user = sessionUser ?? meQuery.data ?? null;
   const state: AuthState = !storageRestored
     ? { status: "restoring", user: null }
@@ -271,7 +300,15 @@ export const AuthSessionProvider = ({
 
   return (
     <AuthContext.Provider
-      value={{ state, serverUrl, login, logout, retryRestore, signup }}
+      value={{
+        state,
+        serverUrl,
+        retrying,
+        login,
+        logout,
+        retryRestore,
+        signup,
+      }}
     >
       {children}
     </AuthContext.Provider>

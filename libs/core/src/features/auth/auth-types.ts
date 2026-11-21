@@ -25,7 +25,7 @@ export type SignupValues = SignupRequestWritable & ServerSelection;
 export type AuthApi = {
   login: (values: LoginRequestWritable) => Promise<AuthSession>;
   signup: (values: SignupRequestWritable) => Promise<AuthSession>;
-  currentUser: () => Promise<User>;
+  currentUser: (signal?: AbortSignal) => Promise<User>;
   logout: () => Promise<void>;
 };
 
@@ -40,8 +40,10 @@ export type AuthState =
 export type AuthContextValue = {
   state: AuthState;
   serverUrl: string;
+  /** Whether a user-initiated restoration attempt is pending. */
+  retrying: boolean;
   login: (values: LoginValues) => Promise<void>;
   signup: (values: SignupValues) => Promise<void>;
   logout: () => Promise<void>;
-  retryRestore: () => void;
+  retryRestore: (serverUrl?: string) => void;
 };

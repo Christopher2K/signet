@@ -82622,7 +82622,7 @@
                       "fill": "#6E5F53",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
-                      "content": "Native iOS + Android · 390 × 844 · Light / Dark · Saved-session restore failure from the web route guards · Exact web error copy and retry action · Restoring session remains covered by the existing splash",
+                      "content": "Native iOS + Android · 390 × 844 · Light / Dark · Saved-session restore failure · Editable server address and retry action · 5-second network timeout exits the splash",
                       "fontFamily": "IBM Plex Mono",
                       "fontSize": 12,
                       "fontWeight": "normal"
@@ -82733,7 +82733,7 @@
                                       "fill": "#6E5F53",
                                       "textGrowth": "fixed-width",
                                       "width": "fill_container",
-                                      "content": "Cannot reach the server. Check your connection and try again.",
+                                      "content": "Cannot reach the server. Check your connection or edit the server address.",
                                       "textAlign": "center",
                                       "fontFamily": "IBM Plex Mono",
                                       "fontSize": 15,
@@ -82742,27 +82742,90 @@
                                     {
                                       "type": "frame",
                                       "id": "B4ILJN",
-                                      "name": "RetryAction",
+                                      "name": "SessionForm",
                                       "width": "fill_container",
-                                      "height": 48,
-                                      "fill": "#C2410C",
-                                      "cornerRadius": 12,
-                                      "padding": [
-                                        0,
-                                        24
-                                      ],
+                                      "fill": "#FDF6EE",
+                                      "layout": "vertical",
+                                      "gap": 16,
                                       "justifyContent": "center",
                                       "alignItems": "center",
                                       "children": [
                                         {
-                                          "type": "text",
-                                          "id": "VVaJe",
-                                          "name": "Label",
-                                          "fill": "#FDF6EE",
-                                          "content": "Try again",
-                                          "fontFamily": "IBM Plex Mono",
-                                          "fontSize": 15,
-                                          "fontWeight": "700"
+                                          "type": "frame",
+                                          "id": "i6oIw",
+                                          "name": "ServerField",
+                                          "width": "fill_container",
+                                          "layout": "vertical",
+                                          "gap": 8,
+                                          "children": [
+                                            {
+                                              "type": "text",
+                                              "id": "F6S8QC",
+                                              "name": "FieldLabel",
+                                              "fill": "#7C2D12",
+                                              "content": "Server URL",
+                                              "fontFamily": "IBM Plex Mono",
+                                              "fontSize": 12,
+                                              "fontWeight": "700"
+                                            },
+                                            {
+                                              "type": "frame",
+                                              "id": "cEEyE",
+                                              "name": "ServerInput",
+                                              "width": "fill_container",
+                                              "height": 48,
+                                              "fill": "#FFFFFF",
+                                              "cornerRadius": 12,
+                                              "stroke": "#B08350",
+                                              "strokeWidth": 1,
+                                              "padding": [
+                                                0,
+                                                12
+                                              ],
+                                              "alignItems": "center",
+                                              "children": [
+                                                {
+                                                  "type": "text",
+                                                  "id": "eOxxf",
+                                                  "name": "Value",
+                                                  "fill": "#2E2620",
+                                                  "textGrowth": "fixed-width",
+                                                  "width": "fill_container",
+                                                  "content": "https://signet.example.com",
+                                                  "fontFamily": "IBM Plex Mono",
+                                                  "fontSize": 15,
+                                                  "fontWeight": "normal"
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "type": "frame",
+                                          "id": "n1jRjS",
+                                          "name": "RetryAction",
+                                          "width": "fill_container",
+                                          "height": 48,
+                                          "fill": "#C2410C",
+                                          "cornerRadius": 12,
+                                          "padding": [
+                                            0,
+                                            24
+                                          ],
+                                          "justifyContent": "center",
+                                          "alignItems": "center",
+                                          "children": [
+                                            {
+                                              "type": "text",
+                                              "id": "TTtLQ",
+                                              "name": "Label",
+                                              "fill": "#FDF6EE",
+                                              "content": "Try again",
+                                              "fontFamily": "IBM Plex Mono",
+                                              "fontSize": 15,
+                                              "fontWeight": "700"
+                                            }
+                                          ]
                                         }
                                       ]
                                     }
@@ -82890,7 +82953,7 @@
                                       "fill": "#F2C9A4",
                                       "textGrowth": "fixed-width",
                                       "width": "fill_container",
-                                      "content": "Cannot reach the server. Check your connection and try again.",
+                                      "content": "Cannot reach the server. Check your connection or edit the server address.",
                                       "textAlign": "center",
                                       "fontFamily": "IBM Plex Mono",
                                       "fontSize": 15,
@@ -82899,27 +82962,90 @@
                                     {
                                       "type": "frame",
                                       "id": "DWqwj",
-                                      "name": "RetryAction",
+                                      "name": "SessionForm",
                                       "width": "fill_container",
-                                      "height": 48,
-                                      "fill": "#F97316",
-                                      "cornerRadius": 12,
-                                      "padding": [
-                                        0,
-                                        24
-                                      ],
+                                      "fill": "#2E2620",
+                                      "layout": "vertical",
+                                      "gap": 16,
                                       "justifyContent": "center",
                                       "alignItems": "center",
                                       "children": [
                                         {
-                                          "type": "text",
-                                          "id": "tUFQQ",
-                                          "name": "Label",
-                                          "fill": "#1C1510",
-                                          "content": "Try again",
-                                          "fontFamily": "IBM Plex Mono",
-                                          "fontSize": 15,
-                                          "fontWeight": "700"
+                                          "type": "frame",
+                                          "id": "O7dOy",
+                                          "name": "ServerField",
+                                          "width": "fill_container",
+                                          "layout": "vertical",
+                                          "gap": 8,
+                                          "children": [
+                                            {
+                                              "type": "text",
+                                              "id": "Mg31Y",
+                                              "name": "FieldLabel",
+                                              "fill": "#F2C9A4",
+                                              "content": "Server URL",
+                                              "fontFamily": "IBM Plex Mono",
+                                              "fontSize": 12,
+                                              "fontWeight": "700"
+                                            },
+                                            {
+                                              "type": "frame",
+                                              "id": "b5VxZf",
+                                              "name": "ServerInput",
+                                              "width": "fill_container",
+                                              "height": 48,
+                                              "fill": "#241E19",
+                                              "cornerRadius": 12,
+                                              "stroke": "#57493C",
+                                              "strokeWidth": 1,
+                                              "padding": [
+                                                0,
+                                                12
+                                              ],
+                                              "alignItems": "center",
+                                              "children": [
+                                                {
+                                                  "type": "text",
+                                                  "id": "IqEJ3",
+                                                  "name": "Value",
+                                                  "fill": "#FDF6EE",
+                                                  "textGrowth": "fixed-width",
+                                                  "width": "fill_container",
+                                                  "content": "https://signet.example.com",
+                                                  "fontFamily": "IBM Plex Mono",
+                                                  "fontSize": 15,
+                                                  "fontWeight": "normal"
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "type": "frame",
+                                          "id": "SHz6a",
+                                          "name": "RetryAction",
+                                          "width": "fill_container",
+                                          "height": 48,
+                                          "fill": "#F97316",
+                                          "cornerRadius": 12,
+                                          "padding": [
+                                            0,
+                                            24
+                                          ],
+                                          "justifyContent": "center",
+                                          "alignItems": "center",
+                                          "children": [
+                                            {
+                                              "type": "text",
+                                              "id": "rU5so",
+                                              "name": "Label",
+                                              "fill": "#1C1510",
+                                              "content": "Try again",
+                                              "fontFamily": "IBM Plex Mono",
+                                              "fontSize": 15,
+                                              "fontWeight": "700"
+                                            }
+                                          ]
                                         }
                                       ]
                                     }
@@ -82958,7 +83084,7 @@
                       "fill": "#6E5F53",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
-                      "content": "Try again refetches the saved session · Success opens Native L1 · Unauthorized clears the session and opens Native A1 · Network failure stays here with the same message",
+                      "content": "Try again validates the address and shows Checking… · Failure preserves edits · Success opens Native L1 · Unauthorized opens Native A1 with the selected server retained",
                       "fontFamily": "IBM Plex Mono",
                       "fontSize": 12,
                       "fontWeight": "normal"

@@ -53,9 +53,12 @@ describe("auth API", () => {
       getToken: () => "saved-token",
     });
 
-    await expect(api.currentUser()).resolves.toEqual(user);
+    const controller = new AbortController();
+    await expect(api.currentUser(controller.signal)).resolves.toEqual(user);
     const request = fetchMock.mock.calls[0]?.[0] as Request;
     expect(request.headers.get("Authorization")).toBe("Bearer saved-token");
+    controller.abort();
+    expect(request.signal.aborted).toBe(true);
   });
 
   it("uses the current language on every request", async () => {

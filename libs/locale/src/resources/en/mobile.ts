@@ -99,5 +99,7 @@ export const mobile = {
     checking: "Checking your saved session with the server.",
     restoring: "Restoring your session…",
     serverUnavailable: "Server unavailable",
+    unavailableMessage:
+      "Cannot reach the server. Check your connection or edit the server address.",
   },
 } as const;

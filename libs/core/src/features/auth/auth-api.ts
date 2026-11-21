@@ -53,9 +53,9 @@ export const createAuthApi = ({
         throw toAuthError(error);
       }
     },
-    currentUser: async () => {
+    currentUser: async (signal) => {
       try {
-        const result = await currentUser({ client });
+        const result = await currentUser({ client, signal });
         if (result.data) {
           return result.data.data;
         }

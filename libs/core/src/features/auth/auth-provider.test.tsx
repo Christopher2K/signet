@@ -1,7 +1,13 @@
 // @vitest-environment jsdom
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { cleanup, fireEvent, render, screen } from "@testing-library/react";
+import {
+  act,
+  cleanup,
+  fireEvent,
+  render,
+  screen,
+} from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { useAuth } from "./auth-context";
 import { AuthError } from "./auth-errors";
@@ -44,13 +50,14 @@ const createMemoryStorage = (
 };
 
 const AuthHarness = () => {
-  const { login, logout, serverUrl, state } = useAuth();
+  const { login, logout, retryRestore, retrying, serverUrl, state } = useAuth();
 
   return (
     <div>
       <span data-testid="status">{state.status}</span>
       <span data-testid="email">{state.user?.email}</span>
       <span data-testid="server-url">{serverUrl}</span>
+      <span data-testid="retrying">{String(retrying)}</span>
       <button
         aria-label="Log in"
         onClick={() =>
@@ -65,6 +72,12 @@ const AuthHarness = () => {
       <button
         aria-label="Log out"
         onClick={() => void logout()}
+        type="button"
+      />
+      <button aria-label="Retry" onClick={() => retryRestore()} type="button" />
+      <button
+        aria-label="Retry elsewhere"
+        onClick={() => retryRestore("https://other.example.com/")}
         type="button"
       />
     </div>
@@ -181,6 +194,69 @@ describe("AuthProvider", () => {
 
     await screen.findByText("unauthenticated");
     expect(window.localStorage.getItem("signet.session.token")).toBeNull();
+  });
+
+  it("retries an unavailable session and exposes its pending state", async () => {
+    let resolveRetry: (value: typeof user) => void = () => undefined;
+    const retryUser = new Promise<typeof user>((resolve) => {
+      resolveRetry = resolve;
+    });
+    const storage = createMemoryStorage({
+      token: "stored-token",
+      serverUrl: "https://native.example.com",
+    });
+    const api = createApi({
+      currentUser: vi
+        .fn()
+        .mockRejectedValueOnce(
+          new AuthError("common:errors.unavailable", "unavailable"),
+        )
+        .mockReturnValueOnce(retryUser),
+    });
+    renderAuth(api, { requireStoredServerUrl: true, storage });
+
+    await screen.findByText("unavailable");
+    fireEvent.click(screen.getByRole("button", { name: "Retry" }));
+    expect(screen.getByTestId("retrying").textContent).toBe("true");
+
+    await act(async () => {
+      resolveRetry(user);
+      await retryUser;
+    });
+    await screen.findByText("authenticated");
+    await vi.waitFor(() =>
+      expect(screen.getByTestId("retrying").textContent).toBe("false"),
+    );
+    expect(api.currentUser).toHaveBeenCalledTimes(2);
+  });
+
+  it("retries restoration with a changed server URL", async () => {
+    const storage = createMemoryStorage({
+      token: "stored-token",
+      serverUrl: "https://native.example.com",
+    });
+    const api = createApi({
+      currentUser: vi
+        .fn()
+        .mockRejectedValueOnce(
+          new AuthError("common:errors.unavailable", "unavailable"),
+        )
+        .mockResolvedValueOnce(user),
+    });
+    renderAuth(api, { requireStoredServerUrl: true, storage });
+
+    await screen.findByText("unavailable");
+    fireEvent.click(screen.getByRole("button", { name: "Retry elsewhere" }));
+
+    await screen.findByText("authenticated");
+    expect(screen.getByTestId("server-url").textContent).toBe(
+      "https://other.example.com",
+    );
+    expect(api.currentUser).toHaveBeenCalledTimes(2);
+    expect(storage.writeStoredSession).toHaveBeenCalledWith(
+      "stored-token",
+      "https://other.example.com",
+    );
   });
 
   it("does not let unauthorized cleanup overwrite a newer login", async () => {
